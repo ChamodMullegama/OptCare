@@ -45,6 +45,13 @@
 <!-- Google Maps -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRxCvC_tYnWNUso0oJf-YAmRQVkh8204s&callback=initMap" async defer></script>
 
+
+    <!-- Input Tags JS -->
+    <script src="{{ asset('AdminArea/vendor/input-tags/tagsinput.min.js') }}"></script>
+    <script src="{{ asset('AdminArea/vendor/input-tags/typeahead.js') }}"></script>
+    <script src="{{ asset('AdminArea/vendor/input-tags/tagsinput-custom.js') }}"></script>
+
+
 <!-- ✅ Toastr Notifications -->
   @if (session('success'))
   <script>

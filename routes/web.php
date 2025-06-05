@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminArea\AdminController;
+use App\Http\Controllers\AdminArea\BlogController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\OCTController;
@@ -38,4 +39,16 @@ Route::prefix('service')->group(function () {
     Route::post('/viewServiceImageDelete', [ServiceController::class, 'ViewServiceImageDelete'])->name('Service.viewServiceImageDelete');
     Route::get('/isPrimary/{id}', [ServiceController::class, 'IsPrimary'])->name('Service.isPrimary');
 
+});
+
+
+Route::prefix('blog')->group(function () {
+    Route::get('/all', [BlogController::class, "All"])->name('blog.all');
+    Route::post('/add', [BlogController::class, 'Add'])->name('blog.add');
+    Route::post('/delete', [BlogController::class, 'Delete'])->name('blog.delete');
+    Route::post('/update', [BlogController::class, 'Update'])->name('blog.update');
+    Route::post('/blogImageAdd', [BlogController::class, 'BlogImageAdd'])->name('Blog.blogImageAdd');
+    Route::get('/viewBlogImageAll/{blogId}', [BlogController::class, "ViewBlogImageAll"])->name('Blog.viewBlogImageAll');
+    Route::post('/viewBlogImageDelete', [BlogController::class, 'ViewBlogImageDelete'])->name('Blog.viewBlogImageDelete');
+    Route::get('/isPrimary/{id}', [BlogController::class, 'IsPrimary'])->name('Blog.isPrimary');
 });

@@ -21,6 +21,9 @@
 
 <link rel="stylesheet" href="{{ asset('AdminArea/css/main.min.css') }}">
 
+    <!-- Input Tags css -->
+<link rel="stylesheet" href="{{ asset('AdminArea/vendor/input-tags/tagsinput.css') }}">
+
 <style>
     .modal-backdrop.show {
     opacity: 0.4;

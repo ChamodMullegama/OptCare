@@ -105,6 +105,18 @@
                   <span class="menu-text">Event Management</span>
                 </a>
               </li>
+               <li>
+                <a href="{{ route('blog.all') }}">
+               <i class="ri-edit-line"></i>
+
+                  <span class="menu-text">Blog</span>
+                </a>
+              </li>
+
+
+
+
+
               <li>
                 <a href="{{ route('gallery.all') }}">
                   <i class="ri-tent-line"></i>
@@ -118,7 +130,19 @@
                   <span class="menu-text">Service</span>
                 </a>
               </li>
+     <li>
+                <a href="{{ route('blog.all') }}">
+               <i class="ri-edit-line"></i>
 
+                  <span class="menu-text">Blog</span>
+                </a>
+              </li>
+                 <li>
+                <a href="{{ route('gallery.all') }}">
+                          <i class="ri-settings-3-line"></i>
+                  <span class="menu-text">Settings</span>
+                </a>
+              </li>
 
           </div>
           <!-- Sidebar menu ends -->
