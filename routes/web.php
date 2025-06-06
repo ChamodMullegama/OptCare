@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
 use App\Http\Controllers\AdminArea\GalleryController;
+use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
@@ -58,4 +59,12 @@ Route::prefix('settings')->group(function () {
     Route::get('/all', [WebsiteSettingsController::class, "All"])->name('settings.all');
     Route::post('/add', [WebsiteSettingsController::class, 'Add'])->name('settings.add');
     Route::post('/update', [WebsiteSettingsController::class, 'Update'])->name('settings.update');
+});
+
+
+Route::prefix('qa')->group(function () {
+    Route::get('/all', [QuestionsAndAnswersController::class, "All"])->name('qa.all');
+    Route::post('/add', [QuestionsAndAnswersController::class, 'Add'])->name('qa.add');
+    Route::post('/delete', [QuestionsAndAnswersController::class, 'Delete'])->name('qa.delete');
+    Route::post('/update', [QuestionsAndAnswersController::class, 'Update'])->name('qa.update');
 });
