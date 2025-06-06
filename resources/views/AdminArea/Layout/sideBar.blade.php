@@ -82,33 +82,25 @@
               <li class="treeview">
                 <a href="#!">
                   <i class="ri-dossier-line"></i>
-                  <span class="menu-text">Appointments</span>
+                  <span class="menu-text">Eduction Content</span>
                 </a>
                 <ul class="treeview-menu">
                   <li>
-                    <a href="appointments.html">Appointments</a>
+                    <a href="{{ route('eyeScans.all') }}">Scans</a>
                   </li>
-                  <li>
-                    <a href="appointments-list.html">Appointments List</a>
+                        <li>
+                    <a href="{{ route('eyeIssues.all') }}">Eye Disease</a>
                   </li>
-                  <li>
-                    <a href="book-appointment.html">Book Appointment</a>
+                         </li>
+                        <li>
+                    <a href="{{ route('treatments.all') }}">Treatments</a>
                   </li>
-                  <li>
-                    <a href="edit-appointment.html">Edit Appointment</a>
-                  </li>
+
                 </ul>
-              </li>
-              <li>
-                <a href="events.html">
-                  <i class="ri-calendar-line"></i>
-                  <span class="menu-text">Event Management</span>
-                </a>
               </li>
                <li>
                 <a href="{{ route('blog.all') }}">
                <i class="ri-edit-line"></i>
-
                   <span class="menu-text">Blog</span>
                 </a>
               </li>
