@@ -91,19 +91,16 @@
                         <li>
                     <a href="{{ route('eyeIssues.all') }}">Eye Disease</a>
                   </li>
+                         </li>
+                        <li>
+                    <a href="{{ route('treatments.all') }}">Treatments</a>
+                  </li>
 
                 </ul>
-              </li>
-              <li>
-                <a href="events.html">
-                  <i class="ri-calendar-line"></i>
-                  <span class="menu-text">Event Management</span>
-                </a>
               </li>
                <li>
                 <a href="{{ route('blog.all') }}">
                <i class="ri-edit-line"></i>
-
                   <span class="menu-text">Blog</span>
                 </a>
               </li>

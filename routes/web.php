@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
+use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use Illuminate\Support\Facades\Route;
@@ -91,4 +92,15 @@ Route::prefix('eyeIssues')->group(function () {
     Route::get('/viewEyeIssueImageAll/{eyeIssueId}', [EyeIssuesController::class, "ViewEyeIssueImageAll"])->name('EyeIssues.viewEyeIssueImageAll');
     Route::post('/viewEyeIssueImageDelete', [EyeIssuesController::class, 'ViewEyeIssueImageDelete'])->name('EyeIssues.viewEyeIssueImageDelete');
     Route::get('/isPrimary/{id}', [EyeIssuesController::class, 'IsPrimary'])->name('EyeIssues.isPrimary');
+});
+
+Route::prefix('treatments')->group(function () {
+    Route::get('/all', [TreatmentsController::class, "All"])->name('treatments.all');
+    Route::post('/add', [TreatmentsController::class, 'Add'])->name('treatments.add');
+    Route::post('/delete', [TreatmentsController::class, 'Delete'])->name('treatments.delete');
+    Route::post('/update', [TreatmentsController::class, 'Update'])->name('treatments.update');
+    Route::post('/treatmentImageAdd', [TreatmentsController::class, 'TreatmentImageAdd'])->name('Treatments.treatmentImageAdd');
+    Route::get('/viewTreatmentImageAll/{treatmentId}', [TreatmentsController::class, "ViewTreatmentImageAll"])->name('Treatments.viewTreatmentImageAll');
+    Route::post('/viewTreatmentImageDelete', [TreatmentsController::class, 'ViewTreatmentImageDelete'])->name('Treatments.viewTreatmentImageDelete');
+    Route::get('/isPrimary/{id}', [TreatmentsController::class, 'IsPrimary'])->name('Treatments.isPrimary');
 });
