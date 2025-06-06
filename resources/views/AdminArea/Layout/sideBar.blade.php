@@ -82,21 +82,13 @@
               <li class="treeview">
                 <a href="#!">
                   <i class="ri-dossier-line"></i>
-                  <span class="menu-text">Appointments</span>
+                  <span class="menu-text">Eduction Content</span>
                 </a>
                 <ul class="treeview-menu">
                   <li>
-                    <a href="appointments.html">Appointments</a>
+                    <a href="{{ route('eyeScans.all') }}">Scans</a>
                   </li>
-                  <li>
-                    <a href="appointments-list.html">Appointments List</a>
-                  </li>
-                  <li>
-                    <a href="book-appointment.html">Book Appointment</a>
-                  </li>
-                  <li>
-                    <a href="edit-appointment.html">Edit Appointment</a>
-                  </li>
+
                 </ul>
               </li>
               <li>

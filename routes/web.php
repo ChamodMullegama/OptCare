@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
+use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
@@ -67,4 +68,15 @@ Route::prefix('qa')->group(function () {
     Route::post('/add', [QuestionsAndAnswersController::class, 'Add'])->name('qa.add');
     Route::post('/delete', [QuestionsAndAnswersController::class, 'Delete'])->name('qa.delete');
     Route::post('/update', [QuestionsAndAnswersController::class, 'Update'])->name('qa.update');
+});
+
+Route::prefix('eyeScans')->group(function () {
+    Route::get('/all', [EyeScansController::class, "All"])->name('eyeScans.all');
+    Route::post('/add', [EyeScansController::class, 'Add'])->name('eyeScans.add');
+    Route::post('/delete', [EyeScansController::class, 'Delete'])->name('eyeScans.delete');
+    Route::post('/update', [EyeScansController::class, 'Update'])->name('eyeScans.update');
+    Route::post('/eyeScanImageAdd', [EyeScansController::class, 'EyeScanImageAdd'])->name('EyeScans.eyeScanImageAdd');
+    Route::get('/viewEyeScanImageAll/{eyeScanId}', [EyeScansController::class, "ViewEyeScanImageAll"])->name('EyeScans.viewEyeScanImageAll');
+    Route::post('/viewEyeScanImageDelete', [EyeScansController::class, 'ViewEyeScanImageDelete'])->name('EyeScans.viewEyeScanImageDelete');
+    Route::get('/isPrimary/{id}', [EyeScansController::class, 'IsPrimary'])->name('EyeScans.isPrimary');
 });
