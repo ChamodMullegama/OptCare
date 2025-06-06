@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\ServiceController;
+use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,4 +52,10 @@ Route::prefix('blog')->group(function () {
     Route::get('/viewBlogImageAll/{blogId}', [BlogController::class, "ViewBlogImageAll"])->name('Blog.viewBlogImageAll');
     Route::post('/viewBlogImageDelete', [BlogController::class, 'ViewBlogImageDelete'])->name('Blog.viewBlogImageDelete');
     Route::get('/isPrimary/{id}', [BlogController::class, 'IsPrimary'])->name('Blog.isPrimary');
+});
+
+Route::prefix('settings')->group(function () {
+    Route::get('/all', [WebsiteSettingsController::class, "All"])->name('settings.all');
+    Route::post('/add', [WebsiteSettingsController::class, 'Add'])->name('settings.add');
+    Route::post('/update', [WebsiteSettingsController::class, 'Update'])->name('settings.update');
 });
