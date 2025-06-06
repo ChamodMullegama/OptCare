@@ -138,7 +138,7 @@
                 </a>
               </li>
                  <li>
-                <a href="{{ route('gallery.all') }}">
+                <a href="{{ route('settings.all') }}">
                           <i class="ri-settings-3-line"></i>
                   <span class="menu-text">Settings</span>
                 </a>
