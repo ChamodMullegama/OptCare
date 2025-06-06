@@ -131,10 +131,11 @@
                 </a>
               </li>
      <li>
-                <a href="{{ route('blog.all') }}">
-               <i class="ri-edit-line"></i>
+                <a href="{{ route('qa.all') }}">
+              <i class="ri-question-answer-line"></i>
 
-                  <span class="menu-text">Blog</span>
+                  <span class="menu-text">
+Faq’s</span>
                 </a>
               </li>
                  <li>
