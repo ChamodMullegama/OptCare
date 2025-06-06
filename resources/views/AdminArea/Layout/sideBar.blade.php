@@ -78,6 +78,12 @@
                   </li>
                 </ul>
               </li>
+                   <li>
+                <a href="{{ route('doctors.all') }}">
+                     <i class="ri-user-heart-line"></i>
+                  <span class="menu-text">Doctors</span>
+                </a>
+              </li>
 
               <li class="treeview">
                 <a href="#!">
