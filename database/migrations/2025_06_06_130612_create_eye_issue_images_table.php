@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eye_scan_images', function (Blueprint $table) {
+        Schema::create('eye_issue_images', function (Blueprint $table) {
             $table->id();
-            $table->string('eyeScanImageId')->unique();
-            $table->string('eyeScanId')->nullable();
-            $table->string('image')->nullable();
+            $table->string('eyeIssueImageId')->unique();
+            $table->string('eyeIssueId');
+            $table->string('image');
             $table->boolean('isPrimary')->default(0);
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eye_scan_images');
+        Schema::dropIfExists('eye_issue_images');
     }
 };

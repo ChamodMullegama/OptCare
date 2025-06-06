@@ -88,6 +88,9 @@
                   <li>
                     <a href="{{ route('eyeScans.all') }}">Scans</a>
                   </li>
+                        <li>
+                    <a href="{{ route('eyeIssues.all') }}">Eye Disease</a>
+                  </li>
 
                 </ul>
               </li>
