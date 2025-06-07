@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
+use App\Http\Controllers\AdminArea\ProductCategoriesController;
+use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
@@ -39,7 +41,6 @@ Route::prefix('service')->group(function () {
     Route::post('/add', [ServiceController::class, 'Add'])->name('service.add');
     Route::post('/delete', [ServiceController::class, 'Delete'])->name('service.delete');
     Route::post('/update', [ServiceController::class, 'Update'])->name('service.update');
-
     Route::post('/serviceImageAdd', [ServiceController::class, 'ServiceImageAdd'])->name('Service.serviceImageAdd');
     Route::get('/viewServiceImageAll/{serviceId}', [ServiceController::class, "ViewServiceImageAll"])->name('Service.viewServiceImageAll');
     Route::post('/viewServiceImageDelete', [ServiceController::class, 'ViewServiceImageDelete'])->name('Service.viewServiceImageDelete');
@@ -115,4 +116,23 @@ Route::prefix('doctors')->group(function () {
     Route::post('/update', [DoctorsController::class, 'Update'])->name('doctors.update');
     Route::post('/delete', [DoctorsController::class, 'Delete'])->name('doctors.delete');
     Route::get('/doctors/profile/{id}', [DoctorsController::class, 'Profile'])->name('doctors.profile');
+});
+
+Route::prefix('product-categories')->group(function () {
+    Route::get('/all', [ProductCategoriesController::class, "All"])->name('productCategories.all');
+    Route::post('/add', [ProductCategoriesController::class, 'Add'])->name('productCategories.add');
+    Route::post('/update', [ProductCategoriesController::class, 'Update'])->name('productCategories.update');
+    Route::post('/delete', [ProductCategoriesController::class, 'Delete'])->name('productCategories.delete');
+});
+
+
+Route::prefix('products')->group(function () {
+    Route::get('/all', [ProductsController::class, "All"])->name('products.all');
+    Route::post('/add', [ProductsController::class, 'Add'])->name('products.add');
+    Route::post('/delete', [ProductsController::class, 'Delete'])->name('products.delete');
+    Route::post('/update', [ProductsController::class, 'Update'])->name('products.update');
+    Route::post('/productImageAdd', [ProductsController::class, 'ProductImageAdd'])->name('products.productImageAdd');
+    Route::get('/viewProductImageAll/{productId}', [ProductsController::class, "ViewProductImageAll"])->name('products.viewProductImageAll');
+    Route::post('/viewProductImageDelete', [ProductsController::class, 'ViewProductImageDelete'])->name('products.viewProductImageDelete');
+    Route::get('/isPrimary/{id}', [ProductsController::class, 'IsPrimary'])->name('products.isPrimary');
 });
