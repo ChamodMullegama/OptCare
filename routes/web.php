@@ -34,6 +34,7 @@ Route::prefix('gallery')->group(function () {
     Route::post('/add', [GalleryController::class, 'Add'])->name('gallery.add');
     Route::post('/delete', [GalleryController::class, 'Delete'])->name('gallery.delete');
     Route::post('/update', [GalleryController::class, 'Update'])->name('gallery.update');
+      Route::get('/home', [GalleryController::class, "home"])->name('gallery.home');
 });
 
 Route::prefix('service')->group(function () {

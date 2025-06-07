@@ -131,6 +131,21 @@ public function Delete(Request $request)
         return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
     }
 }
+
+ public function home()
+    {
+        try {
+            // Fetch all gallery data
+            // $galleries = Gallery::all();
+
+            return view('PublicArea.Pages.Home.index');
+        } catch (\Exception $e) {
+            // Handle any errors that occur
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+
+    }
+
 }
 
 
