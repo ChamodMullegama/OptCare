@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
+use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
@@ -103,4 +104,15 @@ Route::prefix('treatments')->group(function () {
     Route::get('/viewTreatmentImageAll/{treatmentId}', [TreatmentsController::class, "ViewTreatmentImageAll"])->name('Treatments.viewTreatmentImageAll');
     Route::post('/viewTreatmentImageDelete', [TreatmentsController::class, 'ViewTreatmentImageDelete'])->name('Treatments.viewTreatmentImageDelete');
     Route::get('/isPrimary/{id}', [TreatmentsController::class, 'IsPrimary'])->name('Treatments.isPrimary');
+});
+
+
+Route::prefix('doctors')->group(function () {
+    Route::get('/all', [DoctorsController::class, "All"])->name('doctors.all');
+    Route::get('/add', [DoctorsController::class, 'AddPage'])->name('doctors.addPage');
+    Route::post('/add', [DoctorsController::class, 'Add'])->name('doctors.add');
+    Route::get('/edit/{id}', [DoctorsController::class, 'EditPage'])->name('doctors.editPage');
+    Route::post('/update', [DoctorsController::class, 'Update'])->name('doctors.update');
+    Route::post('/delete', [DoctorsController::class, 'Delete'])->name('doctors.delete');
+    Route::get('/doctors/profile/{id}', [DoctorsController::class, 'Profile'])->name('doctors.profile');
 });

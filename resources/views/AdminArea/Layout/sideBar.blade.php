@@ -19,64 +19,12 @@
                   <span class="menu-text">Hospital Dashboard</span>
                 </a>
               </li>
-              <li>
-                <a href="dashboard2.html">
-                  <i class="ri-home-smile-2-line"></i>
-                  <span class="menu-text">Medical Dashboard</span>
-                </a>
-              </li>
-              <li>
-                <a href="dashboard3.html">
-                  <i class="ri-home-5-line"></i>
-                  <span class="menu-text">Dentist Dashboard</span>
-                </a>
-              </li>
-              <li class="treeview">
-                <a href="#!">
-                  <i class="fas fa-stethoscope"></i>
 
+                   <li>
+                <a href="{{ route('doctors.all') }}">
+                     <i class="ri-user-heart-line"></i>
                   <span class="menu-text">Doctors</span>
                 </a>
-                <ul class="treeview-menu">
-                  <li>
-                    <a href="doctor-dashboard.html">Doctors Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="doctors-list.html">Doctors List</a>
-                  </li>
-                  <li>
-                    <a href="doctors-cards.html">Doctors Cards</a>
-                  </li>
-                  <li>
-                    <a href="doctors-profile.html">Doctors Profile</a>
-                  </li>
-                  <li>
-                    <a href="add-doctors.html">Add Doctor</a>
-                  </li>
-                  <li>
-                    <a href="edit-doctors.html">Edit Doctor</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="treeview">
-                <a href="#!">
-                  <i class="ri-heart-pulse-line"></i>
-                  <span class="menu-text">Patients</span>
-                </a>
-                <ul class="treeview-menu">
-                  <li>
-                    <a href="patient-dashboard.html">Patients Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="patients-list.html">Patients List</a>
-                  </li>
-                  <li>
-                    <a href="add-patient.html">Add Patient</a>
-                  </li>
-                  <li>
-                    <a href="edit-patient.html">Edit Patient Details</a>
-                  </li>
-                </ul>
               </li>
 
               <li class="treeview">
