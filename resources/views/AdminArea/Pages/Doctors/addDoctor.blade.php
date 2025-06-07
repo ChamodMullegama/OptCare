@@ -219,14 +219,21 @@
                                                     <span class="input-group-text">
                                                         <i class="ri-flag-line"></i>
                                                     </span>
-                                                    <select class="form-select" id="country" name="country">
-                                                        <option value="">Select</option>
-                                                        <option value="USA">USA</option>
-                                                        <option value="Canada">Canada</option>
-                                                        <option value="Brazil">Brazil</option>
-                                                        <option value="India">India</option>
-                                                        <option value="China">China</option>
-                                                    </select>
+                                             <select class="form-select" id="country" name="country">
+    <option value="">Select</option>
+    <option value="Sri Lanka">Sri Lanka</option>
+    <option value="India">India</option>
+    <option value="China">China</option>
+    <option value="Japan">Japan</option>
+    <option value="South Korea">South Korea</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Singapore">Singapore</option>
+    <option value="USA">USA</option>
+    <option value="Canada">Canada</option>
+    <option value="Brazil">Brazil</option>
+</select>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -237,14 +244,8 @@
                                                     <span class="input-group-text">
                                                         <i class="ri-instance-line"></i>
                                                     </span>
-                                                    <select class="form-select" id="state" name="state">
-                                                        <option value="">Select</option>
-                                                        <option value="Alabama">Alabama</option>
-                                                        <option value="Alaska">Alaska</option>
-                                                        <option value="Arizona">Arizona</option>
-                                                        <option value="California">California</option>
-                                                        <option value="Florida">Florida</option>
-                                                    </select>
+                                                     <input type="text" class="form-control" id="state" name="state" placeholder="Enter state">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -284,7 +285,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <label class="form-label">Write Bio</label>
-                                            <div id="fullEditorbio" style="min-height: 150px;"></div>
+                                            <div id="fullEditorbio" style="min-height: 75px;"></div>
                                             <textarea class="form-control d-none" id="bio" name="bio" rows="10"></textarea>
                                         </div>
                                     </div>

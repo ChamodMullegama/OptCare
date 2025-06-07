@@ -221,12 +221,21 @@
                                                         <i class="ri-flag-line"></i>
                                                     </span>
                                                     <select class="form-select" id="country" name="country">
-                                                        <option value="">Select</option>
-                                                        <option value="USA" {{ $doctor->country == 'USA' ? 'selected' : '' }}>USA</option>
-                                                        <option value="Canada" {{ $doctor->country == 'Canada' ? 'selected' : '' }}>Canada</option>
-                                                        <option value="Brazil" {{ $doctor->country == 'Brazil' ? 'selected' : '' }}>Brazil</option>
-                                                        <option value="India" {{ $doctor->country == 'India' ? 'selected' : '' }}>India</option>
-                                                        <option value="China" {{ $doctor->country == 'China' ? 'selected' : '' }}>China</option>
+
+    <option value="">Select</option>
+    <option value="Sri Lanka" {{ $doctor->country == 'Sri Lanka' ? 'selected' : '' }}>Sri Lanka</option>
+    <option value="India" {{ $doctor->country == 'India' ? 'selected' : '' }}>India</option>
+    <option value="China" {{ $doctor->country == 'China' ? 'selected' : '' }}>China</option>
+    <option value="Japan" {{ $doctor->country == 'Japan' ? 'selected' : '' }}>Japan</option>
+    <option value="South Korea" {{ $doctor->country == 'South Korea' ? 'selected' : '' }}>South Korea</option>
+    <option value="Thailand" {{ $doctor->country == 'Thailand' ? 'selected' : '' }}>Thailand</option>
+    <option value="Malaysia" {{ $doctor->country == 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
+    <option value="Singapore" {{ $doctor->country == 'Singapore' ? 'selected' : '' }}>Singapore</option>
+    <option value="USA" {{ $doctor->country == 'USA' ? 'selected' : '' }}>USA</option>
+    <option value="Canada" {{ $doctor->country == 'Canada' ? 'selected' : '' }}>Canada</option>
+    <option value="Brazil" {{ $doctor->country == 'Brazil' ? 'selected' : '' }}>Brazil</option>
+
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -238,14 +247,8 @@
                                                     <span class="input-group-text">
                                                         <i class="ri-instance-line"></i>
                                                     </span>
-                                                    <select class="form-select" id="state" name="state">
-                                                        <option value="">Select</option>
-                                                        <option value="Alabama" {{ $doctor->state == 'Alabama' ? 'selected' : '' }}>Alabama</option>
-                                                        <option value="Alaska" {{ $doctor->state == 'Alaska' ? 'selected' : '' }}>Alaska</option>
-                                                        <option value="Arizona" {{ $doctor->state == 'Arizona' ? 'selected' : '' }}>Arizona</option>
-                                                        <option value="California" {{ $doctor->state == 'California' ? 'selected' : '' }}>California</option>
-                                                        <option value="Florida" {{ $doctor->state == 'Florida' ? 'selected' : '' }}>Florida</option>
-                                                    </select>
+                                                       <input type="text" class="form-control" id="state" name="state" placeholder="Enter state" value="{{ $doctor->state}}">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -290,7 +293,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <label class="form-label">Write Bio</label>
-                                            <div id="fullEditorbioedit" style="min-height: 150px;"></div>
+                                            <div id="fullEditorbioedit" style="min-height: 75px;"></div>
                                             <textarea class="form-control d-none" id="bio" name="bio" rows="10">{{ $doctor->bio }}</textarea>
                                         </div>
                                     </div>
