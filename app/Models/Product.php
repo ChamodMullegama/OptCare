@@ -18,6 +18,11 @@ class Product extends Model
         'product_color',
         'brand_name',
         'category_id',
+        'discount',
+    ];
+
+protected $casts = [
+        'discount' => 'float',
     ];
 
     public function category()

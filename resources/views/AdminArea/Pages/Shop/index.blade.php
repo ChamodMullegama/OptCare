@@ -37,9 +37,10 @@
                                     <th>Description</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
-                                    <th>Category</th>
+                                    <th>Discounted Price</th>
                                     <th>Color</th>
                                     <th>Brand</th>
+                                    <th>Category</th>
                                     <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
@@ -53,9 +54,16 @@
                                     <td>{!! Str::limit($item->description, 50) !!}</td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>${{ number_format($item->price, 2) }}</td>
-                                    <td>{{ $item->category->name ?? 'N/A' }}</td>
+                                    <td>
+                                        @if ($item->discount > 0)
+                                            ${{ number_format($item->price * (1 - $item->discount / 100), 2) }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td>{{ $item->product_color }}</td>
                                     <td>{{ $item->brand_name }}</td>
+                                    <td>{{ $item->category->name ?? 'N/A' }}</td>
                                     <td>
                                         <button type="button" class="btn btn-outline-warning btn-sm"
                                             data-bs-toggle="modal" data-bs-target="#uploadImageModal"
@@ -73,7 +81,7 @@
                                                 <i class="ri-delete-bin-line"></i>
                                             </button>
                                             <button class="btn btn-outline-success btn-sm"
-                                                onclick="editProduct('{{ $item->id }}', '{{ $item->name }}', '{{ $item->description }}', '{{ $item->quantity }}', '{{ $item->price }}', '{{ $item->category_id }}')">
+                                                onclick="editProduct('{{ $item->id }}', '{{ $item->name }}', '{{ $item->description }}', '{{ $item->quantity }}', '{{ $item->price }}', '{{ $item->category_id }}', '{{ $item->product_color }}', '{{ $item->brand_name }}', '{{ $item->discount }}')">
                                                 <i class="ri-edit-box-line"></i>
                                             </button>
                                         </div>
@@ -118,13 +126,8 @@
                         <input type="number" step="0.01" class="form-control" id="price" name="price" min="0" required>
                     </div>
                     <div class="mb-3">
-                        <label for="category_id" class="form-label">Product Category</label>
-                        <select class="form-select" id="category_id" name="category_id" required>
-                            <option value="">Select Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="discount" class="form-label">Discount (%)</label>
+                        <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" value="0">
                     </div>
                     <div class="mb-3">
                         <label for="product_color" class="form-label">Product Color</label>
@@ -133,6 +136,15 @@
                     <div class="mb-3">
                         <label for="brand_name" class="form-label">Brand Name</label>
                         <input type="text" class="form-control" id="brand_name" name="brand_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category_id" class="form-label">Product Category</label>
+                        <select class="form-select" id="category_id" name="category_id" required>
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -174,13 +186,8 @@
                         <input type="number" step="0.01" class="form-control" id="edit_price" name="price" min="0" required>
                     </div>
                     <div class="mb-3">
-                        <label for="edit_category_id" class="form-label">Product Category</label>
-                        <select class="form-select" id="edit_category_id" name="category_id" required>
-                            <option value="">Select Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="edit_discount" class="form-label">Discount (%)</label>
+                        <input type="number" class="form-control" id="edit_discount" name="discount" min="0" max="100" value="0">
                     </div>
                     <div class="mb-3">
                         <label for="edit_product_color" class="form-label">Product Color</label>
@@ -189,6 +196,15 @@
                     <div class="mb-3">
                         <label for="edit_brand_name" class="form-label">Brand Name</label>
                         <input type="text" class="form-control" id="edit_brand_name" name="brand_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_category_id" class="form-label">Product Category</label>
+                        <select class="form-select" id="edit_category_id" name="category_id" required>
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -299,16 +315,17 @@
         document.getElementById('edit_description').value = editEditor.root.innerHTML;
     });
 
-    function editProduct(id, name, description, quantity, price, category_id) {
+    function editProduct(id, name, description, quantity, price, category_id, product_color, brand_name, discount) {
         document.getElementById('edit_product_id').value = id;
         document.getElementById('edit_name').value = name;
         document.getElementById('edit_description').value = description;
         editEditor.root.innerHTML = description;
         document.getElementById('edit_quantity').value = quantity;
         document.getElementById('edit_price').value = price;
+        document.getElementById('edit_category_id').value = category_id;
         document.getElementById('edit_product_color').value = product_color;
         document.getElementById('edit_brand_name').value = brand_name;
-        document.getElementById('edit_category_id').value = category_id;
+        document.getElementById('edit_discount').value = discount;
         $('#editProductModal').modal('show');
     }
 

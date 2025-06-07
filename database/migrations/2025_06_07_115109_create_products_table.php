@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('product_color');
             $table->string('brand_name');
             $table->unsignedBigInteger('category_id');
+            $table->decimal('discount', 5, 2)->default(0);
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
         });
