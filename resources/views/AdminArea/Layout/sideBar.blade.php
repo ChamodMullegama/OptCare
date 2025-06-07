@@ -52,11 +52,6 @@
                   <span class="menu-text">Blog</span>
                 </a>
               </li>
-
-
-
-
-
               <li>
                 <a href="{{ route('gallery.all') }}">
                   <i class="ri-tent-line"></i>
@@ -77,6 +72,27 @@
                   <span class="menu-text">
 Faq’s</span>
                 </a>
+              </li>
+
+                 <li class="treeview">
+                <a href="#!">
+              <i class="ri-shopping-bag-line"></i>
+
+                  <span class="menu-text">Shop</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="{{ route('productCategories.all') }}">Product Categories</a>
+                  </li>
+                        <li>
+                    <a href="{{ route('products.all') }}">Product</a>
+                  </li>
+                         </li>
+                        <li>
+                    <a href="{{ route('treatments.all') }}">Treatments</a>
+                  </li>
+
+                </ul>
               </li>
                  <li>
                 <a href="{{ route('settings.all') }}">
