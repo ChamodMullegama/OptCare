@@ -38,7 +38,12 @@
         <div id="search-popup" class="search-popup">
             <div class="popup-inner">
                 <div class="upper-box clearfix">
-                    <figure class="logo-box pull-left"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                  <figure class="logo-box pull-left">
+    <a href="index.html">
+        <img src="{{ asset('PublicArea/images/logo.png') }}" alt="Logo">
+    </a>
+</figure>
+
                     <div class="close-search pull-right"><span class="far fa-times"></span></div>
                 </div>
                 <div class="overlay-layer"></div>
@@ -90,7 +95,11 @@
                 <div class="auto-container">
                     <div class="outer-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                                             <figure class="logo-box pull-left">
+    <a href="index.html">
+        <img src="{{ asset('PublicArea/images/logo.png') }}" alt="Logo">
+    </a>
+</figure>
                         </div>
                         <div class="menu-area clearfix">
                             <!--Mobile Navigation Toggler-->
@@ -235,7 +244,11 @@
                 <div class="auto-container">
                     <div class="outer-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                                                                       <figure class="logo-box pull-left">
+    <a href="index.html">
+        <img src="{{ asset('PublicArea/images/logo.png') }}" alt="Logo">
+    </a>
+</figure>
                         </div>
                         <div class="menu-area clearfix">
                             <nav class="main-menu clearfix">
@@ -262,7 +275,7 @@
             <div class="close-btn"><i class="fas fa-times"></i></div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="index.html"> <img src="{{ asset('PublicArea/images/logo-2.png') }}" alt="Logo"></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
                 <div class="contact-info">
                     <h4>Contact Info</h4>

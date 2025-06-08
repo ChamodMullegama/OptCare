@@ -57,46 +57,47 @@
 <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-15.png') }}');"></div>
 
             </div>
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500m">
-                            <div class="inner-box">
-                                <div class="icon-box"><i class="icon-12"></i></div>
-                                <h3><a href="index-2.html">Qualified Doctors</a></h3>
-                                <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-two wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500m">
-                            <div class="inner-box">
-                                <div class="icon-box"><i class="icon-13"></i></div>
-                                <h3><a href="index-2.html">Modern Equipment</a></h3>
-                                <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-two wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="1500m">
-                            <div class="inner-box">
-                                <div class="icon-box"><i class="icon-14"></i></div>
-                                <h3><a href="index-2.html">Emergency Help</a></h3>
-                                <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-two wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500m">
-                            <div class="inner-box">
-                                <div class="icon-box"><i class="icon-15"></i></div>
-                                <h3><a href="index-2.html">Individual Approach</a></h3>
-                                <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
+           <div class="auto-container">
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
+            <div class="feature-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500m">
+                <div class="inner-box">
+                    <div class="icon-box"><i class="fas fa-user-md"></i></div> <!-- Qualified Doctors -->
+                    <h3><a href="index-2.html">Qualified Doctors</a></h3>
+                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
+            <div class="feature-block-two wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500m">
+                <div class="inner-box">
+                    <div class="icon-box"><i class="fas fa-microscope"></i></div> <!-- Modern Equipment -->
+                    <h3><a href="index-2.html">Modern Equipment</a></h3>
+                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
+            <div class="feature-block-two wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="1500m">
+                <div class="inner-box">
+                    <div class="icon-box"><i class="fas fa-ambulance"></i></div> <!-- Emergency Help -->
+                    <h3><a href="index-2.html">Emergency Help</a></h3>
+                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
+            <div class="feature-block-two wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500m">
+                <div class="inner-box">
+                    <div class="icon-box"><i class="fas fa-user-friends"></i></div> <!-- Individual Approach -->
+                    <h3><a href="index-2.html">Individual Approach</a></h3>
+                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
         </section>
         <!-- feature-style-two end -->
 
@@ -115,16 +116,17 @@
                                 <div class="text">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat.</p>
                                 </div>
-                                <div class="inner-box p_relative mb_40">
-                                    <div class="single-item">
-                                        <div class="icon-box"><i class="icon-8"></i></div>
-                                        <h3>Our Patients <br />Vision</h3>
-                                    </div>
-                                    <div class="single-item">
-                                        <div class="icon-box"><i class="icon-10"></i></div>
-                                        <h3>Trusted Eye <br />Doctor</h3>
-                                    </div>
-                                </div>
+                               <div class="inner-box p_relative mb_40">
+    <div class="single-item">
+        <div class="icon-box"><i class="fas fa-eye"></i></div> <!-- Eye icon -->
+        <h3>Our Patients <br />Vision</h3>
+    </div>
+    <div class="single-item">
+        <div class="icon-box"><i class="fas fa-user-md"></i></div> <!-- Doctor icon -->
+        <h3>Trusted Eye <br />Doctor</h3>
+    </div>
+</div>
+
                                 <div class="btn-box">
                                     <a href="team.html" class="theme-btn btn-one">View All Team</a>
                                 </div>
@@ -139,7 +141,10 @@
 <div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-16.png') }}');"></div>
 
                                 </div>
-                                <figure class="image"><img src="assets/images/resource/about-1.png" alt=""></figure>
+                               <figure class="image">
+    <img src="{{ asset('PublicArea/images/resource/about-1.png') }}" alt="">
+</figure>
+
                                 <div class="text p_absolute l_0 b_40">
                                     <h2>30</h2>
                                     <h4>Years of Experience in This Field</h4>
@@ -193,7 +198,7 @@
         <section class="chooseus-style-two p_relative">
            <div class="shape p_absolute t_0 r_0" style="background-image: url('{{ asset('PublicArea/images/shape/shape-20.png') }}');"></div>
 <div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-21.png') }}');"></div>
-<div class="video-column" style="background-image: url('{{ asset('PublicArea/images/background/video-bg-2.jpg') }}');">
+<div class="video-column" style="background-image: url('{{ asset('PublicArea/images/project/project-21.jpg') }}');">
 
                 <div class="video-inner">
                     <div class="video-btn">
