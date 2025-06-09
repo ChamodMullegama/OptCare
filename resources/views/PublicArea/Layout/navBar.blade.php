@@ -166,7 +166,8 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('Home.aboutUs') }}">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{ route('Home.contactUs') }}">Contact</a></li>
+
                                     </ul>
                                 </div>
                             </nav>

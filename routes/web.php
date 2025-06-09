@@ -154,5 +154,6 @@ Route::prefix('Authentication')->group(function () {
 Route::prefix('Home')->group(function () {
     Route::get('/home', [HomeController::class, "index"])->name('Home.home');
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
+    Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
 
 });

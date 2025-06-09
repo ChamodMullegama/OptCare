@@ -34,4 +34,17 @@ class HomeController extends Controller
         }
 
     }
+
+       public function ContactUs()
+    {
+        try {
+
+
+            return view('PublicArea.Pages.contactUs.index');
+        } catch (\Exception $e) {
+            // Handle any errors that occur
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+
+    }
 }
