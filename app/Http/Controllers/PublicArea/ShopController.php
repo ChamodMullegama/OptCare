@@ -13,7 +13,7 @@ class ShopController extends Controller
             // Fetch all gallery data
             // $galleries = Gallery::all();
 
-            return view('PublicArea.Pages.shop.index');
+            return view('PublicArea.Pages.shop.checkout');
         } catch (\Exception $e) {
             // Handle any errors that occur
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
