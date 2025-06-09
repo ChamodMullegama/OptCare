@@ -13,6 +13,8 @@ use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
+use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -34,6 +36,7 @@ Route::prefix('gallery')->group(function () {
     Route::post('/add', [GalleryController::class, 'Add'])->name('gallery.add');
     Route::post('/delete', [GalleryController::class, 'Delete'])->name('gallery.delete');
     Route::post('/update', [GalleryController::class, 'Update'])->name('gallery.update');
+
 });
 
 Route::prefix('service')->group(function () {
@@ -135,4 +138,22 @@ Route::prefix('products')->group(function () {
     Route::get('/viewProductImageAll/{productId}', [ProductsController::class, "ViewProductImageAll"])->name('products.viewProductImageAll');
     Route::post('/viewProductImageDelete', [ProductsController::class, 'ViewProductImageDelete'])->name('products.viewProductImageDelete');
     Route::get('/isPrimary/{id}', [ProductsController::class, 'IsPrimary'])->name('products.isPrimary');
+});
+
+
+
+//////////////////////////////////////////// Public ////////////////////////////////////////////////////
+
+
+Route::prefix('Authentication')->group(function () {
+    Route::get('/register', [AuthenticationController::class, "Register"])->name('Authentication.register');
+    Route::get('/login', [AuthenticationController::class, "Login"])->name('Authentication.login');
+});
+
+
+Route::prefix('Home')->group(function () {
+    Route::get('/home', [HomeController::class, "index"])->name('Home.home');
+    Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
+    Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
+
 });
