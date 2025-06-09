@@ -120,22 +120,7 @@
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="dropdown"><a href="index.html">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home Page 01</a></li>
-                                                <li><a href="index-2.html">Home Page 02</a></li>
-                                                <li><a href="index-3.html">Home Page 03</a></li>
-                                                <li><a href="index-onepage.html">OnePage Home</a></li>
-                                                <li><a href="index-rtl.html">RTL Home</a></li>
-                                                <li class="dropdown"><a href="index.html">Header Style</a>
-                                                    <ul>
-                                                        <li><a href="index.html">Header Style 01</a></li>
-                                                        <li><a href="index-2.html">Header Style 02</a></li>
-                                                        <li><a href="index-3.html">Header Style 03</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                          <li><a href="{{ route('Home.home') }}">Home</a></li>
 
                                         <li class="dropdown"><a href="index.html">Treatments</a>
                                             <ul>

@@ -7,7 +7,22 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-        public function AboutUs()
+
+     public function index()
+    {
+        try {
+            // Fetch all gallery data
+            // $galleries = Gallery::all();
+
+            return view('PublicArea.Pages.Home.index');
+        } catch (\Exception $e) {
+            // Handle any errors that occur
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+
+    }
+
+    public function AboutUs()
     {
         try {
 
