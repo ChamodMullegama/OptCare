@@ -104,10 +104,10 @@
                                                     <ul>
                                                         <li><a href="team.html">Doctors 3 Column</a></li>
                                                         <li><a href="team-2.html">Doctors 4 Column</a></li>
-                                                        <li><a href="team-details.html">Doctor Single</a></li>
+
                                                     </ul>
                                                 </li>
-                                                <li><a href="appointment.html">Shop</a></li>
+                                                <li><a href="{{ route('Shop.all') }}">Shop</a></li>
                                                 <li><a href="error.html">404</a></li>
                                             </ul>
                                         </li>

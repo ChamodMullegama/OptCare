@@ -15,6 +15,8 @@
 <script src="{{ asset('PublicArea/js/text_plugins.js') }}"></script>
 <script src="{{ asset('PublicArea/js/jquery.countTo.js') }}"></script>
 <script src="{{ asset('PublicArea/js/calander.js') }}"></script>
+<script src="{{ asset('PublicArea/assets/js/product-filter.js') }}"></script>
+<script src="{{ asset('PublicArea/assets/js/jquery.bootstrap-touchspin.js') }}"></script>
 
 
 <!-- main-js -->
