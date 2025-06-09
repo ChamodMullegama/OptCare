@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -147,4 +148,10 @@ Route::prefix('products')->group(function () {
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [AuthenticationController::class, "Register"])->name('Authentication.register');
     Route::get('/login', [AuthenticationController::class, "Login"])->name('Authentication.login');
+});
+
+
+Route::prefix('Home')->group(function () {
+    Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
+
 });

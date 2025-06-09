@@ -136,18 +136,11 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="current"><a href="about.html">About Us</a></li>
+
                                         <li class="dropdown"><a href="index.html">Treatments</a>
                                             <ul>
                                                 <li><a href="treatment.html">Treatment 1</a></li>
-                                                <li><a href="treatment-2.html">Treatment 2</a></li>
-                                                <li><a href="surgical-procedures.html">Surgical Procedures</a></li>
-                                                <li><a href="paeditaric-ophthalmology.html">Paeditaric Ophthalmology</a></li>
-                                                <li><a href="lenses-transitions.html">Lenses Transitions</a></li>
-                                                <li><a href="laser-surgery.html">Laser Eye Surgery</a></li>
-                                                <li><a href="vision-correction.html">Vision Correction</a></li>
-                                                <li><a href="contact-lens.html">Contact Lens</a></li>
-                                                <li><a href="diabetic-retinopathy.html">Diabetic Retinopathy</a></li>
+
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a href="index.html">Pages</a>
@@ -179,51 +172,7 @@
                                                 <li><a href="error.html">404</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="index.html">Elements</a>
-                                            <div class="megamenu">
-                                                <div class="row clearfix">
-                                                    <div class="col-lg-4 column">
-                                                        <ul>
-                                                            <li><h4>Elements 1</h4></li>
-                                                            <li><a href="about-element-1.html">About Block 01</a></li>
-                                                            <li><a href="about-element-2.html">About Block 02</a></li>
-                                                            <li><a href="about-element-3.html">About Block 03</a></li>
-                                                            <li><a href="feature-element-1.html">Feature Block 01</a></li>
-                                                            <li><a href="feature-element-2.html">Feature Block 02</a></li>
-                                                            <li><a href="feature-element-3.html">Feature Block 03</a></li>
-                                                            <li><a href="feature-element-4.html">Feature Block 04</a></li>
-                                                            <li><a href="service-element-1.html">Service Block 01</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4 column">
-                                                        <ul>
-                                                            <li><h4>Elements 2</h4></li>
-                                                            <li><a href="service-element-2.html">Service Block 02</a></li>
-                                                            <li><a href="service-element-3.html">Service Block 03</a></li>
-                                                            <li><a href="service-element-4.html">Service Block 04</a></li>
-                                                            <li><a href="team-element-1.html">Team Block 01</a></li>
-                                                            <li><a href="team-element-2.html">Team Block 02</a></li>
-                                                            <li><a href="team-element-3.html">Team Block 03</a></li>
-                                                            <li><a href="team-element-4.html">Team Block 04</a></li>
-                                                            <li><a href="news-element-1.html">News Block 01</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4 column">
-                                                        <ul>
-                                                            <li><h4>Elements 3</h4></li>
-                                                            <li><a href="news-element-2.html">News Block 02</a></li>
-                                                            <li><a href="working-element-1.html">Working Block 01</a></li>
-                                                            <li><a href="working-element-2.html">Working Block 02</a></li>
-                                                            <li><a href="chooseus-element-1.html">Chooseus Block 01</a></li>
-                                                            <li><a href="chooseus-element-2.html">Chooseus Block 02</a></li>
-                                                            <li><a href="funfact-element.html">Funfact Block</a></li>
-                                                            <li><a href="cta-element.html">Cta Block</a></li>
-                                                            <li><a href="testimonial-element.html">Testimonial Block</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+
                                         <li class="dropdown"><a href="index.html">Blog</a>
                                             <ul>
                                                 <li><a href="blog.html">Blog Grid</a></li>
@@ -231,6 +180,7 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href="{{ route('Home.aboutUs') }}">About</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </div>
