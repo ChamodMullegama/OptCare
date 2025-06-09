@@ -1,45 +1,4 @@
-<!-- google-map-section -->
-<section class="google-map-section p_relative">
-    <div class="map-inner p_relative d_block">
-        <div
-            class="google-map"
-            id="contact-google-map"
-            data-map-lat="40.712776"
-            data-map-lng="-74.005974"
-            data-icon-path="{{ asset('PublicArea/images/icons/map-marker.png') }}"
-            data-map-title="Brooklyn, New York, United Kingdom"
-            data-map-zoom="12"
-            data-markers='{
-                "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>", "{{ asset('PublicArea/images/icons/map-marker.png') }}"]
-            }'>
-        </div>
-    </div>
-    <div class="content-inner">
-        <div class="auto-container">
-            <div class="content-box p_relative d_block">
-                <div class="title p_relative d_block">
-                    <h3>Working Hours</h3>
-                </div>
-                <div class="schedule-box p_relative d_block">
-                    <ul class="schedule-list clearfix">
-                        <li>Mon - Wed:  8:00AM - 7:00PM</li>
-                        <li>Thu:  8:00AM - 7:00PM</li>
-                        <li>Fri:  8:00AM - 7:00PM</li>
-                        <li>Sat - Sun:  8:00AM - 7:00PM</li>
-                    </ul>
-                </div>
-                <div class="contact-info p_relative d_block">
-                    <h3>Contact Info</h3>
-                    <ul class="info-list clearfix">
-                        <li><i class="fas fa-envelope"></i>Email: <a href="mailto:sample@example.com">sample@example.com</a></li>
-                        <li><i class="icon-3"></i>Call: <a href="tel:123045615523">+1 (230)-456-155-23</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- google-map-section end -->
+
 
 <!-- main-footer -->
 <footer class="main-footer p_relative">

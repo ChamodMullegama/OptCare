@@ -698,7 +698,40 @@
         </section>
         <!-- news-section end -->
 
+        <section class="cta-section alternat-2 p_relative bg-color-1">
+            <div class="pattern-layer">
+         <div class="pattern-1" style="background-image: url({{ asset('PublicArea/images/shape/shape-29.png') }});"></div>
+<div class="pattern-2" style="background-image: url({{ asset('PublicArea/images/shape/shape-30.png') }});"></div>
 
+            </div>
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <div class="image-box mr_25 mt_60">
+                           <div class="shape" style="background-image: url({{ asset('PublicArea/images/shape/shape-30.png') }});"></div>
+<figure class="image p_relative z_1"><img src="{{ asset('PublicArea/images/resource/car-1.png') }}" alt=""></figure>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box ml_35">
+                            <div class="sec-title left mb_25">
+                                <span class="sub-title">Emergency Need</span>
+                                <h2>Need a Doctor <br />for Check-up? Call for an <span>Emergency Service!</span></h2>
+                            </div>
+                            <div class="text">
+                                <p>All of our services are backed by our 100% satisfaction guarantee Our electricians can install anything.</p>
+                            </div>
+                            <div class="support-box">
+                                <div class="icon-box"><i class="icon-32"></i></div>
+                                <h4>For Emergency</h4>
+                                <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- cta-section -->
         {{-- <section class="cta-section alternat-2 p_relative bg-color-1">
             <div class="pattern-layer">

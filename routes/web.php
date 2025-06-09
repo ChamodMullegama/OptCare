@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
+use App\Http\Controllers\PublicArea\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -136,4 +137,13 @@ Route::prefix('products')->group(function () {
     Route::get('/viewProductImageAll/{productId}', [ProductsController::class, "ViewProductImageAll"])->name('products.viewProductImageAll');
     Route::post('/viewProductImageDelete', [ProductsController::class, 'ViewProductImageDelete'])->name('products.viewProductImageDelete');
     Route::get('/isPrimary/{id}', [ProductsController::class, 'IsPrimary'])->name('products.isPrimary');
+});
+
+
+
+//////////////////////////////////////////// Public ////////////////////////////////////////////////////
+
+
+Route::prefix('Authentication')->group(function () {
+    Route::get('/index', [AuthenticationController::class, "Index"])->name('Authentication.index');
 });

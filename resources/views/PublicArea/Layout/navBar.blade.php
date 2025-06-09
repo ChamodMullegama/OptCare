@@ -78,7 +78,16 @@
                             </ul>
                         </div>
                         <div class="right-column">
-                       <div class="schedule"><i class="fas fa-clock"></i> Sun-Thu 08:00AM-05:00PM</div>
+<div class="schedule">
+    <a href="{{ route('Authentication.index') }}"
+       style="color: white; text-decoration: none;"
+       onmouseover="this.style.color='#03c0b4'"
+       onmouseout="this.style.color='white'">
+       <i class="fas fa-user"></i> Login
+    </a>
+</div>
+
+
 
                             <ul class="social-links clearfix">
                                 <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>

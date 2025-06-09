@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="{{ asset('PublicArea/css/jquery-ui.css') }}">
 <link rel="stylesheet" href="{{ asset('PublicArea/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('PublicArea/css/responsive.css') }}">
+<link rel="stylesheet" href="{{ asset('PublicArea/css/nice-select.css') }}">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 

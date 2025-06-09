@@ -14,6 +14,8 @@
 <script src="{{ asset('PublicArea/js/text_animation.js') }}"></script>
 <script src="{{ asset('PublicArea/js/text_plugins.js') }}"></script>
 <script src="{{ asset('PublicArea/js/jquery.countTo.js') }}"></script>
+<script src="{{ asset('PublicArea/js/calander.js') }}"></script>
+
 
 <!-- main-js -->
 <script src="{{ asset('PublicArea/js/script.js') }}"></script>
