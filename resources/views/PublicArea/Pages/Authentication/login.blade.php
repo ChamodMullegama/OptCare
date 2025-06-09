@@ -108,27 +108,4 @@
         <!-- appointment-section end -->
 
 
-        <!-- subscribe-section -->
-        <section class="subscribe-section p_relative bg-color-2">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-12 col-sm-12 text-column">
-                        <div class="text">
-                            <h2><i class="icon-41"></i>Join Us & Increase Your <br />Business.</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 form-column">
-                        <div class="form-inner ml_30 mt_5">
-                            <form action="index-3.html" method="post">
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Your email address" required="">
-                                    <button type="submit" class="theme-btn">Subscribe</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
 @endsection

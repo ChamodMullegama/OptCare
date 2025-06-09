@@ -20,8 +20,14 @@
 <!-- main-js -->
 <script src="{{ asset('PublicArea/js/script.js') }}"></script>
 
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRxCvC_tYnWNUso0oJf-YAmRQVkh8204s&callback=initMap" async defer></script>
+<!-- Local JS files -->
+<script src="{{ asset('PublicArea/js/gmaps.js') }}"></script>
+<script src="{{ asset('PublicArea/js/map-helper.js') }}"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRxCvC_tYnWNUso0oJf-YAmRQVkh8204s&callback=initMap" async defer></script>
 
   @if (session('success'))
   <script>

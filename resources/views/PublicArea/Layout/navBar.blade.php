@@ -33,36 +33,6 @@
         </div>
         <!-- preloader end -->
 
-
-        <!--Search Popup-->
-        <div id="search-popup" class="search-popup">
-            <div class="popup-inner">
-                <div class="upper-box clearfix">
-                  <figure class="logo-box pull-left">
-    <a href="index.html">
-        <img src="{{ asset('PublicArea/images/logo.png') }}" alt="Logo">
-    </a>
-</figure>
-
-                    <div class="close-search pull-right"><span class="far fa-times"></span></div>
-                </div>
-                <div class="overlay-layer"></div>
-                <div class="auto-container">
-                    <div class="search-form">
-                        <form method="post" action="index.html">
-                            <div class="form-group">
-                                <fieldset>
-                                    <input type="search" class="form-control" name="search-input" value="" placeholder="Type your keyword and hit" required >
-                                    <button type="submit"><i class="far fa-search"></i></button>
-                                </fieldset>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <!-- main header -->
         <header class="main-header">
             <!-- header-top -->
@@ -128,7 +98,7 @@
 
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="index.html">Pages</a>
+                                        <li class="dropdown"><a href="index.html">Specialties & Services</a>
                                             <ul>
                                                 <li class="dropdown"><a href="index.html">Doctors</a>
                                                     <ul>
@@ -137,34 +107,13 @@
                                                         <li><a href="team-details.html">Doctor Single</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="dropdown"><a href="index.html">Portfolio</a>
-                                                    <ul>
-                                                        <li><a href="portfolio.html">Portfolio 1</a></li>
-                                                        <li><a href="portfolio-2.html">Portfolio 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="dropdown"><a href="index.html">Shop</a>
-                                                    <ul>
-                                                        <li><a href="shop.html">Our Shop</a></li>
-                                                        <li><a href="shop-details.html">Shop Details</a></li>
-                                                        <li><a href="cart.html">Cart page</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="testimonial.html">Testimonials</a></li>
-                                                <li><a href="faq.html">Faq’s</a></li>
-                                                <li><a href="appointment.html">Book Appointment</a></li>
+                                                <li><a href="appointment.html">Shop</a></li>
                                                 <li><a href="error.html">404</a></li>
                                             </ul>
                                         </li>
 
-                                        <li class="dropdown"><a href="index.html">Blog</a>
-                                            <ul>
-                                                <li><a href="blog.html">Blog Grid</a></li>
-                                                <li><a href="blog-2.html">Blog Standard</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="">Doctors</a></li>
+                                        <li><a href="">Blog</a></li>
                                         <li><a href="{{ route('Home.aboutUs') }}">About</a></li>
                                         <li><a href="{{ route('Home.contactUs') }}">Contact</a></li>
 
@@ -173,9 +122,7 @@
                             </nav>
                         </div>
                         <div class="nav-right">
-                            <div class="search-box-outer search-toggler">
-                                <i class="icon-5"></i>
-                            </div>
+
                             <div class="btn-box">
                                 <a href="index.html" class="theme-btn btn-one">Appointment</a>
                             </div>
@@ -201,9 +148,7 @@
                             </nav>
                         </div>
                         <div class="nav-right">
-                            <div class="search-box-outer search-toggler">
-                                <i class="icon-5"></i>
-                            </div>
+
                             <div class="btn-box">
                                 <a href="index.html" class="theme-btn btn-one">Appointment</a>
                             </div>
