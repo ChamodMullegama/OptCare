@@ -79,7 +79,7 @@
                         </div>
                         <div class="right-column">
 <div class="schedule">
-    <a href="{{ route('Authentication.index') }}"
+    <a href="{{ route('Authentication.login') }}"
        style="color: white; text-decoration: none;"
        onmouseover="this.style.color='#03c0b4'"
        onmouseout="this.style.color='white'">

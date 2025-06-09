@@ -6,10 +6,10 @@
 
             <div class="auto-container">
                 <div class="content-box">
-                    <h1>Book Appointment</h1>
+                    <h1>Login</h1>
                     <ul class="bread-crumb clearfix">
                         <li><a href="index.html">Home</a></li>
-                        <li>Appointment</li>
+                        <li>Login</li>
                     </ul>
                 </div>
             </div>
@@ -31,39 +31,12 @@
             <!-- Right Column with Form -->
      <div class="col-lg-6 col-md-12 col-sm-12 form-column">
     <div class="form-inner ml_40">
-        <h3>Fill Appointment Form</h3>
+        <br><br><br><br><br>
+        <h3>Fill Login Form</h3>
         <form action="appointment.html" method="post">
             <div class="row clearfix">
 
-                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" name="fname" placeholder="First name*" required="">
-                </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" name="lname" placeholder="Last name*" required="">
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <input type="email" name="email" placeholder="Email*" required="">
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <input type="text" name="phone" placeholder="Phone" required="">
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <div class="select-box">
-                        <select class="wide">
-                            <option data-display="Gender*">Gender*</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <input type="text" name="date" placeholder="Birth Day" id="datepicker">
-                </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                     <input type="text" name="User Name*" placeholder="User Name" required="">
@@ -77,17 +50,51 @@
 
 
                 <div class="col-lg-12 col-md-6 col-sm-12 form-group message-btn">
-                    <button type="submit" class="theme-btn btn-one">Book Appointment</button>
+                    <button type="submit" class="theme-btn btn-one">Log in</button>
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group text-center">
-                    <label for="checkbox">Do not have account <a href="register.html">Register?</a></label>
+                    <label for="checkbox">Do not have account <a href="{{ route('Authentication.register') }}">Register?</a></label>
                 </div>
-                       <div class="col-lg-12 col-md-12 col-sm-12 form-group text-center">
-                    <a href="#" class="theme-btn btn-one" style="padding: 8px 20px; font-size: 14px; background-color: #dd4b39; border-color: #dd4b39; display: inline-block; margin-bottom: 15px;">
-                        <i class="fab fa-google"></i> Google Auth
-                    </a>
-                </div>
+    <!-- Google Auth Button -->
+<div class="col-lg-12 col-md-12 col-sm-12 form-group text-center">
+    <a href="#" class="theme-btn btn-one" style="
+        padding: 10px 60px; /* smaller height, wider width */
+        font-size: 14px;
+        background-color: #dd4b39;
+        border-color: #dd4b39;
+        display: inline-block;
+        margin-bottom: 10px;
+        color: #fff;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 40px;
+        width: 500px; /* fixed typo: was 'with' */
+    " onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';" onmouseout="this.style.backgroundColor='#dd4b39'; this.style.borderColor='#dd4b39';">
+        <i class="fab fa-google"></i> Google Auth
+    </a>
+</div>
+
+<!-- Facebook Auth Button -->
+<div class="col-lg-12 col-md-12 col-sm-12 form-group text-center">
+    <a href="#" class="theme-btn btn-one" style="
+        padding: 10px 60px; /* smaller height, wider width */
+        font-size: 14px;
+        background-color: #3b5998;
+        border-color: #3b5998;
+        display: inline-block;
+        margin-bottom: 10px;
+        color: #fff;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 40px;
+        width: 500px; /* fixed typo: was 'with' */
+    " onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';" onmouseout="this.style.backgroundColor='#3b5998'; this.style.borderColor='#3b5998';">
+        <i class="fab fa-facebook-f"></i> Facebook Auth
+    </a>
+</div>
+
+
 
             </div>
         </form>

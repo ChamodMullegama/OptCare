@@ -145,5 +145,6 @@ Route::prefix('products')->group(function () {
 
 
 Route::prefix('Authentication')->group(function () {
-    Route::get('/index', [AuthenticationController::class, "Index"])->name('Authentication.index');
+    Route::get('/register', [AuthenticationController::class, "Register"])->name('Authentication.register');
+    Route::get('/login', [AuthenticationController::class, "Login"])->name('Authentication.login');
 });
