@@ -41,9 +41,11 @@
                   </li>
                          </li>
                         <li>
-                    <a href="{{ route('surgicaltreatments.all') }}">surgical treatments</a>
+                    <a href="{{ route('surgicaltreatments.all') }}">Surgical treatments</a>
 
-                </a>
+                  </li>
+                        <li>
+                    <a href="{{ route('nonsurgicaltreatments.all') }}">Nonsurgical treatments</a>
                   </li>
 
                 </ul>
