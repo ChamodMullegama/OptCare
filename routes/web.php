@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
 use App\Http\Controllers\AdminArea\DoctorsController;
+use App\Http\Controllers\AdminArea\EyeHospitalsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
@@ -156,6 +157,16 @@ Route::prefix('nonsurgicaltreatments')->group(function () {
 });
 
 
+
+Route::prefix('eyehospitals')->group(function () {
+    Route::get('/all', [EyeHospitalsController::class, 'All'])->name('eye.hospitals.all');
+    Route::get('/add', [EyeHospitalsController::class, 'AddPage'])->name('eye.hospitals.addPage');
+    Route::post('/add', [EyeHospitalsController::class, 'Add'])->name('eye.hospitals.add');
+    Route::get('/edit/{id}', [EyeHospitalsController::class, 'EditPage'])->name('eye.hospitals.editPage');
+    Route::post('/update', [EyeHospitalsController::class, 'Update'])->name('eye.hospitals.update');
+    Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
+    Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
+});
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
