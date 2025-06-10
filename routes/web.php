@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
+use App\Http\Controllers\AdminArea\OpticCentersController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
@@ -167,6 +168,16 @@ Route::prefix('eyehospitals')->group(function () {
     Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
     Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
 
+});
+
+Route::prefix('opticcenters')->group(function () {
+    Route::get('/all', [OpticCentersController::class, 'All'])->name('optic.centers.all');
+    Route::get('/add', [OpticCentersController::class, 'AddPage'])->name('optic.centers.addPage');
+    Route::post('/add', [OpticCentersController::class, 'Add'])->name('optic.centers.add');
+    Route::get('/edit/{id}', [OpticCentersController::class, 'EditPage'])->name('optic.centers.editPage');
+    Route::post('/update', [OpticCentersController::class, 'Update'])->name('optic.centers.update');
+    Route::post('/delete', [OpticCentersController::class, 'Delete'])->name('optic.centers.delete');
+    Route::get('/view/{id}', [OpticCentersController::class, 'View'])->name('optic.centers.view');
 });
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
