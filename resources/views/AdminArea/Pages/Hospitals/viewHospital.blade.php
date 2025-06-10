@@ -1,6 +1,6 @@
 @extends('AdminArea.Layout.main')
-@section('Admincontainer')
 
+@section('Admincontainer')
 <div class="app-hero-header d-flex align-items-center">
     <!-- Breadcrumb starts -->
     <ol class="breadcrumb">
@@ -45,7 +45,7 @@
                                 <p>No social media links available.</p>
                             @endif
                         </div>
-                       <div class="col-md-4">
+                        <div class="col-md-4">
                             <h6>Image</h6>
                             @if ($hospital->image)
                                 <div style="
@@ -71,6 +71,12 @@
                         </div>
                     </div>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Map Location</h6>
+                            <div id="map" style="height: 400px; width: 100%;"></div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <h6>Bio</h6>
@@ -105,5 +111,41 @@
         </div>
     </div>
 </div>
-
 @endsection
+
+@push('css')
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>
+@endpush
+
+@push('js')
+
+<script>
+function initMap() {
+    // Use hospital's latitude and longitude, fallback to India if not available
+    const latitude = {{ $hospital->latitude ?: 20.5937 }};
+    const longitude = {{ $hospital->longitude ?: 78.9629 }};
+    const hospitalLocation = { lat: latitude, lng: longitude };
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: hospitalLocation,
+    });
+
+    const marker = new google.maps.Marker({
+        position: hospitalLocation,
+        map: map,
+        title: "{{ $hospital->hospital_name }}",
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initMap);
+</script>
+@endpush

@@ -34,6 +34,8 @@ class EyeHospitalService
             'bio' => 'nullable|string',
             'description' => 'nullable|string',
             'clinic_days' => 'nullable|array',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +44,7 @@ class EyeHospitalService
 
         $data['hospitalId'] = 'EH' . strtoupper(str()->random(6));
 
-        if ($data['image'] instanceof \Illuminate\Http\UploadedFile) {
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
             $path = $data['image']->store('uploads/eye_hospitals', 'public');
             $data['image'] = $path;
         }
@@ -96,18 +98,22 @@ class EyeHospitalService
             'bio' => 'nullable|string',
             'description' => 'nullable|string',
             'clinic_days' => 'nullable|array',
+            'latitude' => '|numeric',
+            'longitude' => '|numeric',
         ]);
 
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
         }
 
-        if ($data['image'] instanceof \Illuminate\Http\UploadedFile) {
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
             if ($eyeHospital->image && Storage::disk('public')->exists($eyeHospital->image)) {
                 Storage::disk('public')->delete($eyeHospital->image);
             }
             $path = $data['image']->store('uploads/eye_hospitals', 'public');
             $data['image'] = $path;
+        } elseif (!isset($data['image'])) {
+            unset($data['image']); // Avoid overwriting image if not uploaded
         }
 
         // Restructure clinic_days if provided

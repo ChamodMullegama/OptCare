@@ -40,6 +40,8 @@ class EyeHospitalsController extends Controller
             'bio' => 'nullable|string',
             'description' => 'nullable|string',
             'clinic_days' => 'nullable|array',
+               'latitude' => 'required|numeric',
+        'longitude' => 'required|numeric',
         ]);
 
         try {
@@ -79,6 +81,8 @@ class EyeHospitalsController extends Controller
             'bio' => 'nullable|string',
             'description' => 'nullable|string',
             'clinic_days' => 'nullable|array',
+               'latitude' => '|numeric',
+        'longitude' => '|numeric',
         ]);
 
         try {

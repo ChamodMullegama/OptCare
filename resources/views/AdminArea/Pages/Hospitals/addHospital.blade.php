@@ -1,6 +1,6 @@
 @extends('AdminArea.Layout.main')
-@section('Admincontainer')
 
+@section('Admincontainer')
 <div class="app-hero-header d-flex align-items-center">
     <!-- Breadcrumb starts -->
     <ol class="breadcrumb">
@@ -18,8 +18,7 @@
 <div class="app-body">
     <div class="row gx-3">
         <div class="col-xl-12">
-         <div class="card" style="height: 600px;">
-
+            <div class="card" style="height: 600px;">
                 <div class="card-body">
                     <!-- Custom tabs starts -->
                     <div class="custom-tabs-container">
@@ -73,8 +72,27 @@
                                                 <label class="form-label" for="location">Location <span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="ri-map-line"></i></span>
-                                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location" required>
+                                                    <input type="text" class="form-control" id="location" name="location" placeholder="Search Location" required>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-6 col-lg-6 col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="latitude">Latitude <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-6 col-lg-6 col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="longitude">Longitude <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude" readonly required>
+                                            </div>
+                                        </div>
+                                        <!-- Google Map -->
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Map</label>
+                                                <div id="map" style="height: 400px; width: 100%;"></div>
                                             </div>
                                         </div>
                                         <div class="col-xxl-6 col-lg-6 col-sm-12">
@@ -152,18 +170,16 @@
                                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                             </div>
                                         </div>
-                                     <div class="col-sm-12">
-    <label class="form-label">Write Bio</label>
-    <div id="fullEditorbio" style="min-height:30px; margin-bottom: 20px;"></div>
-    <textarea class="form-control d-none" id="bio" name="bio" rows="5"></textarea>
-</div>
-
-<div class="col-sm-12">
-    <label class="form-label">Write Description</label>
-    <div id="fullEditorDesc" style="min-height:30px; margin-bottom: 20px;"></div>
-    <textarea class="form-control d-none" id="description" name="description" rows="5"></textarea>
-</div>
-
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Write Bio</label>
+                                            <div id="fullEditorbio" style="min-height: 30px; margin-bottom: 20px;"></div>
+                                            <textarea class="form-control d-none" id="bio" name="bio" rows="5"></textarea>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Write Description</label>
+                                            <div id="fullEditorDesc" style="min-height: 30px; margin-bottom: 20px;"></div>
+                                            <textarea class="form-control d-none" id="description" name="description" rows="5"></textarea>
+                                        </div>
                                     </div>
                                     <!-- Row ends -->
                                 </div>
@@ -196,7 +212,7 @@
                                 </div>
                             </div>
                             <!-- Tab content ends -->
-<br><br>
+                            <br><br>
                             <!-- Card actions starts -->
                             <div class="d-flex gap-2 justify-content-end mt-4">
                                 <a href="{{ route('eye.hospitals.all') }}" class="btn btn-outline-secondary">
@@ -215,11 +231,16 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @push('css')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
 @endpush
 
 @push('js')
@@ -233,7 +254,6 @@ function initializeQuillEditors() {
         bioEditor = new Quill('#fullEditorbio', {
             theme: 'snow',
             modules: { toolbar: [['bold', 'italic', 'underline', 'link'], ['clean']] },
-
         });
         bioEditor.on('text-change', () => document.getElementById('bio').value = bioEditor.root.innerHTML);
     }
@@ -241,12 +261,55 @@ function initializeQuillEditors() {
         descEditor = new Quill('#fullEditorDesc', {
             theme: 'snow',
             modules: { toolbar: [['bold', 'italic', 'underline', 'link'], ['clean']] },
-
         });
         descEditor.on('text-change', () => document.getElementById('description').value = descEditor.root.innerHTML);
     }
 }
 
-document.addEventListener('DOMContentLoaded', initializeQuillEditors);
+function initMap() {
+    var defaultLocation = { lat: 20.5937, lng: 78.9629 }; // Default to India
+    var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6,
+        center: defaultLocation
+    });
+
+    var marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        draggable: true
+    });
+
+    // Update latitude and longitude when marker is dragged
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+        document.getElementById("latitude").value = event.latLng.lat();
+        document.getElementById("longitude").value = event.latLng.lng();
+        document.getElementById("location").value = `${event.latLng.lat()}, ${event.latLng.lng()}`; // Optional: Update location field
+    });
+
+    // Autocomplete for the location field
+    var input = document.getElementById('location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+
+        if (place.geometry.location) {
+            marker.setPosition(place.geometry.location);
+            map.setCenter(place.geometry.location);
+            document.getElementById("latitude").value = place.geometry.location.lat();
+            document.getElementById("longitude").value = place.geometry.location.lng();
+            document.getElementById("location").value = place.formatted_address; // Update location with formatted address
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeQuillEditors();
+    initMap();
+});
 </script>
 @endpush

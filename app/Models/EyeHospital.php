@@ -21,6 +21,8 @@ class EyeHospital extends Model
         'bio',
         'description',
         'clinic_days',
+              'latitude',
+        'longitude',
     ];
 
     protected $casts = [

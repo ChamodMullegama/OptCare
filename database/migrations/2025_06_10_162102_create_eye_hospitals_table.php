@@ -24,6 +24,8 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->text('description')->nullable();
             $table->json('clinic_days')->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }

@@ -51,7 +51,7 @@
                                         @endif
                                         {{ $item->hospital_name }}
                                     </td>
-                                    <td>{{ $item->location }}</td>
+                                    <td>{{ $item->address }}</td>
                                     <td>{{ $item->contact_number }}</td>
                                     <td>
                                         <div class="d-inline-flex gap-1">

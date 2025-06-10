@@ -166,6 +166,7 @@ Route::prefix('eyehospitals')->group(function () {
     Route::post('/update', [EyeHospitalsController::class, 'Update'])->name('eye.hospitals.update');
     Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
     Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
+
 });
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
