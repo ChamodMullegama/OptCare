@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
+use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
@@ -139,6 +140,13 @@ Route::prefix('products')->group(function () {
     Route::get('/viewProductImageAll/{productId}', [ProductsController::class, "ViewProductImageAll"])->name('products.viewProductImageAll');
     Route::post('/viewProductImageDelete', [ProductsController::class, 'ViewProductImageDelete'])->name('products.viewProductImageDelete');
     Route::get('/isPrimary/{id}', [ProductsController::class, 'IsPrimary'])->name('products.isPrimary');
+});
+
+Route::prefix('surgicaltreatments')->group(function () {
+    Route::get('/all', [SurgicalTreatmentsController::class, "All"])->name('surgicaltreatments.all');
+    Route::post('/add', [SurgicalTreatmentsController::class, 'Add'])->name('surgicaltreatments.add');
+    Route::post('/update', [SurgicalTreatmentsController::class, 'Update'])->name('surgicaltreatments.update');
+    Route::post('/delete', [SurgicalTreatmentsController::class, 'Delete'])->name('surgicaltreatments.delete');
 });
 
 

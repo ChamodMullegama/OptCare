@@ -41,7 +41,9 @@
                   </li>
                          </li>
                         <li>
-                    <a href="{{ route('treatments.all') }}">Treatments</a>
+                    <a href="{{ route('surgicaltreatments.all') }}">surgical treatments</a>
+
+                </a>
                   </li>
 
                 </ul>
@@ -101,8 +103,10 @@ Faq’s</span>
                 </a>
               </li>
 
+
+
                      <li>
-                <a href="{{ route('gallery.home') }}">
+                <a href="{{ route('Home.home') }}">
                           <i class="ri-settings-3-line"></i>
                   <span class="menu-text">Public Page</span>
                 </a>
@@ -120,3 +124,4 @@ Faq’s</span>
           <!-- Sidebar contact ends -->
 
         </nav>
+
