@@ -92,9 +92,6 @@ Faq’s</span>
                     <a href="{{ route('products.all') }}">Product</a>
                   </li>
                          </li>
-                        <li>
-                    <a href="{{ route('treatments.all') }}">Treatments</a>
-                  </li>
 
                 </ul>
               </li>

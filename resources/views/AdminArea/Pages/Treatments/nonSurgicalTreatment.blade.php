@@ -91,9 +91,11 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <div class="mb-3">
+
+                           <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        <div id="fullEditorNon"></div>
+                        <textarea class="form-control d-none" id="description" name="description" rows="10" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
@@ -125,9 +127,10 @@
                         <label for="edit_name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="edit_name" name="name" required>
                     </div>
-                    <div class="mb-3">
+                            <div class="mb-3">
                         <label for="edit_description" class="form-label">Description</label>
-                        <textarea class="form-control" id="edit_description" name="description" rows="3" required></textarea>
+                        <div id="editFullEditor"></div>
+                        <textarea class="form-control d-none" id="edit_description" name="description" rows="10" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="edit_image" class="form-label">Image</label>
@@ -173,10 +176,50 @@
 
 @push('js')
 <script>
+
+  const addEditor = new Quill('#fullEditorNon', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Initialize Quill editor for edit form
+    const editEditor = new Quill('#editFullEditor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Sync Quill editor content with textarea for add form
+    addEditor.on('text-change', function() {
+        document.getElementById('description').value = addEditor.root.innerHTML;
+    });
+
+    // Sync Quill editor content with textarea for edit form
+    editEditor.on('text-change', function() {
+        document.getElementById('edit_description').value = editEditor.root.innerHTML;
+    });
+
+
     function editTreatment(id, name, description) {
         document.getElementById('edit_treatment_id').value = id;
         document.getElementById('edit_name').value = name;
         document.getElementById('edit_description').value = description;
+        editEditor.root.innerHTML = description;
         $('#editTreatmentModal').modal('show');
     }
 
