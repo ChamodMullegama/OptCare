@@ -102,7 +102,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <div id="fullEditor"></div>
+                        <div id="fullEditorService"></div>
                         <textarea class="form-control d-none" id="description" name="description" rows="10" required></textarea>
                     </div>
 
@@ -214,7 +214,7 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
     // Initialize Quill editor for add form
-    const addEditor = new Quill('#fullEditor', {
+    const addEditor = new Quill('#fullEditorService', {
         theme: 'snow',
         modules: {
             toolbar: [

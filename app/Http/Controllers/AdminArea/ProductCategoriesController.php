@@ -4,14 +4,15 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use domain\Facades\ProductCategoryFacade;
 use Illuminate\Http\Request;
 
 class ProductCategoriesController extends Controller
 {
-    public function All()
+ public function All()
     {
         try {
-            $categories = ProductCategory::all();
+            $categories = ProductCategoryFacade::all();
             return view('AdminArea.Pages.shop.addProductCategory', compact('categories'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -26,7 +27,7 @@ class ProductCategoriesController extends Controller
         ]);
 
         try {
-            ProductCategory::create($request->all());
+            ProductCategoryFacade::store($request->all());
             return redirect()->back()->with('success', 'Category added successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -35,15 +36,13 @@ class ProductCategoriesController extends Controller
 
     public function Update(Request $request)
     {
-        $category = ProductCategory::findOrFail($request->id);
-
         $request->validate([
-            'name' => 'required|string|max:255|unique:product_categories,name,' . $category->id,
+            'name' => 'required|string|max:255|unique:product_categories,name,' . $request->id,
             'description' => 'nullable|string',
         ]);
 
         try {
-            $category->update($request->all());
+            ProductCategoryFacade::update($request->all(), $request->id);
             return redirect()->back()->with('success', 'Category updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -57,7 +56,7 @@ class ProductCategoriesController extends Controller
         ]);
 
         try {
-            ProductCategory::findOrFail($request->id)->delete();
+            ProductCategoryFacade::delete($request->id);
             return redirect()->back()->with('success', 'Category deleted successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);

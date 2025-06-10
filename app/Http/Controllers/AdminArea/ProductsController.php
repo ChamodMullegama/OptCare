@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
+use domain\Facades\ProductFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
-    public function All()
+  public function All()
     {
         try {
-            $products = Product::with('category')->get();
+            $products = ProductFacade::all();
             $categories = ProductCategory::all();
             return view('AdminArea.Pages.Shop.index', compact('products', 'categories'));
         } catch (\Exception $e) {
@@ -23,7 +24,7 @@ class ProductsController extends Controller
         }
     }
 
-   public function Add(Request $request)
+    public function Add(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:products,name',
@@ -38,22 +39,17 @@ class ProductsController extends Controller
 
         try {
             $data = $request->all();
-            $data['productId'] = 'PR' . Str::random(6);
-            $data['discount'] = $request->input('discount', 0); // Default to 0 if not provided
-
-            Product::create($data);
+            ProductFacade::store($data);
             return back()->with('success', 'Product added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
 
-  public function Update(Request $request)
+    public function Update(Request $request)
     {
-        $product = Product::findOrFail($request->id);
-
         $request->validate([
-            'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+            'name' => 'required|string|max:255|unique:products,name,' . $request->id,
             'description' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
@@ -65,13 +61,13 @@ class ProductsController extends Controller
 
         try {
             $data = $request->all();
-            $data['discount'] = $request->input('discount', 0); // Default to 0 if not provided
-            $product->update($data);
+            ProductFacade::update($data, $request->id);
             return redirect()->back()->with('success', 'Product updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
+
     public function Delete(Request $request)
     {
         try {
@@ -79,11 +75,7 @@ class ProductsController extends Controller
                 'id' => 'required|integer|exists:products,id',
             ]);
 
-            $product = Product::findOrFail($request->id);
-            // Delete associated images
-
-            $product->delete();
-
+            ProductFacade::delete($request->id);
             return back()->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -100,23 +92,7 @@ class ProductsController extends Controller
 
         try {
             $data = $request->all();
-            $isPrimarySet = false;
-
-            foreach ($request->file('image') as $file) {
-                $imageData = [
-                    'productImageId' => 'PI' . Str::random(6),
-                    'productId' => $data['productId'],
-                    'image' => $file->store('uploads/products', 'public'),
-                    'isPrimary' => !$isPrimarySet,
-                ];
-                if (!$isPrimarySet) {
-                    $isPrimarySet = true;
-                    // Deactivate existing primary images for this product
-                    ProductImage::where('productId', $data['productId'])->where('isPrimary', true)->update(['isPrimary' => false]);
-                }
-                ProductImage::create($imageData);
-            }
-
+            ProductFacade::productImageAdd($data);
             return back()->with('success', 'Images added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -126,7 +102,7 @@ class ProductsController extends Controller
     public function ViewProductImageAll($productId)
     {
         try {
-            $product_images = ProductImage::where('productId', $productId)->get();
+            $product_images = ProductFacade::viewProductImageAll($productId);
             return view('AdminArea.Pages.shop.viewProductImage', compact('product_images'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -140,12 +116,7 @@ class ProductsController extends Controller
                 'id' => 'required|integer|exists:product_images,id',
             ]);
 
-            $productImage = ProductImage::findOrFail($request->id);
-             if ($productImage->image && file_exists(public_path('uploads/' . $productImage->image))) {
-            unlink(public_path('uploads/' . $productImage->image));
-        }
-            $productImage->delete();
-
+            ProductFacade::viewProductImageDelete($request->id);
             return back()->with('success', 'Image deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -155,18 +126,8 @@ class ProductsController extends Controller
     public function IsPrimary($id)
     {
         try {
-            $item = ProductImage::findOrFail($id);
-
-            if ($item->isPrimary == 0) {
-                ProductImage::where('id', '!=', $id)->where('productId', $item->productId)->update(['isPrimary' => 0]);
-                $item->isPrimary = 1;
-            } else {
-                $item->isPrimary = 0;
-            }
-
-            $item->save();
-
-            $message = $item->isPrimary ? 'Item activated successfully!' : 'Item deactivated successfully!';
+            ProductFacade::isPrimary($id);
+            $message = ProductImage::findOrFail($id)->isPrimary ? 'Item activated successfully!' : 'Item deactivated successfully!';
             return redirect()->back()->with('success', $message);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong!');

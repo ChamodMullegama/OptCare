@@ -4,16 +4,17 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\WebsiteSetting;
+use domain\Facades\WebsiteSettingFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class WebsiteSettingsController extends Controller
 {
-    public function All()
+   public function All()
     {
         try {
-            $settings = WebsiteSetting::first();
+            $settings = WebsiteSettingFacade::all();
             return view('AdminArea.Pages.WebsiteSettings.index', compact('settings'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -41,11 +42,10 @@ class WebsiteSettingsController extends Controller
 
         try {
             $data = $request->all();
-            $data['rcode'] = 'WS' . Str::random(6);
             if ($request->hasFile('logo')) {
-                $data['logo'] = $request->file('logo')->store('uploads/settings', 'public');
+                $data['logo'] = $request->file('logo');
             }
-            WebsiteSetting::create($data);
+            WebsiteSettingFacade::store($data);
             return redirect()->back()->with('success', 'Settings added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -72,20 +72,11 @@ class WebsiteSettingsController extends Controller
         ]);
 
         try {
-            $settings = WebsiteSetting::first();
-            if (!$settings) {
-                return back()->withErrors(['error' => 'No settings record found.']);
-            }
             $data = $request->all();
             if ($request->hasFile('logo')) {
-                if ($settings->logo && Storage::disk('public')->exists($settings->logo)) {
-                    Storage::disk('public')->delete($settings->logo);
-                }
-                $data['logo'] = $request->file('logo')->store('uploads/settings', 'public');
-            } else {
-                $data['logo'] = $settings->logo;
+                $data['logo'] = $request->file('logo');
             }
-            $settings->fill($data)->save();
+            WebsiteSettingFacade::update($data);
             return redirect()->back()->with('success', 'Settings updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);

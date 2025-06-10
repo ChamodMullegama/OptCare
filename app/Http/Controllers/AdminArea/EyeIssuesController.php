@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\AdminArea;
 
+use domain\Facades\EyeIssueFacade;
 use App\Http\Controllers\Controller;
 use App\Models\EyeIssue;
 use App\Models\EyeIssueImage;
+
 use Illuminate\Http\Request;
 
 
@@ -12,10 +14,10 @@ use Illuminate\Support\Str;
 
 class EyeIssuesController extends Controller
 {
-     public function All()
+    public function All()
     {
         try {
-            $eyeIssues = EyeIssue::all();
+            $eyeIssues = EyeIssueFacade::getAll();
             return view('AdminArea.Pages.EductionContent.eyeDisease', compact('eyeIssues'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -36,8 +38,7 @@ class EyeIssuesController extends Controller
 
         try {
             $data = $request->all();
-            $data['eyeIssueId'] = 'EI' . Str::random(6);
-            EyeIssue::create($data);
+            EyeIssueFacade::store($data);
             return back()->with('success', 'Eye issue added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -60,13 +61,7 @@ class EyeIssuesController extends Controller
 
         try {
             $data = $request->all();
-            $eyeIssue->update([
-                'name' => $data['name'],
-                'description' => $data['description'],
-                'symptoms' => $data['symptoms'],
-                'causes' => $data['causes'],
-                'treatments' => $data['treatments'],
-            ]);
+            EyeIssueFacade::update($request->id, $data);
             return redirect()->back()->with('success', 'Eye issue updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -80,8 +75,7 @@ class EyeIssuesController extends Controller
                 'id' => 'required|integer|exists:eye_issues,id',
             ]);
 
-            $eyeIssue = EyeIssue::findOrFail($request->id);
-            $eyeIssue->delete();
+            EyeIssueFacade::delete($request->id);
             return back()->with('success', 'Eye issue deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -97,13 +91,12 @@ class EyeIssuesController extends Controller
 
         try {
             $data = $request->all();
-            $data['eyeIssueImageId'] = 'EII' . Str::random(6);
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $path = $file->store('uploads/eye_issues', 'public');
                 $data['image'] = $path;
             }
-            EyeIssueImage::create($data);
+            EyeIssueFacade::addImage($request);
             return back()->with('success', 'Image added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -113,7 +106,7 @@ class EyeIssuesController extends Controller
     public function ViewEyeIssueImageAll($eyeIssueId)
     {
         try {
-            $eye_issue_images = EyeIssueImage::where('eyeIssueId', $eyeIssueId)->get();
+            $eye_issue_images = EyeIssueFacade::getImages($eyeIssueId);
             return view('AdminArea.Pages.EductionContent.viewEyeDiseaseImage', compact('eye_issue_images'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -127,11 +120,7 @@ class EyeIssuesController extends Controller
                 'id' => 'required|integer|exists:eye_issue_images,id',
             ]);
 
-            $eye_issue_image = EyeIssueImage::findOrFail($request->id);
-                 if ($eye_issue_image->image && file_exists(public_path('uploads/' . $eye_issue_image->image))) {
-            unlink(public_path('uploads/' . $eye_issue_image->image));
-        }
-            $eye_issue_image->delete();
+            EyeIssueFacade::deleteImage($request->id);
             return back()->with('success', 'Image deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -141,15 +130,7 @@ class EyeIssuesController extends Controller
     public function IsPrimary($id)
     {
         try {
-            $item = EyeIssueImage::findOrFail($id);
-            if ($item->isPrimary == 0) {
-                EyeIssueImage::where('id', '!=', $id)->update(['isPrimary' => 0]);
-                $item->isPrimary = 1;
-            } else {
-                $item->isPrimary = 0;
-            }
-            $item->save();
-            $message = $item->isPrimary ? 'Image activated successfully!' : 'Image deactivated successfully!';
+            $message = EyeIssueFacade::setPrimary($id);
             return redirect()->back()->with('success', $message);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong!');

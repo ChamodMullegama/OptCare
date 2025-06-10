@@ -65,7 +65,6 @@ Route::prefix('blog')->group(function () {
     Route::post('/viewBlogImageDelete', [BlogController::class, 'ViewBlogImageDelete'])->name('Blog.viewBlogImageDelete');
     Route::get('/isPrimary/{id}', [BlogController::class, 'IsPrimary'])->name('Blog.isPrimary');
 });
-
 Route::prefix('settings')->group(function () {
     Route::get('/all', [WebsiteSettingsController::class, "All"])->name('settings.all');
     Route::post('/add', [WebsiteSettingsController::class, 'Add'])->name('settings.add');
@@ -130,7 +129,6 @@ Route::prefix('product-categories')->group(function () {
     Route::post('/update', [ProductCategoriesController::class, 'Update'])->name('productCategories.update');
     Route::post('/delete', [ProductCategoriesController::class, 'Delete'])->name('productCategories.delete');
 });
-
 
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, "All"])->name('products.all');
