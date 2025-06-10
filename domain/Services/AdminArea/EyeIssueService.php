@@ -1,6 +1,6 @@
 <?php
 
-namespace domain\Services;
+namespace domain\Services\AdminArea;
 
 use App\Models\EyeIssue;
 use App\Models\EyeIssueImage;

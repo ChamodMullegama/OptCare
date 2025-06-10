@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\QuestionsAndAnswersService;
+use domain\Services\AdminArea\QuestionsAndAnswersService;
 use Illuminate\Support\Facades\Facade;
 
 class QuestionsAndAnswersFacade extends Facade

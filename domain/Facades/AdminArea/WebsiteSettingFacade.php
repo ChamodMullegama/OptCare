@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\WebsiteSettingService;
+use domain\Services\AdminArea\WebsiteSettingService;
 use Illuminate\Support\Facades\Facade;
 
 class WebsiteSettingFacade extends Facade

@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\GalleryService;
+use domain\Services\AdminArea\GalleryService;
 use Illuminate\Support\Facades\Facade;
 
 class GalleryFacade extends Facade

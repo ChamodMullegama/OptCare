@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\EyeScanService;
+use domain\Services\AdminArea\EyeScanService;
 use Illuminate\Support\Facades\Facade;
 
 class EyeScanFacade extends Facade

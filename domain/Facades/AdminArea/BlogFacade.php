@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\BlogService;
+use domain\Services\AdminArea\BlogService;
 use Illuminate\Support\Facades\Facade;
 
 class BlogFacade extends Facade

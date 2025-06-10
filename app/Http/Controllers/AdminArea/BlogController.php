@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AdminArea;
 
-use domain\Facades\BlogFacade;
+use domain\Facades\AdminArea\BlogFacade;
 use App\Http\Controllers\Controller;
 use App\Models\BlogImage;
 use Illuminate\Http\Request;

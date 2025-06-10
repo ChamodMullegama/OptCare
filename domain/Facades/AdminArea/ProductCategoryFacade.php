@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\ProductCategoryService;
+use domain\Services\AdminArea\ProductCategoryService;
 use Illuminate\Support\Facades\Facade;
 
 class ProductCategoryFacade extends Facade

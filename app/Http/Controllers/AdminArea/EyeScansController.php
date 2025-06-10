@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AdminArea;
 use App\Http\Controllers\Controller;
 use App\Models\EyeScan;
 use App\Models\EyeScanImage;
-use domain\Facades\EyeScanFacade;
+use domain\Facades\AdminArea\EyeScanFacade;
 use Illuminate\Http\Request;
 
 class EyeScansController extends Controller

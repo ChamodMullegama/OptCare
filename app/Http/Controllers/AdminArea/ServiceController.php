@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AdminArea;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceImage;
-use domain\Facades\ServiceFacade;
+use domain\Facades\AdminArea\ServiceFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

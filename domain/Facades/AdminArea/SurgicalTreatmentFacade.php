@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\SurgicalTreatmentService;
+use domain\Services\AdminArea\SurgicalTreatmentService;
 use Illuminate\Support\Facades\Facade;
 
 class SurgicalTreatmentFacade extends Facade

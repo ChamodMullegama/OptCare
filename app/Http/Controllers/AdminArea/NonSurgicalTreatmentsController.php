@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
-use domain\Facades\NonSurgicalTreatmentFacade;
+use domain\Facades\AdminArea\NonSurgicalTreatmentFacade;
 use Illuminate\Http\Request;
 
 class NonSurgicalTreatmentsController extends Controller

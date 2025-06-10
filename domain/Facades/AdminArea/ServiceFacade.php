@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\ServiceService;
+use domain\Services\AdminArea\ServiceService;
 use Illuminate\Support\Facades\Facade;
 
 class ServiceFacade extends Facade

@@ -1,9 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\BlogService;
-use domain\Services\DoctorService;
+use domain\Services\AdminArea\DoctorService;
 use Illuminate\Support\Facades\Facade;
 
 class DoctorFacade extends Facade

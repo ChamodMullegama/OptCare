@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\Facades;
+namespace domain\Facades\AdminArea;
 
-use domain\Services\EyeIssueService;
+use domain\Services\AdminArea\EyeIssueService;
 use Illuminate\Support\Facades\Facade;
 
 class EyeIssueFacade extends Facade
