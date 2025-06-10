@@ -3,10 +3,12 @@
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
 use App\Http\Controllers\AdminArea\DoctorsController;
+use App\Http\Controllers\AdminArea\EyeHospitalsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
+use App\Http\Controllers\AdminArea\OpticCentersController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
@@ -156,6 +158,27 @@ Route::prefix('nonsurgicaltreatments')->group(function () {
 });
 
 
+
+Route::prefix('eyehospitals')->group(function () {
+    Route::get('/all', [EyeHospitalsController::class, 'All'])->name('eye.hospitals.all');
+    Route::get('/add', [EyeHospitalsController::class, 'AddPage'])->name('eye.hospitals.addPage');
+    Route::post('/add', [EyeHospitalsController::class, 'Add'])->name('eye.hospitals.add');
+    Route::get('/edit/{id}', [EyeHospitalsController::class, 'EditPage'])->name('eye.hospitals.editPage');
+    Route::post('/update', [EyeHospitalsController::class, 'Update'])->name('eye.hospitals.update');
+    Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
+    Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
+
+});
+
+Route::prefix('opticcenters')->group(function () {
+    Route::get('/all', [OpticCentersController::class, 'All'])->name('optic.centers.all');
+    Route::get('/add', [OpticCentersController::class, 'AddPage'])->name('optic.centers.addPage');
+    Route::post('/add', [OpticCentersController::class, 'Add'])->name('optic.centers.add');
+    Route::get('/edit/{id}', [OpticCentersController::class, 'EditPage'])->name('optic.centers.editPage');
+    Route::post('/update', [OpticCentersController::class, 'Update'])->name('optic.centers.update');
+    Route::post('/delete', [OpticCentersController::class, 'Delete'])->name('optic.centers.delete');
+    Route::get('/view/{id}', [OpticCentersController::class, 'View'])->name('optic.centers.view');
+});
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\QuestionsAndAnswers;
-use domain\Facades\QuestionsAndAnswersFacade;
+use domain\Facades\AdminArea\QuestionsAndAnswersFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

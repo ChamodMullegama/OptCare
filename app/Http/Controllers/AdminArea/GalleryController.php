@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
-use domain\Facades\GalleryFacade;
+use domain\Facades\AdminArea\GalleryFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

@@ -1,9 +1,9 @@
 <!-- ========== JAVASCRIPT SECTION ========== -->
 
-<!-- ✅ jQuery (Load once only) -->
+<!--  jQuery (Load once only) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- ✅ Toastr -->
+<!--  Toastr -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!-- Bootstrap Bundle -->
@@ -34,7 +34,7 @@
 <script src="{{ asset('AdminArea/vendor/apex/custom/home/gender-age.js') }}"></script>
 <script src="{{ asset('AdminArea/vendor/apex/custom/home/claims.js') }}"></script>
 
-<!-- ✅ DataTables (Ensure jQuery loaded before these) -->
+<!--  DataTables (Ensure jQuery loaded before these) -->
 <script src="{{ asset('AdminArea/vendor/datatables/dataTables.min.js') }}"></script>
 <script src="{{ asset('AdminArea/vendor/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('AdminArea/vendor/datatables/custom/custom-datatables.js') }}"></script>
@@ -51,8 +51,9 @@
     <script src="{{ asset('AdminArea/vendor/input-tags/typeahead.js') }}"></script>
     <script src="{{ asset('AdminArea/vendor/input-tags/tagsinput-custom.js') }}"></script>
 
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRxCvC_tYnWNUso0oJf-YAmRQVkh8204s&callback=initMap" async defer></script>
 
-<!-- ✅ Toastr Notifications -->
+<!--  Toastr Notifications -->
   @if (session('success'))
   <script>
       toastr.success("{{ session('success') }}", '', {

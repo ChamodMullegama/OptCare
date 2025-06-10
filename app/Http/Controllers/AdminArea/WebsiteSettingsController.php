@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\WebsiteSetting;
-use domain\Facades\WebsiteSettingFacade;
+use domain\Facades\AdminArea\WebsiteSettingFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

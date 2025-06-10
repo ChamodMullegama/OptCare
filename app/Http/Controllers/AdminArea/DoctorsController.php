@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
-use domain\Facades\DoctorFacade;
+use domain\Facades\AdminArea\DoctorFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

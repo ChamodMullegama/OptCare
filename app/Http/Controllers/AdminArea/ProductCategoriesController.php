@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
-use domain\Facades\ProductCategoryFacade;
+use domain\Facades\AdminArea\ProductCategoryFacade;
 use Illuminate\Http\Request;
 
 class ProductCategoriesController extends Controller

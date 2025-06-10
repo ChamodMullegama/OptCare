@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AdminArea;
 
-use domain\Facades\EyeIssueFacade;
+use domain\Facades\AdminArea\EyeIssueFacade;
 use App\Http\Controllers\Controller;
 use App\Models\EyeIssue;
 use App\Models\EyeIssueImage;

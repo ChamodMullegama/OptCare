@@ -47,6 +47,13 @@
                         <li>
                     <a href="{{ route('nonsurgicaltreatments.all') }}">Nonsurgical treatments</a>
                   </li>
+                         <li>
+                    <a href="{{ route('eye.hospitals.all') }}">Eye Hospitals</a>
+                  </li>
+          <li>
+                    <a href="{{ route('optic.centers.all') }}">Vision Centers</a>
+                  </li>
+
 
                 </ul>
               </li>

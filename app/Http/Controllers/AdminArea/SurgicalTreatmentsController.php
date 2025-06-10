@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AdminArea;
 
-use domain\Facades\SurgicalTreatmentFacade;
+use domain\Facades\AdminArea\SurgicalTreatmentFacade;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
