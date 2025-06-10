@@ -6,10 +6,12 @@ use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
+use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
+use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
@@ -63,7 +65,6 @@ Route::prefix('blog')->group(function () {
     Route::post('/viewBlogImageDelete', [BlogController::class, 'ViewBlogImageDelete'])->name('Blog.viewBlogImageDelete');
     Route::get('/isPrimary/{id}', [BlogController::class, 'IsPrimary'])->name('Blog.isPrimary');
 });
-
 Route::prefix('settings')->group(function () {
     Route::get('/all', [WebsiteSettingsController::class, "All"])->name('settings.all');
     Route::post('/add', [WebsiteSettingsController::class, 'Add'])->name('settings.add');
@@ -129,7 +130,6 @@ Route::prefix('product-categories')->group(function () {
     Route::post('/delete', [ProductCategoriesController::class, 'Delete'])->name('productCategories.delete');
 });
 
-
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, "All"])->name('products.all');
     Route::post('/add', [ProductsController::class, 'Add'])->name('products.add');
@@ -139,6 +139,20 @@ Route::prefix('products')->group(function () {
     Route::get('/viewProductImageAll/{productId}', [ProductsController::class, "ViewProductImageAll"])->name('products.viewProductImageAll');
     Route::post('/viewProductImageDelete', [ProductsController::class, 'ViewProductImageDelete'])->name('products.viewProductImageDelete');
     Route::get('/isPrimary/{id}', [ProductsController::class, 'IsPrimary'])->name('products.isPrimary');
+});
+
+Route::prefix('surgicaltreatments')->group(function () {
+    Route::get('/all', [SurgicalTreatmentsController::class, "All"])->name('surgicaltreatments.all');
+    Route::post('/add', [SurgicalTreatmentsController::class, 'Add'])->name('surgicaltreatments.add');
+    Route::post('/update', [SurgicalTreatmentsController::class, 'Update'])->name('surgicaltreatments.update');
+    Route::post('/delete', [SurgicalTreatmentsController::class, 'Delete'])->name('surgicaltreatments.delete');
+});
+
+Route::prefix('nonsurgicaltreatments')->group(function () {
+    Route::get('/all', [NonSurgicalTreatmentsController::class, "All"])->name('nonsurgicaltreatments.all');
+    Route::post('/add', [NonSurgicalTreatmentsController::class, 'Add'])->name('nonsurgicaltreatments.add');
+    Route::post('/update', [NonSurgicalTreatmentsController::class, 'Update'])->name('nonsurgicaltreatments.update');
+    Route::post('/delete', [NonSurgicalTreatmentsController::class, 'Delete'])->name('nonsurgicaltreatments.delete');
 });
 
 

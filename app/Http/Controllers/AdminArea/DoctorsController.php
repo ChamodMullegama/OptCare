@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use domain\Facades\DoctorFacade;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,10 +12,10 @@ use Illuminate\Support\Str;
 
 class DoctorsController extends Controller
 {
-     public function All()
+   public function All()
     {
         try {
-            $doctors = Doctor::all();
+            $doctors = DoctorFacade::getAll();
             return view('AdminArea.Pages.Doctors.index', compact('doctors'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -41,11 +42,11 @@ class DoctorsController extends Controller
             'mobile_number' => 'required|string|max:15',
             'blood_group' => 'required|string|max:255',
             'marital_status' => 'nullable|in:married,unmarried',
-            'qualification' => 'nullable|in:MBBS,MD,MBBS,MS,MBBS',
+            'qualification' => 'nullable|string',
             'designation' => 'nullable|string',
             'address' => 'nullable|string',
-            'country' => 'nullable|in:USA,Canada,Brazil,India,China',
-            'state' => 'nullable|in:Alabama,Alaska,Arizona,California,Florida',
+            'country' => 'nullable|string',
+            'state' => 'nullable|string',
             'city' => 'nullable|string',
             'postal_code' => 'nullable|string',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -58,23 +59,10 @@ class DoctorsController extends Controller
 
         try {
             $data = $request->all();
-            $data['doctorId'] = 'DR' . Str::random(6);
-
-            // Handle profile image upload
             if ($request->hasFile('profile_image')) {
-                $file = $request->file('profile_image');
-                $path = $file->store('uploads/doctors', 'public');
-                $data['profile_image'] = $path;
+                $data['profile_image'] = $request->file('profile_image');
             }
-
-            // Hash password if provided
-            if (!empty($data['password'])) {
-                $data['password'] = Hash::make($data['password']);
-            } else {
-                unset($data['password']);
-            }
-
-            Doctor::create($data);
+            DoctorFacade::store($data);
             return redirect()->route('doctors.all')->with('success', 'Doctor added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -84,7 +72,7 @@ class DoctorsController extends Controller
     public function EditPage($id)
     {
         try {
-            $doctor = Doctor::findOrFail($id);
+            $doctor = DoctorFacade::getById($id);
             return view('AdminArea.Pages.Doctors.editDoctor', compact('doctor'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -93,10 +81,10 @@ class DoctorsController extends Controller
 
     public function Update(Request $request)
     {
-        $doctor = Doctor::findOrFail($request->id);
+        $doctor = DoctorFacade::getById($request->id);
 
         $request->validate([
-            'first_name' => 'required|string|max:255',
+           'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'age' => 'required|integer|min:25|max:80',
             'gender' => 'required|in:male,female',
@@ -104,11 +92,11 @@ class DoctorsController extends Controller
             'mobile_number' => 'required|string|max:15',
             'blood_group' => 'required|string|max:255',
             'marital_status' => 'nullable|in:married,unmarried',
-            'qualification' => 'nullable|in:MBBS,MD,MBBS,MS,MBBS',
+            'qualification' => 'nullable|string',
             'designation' => 'nullable|string',
             'address' => 'nullable|string',
-            'country' => 'nullable|in:USA,Canada,Brazil,India,China',
-            'state' => 'nullable|in:Alabama,Alaska,Arizona,California,Florida',
+            'country' => 'nullable|string',
+            'state' => 'nullable|string',
             'city' => 'nullable|string',
             'postal_code' => 'nullable|string',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -121,25 +109,10 @@ class DoctorsController extends Controller
 
         try {
             $data = $request->all();
-
-            // Handle profile image upload
             if ($request->hasFile('profile_image')) {
-                if ($doctor->profile_image && Storage::disk('public')->exists($doctor->profile_image)) {
-                    Storage::disk('public')->delete($doctor->profile_image);
-                }
-                $file = $request->file('profile_image');
-                $path = $file->store('uploads/doctors', 'public');
-                $data['profile_image'] = $path;
+                $data['profile_image'] = $request->file('profile_image');
             }
-
-            // Hash password if provided
-            if (!empty($data['password'])) {
-                $data['password'] = Hash::make($data['password']);
-            } else {
-                unset($data['password']);
-            }
-
-            $doctor->update($data);
+            DoctorFacade::update($request->id, $data);
             return redirect()->route('doctors.all')->with('success', 'Doctor updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -153,33 +126,20 @@ class DoctorsController extends Controller
                 'id' => 'required|integer|exists:doctors,id',
             ]);
 
-            $doctor = Doctor::findOrFail($request->id);
-            if ($doctor->profile_image && Storage::disk('public')->exists($doctor->profile_image)) {
-                Storage::disk('public')->delete($doctor->profile_image);
-            }
-            $doctor->delete();
+            DoctorFacade::delete($request->id);
             return back()->with('success', 'Doctor deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
 
-
     public function Profile($id)
-{
-    try {
-        $doctor = Doctor::findOrFail($id);
-        // Placeholder for stats (can be enhanced with actual counts if tracked)
-        $doctor->patients_count = rand(1000, 5000); // Simulated data
-        $doctor->patients_percentage = rand(50, 80) . '%';
-        $doctor->surgeries_count = rand(100, 1000); // Simulated data
-        $doctor->surgeries_percentage = rand(20, 40) . '%';
-        $doctor->reviews_count = rand(100, 3000); // Simulated data
-        $doctor->reviews_percentage = rand(20, 40) . '%';
-
-        return view('AdminArea.Pages.Doctors.doctorProfile', compact('doctor'));
-    } catch (\Exception $e) {
-        return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    {
+        try {
+            $doctor = DoctorFacade::getProfile($id);
+            return view('AdminArea.Pages.Doctors.doctorProfile', compact('doctor'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
-}
 }

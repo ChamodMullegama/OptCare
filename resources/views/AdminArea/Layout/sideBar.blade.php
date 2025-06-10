@@ -41,7 +41,11 @@
                   </li>
                          </li>
                         <li>
-                    <a href="{{ route('treatments.all') }}">Treatments</a>
+                    <a href="{{ route('surgicaltreatments.all') }}">Surgical treatments</a>
+
+                  </li>
+                        <li>
+                    <a href="{{ route('nonsurgicaltreatments.all') }}">Nonsurgical treatments</a>
                   </li>
 
                 </ul>
@@ -88,9 +92,6 @@ Faq’s</span>
                     <a href="{{ route('products.all') }}">Product</a>
                   </li>
                          </li>
-                        <li>
-                    <a href="{{ route('treatments.all') }}">Treatments</a>
-                  </li>
 
                 </ul>
               </li>
@@ -101,8 +102,10 @@ Faq’s</span>
                 </a>
               </li>
 
+
+
                      <li>
-                <a href="{{ route('gallery.home') }}">
+                <a href="{{ route('Home.home') }}">
                           <i class="ri-settings-3-line"></i>
                   <span class="menu-text">Public Page</span>
                 </a>
@@ -120,3 +123,4 @@ Faq’s</span>
           <!-- Sidebar contact ends -->
 
         </nav>
+
