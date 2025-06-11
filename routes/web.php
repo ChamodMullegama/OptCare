@@ -20,6 +20,7 @@ use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 use App\Http\Controllers\PublicArea\HomeController;
+use App\Http\Controllers\PublicArea\PublicBlogController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -189,21 +190,28 @@ Route::prefix('opticcenters')->group(function () {
 
 
 Route::prefix('Authentication')->group(function () {
- Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [CustomerAuthController::class, 'register']);
-Route::get('/verify-otp', [CustomerAuthController::class, 'showOtpForm'])->name('verify.otp');
-Route::post('/verify-otp', [CustomerAuthController::class, 'verifyOtp']);
-Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [CustomerAuthController::class, 'login']);
-Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
+    Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [CustomerAuthController::class, 'register']);
+    Route::get('/verify-otp', [CustomerAuthController::class, 'showOtpForm'])->name('verify.otp');
+    Route::post('/verify-otp', [CustomerAuthController::class, 'verifyOtp']);
+    Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [CustomerAuthController::class, 'login']);
+    Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('Home')->group(function () {
     Route::get('/home', [HomeController::class, "index"])->name('Home.home');
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
+    Route::get('/blog', [HomeController::class, "Blog"])->name('Home.blog');
 
 });
+
+Route::prefix('PublicAreaBlog')->group(function () {
+    Route::get('/all', [PublicBlogController::class, 'index'])->name('PublicAreaBlog.all'); 
+    Route::get('/details/{id}', [PublicBlogController::class, 'show'])->name('PublicAreaBlog.details');
+});
+
 
 Route::prefix('Shop')->group(function () {
     Route::get('/all', [ShopController::class, "All"])->name('Shop.all');
