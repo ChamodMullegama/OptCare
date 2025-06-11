@@ -21,6 +21,7 @@ use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
+use App\Http\Controllers\PublicArea\PublicDoctorController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -208,10 +209,15 @@ Route::prefix('Home')->group(function () {
 });
 
 Route::prefix('PublicAreaBlog')->group(function () {
-    Route::get('/all', [PublicBlogController::class, 'index'])->name('PublicAreaBlog.all'); 
-    Route::get('/details/{id}', [PublicBlogController::class, 'show'])->name('PublicAreaBlog.details');
+    Route::get('/all', [PublicBlogController::class, 'All'])->name('PublicAreaBlog.all');
+    Route::get('/details/{id}', [PublicBlogController::class, 'Details'])->name('PublicAreaBlog.details');
 });
 
+Route::prefix('PublicAreDoctors')->group(function () {
+    Route::get('/all', [PublicDoctorController::class, 'All'])->name('PublicAreDoctors.all');
+    Route::get('/search', [PublicDoctorController::class, 'Search'])->name('PublicAreDoctors.search');
+    Route::get('/details{id}', [PublicDoctorController::class, 'Details'])->name('PublicAreDoctors.details');
+});
 
 Route::prefix('Shop')->group(function () {
     Route::get('/all', [ShopController::class, "All"])->name('Shop.all');
