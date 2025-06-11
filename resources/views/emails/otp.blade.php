@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayurvedic Wellness Newsletter</title>
+  <title>OptCare - Eye Health OTP</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -20,7 +20,7 @@
     .container {
       max-width: 600px;
       margin: 20px auto;
-      background-color: #f8f5f0;
+      background-color: #f0f4f8; /* Light blue for a calming eye health theme */
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       border-radius: 12px;
       overflow: hidden;
@@ -28,7 +28,7 @@
 
     /* Header section */
     .header {
-      background: linear-gradient(135deg, #5a8f7b 0%, #437965 100%);
+      background: linear-gradient(135deg, #2e7d9a 0%, #1a5f7a 100%); /* Blue gradient for eye health */
       padding: 20px;
       text-align: center;
       position: relative;
@@ -44,7 +44,7 @@
     }
 
     .tagline {
-      color: #f2e3cb;
+      color: #e0ecf3; /* Light blue for contrast */
       font-style: italic;
       font-size: 16px;
       margin-top: 5px;
@@ -55,7 +55,7 @@
     .hero {
       width: 100%;
       height: 200px;
-      background: url('https://via.placeholder.com/600x200?text=Ayurvedic+Wellness') no-repeat center;
+      background: url('https://via.placeholder.com/600x200?text=OptCare+Eye+Health') no-repeat center;
       background-size: cover;
       position: relative;
     }
@@ -92,7 +92,7 @@
     }
 
     h1 {
-      color: #5a8f7b;
+      color: #2e7d9a; /* Matching header blue */
       font-size: 26px;
       margin-bottom: 20px;
       font-weight: 700;
@@ -107,11 +107,11 @@
       left: 0;
       width: 60px;
       height: 3px;
-      background: linear-gradient(to right, #9c7c38, transparent);
+      background: linear-gradient(to right, #4a90e2, transparent); /* Blue gradient line */
     }
 
     h2 {
-      color: #9c7c38;
+      color: #4a90e2; /* Softer blue for headings */
       font-size: 20px;
       margin-bottom: 15px;
       font-weight: 600;
@@ -127,10 +127,10 @@
 
     /* Featured product */
     .featured {
-      background: linear-gradient(to bottom, #f2e3cb 0%, #f9eed9 100%);
+      background: linear-gradient(to bottom, #e6f0fa 0%, #ffffff 100%); /* Light blue gradient */
       padding: 25px;
       border-radius: 10px;
-      border-left: 5px solid #9c7c38;
+      border-left: 5px solid #4a90e2;
       box-shadow: 0 3px 10px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
     }
@@ -143,7 +143,7 @@
     /* Call to action button */
     .cta-button {
       display: inline-block;
-      background: linear-gradient(45deg, #9c7c38 0%, #b59447 100%);
+      background: linear-gradient(45deg, #4a90e2 0%, #2e7d9a 100%);
       color: white;
       padding: 12px 35px;
       text-decoration: none;
@@ -162,8 +162,8 @@
 
     /* Footer section */
     .footer {
-      background: linear-gradient(135deg, #5a8f7b 0%, #437965 100%);
-      color: #f2e3cb;
+      background: linear-gradient(135deg, #2e7d9a 0%, #1a5f7a 100%);
+      color: #e0ecf3;
       text-align: center;
       padding: 30px 20px;
       font-size: 14px;
@@ -177,8 +177,8 @@
       display: inline-block;
       width: 40px;
       height: 40px;
-      background-color: #f2e3cb;
-      color: #5a8f7b;
+      background-color: #e0ecf3;
+      color: #2e7d9a;
       border-radius: 50%;
       text-align: center;
       line-height: 40px;
@@ -190,17 +190,17 @@
     .social-icon:hover {
       transform: scale(1.15);
       background-color: #ffffff;
-      color: #437965;
+      color: #1a5f7a;
     }
 
     .divider {
       height: 1px;
-      background: linear-gradient(to right, transparent, #c9e0d6 50%, transparent);
+      background: linear-gradient(to right, transparent, #b3d4e9 50%, transparent); /* Light blue divider */
       margin: 20px 0;
     }
 
     .footer a {
-      color: #f2e3cb;
+      color: #e0ecf3;
       text-decoration: none;
       margin: 0 15px;
       transition: color 0.3s ease;
@@ -235,21 +235,21 @@
   <div class="container">
     <!-- Header with logo -->
     <div class="header">
-      <div class="logo">Ayur Essence</div>
-      <div class="tagline">Ancient wisdom for modern wellness</div>
+      <div class="logo">OptCare</div>
+      <div class="tagline">Your vision, our care</div>
     </div>
 
     <!-- Main content area -->
     <div class="content">
       <div class="section">
-        <h1>Discover Balance Through Ayurveda</h1>
-        <p>Dear valued subscriber,</p>
-        <p>We hope this message finds you in good health and harmony. This month, we're focusing on simple practices to balance your doshas and enhance your natural vitality.</p>
+        <h1>Welcome to OptCare</h1>
+        <p>Dear valued patient,</p>
+        <p>We are delighted to assist you with your eye health journey. To complete your registration, please use the OTP code provided below.</p>
       </div>
 
       <!-- Featured product or service -->
       <div class="section featured">
-        <h2>{{ $subjectText }}</h2>
+        <h2>OTP for Registration</h2>
         <p>{!! nl2br(e($messageBody)) !!}</p>
       </div>
     </div>
@@ -264,7 +264,7 @@
       </div>
       <div class="divider"></div>
       <div>59 Street, Kandy, Sri Lanka</div>
-      <div>ccontact.ayuressence@gmail.com • (+94) 222 468 5678</div>
+      <div>optcare@gmail.com • (+94) 222 468 5678</div>
       <div style="margin-top: 15px;">
         <a href="#">Unsubscribe</a>
         <a href="#">Privacy Policy</a>
