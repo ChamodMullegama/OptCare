@@ -210,3 +210,29 @@ Route::prefix('Home')->group(function () {
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
 
 });
+
+// Admin Routes
+Route::prefix('admin')->group(function () {
+    Route::get('login', [App\Http\Controllers\AdminArea\AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [App\Http\Controllers\AdminArea\AuthController::class, 'login']);
+    Route::post('logout', [App\Http\Controllers\AdminArea\AuthController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('dashboard', [App\Http\Controllers\AdminArea\AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/', [App\Http\Controllers\AdminArea\AdminController::class, 'index'])->name('admin.index');
+        // Add other admin routes here
+    });
+});
+
+// Doctor Routes
+Route::prefix('doctor')->group(function () {
+    Route::get('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'showLoginForm'])->name('doctor.login');
+    Route::post('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'login']);
+    Route::post('logout', [App\Http\Controllers\DoctorArea\AuthController::class, 'logout'])->name('doctor.logout');
+
+    Route::middleware(['auth:doctor'])->group(function () {
+        Route::get('dashboard', [App\Http\Controllers\DoctorArea\DoctorController::class, 'dashboard'])->name('doctor.dashboard');
+        Route::get('/', [App\Http\Controllers\DoctorArea\DoctorController::class, 'index'])->name('doctor.index');
+        // Add other doctor routes here
+    });
+});
