@@ -96,9 +96,10 @@
                                     </ul>
                                 </li>
                                 <li><a href="">Doctors</a></li>
-                                <li><a href="">Blog</a></li>
+                                <li><a href="{{ route('PublicAreaBlog.all') }}">Blog</a></li>
                                 <li><a href="{{ route('aboutUs') }}">About</a></li>
                                 <li><a href="{{ route('contactUs') }}">Contact</a></li>
+                                    <li><a href="{{ route('gallery.all') }}">Contact</a></li>
                             </ul>
                         </div>
                     </nav>

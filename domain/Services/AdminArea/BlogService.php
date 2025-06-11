@@ -94,4 +94,19 @@ class BlogService
         $item->save();
         return $item;
     }
+
+     public function allForPublic()
+    {
+        return Blog::with(['images' => function($query) {
+            $query->where('isPrimary', 1)->orWhere('isPrimary', 0);
+        }])->orderBy('date', 'desc')->get();
+    }
+
+    /**
+     * Get a single blog with all images (for public details page)
+     */
+    public function findForPublic($blogId)
+    {
+        return Blog::with('images')->where('blogId', $blogId)->firstOrFail();
+    }
 }
