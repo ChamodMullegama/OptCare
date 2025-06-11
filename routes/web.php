@@ -158,7 +158,6 @@ Route::prefix('nonsurgicaltreatments')->group(function () {
 });
 
 
-
 Route::prefix('eyehospitals')->group(function () {
     Route::get('/all', [EyeHospitalsController::class, 'All'])->name('eye.hospitals.all');
     Route::get('/add', [EyeHospitalsController::class, 'AddPage'])->name('eye.hospitals.addPage');
@@ -188,7 +187,6 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/login', [AuthenticationController::class, "Login"])->name('Authentication.login');
 });
 
-
 Route::prefix('Home')->group(function () {
     Route::get('/home', [HomeController::class, "index"])->name('Home.home');
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
@@ -196,10 +194,19 @@ Route::prefix('Home')->group(function () {
 
 });
 
-
 Route::prefix('Shop')->group(function () {
     Route::get('/all', [ShopController::class, "All"])->name('Shop.all');
 
-
 });
 
+
+
+//////////////////////////////////////////// Doctor ////////////////////////////////////////////////////
+
+
+Route::prefix('Home')->group(function () {
+    Route::get('/Dashboard', [HomeController::class, "index"])->name('Dashboard.index');
+    Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
+    Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
+
+});
