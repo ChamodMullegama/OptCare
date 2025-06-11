@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\CustomerAuthController;
 use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
- Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+//  Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
+Route::prefix('')->group(function () {
+    Route::get('/', [HomeController::class, "index"])->name('home');
+    Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('aboutUs');
+    Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('contactUs');
+});
 
 Route::prefix('oct-analysis')->group(function () {
     Route::get('/', [OCTController::class, 'showUploadForm'])->name('oct.upload');
@@ -183,8 +189,13 @@ Route::prefix('opticcenters')->group(function () {
 
 
 Route::prefix('Authentication')->group(function () {
-    Route::get('/register', [AuthenticationController::class, "Register"])->name('Authentication.register');
-    Route::get('/login', [AuthenticationController::class, "Login"])->name('Authentication.login');
+ Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [CustomerAuthController::class, 'register']);
+Route::get('/verify-otp', [CustomerAuthController::class, 'showOtpForm'])->name('verify.otp');
+Route::post('/verify-otp', [CustomerAuthController::class, 'verifyOtp']);
+Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [CustomerAuthController::class, 'login']);
+Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('Home')->group(function () {
@@ -209,4 +220,30 @@ Route::prefix('Home')->group(function () {
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
 
+});
+
+// Admin Routes
+Route::prefix('admin')->group(function () {
+    Route::get('login', [App\Http\Controllers\AdminArea\AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [App\Http\Controllers\AdminArea\AuthController::class, 'login']);
+    Route::post('logout', [App\Http\Controllers\AdminArea\AuthController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('dashboard', [App\Http\Controllers\AdminArea\AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/', [App\Http\Controllers\AdminArea\AdminController::class, 'index'])->name('admin.index');
+        // Add other admin routes here
+    });
+});
+
+// Doctor Routes
+Route::prefix('doctor')->group(function () {
+    Route::get('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'showLoginForm'])->name('doctor.login');
+    Route::post('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'login']);
+    Route::post('logout', [App\Http\Controllers\DoctorArea\AuthController::class, 'logout'])->name('doctor.logout');
+
+    Route::middleware(['auth:doctor'])->group(function () {
+        Route::get('dashboard', [App\Http\Controllers\DoctorArea\DoctorController::class, 'dashboard'])->name('doctor.dashboard');
+        Route::get('/', [App\Http\Controllers\DoctorArea\DoctorController::class, 'index'])->name('doctor.index');
+        // Add other doctor routes here
+    });
 });

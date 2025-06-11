@@ -4,20 +4,17 @@ namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use domain\Facades\AdminArea\Auth;
 
 class AdminController extends Controller
 {
-       public function index()
+    public function dashboard()
     {
-        // try {
-            // Fetch all gallery data
+        return view('AdminArea.Pages.Dashboard.index');
+    }
 
-
-            return view('AdminArea.Pages.Dashboard.index');
-        // } catch (\Exception $e) {
-        //     // Handle any errors that occur
-        //     return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
-        // }
-
+    public function index()
+    {
+        return view('AdminArea.Pages.Dashboard.index');
     }
 }
