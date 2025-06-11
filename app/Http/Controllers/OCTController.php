@@ -11,7 +11,7 @@ class OCTController extends Controller
     public function showUploadForm()
     {
         try {
-            return view('PublicArea.Pages.OCTAnalysis.index');
+            return view('AdminArea.Pages.ai.index');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
