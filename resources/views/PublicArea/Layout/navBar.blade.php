@@ -94,7 +94,11 @@
                                         <li><a href="{{ route('Shop.all') }}{{ route('Shop.all') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
 
+                                        <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
+                                          <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
                                         <li><a href="error.html">404</a></li>
+
+
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('PublicAreDoctors.all') }}">Doctors</a></li>

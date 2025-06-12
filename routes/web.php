@@ -22,8 +22,10 @@ use App\Http\Controllers\PublicArea\CustomerAuthController;
 use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
+use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
 use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
+use App\Http\Controllers\PublicArea\PublicOpticCenterController;
 use App\Http\Controllers\PublicArea\PublicSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -238,6 +240,18 @@ Route::prefix('public/surgical-treatments')->group(function () {
     Route::get('/all', [PublicSurgicalTreatmentController::class, 'All'])->name('public.surgical-treatments.all');
     Route::get('/search', [PublicSurgicalTreatmentController::class, 'Search'])->name('public.surgical-treatments.search');
     Route::get('/details/{id}', [PublicSurgicalTreatmentController::class, 'Details'])->name('public.surgical-treatments.Details');
+});
+
+Route::prefix('public/eye-hospitals')->group(function () {
+    Route::get('/all', [PublicEyeHospitalController::class, 'All'])->name('public.eye-hospitals.all');
+    Route::get('/search', [PublicEyeHospitalController::class, 'Search'])->name('public.eye-hospitals.search');
+    Route::get('/details/{hospitalId}', [PublicEyeHospitalController::class, 'Details'])->name('public.eye-hospitals.details');
+});
+
+Route::prefix('public/optic-centers')->group(function () {
+    Route::get('/all', [PublicOpticCenterController::class, 'All'])->name('public.optic-centers.all');
+    Route::get('/search', [PublicOpticCenterController::class, 'Search'])->name('public.optic-centers.search');
+    Route::get('/details/{hospitalId}', [PublicOpticCenterController::class, 'Details'])->name('public.optic-centers.details');
 });
 
 Route::prefix('Shop')->group(function () {
