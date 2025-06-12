@@ -50,11 +50,26 @@ class NonSurgicalTreatmentService
             if ($treatment->image_path && Storage::disk('public')->exists($treatment->image_path)) {
                 Storage::disk('public')->delete($treatment->image_path);
             }
-            $data['image_path'] = $data['image']->store('non_surgical_treatment_images', 'public');
+            $data['image_path'] = $data['image']->store('uploads/non_surgical_treatment_images', 'public'); // Consistent path
             unset($data['image']);
         }
 
         $treatment->update($data);
         return $treatment;
+    }
+
+    public function allForPublic()
+    {
+        return $this->nonSurgicalTreatment->orderBy('created_at', 'desc')->get();
+    }
+
+    public function findForPublic($id)
+    {
+        return $this->nonSurgicalTreatment->findOrFail($id);
+    }
+
+    public function getRecent($limit = 3)
+    {
+        return $this->nonSurgicalTreatment->latest()->take($limit)->get();
     }
 }

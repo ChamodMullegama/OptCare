@@ -23,6 +23,7 @@ use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
+use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -222,7 +223,14 @@ Route::prefix('PublicAreDoctors')->group(function () {
 
 Route::prefix('PublicAreaEyeIssues')->group(function () {
     Route::get('/all', [PublicEyeIssueController::class, 'All'])->name('PublicAreaEyeIssues.all');
+    Route::get('/search', [PublicEyeIssueController::class, 'Search'])->name('PublicAreaEyeIssues.search');
     Route::get('/details/{id}', [PublicEyeIssueController::class, 'Details'])->name('PublicAreaEyeIssues.details');
+});
+
+Route::prefix('public/non-surgical-treatments')->group(function () {
+    Route::get('/all', [PublicNonSurgicalTreatmentController::class, 'All'])->name('public.non-surgical-treatments.all');
+    Route::get('/search', [PublicNonSurgicalTreatmentController::class, 'Search'])->name('public.non-surgical-treatments.search');
+    Route::get('/show/{id}', [PublicNonSurgicalTreatmentController::class, 'Show'])->name('public.non-surgical-treatments.show');
 });
 
 Route::prefix('Shop')->group(function () {

@@ -85,13 +85,13 @@
                                 </li>
                                 <li class="dropdown"><a href="index.html">Specialties & Services</a>
                                     <ul>
-                                        <li class="dropdown"><a href="index.html">Doctors</a>
+                                        <li class="dropdown"><a href="index.html">Treatments</a>
                                             <ul>
-                                                <li><a href="team.html">Doctors 3 Column</a></li>
-                                                <li><a href="team-2.html">Doctors 4 Column</a></li>
+                                                <li><a href="team-2.html">Surgical Treatment</a></li>
+                                                <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ route('Shop.all') }}">Shop</a></li>
+                                        <li><a href="{{ route('Shop.all') }}{{ route('Shop.all') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
 
                                         <li><a href="error.html">404</a></li>

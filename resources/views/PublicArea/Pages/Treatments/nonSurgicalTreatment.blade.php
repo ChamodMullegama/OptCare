@@ -1,5 +1,4 @@
 @extends('PublicArea.Layout.main')
-
 @section('Publiccontainer')
 
 <!-- Page Title -->
@@ -7,10 +6,10 @@
     <div class="bg-layer" style="background-image: url({{ asset('PublicArea/images/background/page-title.jpg') }});"></div>
     <div class="auto-container">
         <div class="content-box">
-            <h1>Eye Disease</h1>
+            <h1>Non-Surgical Treatments</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li>Eye Disease</li>
+                <li>Non-Surgical Treatments</li>
             </ul>
         </div>
     </div>
@@ -23,9 +22,9 @@
         <!-- Search Box -->
         <div class="row mb-4">
             <div class="col-md-8 mx-auto">
-                <form action="{{ route('PublicAreaEyeIssues.search') }}" method="GET">
+                <form action="{{ route('public.non-surgical-treatments.search') }}" method="GET">
                     <div class="form-group" style="display: flex; gap: 10px;">
-                        <input type="text" name="search" placeholder="Search Eye Disease..." value="{{ request('search') ?? '' }}"
+                        <input type="text" name="search" placeholder="Search treatments..." value="{{ request('search') ?? '' }}"
                                style="padding: 10px 20px; font-size: 14px; border-radius: 40px; border: 1px solid #ccc; flex: 1;">
                         <button type="submit" class="theme-btn btn-one"
                                 style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
@@ -38,42 +37,30 @@
             </div>
         </div>
 
-        <div class="row clearfix">
-            @forelse($eyeIssues as $issue)
-                @php
-                    $primaryImage = $issue->images->where('isPrimary', 1)->first() ?? $issue->images->first();
-                    $firstTag = '';
-                    if (isset($issue->tags)) {
-                        $tagsArray = explode(',', $issue->tags);
-                        $firstTag = trim($tagsArray[0]);
-                    }
-                @endphp
+<div class="row clearfix">
 
+            @forelse($treatments as $treatment)
                 <div class="col-lg-4 col-md-6 col-sm-12 service-block">
                     <div class="service-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box" style="background-color: #f4f2f2;">
-                            @if($primaryImage)
+                        <div class="inner-box" style="background-color: #f0f0f0;">
+                            @if($treatment->image_path)
                                 <figure class="image-box">
-                                    <img src="{{ asset('storage/' . $primaryImage->image) }}"
-                                         alt="{{ $issue->name }}"
+                                    <img src="{{ asset('storage/' . $treatment->image_path) }}"
+                                         alt="{{ $treatment->name }}"
                                          style="width: 360px; height: 220px; object-fit: cover; display: block;">
-                                    <a href="{{ route('PublicAreaEyeIssues.details', $issue->eyeIssueId) }}"><i class="fas fa-link"></i></a>
+                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}"><i class="fas fa-link"></i></a>
                                 </figure>
                             @endif
 
                             <div class="lower-content">
-                                @if($firstTag)
-                                    <div class="icon-box"><i class="fas fa-tag"></i></div>
-                                @endif
-
                                 <h3>
-                                    <a href="{{ route('PublicAreaEyeIssues.details', $issue->eyeIssueId) }}">{{ $issue->name }}</a>
+                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">{{ $treatment->name }}</a>
                                 </h3>
 
-                                <p class="p_relative d_block">{{ Str::limit(strip_tags($issue->description), 100) }}</p>
+                                <p class="p_relative d_block">{{ Str::limit(strip_tags($treatment->description), 100) }}</p>
 
                                 <div class="link p_relative d_block">
-                                    <a href="{{ route('PublicAreaEyeIssues.details', $issue->eyeIssueId) }}">Read More</a>
+                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -81,11 +68,11 @@
                 </div>
             @empty
                 <div class="col-12 text-center py-5">
-                    <h4>No Eye Disease found</h4>
-                    <a href="{{ route('PublicAreaEyeIssues.all') }}" class="theme-btn btn-one"
+                    <h4>No treatments found</h4>
+                    <a href="{{ route('public.non-surgical-treatments.all') }}" class="theme-btn btn-one"
                        style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
                        onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
-                       onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">View All Eye Disease</a>
+                       onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">View All Treatments</a>
                 </div>
             @endforelse
         </div>

@@ -9,7 +9,7 @@
             <h1>{{ $eyeIssue->name }}</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Conditions</a></li>
+                <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Disease</a></li>
                 <li>{{ $eyeIssue->name }}</li>
             </ul>
         </div>
