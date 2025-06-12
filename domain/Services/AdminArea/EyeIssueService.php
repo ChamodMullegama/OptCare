@@ -131,4 +131,21 @@ class EyeIssueService
         $item->save();
         return $item->isPrimary ? 'Image activated successfully!' : 'Image deactivated successfully!';
     }
+
+    public function allForPublic()
+    {
+        return EyeIssue::with(['images' => function($query) {
+            $query->where('isPrimary', 1)->orWhere('isPrimary', 0);
+        }])->orderBy('created_at', 'desc')->get();
+    }
+
+    public function findForPublic($eyeIssueId)
+    {
+        return EyeIssue::with('images')->where('eyeIssueId', $eyeIssueId)->firstOrFail();
+    }
+
+    public function getRecent($limit = 3)
+    {
+        return $this->eyeIssue->latest()->take($limit)->get();
+    }
 }

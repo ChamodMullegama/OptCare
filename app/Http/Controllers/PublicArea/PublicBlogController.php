@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PublicBlogController extends Controller
 {
-     public function index()
+     public function All()
     {
         try {
             $blogs = BlogFacade::allForPublic(); // Make sure this method exists in BlogService
@@ -19,7 +19,7 @@ class PublicBlogController extends Controller
         }
     }
 
-    public function show($id)
+    public function Details($id)
 {
     try {
         $blog = BlogFacade::findForPublic($id);

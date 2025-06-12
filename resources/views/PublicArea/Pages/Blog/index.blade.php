@@ -6,7 +6,7 @@
     <div class="bg-layer" style="background-image: url(assets/images/background/page-title.jpg);"></div>
     <div class="auto-container">
         <div class="content-box">
-            <h1>Blog Grid</h1>
+            <h1>Blogs</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li>Blog Grid</li>
