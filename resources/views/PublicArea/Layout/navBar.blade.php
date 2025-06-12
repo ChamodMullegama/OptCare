@@ -87,7 +87,7 @@
                                     <ul>
                                         <li class="dropdown"><a href="index.html">Treatments</a>
                                             <ul>
-                                                <li><a href="team-2.html">Surgical Treatment</a></li>
+                                                <li><a href="{{ route('public.surgical-treatments.all') }}">Surgical Treatment</a></li>
                                                 <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
