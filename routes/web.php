@@ -26,6 +26,7 @@ use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
 use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\PublicOpticCenterController;
+use App\Http\Controllers\PublicArea\PublicProductController;
 use App\Http\Controllers\PublicArea\PublicSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -259,7 +260,8 @@ Route::prefix('Shop')->group(function () {
 
 });
 
-
+Route::get('/public/products', [PublicProductController::class, 'index'])->name('public.products.index');
+Route::get('/public/products/{productId}', [PublicProductController::class, 'show'])->name('public.products.show');
 
 //////////////////////////////////////////// Doctor ////////////////////////////////////////////////////
 

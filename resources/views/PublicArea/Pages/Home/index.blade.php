@@ -528,174 +528,92 @@
 
 
         <!-- project-section -->
- <section class="project-section alternat-2 p_relative">
+<section class="project-section alternat-2 p_relative">
     <div class="outer-container">
         <div class="project-carousel-2 owl-carousel owl-theme owl-dots-none owl-nav-none">
-            <div class="project-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/project/project-5.jpg') }}" alt="">
-                    </figure>
-                    <div class="view-btn">
-                        <a href="{{ asset('PublicArea/images/project/project-5.jpg') }}" class="lightbox-image" data-fancybox="gallery">
-                            <i class="fas fa-search-plus"></i> <!-- FontAwesome icon -->
-                        </a>
+            @isset($galleries)
+                @forelse($galleries as $gallery)
+                    <div class="project-block-one">
+                        <div class="inner-box">
+                            <figure class="image-box">
+
+                                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title ?? '' }}">
+
+
+
+                            </figure>
+                            <div class="view-btn">
+                                <a href="{{ isset($gallery->image) ? asset('storage/' . $gallery->image) : '#' }}" class="lightbox-image" data-fancybox="gallery">
+                                    <i class="fas fa-search-plus"></i>
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3><a href="#">{{ $gallery->title ?? 'Untitled' }}</a></h3>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text">
-                        <h3><a href="index.html">Living Modern Design</a></h3>
-                        <span>Residential</span>
+                @empty
+                    <div class="col-12">
+                        <p>No galleries found.</p>
                     </div>
+                @endforelse
+            @else
+                <div class="col-12">
+                    <p>Galleries data not available.</p>
                 </div>
-            </div>
-            <div class="project-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/project/project-6.jpg') }}" alt="">
-                    </figure>
-                    <div class="view-btn">
-                        <a href="{{ asset('PublicArea/images/project/project-6.jpg') }}" class="lightbox-image" data-fancybox="gallery">
-                            <i class="fas fa-search-plus"></i>
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h3><a href="index.html">Living Modern Design</a></h3>
-                        <span>Residential</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/project/project-7.jpg') }}" alt="">
-                    </figure>
-                    <div class="view-btn">
-                        <a href="{{ asset('PublicArea/images/project/project-7.jpg') }}" class="lightbox-image" data-fancybox="gallery">
-                            <i class="fas fa-search-plus"></i>
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h3><a href="index.html">Living Modern Design</a></h3>
-                        <span>Residential</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/project/project-8.jpg') }}" alt="">
-                    </figure>
-                    <div class="view-btn">
-                        <a href="{{ asset('PublicArea/images/project/project-8.jpg') }}" class="lightbox-image" data-fancybox="gallery">
-                            <i class="fas fa-search-plus"></i>
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h3><a href="index.html">Living Modern Design</a></h3>
-                        <span>Residential</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/project/project-9.jpg') }}" alt="">
-                    </figure>
-                    <div class="view-btn">
-                        <a href="{{ asset('PublicArea/images/project/project-9.jpg') }}" class="lightbox-image" data-fancybox="gallery">
-                            <i class="fas fa-search-plus"></i>
-                        </a>
-                    </div>
-                    <div class="text">
-                        <h3><a href="index.html">Living Modern Design</a></h3>
-                        <span>Residential</span>
-                    </div>
-                </div>
-            </div>
+            @endisset
         </div>
     </div>
 </section>
+
 
         <!-- project-section end -->
 
 
         <!-- news-section -->
-        <section class="news-section p_relative">
-            <div class="auto-container">
-                <div class="sec-title centred mb_50">
-                    <span class="sub-title">Articles</span>
-                    <h2>Resources to Keep You Informed <br />with Our Blog</h2>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 news-block">
-                        <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                        <img src="{{ asset('PublicArea/images/news/news-2.jpg') }}" alt="">
-
-                                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
-                                </figure>
-                                <div class="lower-content">
-                                    <div class="inner">
-                                        <div class="category"><a href="blog-details.html">Glaucoma</a></div>
-                                        <h3><a href="blog-details.html">How do Inherited Retinal Diseases Happen?</a></h3>
-                                        <ul class="post-info clearfix">
-                                            <li><i class="icon-34"></i>10 Oct, 2021</li>
-                                            <li><i class="icon-35"></i><a href="blog-details.html">Ashley Bronks</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor inc ididunt labore.</p>
-                                        <div class="link"><a href="blog-details.html">Read more</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 news-block">
-                        <div class="news-block-one wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                                        <img src="{{ asset('PublicArea/images/news/news-2.jpg') }}" alt="">
-                                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
-                                </figure>
-                                <div class="lower-content">
-                                    <div class="inner">
-                                        <div class="category"><a href="blog-details.html">Paediatric</a></div>
-                                        <h3><a href="blog-details.html">Prepare to Speak with Your Eye Specialist.</a></h3>
-                                        <ul class="post-info clearfix">
-                                            <li><i class="icon-34"></i>09 Oct, 2021</li>
-                                            <li><i class="icon-35"></i><a href="blog-details.html">Ashley Bronks</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor inc ididunt labore.</p>
-                                        <div class="link"><a href="blog-details.html">Read more</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 news-block">
-                        <div class="news-block-one wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                                  <img src="{{ asset('PublicArea/images/news/news-2.jpg') }}" alt="">
-                                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
-                                </figure>
-                                <div class="lower-content">
-                                    <div class="inner">
-                                        <div class="category"><a href="blog-details.html">Glaucoma</a></div>
-                                        <h3><a href="blog-details.html">Some Eye Problems are Minor and don't...</a></h3>
-                                        <ul class="post-info clearfix">
-                                            <li><i class="icon-34"></i>08 Oct, 2021</li>
-                                            <li><i class="icon-35"></i><a href="blog-details.html">Ashley Bronks</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor inc ididunt labore.</p>
-                                        <div class="link"><a href="blog-details.html">Read more</a></div>
-                                    </div>
+    <section class="news-section p_relative">
+    <div class="auto-container">
+        <div class="sec-title centred mb_50">
+            <span class="sub-title">Articles</span>
+            <h2>Resources to Keep You Informed <br />with Our Blog</h2>
+        </div>
+        <div class="row clearfix">
+            @foreach($blogs as $key => $blog)
+                @php
+                    $primaryImage = $blog->images->firstWhere('isPrimary', 1) ?? $blog->images->first();
+                @endphp
+                <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+                    <div class="news-block-one wow fadeInUp animated" data-wow-delay="{{ $key * 300 }}ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <figure class="image-box">
+                                @if($primaryImage)
+                                    <img src="{{ asset('storage/'.$primaryImage->image) }}" alt="{{ $blog->title }}"
+                                         style="width: 100%; height: 250px; object-fit: cover; object-position: center;">
+                                @else
+                                    <img src="{{ asset('PublicArea/images/news/news-2.jpg') }}" alt="{{ $blog->title }}"
+                                         style="width: 100%; height: 250px; object-fit: cover; object-position: center;">
+                                @endif
+                                <a href="{{ route('PublicAreaBlog.details', $blog->blogId) }}"><i class="fas fa-link"></i></a>
+                            </figure>
+                            <div class="lower-content">
+                                <div class="inner">
+                                    <div class="category"><a href="{{ route('PublicAreaBlog.details', $blog->blogId) }}">{{ $blog->tags ?: 'General' }}</a></div>
+                                    <h3><a href="{{ route('PublicAreaBlog.details', $blog->blogId) }}">{{ $blog->title }}</a></h3>
+                                    <ul class="post-info clearfix">
+                                        <li><i class="fas fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</li>
+                                        <li><i class="fas fa-star"></i><a href="{{ route('PublicAreaBlog.details', $blog->blogId) }}">{{ $blog->special_thing }}</a></li>
+                                    </ul>
+                                    <p>{{ Str::limit(strip_tags($blog->content), 100) }}</p>
+                                    <div class="link"><a href="{{ route('PublicAreaBlog.details', $blog->blogId) }}">Read more</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            @endforeach
+        </div>
+    </div>
+</section>
         <!-- news-section end -->
 
         <section class="cta-section alternat-2 p_relative bg-color-1">

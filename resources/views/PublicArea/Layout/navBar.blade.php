@@ -91,11 +91,16 @@
                                                 <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ route('Shop.all') }}{{ route('Shop.all') }}">Shop</a></li>
+                                             <li class="dropdown"><a href="index.html">Hospital And Vision Centers</a>
+                                            <ul>
+                                              <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
+                                              <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{{ route('public.products.index') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
 
-                                        <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
-                                          <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
+
                                         <li><a href="error.html">404</a></li>
 
 
