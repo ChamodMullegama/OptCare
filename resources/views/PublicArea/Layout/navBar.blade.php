@@ -92,6 +92,8 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('Shop.all') }}">Shop</a></li>
+                                        <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
+
                                         <li><a href="error.html">404</a></li>
                                     </ul>
                                 </li>
