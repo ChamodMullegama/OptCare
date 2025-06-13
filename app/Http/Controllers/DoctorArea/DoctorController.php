@@ -8,13 +8,28 @@ use domain\Facades\DoctorArea\Auth;
 
 class DoctorController extends Controller
 {
-    public function dashboard()
+    public function f()
     {
         return view('DoctorArea.Pages.Dashboard.index');
     }
 
-    public function index()
+     public function dashboard()
     {
-        return view('DoctorArea.Pages.Dashboard.index');
+        // Get the authenticated doctor
+        $doctor = Auth::getCurrentDoctor();
+
+        // Check if doctor exists
+        if (!$doctor) {
+            return redirect()->route('doctor.login')->with('error', 'Please login first');
+        }
+
+        return view('DoctorArea.Pages.Dashboard.index', [
+            'doctor' => $doctor
+        ]);
     }
+
+    // public function index()
+    // {
+    //     return view('DoctorArea.Pages.Dashboard.index');
+    // }
 }

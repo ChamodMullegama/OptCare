@@ -14,7 +14,7 @@
     <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
     <meta property="og:type" content="Website">
     <link rel="shortcut icon" href="assets/images/favicon.svg">
-    @include('AdminArea.libraries.styles')
+    @include('DoctorArea.libraries.styles')
     <title>OptCare-Admin</title>
     <!-- plugins:css -->
 
@@ -23,12 +23,12 @@
 
 <body>
     <div class="page-wrapper">
-        @include('AdminArea.Layout.navbar')
+        @include('DoctorArea.Layout.navbar')
         <div class="main-container">
-            @include('AdminArea.Layout.sideBar')
-            @yield('Admincontainer')
-            @include('AdminArea.Layout.footer')
-            @include('AdminArea.libraries.scripts')
+            @include('DoctorArea.Layout.sideBar')
+            @yield('Doctorcontainer')
+            @include('DoctorArea.Layout.footer')
+            @include('DoctorArea.libraries.scripts')
         </div>
 
     </div>
