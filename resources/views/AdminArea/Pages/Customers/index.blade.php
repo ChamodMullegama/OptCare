@@ -87,14 +87,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>First Name:</strong> <span id="modal_first_name"></span></p>
-                <p><strong>Last Name:</strong> <span id="modal_last_name"></span></p>
-                <p><strong>Email:</strong> <span id="modal_email"></span></p>
-                <p><strong>Phone:</strong> <span id="modal_phone"></span></p>
-                <p><strong>Gender:</strong> <span id="modal_gender"></span></p>
-                <p><strong>Birth Date:</strong> <span id="modal_birth_date"></span></p>
-                <p><strong>Age:</strong> <span id="modal_age"></span></p>
-                <p><strong>Verified Account:</strong> <span id="modal_verified"></span></p>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="modal_first_name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="modal_last_name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="modal_email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="modal_phone" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <input type="text" class="form-control" id="modal_gender" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Birth Date</label>
+                        <input type="text" class="form-control" id="modal_birth_date" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Age</label>
+                        <input type="text" class="form-control" id="modal_age" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Verified Account</label>
+                        <input type="text" class="form-control" id="modal_verified" readonly>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -118,21 +144,21 @@
         return age;
     }
 
-    function viewCustomer(first, last, email, phone, gender, birth, _unusedAge, verified) {
-        document.getElementById('modal_first_name').innerText = first;
-        document.getElementById('modal_last_name').innerText = last;
-        document.getElementById('modal_email').innerText = email;
-        document.getElementById('modal_phone').innerText = phone;
-        document.getElementById('modal_gender').innerText = gender;
-        document.getElementById('modal_birth_date').innerText = birth;
+  function viewCustomer(first, last, email, phone, gender, birth, _unusedAge, verified) {
+    document.getElementById('modal_first_name').value = first;
+    document.getElementById('modal_last_name').value = last;
+    document.getElementById('modal_email').value = email;
+    document.getElementById('modal_phone').value = phone;
+    document.getElementById('modal_gender').value = gender;
+    document.getElementById('modal_birth_date').value = birth;
 
-        const calculatedAge = birth ? calculateAge(birth) : 'N/A';
-        document.getElementById('modal_age').innerText = calculatedAge;
+    const calculatedAge = birth ? calculateAge(birth) : 'N/A';
+    document.getElementById('modal_age').value = calculatedAge;
 
-        document.getElementById('modal_verified').innerText = verified;
+    document.getElementById('modal_verified').value = verified;
 
-        $('#customerDetailsModal').modal('show');
-    }
+    $('#customerDetailsModal').modal('show');
+}
 </script>
 @endpush
 

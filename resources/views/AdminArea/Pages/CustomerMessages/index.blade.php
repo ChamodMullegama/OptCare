@@ -9,7 +9,7 @@
             <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
-            Customer Messages
+            Patient Messages
         </li>
     </ol>
     <!-- Breadcrumb ends -->
@@ -20,7 +20,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Customer Messages List</h5>
+                    <h5 class="card-title">Patient Messages List</h5>
                 </div>
                 <div class="card-body">
 

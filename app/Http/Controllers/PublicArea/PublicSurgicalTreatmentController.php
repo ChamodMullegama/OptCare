@@ -4,31 +4,42 @@ namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\SurgicalTreatment;
+use domain\Facades\PublicArea\SurgicalTreatmentFacade;
 use Illuminate\Http\Request;
 
 class PublicSurgicalTreatmentController extends Controller
 {
     public function All()
     {
-        $treatments = SurgicalTreatment::all();
-        return view('PublicArea.Pages.Treatments.surgicalTreatment', compact('treatments'));
+        try {
+            $treatments = SurgicalTreatmentFacade::all();
+            return view('PublicArea.Pages.Treatments.surgicalTreatment', compact('treatments'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to load surgical treatments. Please try again.');
+        }
     }
 
     public function Search(Request $request)
     {
-        $search = $request->input('search');
-
-        $treatments = SurgicalTreatment::where('name', 'like', '%' . $search . '%')
-            ->orWhere('description', 'like', '%' . $search . '%')
-            ->get();
-
-        return view('PublicArea.Pages.Treatments.surgicalTreatment', compact('treatments', 'search'));
+        try {
+            $search = $request->input('search');
+            $treatments = SurgicalTreatmentFacade::search($search);
+            return view('PublicArea.Pages.Treatments.surgicalTreatment', compact('treatments', 'search'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Search failed. Please try again.');
+        }
     }
 
     public function Details($id)
     {
-        $treatment = SurgicalTreatment::findOrFail($id);
-        $recentTreatments = SurgicalTreatment::where('id', '!=', $id)->latest()->take(5)->get();
-        return view('PublicArea.Pages.Treatments.surgicalTreatmentDetails', compact('treatment', 'recentTreatments'));
+        try {
+            $treatment = SurgicalTreatmentFacade::getDetails($id);
+            $recentTreatments = SurgicalTreatmentFacade::getRecentTreatments($id);
+            return view('PublicArea.Pages.Treatments.surgicalTreatmentDetails', compact('treatment', 'recentTreatments'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            abort(404, 'Surgical treatment not found');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to load treatment details. Please try again.');
+        }
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
+use App\Http\Controllers\AdminArea\SubscriptionController;
 use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
@@ -27,10 +28,13 @@ use App\Http\Controllers\PublicArea\PublicBlogController;
 use App\Http\Controllers\PublicArea\PublicCustomerMessageController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
 use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
+use App\Http\Controllers\PublicArea\PublicEyeInvestigationsController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
 use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\PublicOpticCenterController;
 use App\Http\Controllers\PublicArea\PublicProductController;
+use App\Http\Controllers\PublicArea\PublicpublicEyeInvestigationsController;
+use App\Http\Controllers\PublicArea\PublicSubscriptionController;
 use App\Http\Controllers\PublicArea\PublicSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -208,6 +212,12 @@ Route::prefix('customer')->group(function () {
 
 });
 
+Route::prefix('subscriptions')->group(function () {
+        Route::get('/all', [SubscriptionController::class, 'All'])->name('subscriptions.all');
+        Route::post('/delete', [SubscriptionController::class, 'delete'])->name('subscriptions.delete');
+        Route::post('/broadcast', [SubscriptionController::class, 'sendBroadcast'])->name('subscriptions.broadcast');
+});
+
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
 
@@ -270,6 +280,12 @@ Route::prefix('public/optic-centers')->group(function () {
     Route::get('/details/{hospitalId}', [PublicOpticCenterController::class, 'Details'])->name('public.optic-centers.details');
 });
 
+Route::prefix('publicEyeInvestigations')->group(function () {
+    Route::get('/all', [PublicEyeInvestigationsController::class, 'All'])->name('publicEyeInvestigations.all');
+    Route::get('/search', [PublicEyeInvestigationsController::class, 'Search'])->name('publicEyeInvestigations.search');
+    Route::get('/details/{eyeScanId}', [PublicEyeInvestigationsController::class, 'Details'])->name('publicEyeInvestigations.details');
+});
+
 Route::prefix('Shop')->group(function () {
     Route::get('/all', [ShopController::class, "All"])->name('Shop.all');
 
@@ -277,6 +293,11 @@ Route::prefix('Shop')->group(function () {
 
 Route::prefix('PublicAreaCustomerMessage')->group(function () {
    Route::post('/add', [PublicCustomerMessageController::class, 'Add'])->name('PublicAreaCustomerMessage.add');
+
+});
+
+Route::prefix('PublicAreaSubscription')->group(function () {
+   Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });
 

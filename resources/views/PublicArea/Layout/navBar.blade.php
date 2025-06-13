@@ -100,7 +100,7 @@
                                         <li><a href="{{ route('public.products.index') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
 
-
+                                        <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
                                         <li><a href="error.html">404</a></li>
 
 
