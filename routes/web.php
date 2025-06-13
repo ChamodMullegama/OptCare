@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
+use App\Http\Controllers\AdminArea\CustomerMessageController;
 use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeHospitalsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
@@ -19,13 +20,16 @@ use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
+
 use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
+use App\Http\Controllers\PublicArea\PublicCustomerMessageController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
 use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
 use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\PublicOpticCenterController;
+use App\Http\Controllers\PublicArea\PublicProductController;
 use App\Http\Controllers\PublicArea\PublicSurgicalTreatmentController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -192,6 +196,12 @@ Route::prefix('opticcenters')->group(function () {
     Route::get('/view/{id}', [OpticCentersController::class, 'View'])->name('optic.centers.view');
 });
 
+Route::prefix('customerMessage')->group(function () {
+    Route::get('/all', [CustomerMessageController::class, 'All'])->name('customerMessage.all');
+      Route::post('/delete', [CustomerMessageController::class, 'Delete'])->name('customerMessage.delete');
+       Route::post('/reply', [CustomerMessageController::class, 'Reply'])->name('customerMessage.reply');
+});
+
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
 
@@ -259,7 +269,13 @@ Route::prefix('Shop')->group(function () {
 
 });
 
+Route::prefix('PublicAreaCustomerMessage')->group(function () {
+   Route::post('/add', [PublicCustomerMessageController::class, 'Add'])->name('PublicAreaCustomerMessage.add');
 
+});
+
+Route::get('/public/products', [PublicProductController::class, 'index'])->name('public.products.index');
+Route::get('/public/products/{productId}', [PublicProductController::class, 'show'])->name('public.products.show');
 
 //////////////////////////////////////////// Doctor ////////////////////////////////////////////////////
 

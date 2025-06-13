@@ -59,10 +59,19 @@
                     <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
                         <div class="form-inner">
                             <h2>Leave a Comment</h2>
-                            <form method="post" action="sendemail.php" id="contact-form">
+                             <form action="{{ route('PublicAreaCustomerMessage.add') }}" method="post">
+                              @csrf
+@if (session('success'))
+    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
+
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <input type="text" name="username" placeholder="Your Name" required="">
+                                        <input type="text" name="name" placeholder="Your Name" required="">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                         <input type="email" name="email" placeholder="Your email" required="">

@@ -113,4 +113,11 @@ class ServiceService
         $item->save();
         return $item;
     }
+
+         public function allForPublic()
+    {
+        return Service::with(['images' => function($query) {
+            $query->where('isPrimary', 1)->orWhere('isPrimary', 0);
+        }])->orderBy('date', 'desc')->get();
+    }
 }
