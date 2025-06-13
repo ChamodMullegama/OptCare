@@ -110,6 +110,15 @@
                   </a>
               </li>
 
+               <li>
+                  <a href="{{ route('team.all') }}">
+                      <i class="ri-question-answer-line"></i>
+
+                      <span class="menu-text">
+                        Team</span>
+                  </a>
+              </li>
+
               <li class="treeview">
                   <a href="#!">
                       <i class="ri-shopping-bag-line"></i>

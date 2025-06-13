@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
 use App\Http\Controllers\AdminArea\ServiceController;
 use App\Http\Controllers\AdminArea\SubscriptionController;
 use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
+use App\Http\Controllers\AdminArea\TeamController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
@@ -64,6 +65,13 @@ Route::prefix('gallery')->group(function () {
     Route::post('/delete', [GalleryController::class, 'Delete'])->name('gallery.delete');
     Route::post('/update', [GalleryController::class, 'Update'])->name('gallery.update');
 
+});
+
+Route::prefix('team')->group(function () {
+    Route::get('/all', [TeamController ::class, "All"])->name('team.all');
+    Route::post('/add', [TeamController ::class, 'Add'])->name('team.add');
+    Route::post('/delete', [TeamController ::class, 'Delete'])->name('team.delete');
+    Route::post('/update', [TeamController ::class, 'Update'])->name('team.update');
 });
 
 Route::prefix('service')->group(function () {
