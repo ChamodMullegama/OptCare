@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
+use App\Http\Controllers\AdminArea\CustomerController;
 use App\Http\Controllers\AdminArea\CustomerMessageController;
 use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeHospitalsController;
@@ -198,8 +199,13 @@ Route::prefix('opticcenters')->group(function () {
 
 Route::prefix('customerMessage')->group(function () {
     Route::get('/all', [CustomerMessageController::class, 'All'])->name('customerMessage.all');
-      Route::post('/delete', [CustomerMessageController::class, 'Delete'])->name('customerMessage.delete');
-       Route::post('/reply', [CustomerMessageController::class, 'Reply'])->name('customerMessage.reply');
+    Route::post('/delete', [CustomerMessageController::class, 'Delete'])->name('customerMessage.delete');
+    Route::post('/reply', [CustomerMessageController::class, 'Reply'])->name('customerMessage.reply');
+});
+
+Route::prefix('customer')->group(function () {
+    Route::get('/all', [CustomerController::class, 'All'])->name('customer.all');
+
 });
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
