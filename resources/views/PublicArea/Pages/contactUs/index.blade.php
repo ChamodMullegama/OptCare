@@ -130,9 +130,26 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 form-column">
                 <div class="form-inner ml_30 mt_5">
-                    <form action="index-3.html" method="post">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <form action="{{ route('publicAreaSubscription.add') }}" method="post">
+                        @csrf
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your email address" required="">
+                            <input type="email" name="email" placeholder="Your email address" value="{{ old('email') }}" required>
                             <button type="submit" class="theme-btn">Subscribe</button>
                         </div>
                     </form>
@@ -141,6 +158,10 @@
         </div>
     </div>
 </section>
+
+@push('css')
+
+@endpush
 
 
         <!-- subscribe-section end -->

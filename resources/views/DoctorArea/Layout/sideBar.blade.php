@@ -1,13 +1,17 @@
       <nav id="sidebar" class="sidebar-wrapper">
 
           <!-- Sidebar profile starts -->
-          <div class="sidebar-profile">
-            <img src="assets/images/user6.png" class="img-shadow img-3x me-3 rounded-5" alt="Hospital Admin Templates">
-            <div class="m-0">
-              <h5 class="mb-1 profile-name text-nowrap text-truncate">Nick Gonzalez</h5>
-              <p class="m-0 small profile-name text-nowrap text-truncate">Dept Admin</p>
-            </div>
-          </div>
+         <div class="sidebar-profile">
+        @if(session('doctor.image'))
+            <img src="{{ asset('storage/' . session('doctor.image')) }}" class="img-shadow img-3x me-3 rounded-5" alt="Doctor Profile">
+        @else
+            <img src="{{ asset('assets/images/user6.png') }}" class="img-shadow img-3x me-3 rounded-5" alt="Default Profile">
+        @endif
+        <div class="m-0">
+            <h5 class="mb-1 profile-name text-nowrap text-truncate">{{ session('doctor.name', 'Doctor') }}</h5>
+            <p class="m-0 small profile-name text-nowrap text-truncate">{{ session('doctor.designation', 'Designation') }}</p>
+        </div>
+    </div>
           <!-- Sidebar profile ends -->
 
           <!-- Sidebar menu starts -->
@@ -19,15 +23,15 @@
                   <span class="menu-text">Hospital Dashboard</span>
                 </a>
               </li>
-
+{{--
                    <li>
                 <a href="{{ route('doctors.all') }}">
                      <i class="ri-user-heart-line"></i>
                   <span class="menu-text">Doctors</span>
                 </a>
-              </li>
+              </li> --}}
 
-              <li class="treeview">
+              {{-- <li class="treeview">
                 <a href="#!">
                   <i class="ri-dossier-line"></i>
                   <span class="menu-text">Eduction Content</span>
@@ -116,7 +120,7 @@ Faq’s</span>
                           <i class="ri-settings-3-line"></i>
                   <span class="menu-text">Public Page</span>
                 </a>
-              </li>
+              </li> --}}
 
           </div>
           <!-- Sidebar menu ends -->

@@ -315,32 +315,65 @@
                     <span class="sub-title">Ophthalmologist</span>
                     <h2>The Most Qualified Skillful & <br />Professional staff</h2>
                 </div>
-               <div class="row clearfix">
-    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-        <div class="team-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-            <div class="inner-box">
-<figure class="image-box"><img src="{{ asset('PublicArea/images/team/team-4.jpg') }}" alt=""></figure>
-
-                <div class="lower-content p_relative d_block">
-                    <div class="share-box p_absolute">
-                        <a href="index.html" class="share-icon fs_14 d_iblock"><i class="fas fa-share-alt"></i></a>
-                        <ul class="share-links p_absolute clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
-                        </ul>
+                <div class="row clearfix">
+            @forelse($doctorS as $doctor)
+            <div class="col-lg-4 col-md-6 col-sm-12 team-block">
+                <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="inner-box p_relative d_block pr_55">
+                        <figure class="image-box p_relative d_block">
+                            @if($doctor->profile_image)
+                                <img src="{{ asset('storage/' . $doctor->profile_image) }}"
+                                     alt="{{ $doctor->first_name }} {{ $doctor->last_name }}"
+                                     style="width: 100%; height: 350px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('assets/images/team/doctor-placeholder.jpg') }}"
+                                     alt="No Image"
+                                     style="width: 100%; height: 350px; object-fit: cover;">
+                            @endif
+                        </figure>
+                        <div class="lower-content p_absolute r_0 b_45 b_shadow_6 z_1 tran_5">
+                            <h3 class="d_block lh_30 mb_3 tran_5">
+                                <a href="{{ route('PublicAreDoctors.details', $doctor->id) }}" class="d_iblock color_black">
+                                    Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}
+                                </a>
+                            </h3>
+                            <span class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">
+                                {{ $doctor->designation ?? 'Medical Specialist' }}
+                            </span>
+                            <ul class="social-links clearfix p_absolute l_25 b_14 tran_5">
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3><a href="team-details.html">Catherine Denuve</a></h3>
-                    <span class="designation">Optegra eye</span>
                 </div>
             </div>
+            @empty
+            <div class="col-12 text-center py-5">
+                <h4>No doctors found</h4>
+                <a href="{{ route('PublicAreDoctors.all') }}" type="submit" class="theme-btn btn-one"
+                        style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
+                        onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">View All Doctors</a>
+            </div>
+            @endforelse
+        </div>
+            </div>
+             <div class="more-btn centred mt_60">
+                    <a href="{{ route('PublicAreDoctors.all') }}" class="theme-btn btn-one">View All Doctors</a>
+                </div>
         </div>
     </div>
 </div>
 
-                <div class="more-btn centred mt_60">
-                    <a href="team-2.html" class="theme-btn btn-one">View All Team</a>
-                </div>
+
             </div>
         </section>
         <!-- team-style-two end -->

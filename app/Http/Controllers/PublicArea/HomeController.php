@@ -4,7 +4,9 @@ namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
 use domain\Facades\PublicArea\BlogFacade;
+use domain\Facades\PublicArea\DoctorFacade;
 use domain\Facades\PublicArea\GalleryFacade;
+use domain\Facades\PublicArea\TeamFacade;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,9 +17,9 @@ class HomeController extends Controller
         try {
             $galleries = GalleryFacade::all();
             $blogs = BlogFacade::getLatestBlogs(3);
-            
+            $doctorS = DoctorFacade::all();
 
-            return view('PublicArea.Pages.Home.index', compact('galleries', 'blogs'));
+            return view('PublicArea.Pages.Home.index', compact('galleries', 'blogs','doctorS'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
@@ -26,9 +28,10 @@ class HomeController extends Controller
     public function AboutUs()
     {
         try {
+        $teams = TeamFacade::all();
+        return view('PublicArea.Pages.aboutUs.index', compact('teams'));
 
 
-            return view('PublicArea.Pages.aboutUs.index');
         } catch (\Exception $e) {
             // Handle any errors that occur
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);

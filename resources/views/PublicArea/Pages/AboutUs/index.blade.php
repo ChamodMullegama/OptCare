@@ -138,38 +138,53 @@
     </div> <!-- auto-container -->
 </section>
    <!-- team-section -->
-        <section class="team-section p_relative">
-            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-9.png);"></div>
-            <div class="auto-container">
-                <div class="sec-title p_relative left mb_50">
-                    <span class="sub-title">nd Our Team</span>
-                    <h2>The Most Qualified Skillful & <br />Professional staff</h2>
-                    <a href="team.html" class="theme-btn btn-two">View All Team</a>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-one wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="inner-box p_relative d_block pr_55">
-                                 <figure class="image-box p_relative d_block">
-                            <img src="{{ asset('PublicArea/images/team/team-8.jpg') }}" alt="">
+   <section class="team-section p_relative">
+    <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-9.png);"></div>
+    <div class="auto-container">
+        <div class="sec-title p_relative left mb_50">
+            <span class="sub-title">Meet Our Team</span>
+            <h2>The Most Qualified Skillful & <br />Professional staff</h2>
+            <a href="" class="theme-btn btn-two">View All Team</a>
+        </div>
+        <div class="row clearfix">
+            @foreach($teams as $team)
+            <div class="col-lg-4 col-md-6 col-sm-12 team-block">
+                <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="inner-box p_relative d_block pr_55">
+                        <figure class="image-box p_relative d_block">
+                            @if($team->image)
+                                <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}">
+                            @else
+                                <img src="{{ asset('PublicArea/images/team/default.jpg') }}" alt="Default Team Member">
+                            @endif
                         </figure>
-                                <div class="lower-content p_absolute r_0 b_45 b_shadow_6 z_1 tran_5">
-                                    <h3 class="d_block lh_30 mb_3 tran_5"><a href="team-details.html" class="d_iblock color_black">Catherine Denuve</a></h3>
-                                    <span class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">Optegra eye</span>
-                                    <ul class="social-links clearfix p_absolute l_25 b_14 tran_5">
-                                        <li class="p_relative d_iblock pull-left mr_25"><a href="about-5.html" class="d_iblock fs_15"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li class="p_relative d_iblock pull-left mr_25"><a href="about-5.html" class="d_iblock fs_15"><i class="fab fa-twitter"></i></a></li>
-                                        <li class="p_relative d_iblock pull-left mr_25"><a href="about-5.html" class="d_iblock fs_15"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li class="p_relative d_iblock pull-left"><a href="about-5.html" class="d_iblock fs_15"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="lower-content p_absolute r_0 b_45 b_shadow_6 z_1 tran_5">
+                            <h3 class="d_block lh_30 mb_3 tran_5">
+                                <a href="" class="d_iblock color_black">{{ $team->name }}</a>
+                            </h3>
+                            <span class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">{{ $team->role }}</span>
+                            <ul class="social-links clearfix p_absolute l_25 b_14 tran_5">
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="p_relative d_iblock pull-left mr_25">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li class="p_relative d_iblock pull-left">
+                                    <a href="#" class="d_iblock fs_15"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </section>
+            @endforeach
+        </div>
+    </div>
+</section>
 
                        <!-- testimonial-section -->
 <section class="testimonial-section p_relative centred">
