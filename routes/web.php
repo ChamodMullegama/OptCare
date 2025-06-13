@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminArea\AdminController;
 use App\Http\Controllers\AdminArea\BlogController;
+use App\Http\Controllers\AdminArea\CustomerMessageController;
 use App\Http\Controllers\AdminArea\DoctorsController;
 use App\Http\Controllers\AdminArea\EyeHospitalsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
@@ -19,8 +20,10 @@ use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
+
 use App\Http\Controllers\PublicArea\HomeController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
+use App\Http\Controllers\PublicArea\PublicCustomerMessageController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
 use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
@@ -193,6 +196,12 @@ Route::prefix('opticcenters')->group(function () {
     Route::get('/view/{id}', [OpticCentersController::class, 'View'])->name('optic.centers.view');
 });
 
+Route::prefix('customerMessage')->group(function () {
+    Route::get('/all', [CustomerMessageController::class, 'All'])->name('customerMessage.all');
+      Route::post('/delete', [CustomerMessageController::class, 'Delete'])->name('customerMessage.delete');
+       Route::post('/reply', [CustomerMessageController::class, 'Reply'])->name('customerMessage.reply');
+});
+
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
 
@@ -257,6 +266,11 @@ Route::prefix('public/optic-centers')->group(function () {
 
 Route::prefix('Shop')->group(function () {
     Route::get('/all', [ShopController::class, "All"])->name('Shop.all');
+
+});
+
+Route::prefix('PublicAreaCustomerMessage')->group(function () {
+   Route::post('/add', [PublicCustomerMessageController::class, 'Add'])->name('PublicAreaCustomerMessage.add');
 
 });
 

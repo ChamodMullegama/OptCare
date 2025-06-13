@@ -5,11 +5,14 @@
 <section class="page-title">
     <div class="bg-layer" style="background-image: url({{ asset('PublicArea/images/background/page-title.jpg') }});"></div>
     <div class="auto-container">
-        <div class="content-box">
-            <h1>Product Details</h1>
+
+
+            <div class="content-box">
+            <h1>{{ $product->name }}</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li>Product Details</li>
+                <li><a href="{{ route('public.products.index') }}">Product List</a></li>
+                <li>{{ $product->name }}</li>
             </ul>
         </div>
     </div>
@@ -78,7 +81,7 @@
                             @endif
                         </span>
                         <div class="text p_relative d_block mb_30">
-                            <p class="mb_25">{{ $product->description }}</p>
+                            <p class="mb_25">{!! Str::limit($product->description, 5000) !!}</p>
                         </div>
                         <div class="addto-cart-box p_relative d_block mb_35">
                             <ul class="clearfix">

@@ -45,7 +45,7 @@
                         <ul class="list clearfix">
                             <li><span>Specialization:</span>{{ $doctor->designation ?? 'General Medicine' }}</li>
                             <li><span>Qualification:</span>{{ $doctor->qualification ?? 'MBBS, MD' }}</li>
-                            <li><span>Experience:</span>{{ $doctor->blood_group }}</li>
+                            <li><span>Experience:</span>{{ $doctor->blood_group }} Year</li>
                             <li><span>Gender:</span>{{ ucfirst($doctor->gender) }}</li>
                             <li><span>Location:</span>{{ $doctor->city ?? 'City' }}, {{ $doctor->country ?? 'Country' }}</li>
                             <li><span>Phone:</span><a href="tel:{{ $doctor->mobile_number }}">{{ $doctor->mobile_number }}</a></li>

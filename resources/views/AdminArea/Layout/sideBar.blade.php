@@ -76,6 +76,15 @@
                   <span class="menu-text">Service</span>
                 </a>
               </li>
+
+                   <li>
+                <a href="{{ route('customerMessage.all') }}">
+              <i class="ri-message-2-line"></i>
+
+
+                  <span class="menu-text">Customer Massage</span>
+                </a>
+              </li>
      <li>
                 <a href="{{ route('qa.all') }}">
               <i class="ri-question-answer-line"></i>

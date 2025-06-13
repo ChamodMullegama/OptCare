@@ -15,6 +15,7 @@ class HomeController extends Controller
         try {
             $galleries = GalleryFacade::all();
             $blogs = BlogFacade::getLatestBlogs(3);
+            
 
             return view('PublicArea.Pages.Home.index', compact('galleries', 'blogs'));
         } catch (\Exception $e) {
