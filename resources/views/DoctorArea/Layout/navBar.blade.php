@@ -102,9 +102,12 @@
         <div class="px-3 py-2">
             <h6 class="m-0">{{ $doctorName }}</h6>
         </div>
-        <div class="mx-3 my-2 d-grid">
-            <a href="login.html" class="btn btn-danger">Logout</a>
-        </div>
+  <div class="mx-3 my-2 d-grid">
+    <form action="{{ route('doctor.logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</div>
     </div>
 </div>
 
