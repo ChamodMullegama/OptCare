@@ -267,6 +267,9 @@ Route::prefix('PublicAreDoctors')->group(function () {
     Route::get('/all', [PublicDoctorController::class, 'All'])->name('PublicAreDoctors.all');
     Route::get('/search', [PublicDoctorController::class, 'Search'])->name('PublicAreDoctors.search');
     Route::get('/details{id}', [PublicDoctorController::class, 'Details'])->name('PublicAreDoctors.details');
+
+    Route::post('/doctorReviewAdd', [ReviewController::class, "DoctorReviewAdd"])->name('review.doctorReviewAdd');
+    Route::get('/doctorReviewDisplay', [ReviewController::class, "DoctorReviewDisplay"])->name('review.doctorReviewDisplay');
 });
 
 Route::prefix('PublicAreaEyeIssues')->group(function () {
@@ -331,6 +334,9 @@ Route::prefix('Review')->group(function () {
     Route::post('/add', [ReviewController::class, "Add"])->name('review.add');
     Route::post('/update', [ReviewController::class, 'update'])->name('reviews.update');
     Route::post('/delete', [ReviewController::class, 'Delete'])->name('review.delete');
+
+
+
 //    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });

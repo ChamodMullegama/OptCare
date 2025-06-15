@@ -26,6 +26,25 @@ class ReviewController extends Controller
         }
     }
 
+   public function DoctorReviewAdd(Request $request)
+{
+    try {
+        $request->validate([
+            'doctorId' => 'required|string|exists:doctors,doctorId',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        $data = $request->only(['doctorId', 'name', 'email', 'message']);
+        ReviewFacade::DoctorReviewAdd($data);
+
+        return redirect()->back()->with('success', 'Review submitted successfully!');
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    }
+}
+
 
     public function All()
     {
@@ -37,6 +56,16 @@ class ReviewController extends Controller
         }
     }
 
+
+    // public function DoctorReviewDisplay()
+    // {
+    //     try {
+    //         $doctorreviews = ReviewFacade::DoctorReviewAll();
+    //         return view('PublicArea.Pages.Doctor.details', compact('doctor_reviews'));
+    //     } catch (\Exception $e) {
+    //         return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    //     }
+    // }
 
     public function Display()
     {
