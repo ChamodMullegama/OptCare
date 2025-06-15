@@ -2,16 +2,31 @@
 @section('title', 'OCT Analysis Details')
 @section('Doctorcontainer')
 
-<div class="app-hero-header d-flex align-items-center">
+{{-- <div class="app-hero-header d-flex align-items-center">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
             <a href="{{ route('oct.upload') }}">OCT Analysis</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
-            Analysis Details
+
         </li>
     </ol>
+</div> --}}
+
+<div class="app-hero-header d-flex align-items-center">
+    <!-- Breadcrumb starts -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
+            <a href="{{ route('doctor.dashboard') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item text-primary" aria-current="page">
+                 Analysis Details
+
+        </li>
+    </ol>
+    <!-- Breadcrumb ends -->
 </div>
 
 <div class="app-body">
@@ -60,7 +75,11 @@
                                     <div class="recommendation-content">{!! $analysis->recommendation !!}</div>
                                 </div>
                                 <div class="d-flex gap-2 mt-3">
-                                    <a href="{{ route('oct.download', $analysis->id) }}" class="btn btn-outline-secondary btn-sm">
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark btn-sm">
+    <i class="fas fa-arrow-left me-1"></i> Back
+</a>
+
+                                    <a href="{{ route('oct.download', $analysis->id) }}"  class="btn btn-outline-warning btn-sm">
                                         <i class="fas fa-download me-1"></i> Download PDF
                                     </a>
                                     <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $analysis->id }}')">

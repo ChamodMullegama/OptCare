@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('doctor.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             OCT Analysis
@@ -221,10 +221,8 @@
                                                                 <div class="recommendation-content">{!! $data['recommendation'] !!}</div>
                                                             </div>
                                                             <div class="d-flex gap-2 flex-wrap">
-                                                                <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
-                                                                    <i class="fas fa-print me-1"></i> Print
-                                                                </button>
-                                                                <button class="btn btn-outline-secondary btn-sm" onclick="downloadReport()">
+
+                                                                <button class="btn btn-outline-warning btn-sm" onclick="downloadReport()">
                                                                     <i class="fas fa-download me-1"></i> Download
                                                                 </button>
                                                                 <button class="btn btn-outline-info btn-sm" onclick="shareReport()">
@@ -349,7 +347,7 @@
                                                                 <button class="btn btn-sm btn-outline-primary me-1" title="View" onclick="viewAnalysis({{ $analysis->id }})">
                                                                     <i class="ri-eye-line"></i>
                                                                 </button>
-                                                                <button class="btn btn-sm btn-outline-secondary me-1" title="Download" onclick="downloadAnalysis({{ $analysis->id }})">
+                                                                <button  class="btn btn-outline-warning btn-sm" title="Download" onclick="downloadAnalysis({{ $analysis->id }})">
                                                                     <i class="ri-download-line"></i>
                                                                 </button>
                                                                 {{-- <button class="btn btn-sm btn-outline-danger" title="Delete"  onclick="confirmDelete('{{ $analysis->id }}')">

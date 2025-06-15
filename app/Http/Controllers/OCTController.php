@@ -78,13 +78,31 @@ class OCTController extends Controller
 //     }
 
 
-    public function showPatients()
+    // public function showPatients()
+    // {
+    //     try {
+    //         $patients = OctAnalysis::select('patient_id', 'patient_name', 'patient_email', 'patient_phone', 'patient_age')
+    //             ->groupBy('patient_id', 'patient_name', 'patient_email', 'patient_phone', 'patient_age')
+    //             ->orderBy('patient_name')
+    //             ->paginate(10);
+    //         return view('DoctorArea.Pages.Oct.patients', compact('patients'));
+    //     } catch (\Exception $e) {
+    //         return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    //     }
+    // }
+
+
+     public function showPatients()
     {
         try {
-            $patients = OctAnalysis::select('patient_id', 'patient_name', 'patient_email', 'patient_phone', 'patient_age')
+            $doctorId = session('doctor.doctorId'); // Get the current doctor's ID
+
+            $patients = OctAnalysis::where('doctor_id', $doctorId)
+                ->select('patient_id', 'patient_name', 'patient_email', 'patient_phone', 'patient_age')
                 ->groupBy('patient_id', 'patient_name', 'patient_email', 'patient_phone', 'patient_age')
                 ->orderBy('patient_name')
                 ->paginate(10);
+
             return view('DoctorArea.Pages.Oct.patients', compact('patients'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -115,16 +133,20 @@ class OCTController extends Controller
 
     public function uploadAndPredict(Request $request)
     {
+
+         $doctorId = session('doctor.doctorId');
         try {
             $validationRules = [
                 'patient_id' => 'required|string|max:255',
                 'patient_name' => 'required|string|max:255',
-                'patient_email' => [
+                 'patient_email' => [
                     'nullable',
                     'email',
                     'max:255',
-                    Rule::unique('oct_analyses', 'patient_email')->where(function ($query) use ($request) {
-                        return $query->where('patient_id', '!=', $request->patient_id);
+                    Rule::unique('oct_analyses', 'patient_email')->where(function ($query) use ($request, $doctorId) {
+                        return $query
+                            ->where('doctor_id', $doctorId)
+                            ->where('patient_id', '!=', $request->patient_id);
                     }),
                 ],
                 'patient_phone' => 'nullable|string|max:20',

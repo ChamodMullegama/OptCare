@@ -20,7 +20,7 @@ use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\TeamController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
-use App\Http\Controllers\OCTController;
+use App\Http\Controllers\DoctorArea\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
