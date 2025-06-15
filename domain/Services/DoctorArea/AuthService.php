@@ -23,7 +23,9 @@ class AuthService
         Session::put('doctor', [
             'name' => $doctor->first_name . ' ' . $doctor->last_name,
             'designation' => $doctor->designation,
-            'image' => $doctor->profile_image
+            'image' => $doctor->profile_image,
+                  'doctorId' => $doctor->doctorId,
+                        'designation' => $doctor->designation
         ]);
 
         return true;

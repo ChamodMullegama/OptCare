@@ -53,11 +53,20 @@ Route::prefix('')->group(function () {
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('contactUs');
 });
 
+// Route::prefix('oct-analysis')->group(function () {
+//     Route::get('/', [OCTController::class, 'showUploadForm'])->name('oct.upload');
+//     Route::post('/analyze', [OCTController::class, 'uploadAndPredict'])->name('oct.analyze');
+// });
+
 Route::prefix('oct-analysis')->group(function () {
+    Route::get('/patients', [OCTController::class, 'showPatients'])->name('oct.patients');
     Route::get('/', [OCTController::class, 'showUploadForm'])->name('oct.upload');
     Route::post('/analyze', [OCTController::class, 'uploadAndPredict'])->name('oct.analyze');
-});
-
+    Route::get('/view/{id}', [OCTController::class, 'viewAnalysis'])->name('oct.view');
+    Route::get('/download/{id}', [OCTController::class, 'downloadAnalysis'])->name('oct.download');
+    Route::delete('/delete/{id}', [OCTController::class, 'deleteAnalysis'])->name('oct.delete');
+    //  Route::delete('/mainDelete/{id}', [OCTController::class, 'deleteMainAnalysis'])->name('octMain.delete');
+});;
 
 Route::prefix('gallery')->group(function () {
     Route::get('/all', [GalleryController::class, "All"])->name('gallery.all');
