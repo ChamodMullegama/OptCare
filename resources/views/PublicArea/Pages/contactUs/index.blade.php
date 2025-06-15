@@ -58,7 +58,7 @@
                 <div class="row clearfix">
                     <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
                         <div class="form-inner">
-                            <h2>Leave a Comment</h2>
+                            <h2>Leave a Massage</h2>
                              <form action="{{ route('PublicAreaCustomerMessage.add') }}" method="post">
                               @csrf
 @if (session('success'))

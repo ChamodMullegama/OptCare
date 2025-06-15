@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use domain\Facades\PublicArea\BlogFacade;
 use domain\Facades\PublicArea\DoctorFacade;
 use domain\Facades\PublicArea\GalleryFacade;
+use domain\Facades\PublicArea\ReviewFacade;
 use domain\Facades\PublicArea\TeamFacade;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,8 @@ class HomeController extends Controller
     {
         try {
         $teams = TeamFacade::all();
-        return view('PublicArea.Pages.aboutUs.index', compact('teams'));
+         $reviews = ReviewFacade::all();
+        return view('PublicArea.Pages.aboutUs.index', compact('teams','reviews'));
 
 
         } catch (\Exception $e) {

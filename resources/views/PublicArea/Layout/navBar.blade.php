@@ -78,11 +78,8 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li class="dropdown"><a href="index.html">Treatments</a>
-                                    <ul>
-                                        <li><a href="treatment.html">Treatment 1</a></li>
-                                    </ul>
-                                </li>
+
+                                      <li><a href="{{ route('PublicAreaAppointment.appointment') }}">Appointment</a></li>
                                 <li class="dropdown"><a href="index.html">Specialties & Services</a>
                                     <ul>
                                         <li class="dropdown"><a href="index.html">Treatments</a>

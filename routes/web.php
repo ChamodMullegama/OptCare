@@ -25,6 +25,7 @@ use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
 use App\Http\Controllers\PublicArea\HomeController;
+use App\Http\Controllers\PublicArea\PublicAppointmentController;
 use App\Http\Controllers\PublicArea\PublicBlogController;
 use App\Http\Controllers\PublicArea\PublicCustomerMessageController;
 use App\Http\Controllers\PublicArea\PublicDoctorController;
@@ -37,6 +38,7 @@ use App\Http\Controllers\PublicArea\PublicProductController;
 use App\Http\Controllers\PublicArea\PublicpublicEyeInvestigationsController;
 use App\Http\Controllers\PublicArea\PublicSubscriptionController;
 use App\Http\Controllers\PublicArea\PublicSurgicalTreatmentController;
+use App\Http\Controllers\PublicArea\ReviewController;
 use App\Http\Controllers\PublicArea\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -315,6 +317,21 @@ Route::prefix('PublicAreaCustomerMessage')->group(function () {
 
 Route::prefix('PublicAreaSubscription')->group(function () {
    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+
+});
+
+Route::prefix('PublicAreaAppointment')->group(function () {
+    Route::get('/appointment', [PublicAppointmentController::class, "Appointment"])->name('PublicAreaAppointment.appointment');
+//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+
+});
+
+Route::prefix('Review')->group(function () {
+    Route::get('/all', [ReviewController::class, "All"])->name('review.all');
+    Route::post('/add', [ReviewController::class, "Add"])->name('review.add');
+    Route::post('/update', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::post('/delete', [ReviewController::class, 'Delete'])->name('review.delete');
+//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });
 
