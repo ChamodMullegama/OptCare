@@ -89,46 +89,97 @@
                         </div>
                     </div>
 
-                    <div class="contact-box">
-                        <div class="text">
-                            <h3>Book an Appointment</h3>
-                        </div>
-                        <div class="form-inner">
-                            <form action="#" method="post">
-                                @csrf
-                                <div class="row clearfix">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 column">
-                                        <div class="form-group">
-                                            <input type="text" name="name" placeholder="Your name" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 column">
-                                        <div class="form-group">
-                                            <input type="email" name="email" placeholder="Your Email" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                        <div class="form-group">
-                                            <input type="text" name="phone" placeholder="Phone" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                        <div class="form-group">
-                                            <textarea name="message" placeholder="Your Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Book Appointment</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
+
+
+
+                  <div class="contact-box">
+    <div class="text">
+        <h3>Put Review</h3>
+    </div>
+    <div class="form-inner">
+        <form action="{{ route('review.doctorReviewAdd') }}" method="post">
+            @if ($errors->any())
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @if (session('success'))
+    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
+            @endif
+            @csrf
+            <input type="hidden" name="doctorId" value="{{ $doctor->doctorId }}">
+
+            <div class="row clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-12 column">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 column">
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 column">
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 column">
+                    <div class="form-group message-btn">
+                        <button type="submit" class="theme-btn btn-one">Submit Review</button>
                     </div>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
+
+
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+<section class="testimonial-section p_relative centred">
+    <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-6.png);"></div>
+    <div class="auto-container">
+        <div class="sec-title mb_60">
+            <span class="sub-title">Testimonials</span>
+            <h2>What Our Clients Say <br />About Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}</h2> <!-- Show doctor's name -->
+        </div>
+
+        @if($doctor_reviews->where('doctorId', $doctor->doctorId)->count() > 0)
+        <div class="two-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
+            @foreach($doctor_reviews->where('doctorId', $doctor->doctorId)->take(6) as $doctor_review)
+            <div class="testimonial-block-one">
+                <div class="inner-box p_relative d_block">
+                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
+                    <p>{{ Str::limit($doctor_review->message, 150) }}</p>
+                    <h4>{{ $doctor_review->name }}</h4>
+                    <!-- Removed doctorId display since we're filtering by doctor already -->
+                    <span class="designation">{{ $doctor_review->created_at->format('M d, Y') }}</span>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="alert alert-info text-center">
+            <p>No reviews yet for this doctor. Be the first to share your experience!</p>
+        </div>
+        @endif
     </div>
 </section>
 <!-- team-details end -->

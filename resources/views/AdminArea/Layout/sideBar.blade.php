@@ -143,7 +143,12 @@
                   </a>
               </li>
 
-
+ <li>
+                  <a href="{{ route('review.all') }}">
+                    <i class="ri-feedback-line"></i>
+                      <span class="menu-text">User Review</span>
+                  </a>
+              </li>
 
               <li>
                   <a href="{{ route('Home.home') }}">

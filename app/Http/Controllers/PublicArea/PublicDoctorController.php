@@ -4,7 +4,9 @@ namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use App\Models\DoctorReview;
 use domain\Facades\PublicArea\DoctorFacade;
+use domain\Facades\PublicArea\ReviewFacade;
 use Illuminate\Http\Request;
 
 class PublicDoctorController extends Controller
@@ -35,7 +37,9 @@ class PublicDoctorController extends Controller
     {
         try {
             $doctor = DoctorFacade::getDetails($id);
-            return view('PublicArea.Pages.Doctor.details', compact('doctor'));
+            $doctor_reviews = DoctorReview::where('doctorId', $doctor->doctorId)->get();
+
+            return view('PublicArea.Pages.Doctor.details', compact('doctor','doctor_reviews'));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             abort(404, 'Doctor not found');
         } catch (\Exception $e) {

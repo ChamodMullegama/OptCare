@@ -23,6 +23,23 @@
                   <span class="menu-text">Hospital Dashboard</span>
                 </a>
               </li>
+
+                 <li>
+    <a href="{{ route('oct.upload') }}">
+        <i class="ri-scan-line"></i>
+        <span class="menu-text">OCT Analyzer</span>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('oct.patients') }}">
+        <i class="ri-user-heart-line"></i>
+        <span class="menu-text">Patient</span>
+    </a>
+</li>
+
+
+
 {{--
                    <li>
                 <a href="{{ route('doctors.all') }}">

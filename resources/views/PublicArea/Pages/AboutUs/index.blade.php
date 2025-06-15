@@ -192,60 +192,72 @@
     <div class="auto-container">
         <div class="sec-title mb_60">
             <span class="sub-title">Testimonials</span>
-            <h2>What Our Client Say <br />About Optcare</h2>
+            <h2>What Our Clients Say <br />About Optcare</h2>
         </div>
+
+        @if($reviews->count() > 0)
         <div class="two-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
+            @foreach($reviews->take(6) as $review) <!-- Limit to 6 reviews -->
             <div class="testimonial-block-one">
                 <div class="inner-box p_relative d_block">
                     <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Rachel McAdams</h4>
-                    <span class="designation">Electrician</span>
+                    <p>{{ Str::limit($review->message, 150) }}</p> <!-- Limit message length -->
+                    <h4>{{ $review->name }}</h4>
+                    <span class="designation">{{ $review->created_at->format('M d, Y') }}</span> <!-- Show review date -->
                 </div>
             </div>
-            <div class="testimonial-block-one">
-                <div class="inner-box p_relative d_block">
-                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Alex Smith</h4>
-                    <span class="designation">Electrician</span>
-                </div>
-            </div>
-            <div class="testimonial-block-one">
-                <div class="inner-box p_relative d_block">
-                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Rachel McAdams</h4>
-                    <span class="designation">Electrician</span>
-                </div>
-            </div>
-            <div class="testimonial-block-one">
-                <div class="inner-box p_relative d_block">
-                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Alex Smith</h4>
-                    <span class="designation">Electrician</span>
-                </div>
-            </div>
-            <div class="testimonial-block-one">
-                <div class="inner-box p_relative d_block">
-                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Rachel McAdams</h4>
-                    <span class="designation">Electrician</span>
-                </div>
-            </div>
-            <div class="testimonial-block-one">
-                <div class="inner-box p_relative d_block">
-                    <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exercition ulamco laboris nisar aliquip commodo consequat duis aute irure dolor in reprehenderit in vol uptate velit esse.</p>
-                    <h4>Alex Smith</h4>
-                    <span class="designation">Electrician</span>
-                </div>
-            </div>
+            @endforeach
         </div>
+
+        <!-- View All Reviews Button -->
+
+        @else
+        <div class="alert alert-info text-center">
+            <p>No reviews yet. Be the first to share your experience!</p>
+        </div>
+        @endif
     </div>
 </section>
+ <section class="contact-style-two p_relative">
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url(assets/images/shape/shape-55.png);"></div>
+                <div class="pattern-2" style="background-image: url(assets/images/shape/shape-56.png);"></div>
+            </div>
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
+                        <div class="form-inner">
+                            <h2>Put Review</h2>
+                             <form action="{{ route('review.add') }}" method="post">
+                              @csrf
+@if (session('success'))
+    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <input type="text" name="name" placeholder="Your Name" required="">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <input type="email" name="email" placeholder="Your email" required="">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <textarea name="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
+                                        <button class="theme-btn btn-one" type="submit" name="submit-form">Submit Review</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- testimonial-section end -->
 </section>
