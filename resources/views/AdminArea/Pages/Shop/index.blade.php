@@ -53,7 +53,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{!! Str::limit($item->description, 50) !!}</td>
                                     <td>{{ $item->quantity }}</td>
-                                    <td>${{ number_format($item->price, 2) }}</td>
+                                    <td>Rs.{{ number_format($item->price, 2) }}</td>
                                     <td>
                                         @if ($item->discount > 0)
                                             ${{ number_format($item->price * (1 - $item->discount / 100), 2) }}

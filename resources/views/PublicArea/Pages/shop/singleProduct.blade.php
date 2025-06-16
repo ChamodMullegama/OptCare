@@ -75,9 +75,9 @@
                         </div>
                         <span class="price p_relative d_block fs_20 lh_30 fw_medium mb_25">
                             @if($product->discount > 0)
-                                <del>${{ number_format($product->price, 2) }}</del> ${{ number_format($discountedPrice, 2) }}
+                                <del>Rs.{{ number_format($product->price, 2) }}</del> ${{ number_format($discountedPrice, 2) }}
                             @else
-                                ${{ number_format($product->price, 2) }}
+                                Rs.{{ number_format($product->price, 2) }}
                             @endif
                         </span>
                         <div class="text p_relative d_block mb_30">

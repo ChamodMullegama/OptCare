@@ -7,7 +7,7 @@
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
             <a href="{{ route('doctor.dashboard') }}">Home</a>
         </li>
-        <li class="breadcrumb-item text-primary" aria-current="page">My Appointments</li>
+        <li class="breadcrumb-item text-primary" aria-current="page">Today Appointments</li>
     </ol>
 </div>
 
@@ -16,7 +16,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title">My Appointments</h5>
+                    <h5 class="card-title">Today Appointments</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

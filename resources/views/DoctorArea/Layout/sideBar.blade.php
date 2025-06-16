@@ -31,6 +31,7 @@
     </a>
 </li>
 
+
 <li>
     <a href="{{ route('oct.patients') }}">
         <i class="ri-user-3-line"></i> <!-- Better for listing patients -->
@@ -47,6 +48,12 @@
     <a href="{{ route('appointment.all') }}">
         <i class="ri-calendar-check-line"></i> <!-- Appointment-related icon -->
         <span class="menu-text">Appointment</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('appointment.today') }}">
+   <i class="ri-time-line"></i>
+        <span class="menu-text">Today Appointment</span>
     </a>
 </li>
 

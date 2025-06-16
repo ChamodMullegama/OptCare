@@ -155,9 +155,9 @@
                                                     </ul>
                                                     <span class="price">
                                                         @if($product->discount > 0)
-                                                            <del>${{ number_format($product->price, 2) }}</del> ${{ number_format($discountedPrice, 2) }}
+                                                            <del>Rs.{{ number_format($product->price, 2) }}</del> ${{ number_format($discountedPrice, 2) }}
                                                         @else
-                                                            ${{ number_format($product->price, 2) }}
+                                                            Rs.{{ number_format($product->price, 2) }}
                                                         @endif
                                                     </span>
                                                 </div>

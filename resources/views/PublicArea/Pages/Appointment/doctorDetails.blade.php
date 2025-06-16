@@ -104,7 +104,7 @@
                                                        min="{{ date('Y-m-d') }}" value="{{ old('date') }}" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        {{-- <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div class="select-box">
                                                 <select name="time" class="wide" required>
                                                     <option value="">Select time</option>
@@ -120,7 +120,29 @@
                                                     @endfor
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+    <div class="select-box">
+        <select name="time" class="wide" required>
+            <option value="">Select time</option>
+            @for($hour = 8; $hour <= 18; $hour++)
+                @php
+                    $amPmHour = $hour > 12 ? $hour - 12 : $hour;
+                    $period = $hour >= 12 ? 'P.M' : 'A.M';
+                @endphp
+                <option value="{{ sprintf('%02d:00', $hour) }}" {{ old('time') == sprintf('%02d:00', $hour) ? 'selected' : '' }}>
+                    {{ $amPmHour }}:00 {{ $period }}
+                </option>
+                @if($hour < 18)
+                    <option value="{{ sprintf('%02d:30', $hour) }}" {{ old('time') == sprintf('%02d:30', $hour) ? 'selected' : '' }}>
+                        {{ $amPmHour }}:30 {{ $period }}
+                    </option>
+                @endif
+            @endfor
+        </select>
+    </div>
+</div>
+
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group">
                                                 <textarea name="message" placeholder="Your Message">{{ old('message') }}</textarea>

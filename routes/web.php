@@ -249,6 +249,8 @@ Route::prefix('appointment')->group(function () {
     Route::post('/generate_meeting', [AppointmentController::class, 'GenerateMeeting'])->name('appointment.generate_meeting');
      Route::post('/complete', [AppointmentController::class, 'Complete'])->name('appointment.complete');
      Route::post('/send_sms', [AppointmentController::class, 'SendSms'])->name('appointment.send_sms');
+     Route::post('/appointment/cancel', [AppointmentController::class, 'Cancel'])->name('appointment.cancel');
+        Route::get('/today-appointments', [AppointmentController::class, 'TodayAppointments'])->name('appointment.today');
 });
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
