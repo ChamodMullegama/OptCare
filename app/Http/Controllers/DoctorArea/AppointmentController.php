@@ -233,4 +233,15 @@ class AppointmentController extends Controller
         }
     }
 
+        public function viewAdminAppointments()
+    {
+        try {
+
+     $appointments = Appointment::with('doctor')->get();
+            return view('AdminArea.Pages.Appointment.index', compact('appointments'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+
 }

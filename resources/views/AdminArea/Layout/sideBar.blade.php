@@ -151,6 +151,12 @@
                   </a>
               </li>
 
+     <li>
+                  <a href="{{ route('appointment.viewAdminAppointments') }}">
+                      <i class="ri-settings-3-line"></i>
+                      <span class="menu-text">View Appointment</span>
+                  </a>
+              </li>
               <li>
                   <a href="{{ route('Home.home') }}">
                       <i class="ri-settings-3-line"></i>
