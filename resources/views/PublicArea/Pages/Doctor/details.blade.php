@@ -158,27 +158,24 @@
     <div class="auto-container">
         <div class="sec-title mb_60">
             <span class="sub-title">Testimonials</span>
-            <h2>What Our Clients Say <br />About Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}</h2> <!-- Show doctor's name -->
+            <h2>What Our Clients Say <br />About Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}</h2>
         </div>
 
-        @if($doctor_reviews->where('doctorId', $doctor->doctorId)->count() > 0)
+        @if($doctor_reviews->count() > 0)
         <div class="two-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
-            @foreach($doctor_reviews->where('doctorId', $doctor->doctorId)->take(6) as $doctor_review)
+            @foreach($doctor_reviews as $review)
             <div class="testimonial-block-one">
                 <div class="inner-box p_relative d_block">
                     <div class="icon-box"><i class="fas fa-quote-left"></i></div>
-                    <p>{{ Str::limit($doctor_review->message, 150) }}</p>
-                    <h4>{{ $doctor_review->name }}</h4>
-                    <!-- Removed doctorId display since we're filtering by doctor already -->
-                    <span class="designation">{{ $doctor_review->created_at->format('M d, Y') }}</span>
+                    <p>{{ Str::limit($review->message, 150) }}</p>
+                    <h4>{{ $review->name }}</h4>
+                    <span class="designation">{{ $review->created_at->format('M d, Y') }}</span>
                 </div>
             </div>
             @endforeach
         </div>
         @else
-        <div class="alert alert-info text-center">
-            <p>No reviews yet for this doctor. Be the first to share your experience!</p>
-        </div>
+  
         @endif
     </div>
 </section>

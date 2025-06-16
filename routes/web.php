@@ -20,7 +20,9 @@ use App\Http\Controllers\AdminArea\SurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\TeamController;
 use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
-use App\Http\Controllers\DoctorArea\OCTController;
+use App\Http\Controllers\DoctorArea\AppointmentController;
+use App\Http\Controllers\DoctorArea\AppointmentControllerroller;
+use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
@@ -237,6 +239,18 @@ Route::prefix('subscriptions')->group(function () {
         Route::post('/broadcast', [SubscriptionController::class, 'sendBroadcast'])->name('subscriptions.broadcast');
 });
 
+Route::prefix('appointment')->group(function () {
+    // Route::get('/all', [AppointmentController::class, 'All'])->name('appointment.all');
+    // Route::post('/delete', [AppointmentController::class, 'Delete'])->name('appointment.delete');
+    // Route::post('/reply', [AppointmentController::class, 'Reply'])->name('appointment.reply');
+    Route::get('/all', [AppointmentController::class, 'All'])->name('appointment.all');
+    Route::post('/delete', [AppointmentController::class, 'Delete'])->name('appointment.delete');
+    Route::post('/accept', [AppointmentController::class, 'Accept'])->name('appointment.accept');
+    Route::post('/generate_meeting', [AppointmentController::class, 'GenerateMeeting'])->name('appointment.generate_meeting');
+     Route::post('/complete', [AppointmentController::class, 'Complete'])->name('appointment.complete');
+     Route::post('/send_sms', [AppointmentController::class, 'SendSms'])->name('appointment.send_sms');
+});
+
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
 
@@ -270,6 +284,8 @@ Route::prefix('PublicAreDoctors')->group(function () {
 
     Route::post('/doctorReviewAdd', [ReviewController::class, "DoctorReviewAdd"])->name('review.doctorReviewAdd');
     Route::get('/doctorReviewDisplay', [ReviewController::class, "DoctorReviewDisplay"])->name('review.doctorReviewDisplay');
+    Route::get('/doctorReviewAll', [ReviewController::class, "DoctorReviewAll"])->name('review.DoctorReviewAll');
+    Route::post('/doctorReviewDelete', [ReviewController::class, 'DoctorReviewDelete'])->name('review.doctorReviewDelete');
 });
 
 Route::prefix('PublicAreaEyeIssues')->group(function () {
@@ -325,8 +341,12 @@ Route::prefix('PublicAreaSubscription')->group(function () {
 
 Route::prefix('PublicAreaAppointment')->group(function () {
     Route::get('/appointment', [PublicAppointmentController::class, "Appointment"])->name('PublicAreaAppointment.appointment');
+      Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
 //    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+    Route::get('/details{id}', [PublicAppointmentController::class, 'Details'])->name('PublicAreaAppointment.details');
 
+
+    Route::post('/book', [PublicAppointmentController::class, 'BookAppointment'])->name('PublicAreaAppointment.book');
 });
 
 Route::prefix('Review')->group(function () {
