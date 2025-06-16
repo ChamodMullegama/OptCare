@@ -37,6 +37,12 @@
         <span class="menu-text">Patient</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('review.DoctorReviewAll') }}">
+        <i class="ri-user-heart-line"></i>
+        <span class="menu-text">Patient Review</span>
+    </a>
+</li>
 
 
 

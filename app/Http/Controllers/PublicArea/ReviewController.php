@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
+use App\Models\DoctorReview;
 use domain\Facades\PublicArea\ReviewFacade;
 use Illuminate\Http\Request;
 
@@ -110,4 +111,32 @@ class ReviewController extends Controller
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
+
+
+   public function DoctorReviewAll()
+{
+    try {
+        $doctorId = session('doctor.doctorId'); // Get doctorId directly from session
+        $doctor_reviews = DoctorReview::where('doctorId', $doctorId)->get();
+
+        return view('DoctorArea.Pages.Review.index', compact('doctor_reviews'));
+    } catch (\Exception $e) {
+        return back()->with('error', 'Failed to load reviews. Please try again.');
+    }
+}
+
+    public function DoctorReviewDelete(Request $request)
+{
+    try {
+        $request->validate([
+            'id' => 'required|integer|exists:doctor_reviews,id',
+        ]);
+
+        ReviewFacade::doctorReviewDelete($request->id);
+
+        return redirect()->back()->with('success', 'Review deleted successfully!');
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    }
+}
 }

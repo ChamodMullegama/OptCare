@@ -63,4 +63,11 @@ class ReviewService
     return $this->doctorReview->create($data);
 }
 
+ public function doctorReviewDelete($id)
+{
+    $doctorReview = $this->doctorReview->findOrFail($id);
+    $doctorReview->delete();
+    return true;
+}
+
 }

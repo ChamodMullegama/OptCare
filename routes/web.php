@@ -270,6 +270,8 @@ Route::prefix('PublicAreDoctors')->group(function () {
 
     Route::post('/doctorReviewAdd', [ReviewController::class, "DoctorReviewAdd"])->name('review.doctorReviewAdd');
     Route::get('/doctorReviewDisplay', [ReviewController::class, "DoctorReviewDisplay"])->name('review.doctorReviewDisplay');
+    Route::get('/doctorReviewAll', [ReviewController::class, "DoctorReviewAll"])->name('review.DoctorReviewAll');
+    Route::post('/doctorReviewDelete', [ReviewController::class, 'DoctorReviewDelete'])->name('review.doctorReviewDelete');
 });
 
 Route::prefix('PublicAreaEyeIssues')->group(function () {
