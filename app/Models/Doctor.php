@@ -44,4 +44,13 @@ class Doctor extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // In Doctor.php model
+// public function appointments()
+// {
+//     return $this->hasMany(Appointment::class, 'doctorId', 'doctorId');
+// }
+
+
+
 }
