@@ -2,11 +2,12 @@
 
           <!-- Sidebar profile starts -->
           <div class="sidebar-profile">
-              <img src="assets/images/user6.png" class="img-shadow img-3x me-3 rounded-5" alt="Hospital Admin Templates">
-              <div class="m-0">
-                  <h5 class="mb-1 profile-name text-nowrap text-truncate">Nick Gonzalez</h5>
-                  <p class="m-0 small profile-name text-nowrap text-truncate">Dept Admin</p>
-              </div>
+  <img src="{{ asset('AdminArea/images/admin.png') }}" class="img-shadow img-3x me-3 rounded-5" alt="Doctor Profile">
+               <div class="m-0">
+
+            <h5 class="mb-1 profile-name text-nowrap text-truncate">{{ session('admin.name', 'Admin') }}</h5>
+            <p class="m-0 small profile-name text-nowrap text-truncate"></p>
+    </div>
           </div>
           <!-- Sidebar profile ends -->
 
