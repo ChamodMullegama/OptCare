@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DoctorArea;
 use App\Http\Controllers\Controller;
 use App\Mail\MeetingLinkMail;
 use App\Models\Appointment;
+use Carbon\Carbon;
 use domain\Facades\DoctorArea\Auth;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -21,6 +22,21 @@ class AppointmentController extends Controller
             $doctorId = Session::get('doctor.doctorId');
             $appointments = Appointment::where('doctorId', $doctorId)->get();
             return view('DoctorArea.Pages.Appointment.index', compact('appointments'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+
+    public function TodayAppointments()
+    {
+        try {
+            $doctorId = Session::get('doctor.doctorId');
+            $today = Carbon::today()->toDateString();
+            $appointments = Appointment::where('doctorId', $doctorId)
+                                       ->where('date', $today)
+                                       ->orderBy('time', 'asc')
+                                       ->get();
+            return view('DoctorArea.Pages.Appointment.todayAppointment', compact('appointments'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
@@ -189,4 +205,32 @@ class AppointmentController extends Controller
 
         return $phone;
     }
+
+
+
+     public function Cancel(Request $request)
+    {
+        try {
+            $request->validate([
+                'id' => 'required|exists:appointments,id'
+            ]);
+
+            $doctorId = Session::get('doctor.doctorId');
+            $appointment = Appointment::where('id', $request->id)
+                                    ->where('doctorId', $doctorId)
+                                    ->firstOrFail();
+
+            if ($appointment->status === 'completed' || $appointment->status === 'canceled') {
+                return back()->withErrors(['error' => 'Cannot cancel a completed or already canceled appointment']);
+            }
+
+            $appointment->status = 'canceled';
+            $appointment->save();
+
+            return redirect()->route('appointment.all')->with('success', 'Appointment canceled successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+
 }
