@@ -77,6 +77,38 @@
                     </form>
                 </div>
             </div>
+        <!-- consultancy-section -->
+        <section class="consultancy-section">
+            <div class="auto-container">
+                <div class="inner-container">
+                    <h2>Quick Online Consultancy Only <br />on Few Minutes</h2>
+                    <form action="contact.html" method="post">
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="Your name" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Email" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                <div class="form-group">
+                                    <div class="icon"><i class="fas fa-angle-down"></i></div>
+                                    <input type="text" name="date" placeholder="Appointment date" id="datepicker">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-btn">
+                            <button type="submit" class="theme-btn btn-one">Contact Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- consultancy-section end -->
 
             <div class="row clearfix">
                 @forelse($doctors as $doctor)
