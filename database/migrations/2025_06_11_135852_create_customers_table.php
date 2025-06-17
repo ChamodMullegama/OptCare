@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('gender');
-            $table->date('birth_date');
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('birth_date')->nullable();
             $table->integer('age')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('otp')->nullable();
             $table->timestamp('otp_expires_at')->nullable();
             $table->boolean('verified_account')->default(0);
+            $table->string('google_id')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

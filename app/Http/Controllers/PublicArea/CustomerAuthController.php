@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use domain\Facades\PublicArea\CustomerFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class CustomerAuthController extends Controller
 {
@@ -113,4 +117,56 @@ class CustomerAuthController extends Controller
         Session::flush();
         return redirect()->route('home')->with('success', 'Logout successful.');
     }
+
+
+    public function redirectToGoogle()
+{
+    return Socialite::driver('google')->redirect();
+}
+
+ public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+
+            // Check if email exists with a non-Google account
+            $existingCustomer = Customer::where('email', $googleUser->getEmail())->first();
+
+            if ($existingCustomer && !$existingCustomer->google_id) {
+                return redirect()->route('login')
+                    ->withErrors(['email' => 'This email is already registered with a password. Please login with your password.']);
+            }
+
+            // Create or update customer
+            $customer = Customer::updateOrCreate(
+                ['email' => $googleUser->getEmail()],
+                [
+                    'google_id' => $googleUser->getId(),
+                    'first_name' => $googleUser->user['given_name'] ?? explode(' ', $googleUser->getName())[0] ?? 'Google',
+                    'last_name' => $googleUser->user['family_name'] ?? (explode(' ', $googleUser->getName())[1] ?? 'User'),
+                    'password' => Hash::make(Str::random(24)),
+                    'verified_account' => 1,
+                    'phone' => null,
+                    'gender' => null,
+                    'age' => null,
+                    'otp' => null,
+                    'otp_expires_at' => null,
+                    'avatar' => null,
+                    'birth_date' => null,
+                ]
+            );
+
+            // Log in the customer
+            Session::put('customer_id', $customer->id);
+            Session::put('customer_email', $customer->email);
+            Session::put('customer_name', $customer->first_name . ' ' . $customer->last_name);
+
+            return redirect()->intended(route('home'))->with('success', 'Login successful with Google.');
+
+        } catch (\Exception $e) {
+            Log::error('Google Auth Error: ' . $e->getMessage());
+            return redirect()->route('login')->withErrors(['error' => 'Google authentication failed. Please try again.']);
+        }
+    }
+
 }
