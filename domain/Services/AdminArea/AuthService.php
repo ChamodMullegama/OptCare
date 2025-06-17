@@ -45,6 +45,9 @@ class AuthService
         Session::put('admin', [
             'name' => $admin->name,
             'email' => $admin->email,
+            'id' => $admin->id,
+             'first_name' => $admin->first_name,
+              'last_name' => $admin->last_name,
         ]);
 
         return true;

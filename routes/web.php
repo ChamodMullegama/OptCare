@@ -35,6 +35,7 @@ use App\Http\Controllers\PublicArea\PublicEyeHospitalController;
 use App\Http\Controllers\PublicArea\PublicEyeInvestigationsController;
 use App\Http\Controllers\PublicArea\PublicEyeIssueController;
 use App\Http\Controllers\PublicArea\PublicNonSurgicalTreatmentController;
+use App\Http\Controllers\PublicArea\PublicOCTController;
 use App\Http\Controllers\PublicArea\PublicOpticCenterController;
 use App\Http\Controllers\PublicArea\PublicProductController;
 use App\Http\Controllers\PublicArea\PublicpublicEyeInvestigationsController;
@@ -70,7 +71,11 @@ Route::prefix('oct-analysis')->group(function () {
     Route::get('/download/{id}', [OCTController::class, 'downloadAnalysis'])->name('oct.download');
     Route::delete('/delete/{id}', [OCTController::class, 'deleteAnalysis'])->name('oct.delete');
     //  Route::delete('/mainDelete/{id}', [OCTController::class, 'deleteMainAnalysis'])->name('octMain.delete');
-});;
+    Route::get('/uploadOctPublic', [PublicOCTController::class, 'UploadOctPublic'])->name('oct.uploadOctPublic');
+    Route::post('/analyzeOctPublic', [PublicOCTController::class, 'analyzeOctPublic'])->name('oct.analyzeOctPublic');
+    Route::post('/download-analysis-public', [PublicOCTController::class, 'downloadAnalysisPublic'])->name('oct.downloadAnalysisPublic');
+    Route::get('/request-doctor-advice/{id}', [PublicOCTController::class, 'requestDoctorAdvice'])->name('oct.requestDoctorAdvice');
+});
 
 Route::prefix('gallery')->group(function () {
     Route::get('/all', [GalleryController::class, "All"])->name('gallery.all');
@@ -96,7 +101,6 @@ Route::prefix('service')->group(function () {
     Route::get('/viewServiceImageAll/{serviceId}', [ServiceController::class, "ViewServiceImageAll"])->name('Service.viewServiceImageAll');
     Route::post('/viewServiceImageDelete', [ServiceController::class, 'ViewServiceImageDelete'])->name('Service.viewServiceImageDelete');
     Route::get('/isPrimary/{id}', [ServiceController::class, 'IsPrimary'])->name('Service.isPrimary');
-
 });
 
 

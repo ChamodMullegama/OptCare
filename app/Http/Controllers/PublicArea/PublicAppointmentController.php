@@ -87,26 +87,64 @@ public function appointmentsearch(Request $request)
 
     public function BookAppointment(Request $request)
     {
+        // try {
+        //     // Get user ID from session
+        //     $userId = session('customer_id');
+
+        //     // Save appointment
+        //     Appointment::create([
+        //         'appointmentId' => 'AP' . Str::random(6),
+        //         'doctorId' => $request->input('doctorId'),
+        //         'user_id' => $userId,
+        //         'name' => $request->input('name'),
+        //         'email' => $request->input('email'),
+        //         'phone' => $request->input('phone'),
+        //         'date' => $request->input('date'),
+        //         'time' => $request->input('time'),
+        //         'message' => $request->input('message'),
+        //     ]);
+
+        //     return redirect()->back()->with('success', 'Appointment booked successfully!');
+        // } catch (\Exception $e) {
+        //     return back()->withErrors(['error' => 'Failed to book appointment: ' . $e->getMessage()]);
+        // }
+
+
         try {
-            // Get user ID from session
-            $userId = session('customer_id');
+        // Check if user is logged in by verifying customer_id in session
+        $userId = session('customer_id');
 
-            // Save appointment
-            Appointment::create([
-                'appointmentId' => 'AP' . Str::random(6),
-                'doctorId' => $request->input('doctorId'),
-                'user_id' => $userId,
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'phone' => $request->input('phone'),
-                'date' => $request->input('date'),
-                'time' => $request->input('time'),
-                'message' => $request->input('message'),
-            ]);
-
-            return redirect()->back()->with('success', 'Appointment booked successfully!');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Failed to book appointment: ' . $e->getMessage()]);
+        if (!$userId) {
+            return redirect()->route('login')->withErrors(['error' => 'Please log in to book an appointment']);
         }
+
+        // Validate request data (optional, but recommended)
+        $request->validate([
+            'doctorId' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'date' => 'required|date|after_or_equal:today',
+            'time' => 'required|string',
+            'message' => 'nullable|string',
+        ]);
+
+        // Save appointment
+        Appointment::create([
+            'appointmentId' => 'AP' . Str::random(6),
+            'doctorId' => $request->input('doctorId'),
+            'user_id' => $userId,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'message' => $request->input('message'),
+        ]);
+
+        return redirect()->back()->with('success', 'Appointment booked successfully!');
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'Failed to book appointment: ' . $e->getMessage()]);
+    }
     }
 }

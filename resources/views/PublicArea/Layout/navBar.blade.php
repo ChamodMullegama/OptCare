@@ -79,7 +79,7 @@
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
 
-                                      <li><a href="{{ route('PublicAreaAppointment.appointment') }}">Appointment</a></li>
+                                      <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
                                 <li class="dropdown"><a href="index.html">Specialties & Services</a>
                                     <ul>
                                         <li class="dropdown"><a href="index.html">Treatments</a>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="nav-right">
                     <div class="btn-box">
-                        <a href="index.html" class="theme-btn btn-one">Appointment</a>
+                        <a href="{{ route('PublicAreaAppointment.appointment') }}" class="theme-btn btn-one">Appointment</a>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="nav-right">
                     <div class="btn-box">
-                        <a href="index.html" class="theme-btn btn-one">Appointment</a>
+                        <a href="{{ route('PublicAreaAppointment.appointment') }}" class="theme-btn btn-one">Appointment</a>
                     </div>
                 </div>
             </div>
