@@ -275,6 +275,8 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [CustomerAuthController::class, 'login']);
     Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
+ Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
 });
 
 Route::prefix('Home')->group(function () {

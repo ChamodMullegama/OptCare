@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class CustomerService
 {
@@ -29,14 +30,14 @@ class CustomerService
         $customer = $this->customer->create($data);
 
         // Log before sending email
-        \Log::info('Attempting to send OTP to email: ' . $customer->email . ' with OTP: ' . $customer->otp);
+        Log::info('Attempting to send OTP to email: ' . $customer->email . ' with OTP: ' . $customer->otp);
 
         // Send OTP via custom email template with error handling
         try {
             Mail::to($customer->email)->send(new OtpMail($customer->otp, $customer->email));
-            \Log::info('OTP email sent successfully to: ' . $customer->email);
+            Log::info('OTP email sent successfully to: ' . $customer->email);
         } catch (\Exception $e) {
-            \Log::error('Failed to send OTP email to ' . $customer->email . ': ' . $e->getMessage());
+            Log::error('Failed to send OTP email to ' . $customer->email . ': ' . $e->getMessage());
             // Fallback: Store OTP in session for manual verification if email fails
             Session::flash('otp_fallback', $customer->otp);
         }

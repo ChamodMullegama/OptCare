@@ -21,6 +21,8 @@ class Customer extends Model
         'otp',
         'otp_expires_at',
         'verified_account',
+        'google_id', // Add this
+        'avatar'
     ];
 
     protected $hidden = [
