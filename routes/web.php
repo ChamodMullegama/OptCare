@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminArea\EyeHospitalsController;
 use App\Http\Controllers\AdminArea\EyeIssuesController;
 use App\Http\Controllers\AdminArea\EyeScansController;
 use App\Http\Controllers\AdminArea\GalleryController;
+
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\OpticCentersController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\AdminArea\TreatmentsController;
 use App\Http\Controllers\AdminArea\WebsiteSettingsController;
 use App\Http\Controllers\DoctorArea\AppointmentController;
 use App\Http\Controllers\DoctorArea\AppointmentControllerroller;
+use App\Http\Controllers\DoctorArea\NeedHelpController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
@@ -77,12 +79,17 @@ Route::prefix('oct-analysis')->group(function () {
     Route::get('/request-doctor-advice/{id}', [PublicOCTController::class, 'requestDoctorAdvice'])->name('oct.requestDoctorAdvice');
 });
 
+Route::prefix('doctor/need-help')->group(function () {
+    Route::get('/requests', [NeedHelpController::class, 'All'])->name('doctor.needHelp.requests');
+    Route::post('/delete', [NeedHelpController::class, 'Delete'])->name('doctor.needHelp.delete');
+    Route::post('/reply', [NeedHelpController::class, 'Reply'])->name('doctor.reply');
+});
+
 Route::prefix('gallery')->group(function () {
     Route::get('/all', [GalleryController::class, "All"])->name('gallery.all');
     Route::post('/add', [GalleryController::class, 'Add'])->name('gallery.add');
     Route::post('/delete', [GalleryController::class, 'Delete'])->name('gallery.delete');
     Route::post('/update', [GalleryController::class, 'Update'])->name('gallery.update');
-
 });
 
 Route::prefix('team')->group(function () {
@@ -103,7 +110,6 @@ Route::prefix('service')->group(function () {
     Route::get('/isPrimary/{id}', [ServiceController::class, 'IsPrimary'])->name('Service.isPrimary');
 });
 
-
 Route::prefix('blog')->group(function () {
     Route::get('/all', [BlogController::class, "All"])->name('blog.all');
     Route::post('/add', [BlogController::class, 'Add'])->name('blog.add');
@@ -119,7 +125,6 @@ Route::prefix('settings')->group(function () {
     Route::post('/add', [WebsiteSettingsController::class, 'Add'])->name('settings.add');
     Route::post('/update', [WebsiteSettingsController::class, 'Update'])->name('settings.update');
 });
-
 
 Route::prefix('qa')->group(function () {
     Route::get('/all', [QuestionsAndAnswersController::class, "All"])->name('qa.all');
@@ -352,8 +357,6 @@ Route::prefix('PublicAreaAppointment')->group(function () {
       Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
 //    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
     Route::get('/details{id}', [PublicAppointmentController::class, 'Details'])->name('PublicAreaAppointment.details');
-
-
     Route::post('/book', [PublicAppointmentController::class, 'BookAppointment'])->name('PublicAreaAppointment.book');
 });
 

@@ -35,8 +35,9 @@ class PublicOCTService
         try {
             // Check if user is logged in
             $userId = session('customer_id');
+              $customerEmail = session('customer_email');
             if (!$userId) {
-                return redirect()->route('customer.login')->with('error', 'Please log in to upload an OCT scan');
+                return redirect()->route('login')->withErrors('error', 'Please log in to upload an OCT scan');
             }
 
             // Validate the image
@@ -67,6 +68,7 @@ class PublicOCTService
             // Save to patient_oct_analyses table
             $analysis = PatientOctAnalysis::create([
                 'user_id' => $userId,
+                'customer_email' => $customerEmail,
                 'image_path' => $imagePath,
                 'prediction' => $result['prediction'] ?? 'Unknown',
                 'recommendation' => $result['recommendation'] ?? 'No recommendations available',

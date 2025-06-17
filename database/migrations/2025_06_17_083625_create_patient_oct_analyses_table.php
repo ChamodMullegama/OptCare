@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id'); // Customer ID from session
             $table->string('image_path'); // Path to the uploaded OCT scan
+            $table->text('customer_email')->nullable();
             $table->string('prediction')->nullable(); // Prediction from API
             $table->text('recommendation')->nullable();
             $table->boolean('need_help')->default(0);
+            $table->text('reply_message')->nullable();
+            $table->string('replied_by_doctor_id')->nullable();
+    $table->string('replied_by_doctor_name')->nullable();
             $table->timestamps();
         });
     }

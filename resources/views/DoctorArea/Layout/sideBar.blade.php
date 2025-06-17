@@ -57,6 +57,13 @@
     </a>
 </li>
 
+<li>
+    <a href="{{ route('doctor.needHelp.requests') }}">
+   <i class="ri-time-line"></i>
+        <span class="menu-text">Request Respon</span>
+    </a>
+</li>
+
 
 
 
