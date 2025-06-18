@@ -1,4 +1,4 @@
- 
+
 /* Css For Optcare */
 
 /************ TABLE OF CONTENTS ***************
@@ -44,7 +44,7 @@
 
 
 
-/*** 
+/***
 
 ====================================================================
   Reset
@@ -59,7 +59,7 @@
 }
 
 
-/*** 
+/***
 
 ====================================================================
   Global Settings
@@ -155,7 +155,7 @@ input,button,select,textarea{
 ul,li{
   list-style:none;
   padding:0px;
-  margin:0px; 
+  margin:0px;
 }
 
 input{
@@ -287,7 +287,7 @@ h1,h2,h3,h4,h5,h6{
 
 .handle-preloader .animation-preloader .spinner{
   border: 3px solid #ffffff;
-  border-top-color: rgba(255, 255, 255, 0.5); 
+  border-top-color: rgba(255, 255, 255, 0.5);
 }
 
 /* AnimaciÃ³n del preloader */
@@ -499,7 +499,7 @@ img {
 
 
 
-/*** 
+/***
 
 ====================================================================
                         Home-Page-One
@@ -876,7 +876,7 @@ img {
 
 .main-menu .navigation > li.current > a,
 .main-menu .navigation > li:hover > a{
-  
+
 }
 
 .main-menu .navigation > li.dropdown > a:before{
@@ -911,7 +911,7 @@ img {
 
 .main-menu .navigation > li > ul.from-right{
   left:auto;
-  right:0px;  
+  right:0px;
 }
 
 .main-menu .navigation > li > ul > li{
@@ -974,7 +974,7 @@ img {
   font-size:16px;
   font-weight:800;
   text-align:center;
-  z-index:5;  
+  z-index:5;
 }
 
 .main-menu .navigation > li > ul > li > ul{
@@ -998,7 +998,7 @@ img {
 
 .main-menu .navigation > li > ul > li > ul.from-right{
   left:auto;
-  right:0px;  
+  right:0px;
 }
 
 .main-menu .navigation > li > ul > li > ul > li{
@@ -1007,7 +1007,7 @@ img {
 }
 
 .main-menu .navigation > li > ul > li > ul > li:last-child{
-  border-bottom:none; 
+  border-bottom:none;
 }
 
 .main-menu .navigation > li > ul > li > ul > li > a{
@@ -1034,7 +1034,7 @@ img {
 }
 
 .main-menu .navigation > li > ul > li > ul > li > a:hover{
-  
+
 }
 
 .main-menu .navigation > li > ul > li > ul > li.dropdown > a:after{
@@ -1047,7 +1047,7 @@ img {
   line-height:24px;
   font-size:16px;
   font-weight:900;
-  z-index:5;  
+  z-index:5;
 }
 
 .main-menu .navigation > li.dropdown:hover > ul,
@@ -1061,7 +1061,7 @@ img {
 .main-menu .navigation li > ul > li.dropdown:hover > ul{
   visibility:visible;
   opacity:1;
-  top: 0%; 
+  top: 0%;
   margin-top: 0px;
 }
 
@@ -1083,7 +1083,7 @@ img {
 
 .main-menu .navigation li.current.dropdown .dropdown-btn,
 .main-menu .navigation li:hover .dropdown-btn{
-  
+
 }
 
 .main-menu .navigation li.dropdown ul li.dropdown .dropdown-btn{
@@ -1176,13 +1176,13 @@ img {
 }
 
 .mobile-menu .navbar-collapse{
-  display:block !important; 
+  display:block !important;
 }
 
 .mobile-menu .nav-logo{
   position:relative;
   padding:50px 25px;
-  text-align:left;  
+  text-align:left;
   padding-bottom: 100px;
 }
 
@@ -1309,7 +1309,7 @@ img {
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .mobile-menu .navigation li ul li > a{
@@ -1329,7 +1329,7 @@ img {
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .mobile-menu .navigation li.current > a:before{
@@ -1353,7 +1353,7 @@ img {
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
   z-index:5;
 }
 
@@ -1361,7 +1361,7 @@ img {
   color: #ffffff;
   -webkit-transform:rotate(90deg);
   -ms-transform:rotate(90deg);
-  transform:rotate(90deg);  
+  transform:rotate(90deg);
 }
 
 .mobile-menu .navigation li > ul,
@@ -1390,11 +1390,11 @@ img {
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .mobile-menu .social-links li a:hover{
-  
+
 }
 
 div#mCSB_1_container{
@@ -1427,7 +1427,7 @@ div#mCSB_1_container{
 }
 
 .mobile-menu .contact-info ul li a:hover{
-  
+
 }
 
 .mobile-menu .contact-info ul li:last-child{
@@ -1758,7 +1758,7 @@ div#mCSB_1_container{
 }
 
 .banner-carousel .owl-nav button:hover{
-  
+
 }
 
 .banner-carousel .owl-nav button.owl-prev{
@@ -2047,7 +2047,7 @@ div#mCSB_1_container{
 }
 
 .tabs-box .tab.active-tab{
-  display:block;  
+  display:block;
 }
 
 .tabs-box .tab{
@@ -3311,7 +3311,7 @@ div#mCSB_1_container{
 
 
 
-/*** 
+/***
 
 ====================================================================
                         Home-Page-Two
@@ -4487,7 +4487,7 @@ div#mCSB_1_container{
   -ms-transition:all 1500ms ease;
   -o-transition:all 1500ms ease;
   -moz-transition:all 1500ms ease;
-  transition:all 1500ms ease; 
+  transition:all 1500ms ease;
 }
 
 .progress-box h5{
@@ -4573,7 +4573,7 @@ div#mCSB_1_container{
 }
 
 
-/*** 
+/***
 
 ====================================================================
                         Home-Page-Three
@@ -5109,7 +5109,7 @@ div#mCSB_1_container{
 }
 
 .accordion-box .block .acc-content.current{
-  display:block;  
+  display:block;
 }
 
 .content_block_nine .content-box{
@@ -5476,7 +5476,7 @@ div#mCSB_1_container{
 
 
 
-/*** 
+/***
 
 ====================================================================
                         About-Page
@@ -5980,7 +5980,7 @@ div#mCSB_1_container{
 
 
 
-/*** 
+/***
 
 ====================================================================
                         Shop-Page
@@ -6270,7 +6270,7 @@ div#mCSB_1_container{
   height:3px;
   border:none;
   margin-bottom:18px;
-  background:#f0f0f0; 
+  background:#f0f0f0;
 }
 
 .range-slider .ui-slider .ui-slider-range{
@@ -6285,12 +6285,12 @@ div#mCSB_1_container{
   height:13px;
   border: none;
   border-radius:50%;
-  cursor:pointer; 
+  cursor:pointer;
   margin-left: 0px;;
 }
 
 .range-slider .ui-slider .ui-slider-range{
-  
+
 }
 
 .shop-sidebar .price-filter .pull-right p{
@@ -6548,7 +6548,7 @@ div#mCSB_1_container{
 .bootstrap-touchspin .input-group-btn-vertical i{
   top: 0px;
   left: 7px;
-  font-size: inherit !important; 
+  font-size: inherit !important;
 }
 
 .bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down{
@@ -6900,7 +6900,7 @@ div#mCSB_1_container{
 }
 
 .checkout-section .upper-box .single-box a{
-  
+
 }
 
 .checkout-section .customer a:hover,
@@ -6969,7 +6969,7 @@ div#mCSB_1_container{
 }
 
 .checkout-section .billing-form .form-group input:focus{
-  
+
 }
 
 .checkout-section .billing-form .select-box .ui-state-default{
@@ -6997,7 +6997,7 @@ div#mCSB_1_container{
 }
 
 .checkout-section .additional-info .note-book textarea:focus{
-  
+
 }
 
 .checkout-section .order-info{
@@ -7454,7 +7454,7 @@ div#mCSB_1_container{
 
 
 
-/*** 
+/***
 
 ====================================================================
                         Blog-Page
@@ -7964,7 +7964,7 @@ div#mCSB_1_container{
 }
 
 
-/*** 
+/***
 
 ====================================================================
                         Contact-Page

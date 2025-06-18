@@ -26,6 +26,7 @@ use App\Http\Controllers\DoctorArea\AppointmentControllerroller;
 use App\Http\Controllers\DoctorArea\NeedHelpController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\CartController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
 use App\Http\Controllers\PublicArea\HomeController;
@@ -266,6 +267,11 @@ Route::prefix('appointment')->group(function () {
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
