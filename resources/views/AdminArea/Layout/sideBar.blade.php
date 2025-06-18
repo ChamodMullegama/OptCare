@@ -163,6 +163,12 @@
                       <span class="menu-text">Public Page</span>
                   </a>
               </li>
+                 <li>
+                  <a href="{{ route('orders.index') }}">
+                      <i class="ri-settings-3-line"></i>
+                      <span class="menu-text">Orders</span>
+                  </a>
+              </li>
 
           </div>
           <!-- Sidebar menu ends -->

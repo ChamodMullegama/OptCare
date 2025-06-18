@@ -178,7 +178,7 @@
 
                                     @if($order->payment_confirmation)
                                         <div class="payment-confirmation mt-3">
-                                            <p><strong>Payment Confirmation:</strong> {{ $order->payment_confirmation }}</p>
+                                            {{-- <p><strong>Payment Confirmation:</strong> {{ $order->payment_confirmation }}</p> --}}
                                         </div>
                                     @endif
                                 </div>

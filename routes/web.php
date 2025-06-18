@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminArea\GalleryController;
 
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\OpticCentersController;
+use App\Http\Controllers\AdminArea\OrderController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
@@ -286,6 +287,14 @@ Route::get('/order-history', [CartController::class, 'orderHistory'])->name('ord
 
 Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
 
+
+Route::prefix('Orders')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
+    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::post('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
+});
+
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [CustomerAuthController::class, 'register']);
@@ -294,8 +303,8 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [CustomerAuthController::class, 'login']);
     Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
- Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
 });
 
 Route::prefix('Home')->group(function () {
