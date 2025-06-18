@@ -19,71 +19,75 @@
 <!-- checkout-section -->
 <section class="checkout-section p_relative pt_120 pb_120">
     <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 left-column">
                 <div class="inner-box">
                     <div class="billing-info p_relative d_block mb_55">
                         <h4 class="sub-title d_block fs_30 lh_40 mb_30">Billing Details</h4>
-                        <form action="#" method="post" class="billing-form p_relative d_block">
+                        <form id="payment-form" action="{{ route('place.order') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">First Name*</label>
                                     <div class="field-input">
-                                        <input type="text" name="first_name" value="{{ Session::get('customer_name') }}">
+                                        <input type="text" name="first_name" value="{{ Session::get('customer_name') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Email Address*</label>
                                     <div class="field-input">
-                                        <input type="email" name="email" value="{{ Session::get('customer_email') }}">
+                                        <input type="email" name="email" value="{{ Session::get('customer_email') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Phone Number*</label>
                                     <div class="field-input">
-                                        <input type="text" name="phone" value="">
+                                        <input type="text" name="phone" value="" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Country*</label>
                                     <div class="field-input">
-                                        <input type="text" name="phone" value="">
+                                        <input type="text" name="country" value="" required>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Address*</label>
                                     <div class="field-input">
-                                        <input type="text" name="address" class="address">
-                                        <input type="text" name="address">
+                                        <input type="text" name="address" value="" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Town/City*</label>
                                     <div class="field-input">
-                                        <input type="text" name="town_city">
+                                        <input type="text" name="town_city" value="" required>
                                     </div>
                                 </div>
-                                  <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">State*</label>
                                     <div class="field-input">
-                                        <input type="text" name="town_city">
+                                        <input type="text" name="state" value="" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                     <label class="p_relative d_block fs_16 color_black mb_2">Zip Code*</label>
                                     <div class="field-input">
-                                        <input type="text" name="zip">
+                                        <input type="text" name="zip" value="" required>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="additional-info">
-                        <div class="note-book p_relative d_block">
-                            <label class="p_relative d_block fs_16 color_black mb_2">Order Notes</label>
-                            <textarea name="note_box" placeholder="Notes about your order, e.g. special notes for your delivery"></textarea>
-                        </div>
+                            <div class="additional-info">
+                                <div class="note-book p_relative d_block">
+                                    <label class="p_relative d_block fs_16 color_black mb_2">Order Notes</label>
+                                    <textarea name="note_box" placeholder="Notes about your order, e.g. special notes for your delivery"></textarea>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -114,17 +118,90 @@
                     </div>
                     <div class="payment-info p_relative d_block pt_45 pr_50 pb_50 pl_50">
                         <h4 class="sub-title d_block fs_24 lh_30 mb_40">Payment</h4>
-
-                        <div class="btn-box">
-                            <a href="#" class="theme-btn btn-one">Place Your Order</a>
+                        <div class="form-group">
+                            <div id="card-element" class="form-control"></div>
+                            <div id="card-errors" role="alert" class="text-danger"></div>
                         </div>
+                        <div class="btn-box">
+                            <button type="submit" id="submit-button" class="theme-btn btn-one">Place Your Order (Rs.{{ number_format($total, 2) }})</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </section>
 <!-- checkout-section end -->
 
+@push('css')
+<style>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    #card-element {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+    #card-errors {
+        margin-top: 10px;
+    }
+</style>
+@endpush
+
+@push('js')
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    var form = document.getElementById('payment-form');
+    var submitButton = document.getElementById('submit-button');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitButton.disabled = true;
+
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+                submitButton.disabled = false;
+            } else {
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', result.token.id);
+                form.appendChild(hiddenInput);
+                form.submit();
+            }
+        });
+    });
+</script>
+@endpush
 @endsection

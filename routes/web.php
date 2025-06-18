@@ -267,11 +267,24 @@ Route::prefix('appointment')->group(function () {
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+// Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+// Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+// Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+// Route::get('/order/{id}/status', [CartController::class, 'orderStatus'])->name('order.status');
+
+// Route::get('/order/success/{order}', [CartController::class, 'success'])->name('order.success');
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+Route::get('/order-history', [CartController::class, 'orderHistory'])->name('order.history');
+
+Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
 
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');

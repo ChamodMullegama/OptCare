@@ -4,9 +4,13 @@ namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
 use App\Models\CartItem;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class CartController extends Controller
 {
@@ -143,7 +147,7 @@ class CartController extends Controller
 //     }
 
 
- public function addToCart(Request $request)
+public function addToCart(Request $request)
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
@@ -274,4 +278,102 @@ class CartController extends Controller
 
         return view('PublicArea.Pages.shop.checkout', compact('cartItems', 'subtotal', 'total'));
     }
+
+    public function placeOrder(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'country' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'town_city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zip' => 'required|string|max:10',
+            'note_box' => 'nullable|string',
+            'stripeToken' => 'required',
+        ]);
+
+        $customerId = Session::get('customer_id');
+        if (!$customerId) {
+            return redirect()->route('login')->with('error', 'Please log in to proceed with checkout.');
+        }
+
+        $cartItems = CartItem::where('customer_id', $customerId)->with('product')->get();
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.view')->with('error', 'Your cart is empty.');
+        }
+
+        $subtotal = $cartItems->sum('subtotal');
+        $total = $subtotal; // Add shipping or other fees if applicable
+
+        // Set Stripe API key
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            // Create charge
+            $charge = Charge::create([
+                'amount' => $total * 100, // Convert to cents
+                'currency' => 'lkr',
+                'source' => $request->stripeToken,
+                'description' => 'Order payment for customer ID: ' . $customerId,
+            ]);
+
+            // Create order
+            $order = Order::create([
+                'customer_id' => $customerId,
+                'total' => $total,
+                'status' => 'completed',
+                'payment_status' => 'completed',
+                'payment_confirmation' => $charge->id,
+                'first_name' => $request->first_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'country' => $request->country,
+                'address' => $request->address,
+                'town_city' => $request->town_city,
+                'state' => $request->state,
+                'zip' => $request->zip,
+                'note' => $request->note_box,
+            ]);
+
+            // Create order items
+            foreach ($cartItems as $cartItem) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cartItem->product_id,
+                    'quantity' => $cartItem->quantity,
+                    'price' => $cartItem->price,
+                    'discount' => $cartItem->discount,
+                    'subtotal' => $cartItem->subtotal,
+                ]);
+
+                // Update product quantity
+                $product = $cartItem->product;
+                $product->quantity -= $cartItem->quantity;
+                $product->save();
+
+                // Delete cart item
+                $cartItem->delete();
+            }
+
+            return redirect()->route('order.history')->with('success', 'Order placed successfully.');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Payment failed: ' . $e->getMessage());
+        }
+    }
+
+    public function orderHistory()
+    {
+        $customerId = Session::get('customer_id');
+        if (!$customerId) {
+            return redirect()->route('login')->with('error', 'Please log in to view your order history.');
+        }
+
+        $orders = Order::where('customer_id', $customerId)->with('orderItems.product')->latest()->get();
+
+        return view('PublicArea.Pages.shop.order-history', compact('orders'));
+    }
+
 }
