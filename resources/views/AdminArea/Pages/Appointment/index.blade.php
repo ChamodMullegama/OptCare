@@ -9,7 +9,7 @@
                 <a href="{{ route('admin.dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item text-primary" aria-current="page">
-                Appointments
+                Appointment Management
             </li>
         </ol>
         <!-- Breadcrumb ends -->

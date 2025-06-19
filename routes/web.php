@@ -404,9 +404,6 @@ Route::prefix('Review')->group(function () {
     Route::post('/add', [ReviewController::class, "Add"])->name('review.add');
     Route::post('/update', [ReviewController::class, 'update'])->name('reviews.update');
     Route::post('/delete', [ReviewController::class, 'Delete'])->name('review.delete');
-
-
-
 //    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });

@@ -24,10 +24,14 @@ class ServiceService
 
     public function store(array $data)
     {
+        $data['serviceId'] = 'SV' . Str::random(6);
+
         if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
-            $data['serviceId'] = 'SV' . Str::random(6);
             $data['image'] = $data['image']->store('uploads/services', 'public');
+        } else {
+            $data['image'] = null;
         }
+
         return $this->service->create($data);
     }
 
@@ -114,10 +118,10 @@ class ServiceService
         return $item;
     }
 
-         public function allForPublic()
-    {
-        return Service::with(['images' => function($query) {
-            $query->where('isPrimary', 1)->orWhere('isPrimary', 0);
-        }])->orderBy('date', 'desc')->get();
-    }
+   public function allForPublic()
+{
+    return Service::with(['images' => function($query) {
+        $query->where('isPrimary', 1)->orWhere('isPrimary', 0);
+    }])->orderBy('created_at', 'desc')->get();
+}
 }
