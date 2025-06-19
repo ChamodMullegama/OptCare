@@ -2,12 +2,13 @@
 
           <!-- Sidebar profile starts -->
           <div class="sidebar-profile">
-  <img src="{{ asset('AdminArea/images/admin.png') }}" class="img-shadow img-3x me-3 rounded-5" alt="Doctor Profile">
-               <div class="m-0">
+              <img src="{{ asset('AdminArea/images/admin.png') }}" class="img-shadow img-3x me-3 rounded-5"
+                  alt="Doctor Profile">
+              <div class="m-0">
 
-            <h5 class="mb-1 profile-name text-nowrap text-truncate">{{ session('admin.name', 'Admin') }}</h5>
-            <p class="m-0 small profile-name text-nowrap text-truncate"></p>
-    </div>
+                  <h5 class="mb-1 profile-name text-nowrap text-truncate">{{ session('admin.name', 'Admin') }}</h5>
+                  <p class="m-0 small profile-name text-nowrap text-truncate"></p>
+              </div>
           </div>
           <!-- Sidebar profile ends -->
 
@@ -15,15 +16,14 @@
           <div class="sidebarMenuScroll">
               <ul class="sidebar-menu">
                   <li class="active current-page">
-                      <a href="index.html">
+                      <a href="{{ route('admin.dashboard') }}">
                           <i class="ri-home-6-line"></i>
                           <span class="menu-text">Hospital Dashboard</span>
                       </a>
                   </li>
-
                   <li>
                       <a href="{{ route('doctors.all') }}">
-                       <i class="ri-stethoscope-line"></i>
+                          <i class="ri-stethoscope-line"></i>
                           <span class="menu-text">Doctors</span>
                       </a>
                   </li>
@@ -73,57 +73,48 @@
               <li>
                   <a href="{{ route('service.all') }}">
                       <i class="ri-service-line"></i>
-
                       <span class="menu-text">Service</span>
                   </a>
               </li>
               <li class="treeview">
                   <a href="#!">
-                  <i class="ri-user-heart-line"></i>
+                      <i class="ri-user-heart-line"></i>
                       <span class="menu-text">Patient</span>
                   </a>
                   <ul class="treeview-menu">
                       <li>
                           <a href="{{ route('customerMessage.all') }}">Patient Massage</a>
                       </li>
-                        <li>
+                      <li>
                           <a href="{{ route('customer.all') }}">Patient</a>
                       </li>
-              </ul>
+                  </ul>
               </li>
 
 
               <li>
                   <a href="{{ route('qa.all') }}">
                       <i class="ri-question-answer-line"></i>
-
-                      <span class="menu-text">
-                          Faq’s</span>
+                      <span class="menu-text">Faq’s</span>
                   </a>
               </li>
-
-  <li>
+              <li>
                   <a href="{{ route('subscriptions.all') }}">
                       <i class="ri-question-answer-line"></i>
-
-                      <span class="menu-text">
-                          Subscription</span>
+                      <span class="menu-text">Subscription</span>
                   </a>
               </li>
 
-               <li>
+              <li>
                   <a href="{{ route('team.all') }}">
                       <i class="ri-question-answer-line"></i>
-
-                      <span class="menu-text">
-                        Team</span>
+                      <span class="menu-text">Team</span>
                   </a>
               </li>
 
               <li class="treeview">
                   <a href="#!">
                       <i class="ri-shopping-bag-line"></i>
-
                       <span class="menu-text">Shop</span>
                   </a>
                   <ul class="treeview-menu">
@@ -144,14 +135,14 @@
                   </a>
               </li>
 
- <li>
+              <li>
                   <a href="{{ route('review.all') }}">
-                    <i class="ri-feedback-line"></i>
+                      <i class="ri-feedback-line"></i>
                       <span class="menu-text">User Review</span>
                   </a>
               </li>
 
-     <li>
+              <li>
                   <a href="{{ route('appointment.viewAdminAppointments') }}">
                       <i class="ri-settings-3-line"></i>
                       <span class="menu-text">View Appointment</span>
@@ -163,16 +154,14 @@
                       <span class="menu-text">Public Page</span>
                   </a>
               </li>
-                 <li>
+              <li>
                   <a href="{{ route('orders.index') }}">
                       <i class="ri-settings-3-line"></i>
                       <span class="menu-text">Orders</span>
                   </a>
               </li>
-
           </div>
           <!-- Sidebar menu ends -->
-
           <!-- Sidebar contact starts -->
           <div class="sidebar-contact">
               <p class="fw-light mb-1 text-nowrap text-truncate">Emergency Contact</p>

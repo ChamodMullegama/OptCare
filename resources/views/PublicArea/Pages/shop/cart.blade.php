@@ -20,10 +20,10 @@
 <section class="cart-section p_relative pt_120 pb_120 bg-color-4">
     <div class="auto-container">
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success"><i class="fas fa-check-circle"></i>{{ session('success') }}</div>
         @endif
         @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
+            <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>{{ session('error') }}</div>
         @endif
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 table-column">

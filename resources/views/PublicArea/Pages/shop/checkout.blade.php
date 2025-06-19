@@ -20,17 +20,17 @@
 <section class="checkout-section p_relative pt_120 pb_120">
     <div class="container">
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success"><i class="fas fa-check-circle"></i>{{ session('success') }}</div>
         @endif
         @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
+            <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>{{ session('error') }}</div>
         @endif
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 left-column">
                 <div class="inner-box">
                     <div class="billing-info p_relative d_block mb_55">
                         <h4 class="sub-title d_block fs_30 lh_40 mb_30">Billing Details</h4>
-                        <form id="payment-form" action="{{ route('place.order') }}" method="POST">
+                        <form id="checkout-form" action="{{ route('create.stripe.session') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
@@ -118,12 +118,22 @@
                     </div>
                     <div class="payment-info p_relative d_block pt_45 pr_50 pb_50 pl_50">
                         <h4 class="sub-title d_block fs_24 lh_30 mb_40">Payment</h4>
-                        <div class="form-group">
-                            <div id="card-element" class="form-control"></div>
-                            <div id="card-errors" role="alert" class="text-danger"></div>
+                        <div class="payment-options mb_30">
+                            <p class="fs_16 color_black mb_20">You will be redirected to Stripe's secure checkout page to enter your card details.</p>
+                            <div class="payment-security p_relative d_block p_20" style="background-color: #f8f9fa; border-radius: 4px;">
+                                <div class="security-icons d_flex align-items-center mb_15">
+                                    <i class="fas fa-lock color_green mr_10"></i>
+                                    <span class="fs_14 fw_medium">Powered by Stripe</span>
+                                </div>
+                                <ul class="security-features">
+                                    <li class="fs_14 color_gray mb_5">• PCI DSS compliant payment processing</li>
+                                    <li class="fs_14 color_gray mb_5">• Credit & debit cards accepted</li>
+                                    <li class="fs_14 color_gray">• Your card details are never stored on our servers</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="btn-box">
-                            <button type="submit" id="submit-button" class="theme-btn btn-one">Place Your Order (Rs.{{ number_format($total, 2) }})</button>
+                            <button type="submit" class="theme-btn btn-one">Place Your Order (Rs.{{ number_format($total, 2) }})</button>
                         </div>
                     </div>
                 </div>
@@ -151,57 +161,21 @@
         color: #721c24;
         border: 1px solid #f5c6cb;
     }
-    #card-element {
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 4px;
-        margin-bottom: 15px;
+    .payment-security {
+        border: 1px solid #e9ecef;
     }
-    #card-errors {
-        margin-top: 10px;
+    .color_green {
+        color: #28a745;
+    }
+    .color_gray {
+        color: #6c757d;
+    }
+    .security-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 </style>
 @endpush
 
-@push('js')
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    var stripe = Stripe('{{ env('STRIPE_KEY') }}');
-    var elements = stripe.elements();
-    var card = elements.create('card');
-    card.mount('#card-element');
-
-    card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
-        }
-    });
-
-    var form = document.getElementById('payment-form');
-    var submitButton = document.getElementById('submit-button');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        submitButton.disabled = true;
-
-        stripe.createToken(card).then(function(result) {
-            if (result.error) {
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-                submitButton.disabled = false;
-            } else {
-                var hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('value', result.token.id);
-                form.appendChild(hiddenInput);
-                form.submit();
-            }
-        });
-    });
-</script>
-@endpush
 @endsection

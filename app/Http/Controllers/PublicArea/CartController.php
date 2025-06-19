@@ -376,4 +376,176 @@ public function addToCart(Request $request)
         return view('PublicArea.Pages.shop.order-history', compact('orders'));
     }
 
+        public function createStripeSession(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'country' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'town_city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zip' => 'required|string|max:10',
+            'note_box' => 'nullable|string',
+        ]);
+
+        $customerId = Session::get('customer_id');
+        if (!$customerId) {
+            return redirect()->route('login')->with('error', 'Please log in to proceed with checkout.');
+        }
+
+        $cartItems = CartItem::where('customer_id', $customerId)->with('product')->get();
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.view')->with('error', 'Your cart is empty.');
+        }
+
+        $subtotal = $cartItems->sum('subtotal');
+        $total = $subtotal;
+
+        // Store billing details in session for later use
+        Session::put('billing_details', [
+            'first_name' => $request->first_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'country' => $request->country,
+            'address' => $request->address,
+            'town_city' => $request->town_city,
+            'state' => $request->state,
+            'zip' => $request->zip,
+            'note' => $request->note_box,
+        ]);
+
+        // Set Stripe API key
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            // Prepare line items for Stripe
+            $lineItems = [];
+            foreach ($cartItems as $cartItem) {
+                $unitAmount = $cartItem->price * (1 - ($cartItem->discount / 100));
+                $lineItems[] = [
+                    'price_data' => [
+                        'currency' => 'lkr',
+                        'product_data' => [
+                            'name' => $cartItem->product->name,
+                            'description' => $cartItem->product->description ?? 'Product from our store',
+                        ],
+                        'unit_amount' => (int)($unitAmount * 100), // Convert to cents
+                    ],
+                    'quantity' => $cartItem->quantity,
+                ];
+            }
+
+            // Create Stripe Checkout Session
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => $lineItems,
+                'mode' => 'payment',
+                'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => route('stripe.cancel'),
+                'customer_email' => $request->email,
+                'billing_address_collection' => 'auto',
+                'shipping_address_collection' => [
+                    'allowed_countries' => ['LK', 'IN', 'US', 'GB'], // Add your allowed countries
+                ],
+                'metadata' => [
+                    'customer_id' => $customerId,
+                    'first_name' => $request->first_name,
+                    'phone' => $request->phone,
+                ],
+            ]);
+
+            // Store session ID for verification
+            Session::put('stripe_session_id', $session->id);
+
+            // Redirect to Stripe Checkout
+            return redirect($session->url);
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to create payment session: ' . $e->getMessage());
+        }
+    }
+
+    public function stripeSuccess(Request $request)
+    {
+        $sessionId = $request->get('session_id');
+        $storedSessionId = Session::get('stripe_session_id');
+
+        if (!$sessionId || $sessionId !== $storedSessionId) {
+            return redirect()->route('home')->with('error', 'Invalid payment session.');
+        }
+
+        // Set Stripe API key
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            // Retrieve the session
+            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+            if ($session->payment_status !== 'paid') {
+                return redirect()->route('checkout')->with('error', 'Payment was not completed.');
+            }
+
+            $customerId = Session::get('customer_id');
+            $billingDetails = Session::get('billing_details');
+
+            $cartItems = CartItem::where('customer_id', $customerId)->with('product')->get();
+            $subtotal = $cartItems->sum('subtotal');
+            $total = $subtotal;
+
+            // Create order
+            $order = Order::create([
+                'customer_id' => $customerId,
+                'total' => $total,
+                'status' => 'completed',
+                'payment_status' => 'completed',
+                'payment_confirmation' => $session->payment_intent,
+                'first_name' => $billingDetails['first_name'],
+                'email' => $billingDetails['email'],
+                'phone' => $billingDetails['phone'],
+                'country' => $billingDetails['country'],
+                'address' => $billingDetails['address'],
+                'town_city' => $billingDetails['town_city'],
+                'state' => $billingDetails['state'],
+                'zip' => $billingDetails['zip'],
+                'note' => $billingDetails['note'],
+            ]);
+
+            // Create order items
+            foreach ($cartItems as $cartItem) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cartItem->product_id,
+                    'quantity' => $cartItem->quantity,
+                    'price' => $cartItem->price,
+                    'discount' => $cartItem->discount,
+                    'subtotal' => $cartItem->subtotal,
+                ]);
+
+                // Update product quantity
+                $product = $cartItem->product;
+                $product->quantity -= $cartItem->quantity;
+                $product->save();
+
+                // Delete cart item
+                $cartItem->delete();
+            }
+
+            // Clear session data
+            Session::forget(['stripe_session_id', 'billing_details']);
+
+            return redirect()->route('order.history')->with('success', 'Payment successful! Your order has been confirmed.');
+
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', 'Error processing payment: ' . $e->getMessage());
+        }
+    }
+
+    public function stripeCancel()
+    {
+        Session::forget(['stripe_session_id', 'billing_details']);
+        return redirect()->route('checkout')->with('error', 'Payment was cancelled. Please try again.');
+    }
+
 }

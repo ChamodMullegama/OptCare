@@ -18,7 +18,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title">Orders</h5>
+                    <h5 class="card-title">Order List</h5>
                 </div>
                 <div class="card-body">
 

@@ -244,6 +244,9 @@ Route::prefix('customer')->group(function () {
 
 });
 
+
+
+
 Route::prefix('subscriptions')->group(function () {
         Route::get('/all', [SubscriptionController::class, 'All'])->name('subscriptions.all');
         Route::post('/delete', [SubscriptionController::class, 'delete'])->name('subscriptions.delete');
@@ -284,6 +287,12 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
 Route::get('/order-history', [CartController::class, 'orderHistory'])->name('order.history');
+Route::post('/create-checkout-session', [CartController::class, 'createCheckoutSession'])->name('create.checkout.session');
+
+Route::post('/create-stripe-session', [CartController::class, 'createStripeSession'])->name('create.stripe.session');
+Route::get('/stripe/success', [CartController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('/stripe/cancel', [CartController::class, 'stripeCancel'])->name('stripe.cancel');
+
 
 Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
 
