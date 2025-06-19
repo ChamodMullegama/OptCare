@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminArea\GalleryController;
 
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\OpticCentersController;
+use App\Http\Controllers\AdminArea\OrderController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\DoctorArea\AppointmentControllerroller;
 use App\Http\Controllers\DoctorArea\NeedHelpController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\CartController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
 use App\Http\Controllers\PublicArea\HomeController;
@@ -242,6 +244,9 @@ Route::prefix('customer')->group(function () {
 
 });
 
+
+
+
 Route::prefix('subscriptions')->group(function () {
         Route::get('/all', [SubscriptionController::class, 'All'])->name('subscriptions.all');
         Route::post('/delete', [SubscriptionController::class, 'delete'])->name('subscriptions.delete');
@@ -266,6 +271,38 @@ Route::prefix('appointment')->group(function () {
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
+// Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+// Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+// Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+// Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+// Route::get('/order/{id}/status', [CartController::class, 'orderStatus'])->name('order.status');
+
+// Route::get('/order/success/{order}', [CartController::class, 'success'])->name('order.success');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+Route::get('/order-history', [CartController::class, 'orderHistory'])->name('order.history');
+Route::post('/create-checkout-session', [CartController::class, 'createCheckoutSession'])->name('create.checkout.session');
+
+Route::post('/create-stripe-session', [CartController::class, 'createStripeSession'])->name('create.stripe.session');
+Route::get('/stripe/success', [CartController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('/stripe/cancel', [CartController::class, 'stripeCancel'])->name('stripe.cancel');
+
+
+Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
+
+
+Route::prefix('Orders')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
+    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::post('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
+});
 
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
@@ -275,8 +312,8 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [CustomerAuthController::class, 'login']);
     Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
- Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
 });
 
 Route::prefix('Home')->group(function () {

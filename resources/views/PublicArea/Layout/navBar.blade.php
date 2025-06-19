@@ -36,6 +36,12 @@
                     <div class="schedule">
                         @if(Session::has('customer_email'))
                             <span style="color: white; margin-right: 10px;"><i class="fas fa-user"></i> {{ Session::get('customer_email') }}</span>
+                            <a href="{{ route('cart.view') }}" style="color: white; margin-right: 10px; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">
+                                Cart
+                            </a>
+                            <a href="{{ route('order.history') }}" style="color: white; margin-right: 10px; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">
+                                Orders
+                            </a>
                             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" style="color: white; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">Logout</button>
@@ -48,9 +54,7 @@
                     </div>
                     <ul class="social-links clearfix">
                         <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
                         <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -78,8 +82,7 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-
-                                      <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
+                                <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
                                 <li class="dropdown"><a href="index.html">Specialties & Services</a>
                                     <ul>
                                         <li class="dropdown"><a href="index.html">Treatments</a>
@@ -88,19 +91,16 @@
                                                 <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
-                                             <li class="dropdown"><a href="index.html">Hospital And Vision Centers</a>
+                                        <li class="dropdown"><a href="index.html">Hospital And Vision Centers</a>
                                             <ul>
-                                              <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
-                                              <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
+                                                <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
+                                                <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('public.products.index') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
-
                                         <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
                                         <li><a href="error.html">404</a></li>
-
-
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('PublicAreDoctors.all') }}">Doctors</a></li>
@@ -152,7 +152,7 @@
     <div class="menu-backdrop"></div>
     <div class="close-btn"><i class="fas fa-times"></i></div>
     <nav class="menu-box">
-        <div class="nav-logo"><a href="index.html"> <img src="{{ asset('PublicArea/images/logo-2.png') }}" alt="Logo"></a></div>
+        <div class="nav-logo"><a href="index.html"><img src="{{ asset('PublicArea/images/logo-2.png') }}" alt="Logo"></a></div>
         <div class="menu-outer">
             <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
         </div>
@@ -166,11 +166,8 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
                 <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="index.html"><span class="fab fa-linkedin-in"></span></a></li>
             </ul>
         </div>
     </nav>
