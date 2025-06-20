@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -476,8 +477,14 @@ public function addToCart(Request $request)
             return redirect()->route('home')->with('error', 'Invalid payment session.');
         }
 
+        $stripeSecret = env('STRIPE_SECRET');
+    if (!$stripeSecret) {
+        Log::error('Stripe secret key is not set in the .env file.');
+        return redirect()->back()->with('error', 'Stripe configuration error. Please contact support.');
+    }
+
         // Set Stripe API key
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
             // Retrieve the session
