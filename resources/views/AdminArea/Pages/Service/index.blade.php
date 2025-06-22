@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Image</th>
@@ -42,7 +41,6 @@
                                 @foreach ($services as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->serviceId }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{!! Str::limit($item->description, 50) !!}</td>
 

@@ -24,21 +24,21 @@
                 <div class="single-item">
                     <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
                     <h3>Office Location</h3>
-                    <p>629 12th St, Modesto, CA 95354 <br />United States</p>
+                    <p>No. 120, Galle Road, Colombo 03 <br />Sri Lanka</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 info-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="fas fa-envelope"></i></div>
                     <h3>Company Email</h3>
-                    <p><a href="mailto:example@gmail.com">example@gmail.com</a><br /><a href="mailto:example@gmail.com">example@gmail.com</a></p>
+                    <p><a href="mailto:example@gmail.com">optcare@gmail.com</a><br /><a href="mailto:example@gmail.com">optcareinfo@gmail.com</a></p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 info-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
                     <h3>Contact Us</h3>
-                    <p><a href="tel:11165458856">+(111)65-458-856</a><br /><a href="tel:11165458857">+(111)65-458-857</a></p>
+                    <p><a href="tel:0112346782">(+94) 11 234 6782</a><br /><a href="tel:0702740542">(+94) 702 74 0542</a></p>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
 @if (session('success'))
     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
         <div class="alert alert-success text-center">
-            {{ session('success') }}
+          <i class="fas fa-check-circle"></i> {{ session('success') }}
         </div>
     </div>
 @endif
@@ -99,23 +99,21 @@
 
 
         <!-- google-map-section -->
-        <section class="google-map-section p_relative">
-            <div class="map-inner p_relative d_block">
-                <div
-                    class="google-map"
-                    id="contact-google-map"
-                    data-map-lat="40.712776"
-                    data-map-lng="-74.005974"
-                    data-icon-path="assets/images/icons/map-marker-2.png"
-                    data-map-title="Brooklyn, New York, United Kingdom"
-                    data-map-zoom="12"
-                    data-markers='{
-                        "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","assets/images/icons/map-marker-2.png"]
-                    }'>
+     <!-- google-map-section -->
+<section class="google-map-section p_relative">
+    <div class="map-inner p_relative d_block">
+        <div class="google-map" id="contact-google-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6661.172472060013!2d79.84555886148223!3d6.919645334563549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2591514038547%3A0xa12560c4d858fc3f!2sNawaloka%20Hospitals%20PLC!5e0!3m2!1sen!2slk!4v1750627676214!5m2!1sen!2slk"
+                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
 
-                </div>
-            </div>
-        </section>
+
+        </div>
+    </div>
+</section>
+
         <!-- google-map-section end -->
 
 
@@ -132,7 +130,7 @@
                 <div class="form-inner ml_30 mt_5">
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
+                              <i class="fas fa-check-circle"></i> {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif

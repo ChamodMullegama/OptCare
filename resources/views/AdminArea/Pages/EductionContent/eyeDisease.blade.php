@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Symptoms</th>
@@ -45,7 +44,6 @@
                                 @foreach ($eyeIssues as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->eyeIssueId }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{!! Str::limit($item->description, 50) !!}</td>
                                     <td>{{ $item->symptoms }}</td>

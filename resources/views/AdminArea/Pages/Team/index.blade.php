@@ -29,7 +29,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Role</th>
                                     <th>Image</th>
@@ -40,7 +39,6 @@
                                 @foreach ($teams as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->teamId }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->role }}</td>
                                     <td>

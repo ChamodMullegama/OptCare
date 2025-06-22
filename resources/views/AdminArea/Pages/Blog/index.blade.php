@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Title</th>
                                     <th>Date</th>
                                     <th>Content</th>
@@ -45,7 +44,6 @@
                                 @foreach ($blogs as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->blogId }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->date }}</td>
                                     <td>{!! Str::limit($item->content, 50) !!}</td>

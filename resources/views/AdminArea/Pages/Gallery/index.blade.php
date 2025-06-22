@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Title</th>
                                     <th>Image</th>
                                     <th>Actions</th>
@@ -41,7 +40,6 @@
                                 @foreach ($galleries as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->title }}</td>
 
                                       <td>

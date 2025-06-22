@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Question</th>
                                     <th>Answer</th>
                                     <th>Actions</th>
@@ -41,7 +40,6 @@
                                 @foreach ($qas as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->qaId }}</td>
                                     <td>{{ $item->question }}</td>
                                     <td>{!! Str::limit($item->answer, 50) !!}</td>
                                     <td>

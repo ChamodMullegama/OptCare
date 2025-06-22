@@ -25,11 +25,11 @@
                 <div class="card-body">
 
                     <div class="table-responsive">
-                        <table id="messagesTable" class="table truncate m-0 align-middle">
+                      <table id="basicExample" class="table table-bordered align-middle">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Message ID</th>
+
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -44,7 +44,7 @@
                                 @foreach ($customerMessage as $message)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $message->messageId }}</td>
+
                                         <td>{{ $message->name }}</td>
                                         <td>{{ $message->email }}</td>
                                         <td>{{ $message->phone ?? 'N/A' }}</td>
@@ -172,17 +172,7 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // Initialize DataTable
-        $('#messagesTable').DataTable({
-            responsive: true,
-            order: [[7, 'desc']], // Sort by Received At (created_at) descending
-            pageLength: 10,
-            columnDefs: [
-                { orderable: false, targets: [9] } // Disable sorting on Actions
-            ]
-        });
-    });
+
 
     function confirmDelete(messageId) {
         document.getElementById('messageId').value = messageId;

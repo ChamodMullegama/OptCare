@@ -263,8 +263,8 @@
         <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
       </div>
       <div class="divider"></div>
-      <div>59 Street, Kandy, Sri Lanka</div>
-      <div>optcare@gmail.com • (+94) 222 468 5678</div>
+<div>No. 120, Galle Road, Colombo 03, Sri Lanka</div>
+      <div>optcare@gmail.com • (+94) 702 74 0542</div>
       <div style="margin-top: 15px;">
         <a href="#">Unsubscribe</a>
         <a href="#">Privacy Policy</a>

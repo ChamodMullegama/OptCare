@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Location</th>
                                     <th>Contact</th>
@@ -42,7 +41,6 @@
                                 @foreach ($opticCenters as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->hospitalId }}</td>
                                     <td>
                                         @if ($item->image)
                                             <img src="{{ asset('storage/' . $item->image) }}" class="img-shadow img-2x rounded-5 me-1" alt="Optic Center Image">

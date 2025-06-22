@@ -324,7 +324,8 @@
                 <div class="row clearfix">
             @forelse($doctorS as $doctor)
             <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+<div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="margin-bottom: 20px;">
+
                     <div class="inner-box p_relative d_block pr_55">
                         <figure class="image-box p_relative d_block">
                             @if($doctor->profile_image)
@@ -387,7 +388,7 @@
 
         <!-- testimonial-style-two -->
         <section class="testimonial-style-two pt_100">
-    <div class="bg-layer" style="background-image: url('{{ asset('PublicArea/images/background/testimonial-bg.jpg') }}');"></div>
+    <div class="bg-layer" style="background-image: url('{{ asset('PublicArea/images/banner/banner-2.jpg') }}');"></div>
     <div class="pattern-layer">
         <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-22.png') }}');"></div>
         <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-23.png') }}');"></div>
@@ -679,11 +680,14 @@
                             <div class="text">
                                 <p>All of our services are backed by our 100% satisfaction guarantee Our electricians can install anything.</p>
                             </div>
-                            <div class="support-box">
-                                <div class="icon-box"><i class="icon-32"></i></div>
-                                <h4>For Emergency</h4>
-                                <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
-                            </div>
+                      <div class="support-box">
+    <div class="icon-box">
+        <i class="fas fa-phone-alt"></i> <!-- Font Awesome phone icon -->
+    </div>
+    <h4>For Emergency</h4>
+    <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
+</div>
+
                         </div>
                     </div>
                 </div>
