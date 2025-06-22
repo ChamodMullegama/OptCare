@@ -71,12 +71,12 @@
                     <!-- Card details start -->
                     <div>
                         <div class="d-flex flex-column align-items-center">
-                            <div class="icon-box xl bg-danger-subtle rounded-5 mb-2 no-shadow">
-                                <i class="ri-lungs-line fs-1 text-danger"></i>
+                            <div class="icon-box xl bg-success-subtle rounded-5 mb-2 no-shadow">
+                                <i class="ri-lungs-line fs-1 text-success"></i>
                             </div>
-                            <h1 class="text-danger">{{ $completedAppointments }}</h1>
+                            <h1 class="text-success">{{ $completedAppointments }}</h1>
                             <h6>Done Appointments</h6>
-                            <span class="badge bg-danger">{{ $doctor->surgeries_percentage }}</span>
+                            <span class="badge bg-success">{{ $doctor->surgeries_percentage }}</span>
                         </div>
                     </div>
                     <!-- Card details end -->
@@ -89,12 +89,12 @@
                     <!-- Card details start -->
                     <div>
                         <div class="d-flex flex-column align-items-center">
-                            <div class="icon-box xl bg-success-subtle rounded-5 mb-2 no-shadow">
-                                <i class="ri-star-line fs-1 text-success"></i>
+                            <div class="icon-box xl bg-warning-subtle rounded-5 mb-2 no-shadow">
+                                <i class="ri-star-line fs-1 text-warning"></i>
                             </div>
-                            <h1 class="text-success">{{ $dueAppointments }}</h1>
+                            <h1 class="text-warning">{{ $dueAppointments }}</h1>
                             <h6>Due Appointments</h6>
-                            <span class="badge bg-success">{{ $doctor->reviews_percentage }}</span>
+                            <span class="badge bg-warning">{{ $doctor->reviews_percentage }}</span>
                         </div>
                     </div>
                     <!-- Card details end -->
