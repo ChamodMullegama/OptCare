@@ -33,15 +33,15 @@
                       <img src="{{ asset('PublicArea/images/logo.png') }}" alt="OptCare" style="margin-left: 40px;">
 
                     </a>
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0 list-unstyled">  <!-- Added list-unstyled class -->
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
                     <div class="mb-3">
                         <label class="form-label" for="email">Admin email <span class="text-danger">*</span></label>

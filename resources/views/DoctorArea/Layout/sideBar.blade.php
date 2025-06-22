@@ -1,7 +1,7 @@
-      <nav id="sidebar" class="sidebar-wrapper">
+<nav id="sidebar" class="sidebar-wrapper">
 
-          <!-- Sidebar profile starts -->
-         <div class="sidebar-profile">
+    <!-- Sidebar profile starts -->
+    <div class="sidebar-profile">
         @if(session('doctor.image'))
             <img src="{{ asset('storage/' . session('doctor.image')) }}" class="img-shadow img-3x me-3 rounded-5" alt="Doctor Profile">
         @else
@@ -12,170 +12,163 @@
             <p class="m-0 small profile-name text-nowrap text-truncate">{{ session('doctor.designation', 'Designation') }}</p>
         </div>
     </div>
-          <!-- Sidebar profile ends -->
+    <!-- Sidebar profile ends -->
 
-          <!-- Sidebar menu starts -->
-          <div class="sidebarMenuScroll">
-            <ul class="sidebar-menu">
-              <li class="active current-page">
+    <!-- Sidebar menu starts -->
+    <div class="sidebarMenuScroll">
+        <ul class="sidebar-menu">
+            <li class="active current-page">
                 <a href="{{ route('doctor.dashboard') }}">
-                  <i class="ri-home-6-line"></i>
-                  <span class="menu-text">Hospital Dashboard</span>
+                    <i class="ri-home-6-line"></i>
+                    <span class="menu-text">Doctor Dashboard</span>
                 </a>
-              </li>
+            </li>
 
-                 <li>
-    <a href="{{ route('oct.upload') }}">
-        <i class="ri-scan-line"></i>
-        <span class="menu-text">OCT Analyzer</span>
-    </a>
-</li>
-
-
-<li>
-    <a href="{{ route('oct.patients') }}">
-        <i class="ri-user-3-line"></i> <!-- Better for listing patients -->
-        <span class="menu-text">Patient</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('review.DoctorReviewAll') }}">
-        <i class="ri-chat-3-line"></i> <!-- Represents feedback or reviews -->
-        <span class="menu-text">Patient Review</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('appointment.all') }}">
-        <i class="ri-calendar-check-line"></i> <!-- Appointment-related icon -->
-        <span class="menu-text">Appointment</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('appointment.today') }}">
-   <i class="ri-time-line"></i>
-        <span class="menu-text">Today Appointment</span>
-    </a>
-</li>
-
-<li>
-    <a href="{{ route('doctor.needHelp.requests') }}">
-   <i class="ri-time-line"></i>
-        <span class="menu-text">Request Respon</span>
-    </a>
-</li>
-
-
-
-
-{{--
-                   <li>
-                <a href="{{ route('doctors.all') }}">
-                     <i class="ri-user-heart-line"></i>
-                  <span class="menu-text">Doctors</span>
+            <li>
+                <a href="{{ route('oct.upload') }}">
+                    <i class="ri-focus-3-line"></i>
+                    <span class="menu-text">OCT Analyzer</span>
                 </a>
-              </li> --}}
+            </li>
 
-              {{-- <li class="treeview">
-                <a href="#!">
-                  <i class="ri-dossier-line"></i>
-                  <span class="menu-text">Eduction Content</span>
+            <li>
+                <a href="{{ route('oct.patients') }}">
+                    <i class="ri-user-3-line"></i>
+                    <span class="menu-text">Patient</span>
                 </a>
-                <ul class="treeview-menu">
-                  <li>
-                    <a href="{{ route('eyeScans.all') }}">Scans</a>
-                  </li>
-                        <li>
-                    <a href="{{ route('eyeIssues.all') }}">Eye Disease</a>
-                  </li>
-                         </li>
-                        <li>
-                    <a href="{{ route('surgicaltreatments.all') }}">Surgical treatments</a>
+            </li>
 
-                  </li>
-                        <li>
-                    <a href="{{ route('nonsurgicaltreatments.all') }}">Nonsurgical treatments</a>
-                  </li>
-                         <li>
-                    <a href="{{ route('eye.hospitals.all') }}">Eye Hospitals</a>
-                  </li>
-          <li>
-                    <a href="{{ route('optic.centers.all') }}">Vision Centers</a>
-                  </li>
+            <li>
+                <a href="{{ route('review.DoctorReviewAll') }}">
+                    <i class="ri-chat-3-line"></i>
+                    <span class="menu-text">Patient Review</span>
+                </a>
+            </li>
 
+            <li>
+                <a href="{{ route('appointment.all') }}">
+                    <i class="ri-calendar-check-line"></i>
+                    <span class="menu-text">Appointment</span>
+                </a>
+            </li>
 
-                </ul>
-              </li>
-               <li>
+            <li>
+                <a href="{{ route('appointment.today') }}">
+                    <i class="ri-time-line"></i>
+                    <span class="menu-text">Today Appointment</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('doctor.needHelp.requests') }}">
+                    <i class="ri-customer-service-2-line"></i>
+                    <span class="menu-text">Request Respon</span>
+                </a>
+            </li>
+
+            {{-- Uncomment and use these if needed --}}
+            {{--
+            <li>
                 <a href="{{ route('blog.all') }}">
-               <i class="ri-edit-line"></i>
-                  <span class="menu-text">Blog</span>
+                    <i class="ri-edit-line"></i>
+                    <span class="menu-text">Blog</span>
                 </a>
-              </li>
-              <li>
+            </li>
+
+            <li>
                 <a href="{{ route('gallery.all') }}">
-                  <i class="ri-tent-line"></i>
-                  <span class="menu-text">Gallery</span>
+                    <i class="ri-image-line"></i>
+                    <span class="menu-text">Gallery</span>
                 </a>
-              </li>
-                <li>
+            </li>
+
+            <li>
                 <a href="{{ route('service.all') }}">
-                <i class="ri-service-line"></i>
-
-                  <span class="menu-text">Service</span>
+                    <i class="ri-service-line"></i>
+                    <span class="menu-text">Service</span>
                 </a>
-              </li>
-     <li>
+            </li>
+
+            <li>
                 <a href="{{ route('qa.all') }}">
-              <i class="ri-question-answer-line"></i>
-
-                  <span class="menu-text">
-Faq’s</span>
+                    <i class="ri-question-answer-line"></i>
+                    <span class="menu-text">Faq’s</span>
                 </a>
-              </li>
+            </li>
 
-                 <li class="treeview">
+            <li class="treeview">
                 <a href="#!">
-              <i class="ri-shopping-bag-line"></i>
-
-                  <span class="menu-text">Shop</span>
+                    <i class="ri-shopping-bag-line"></i>
+                    <span class="menu-text">Shop</span>
                 </a>
                 <ul class="treeview-menu">
-                  <li>
-                    <a href="{{ route('productCategories.all') }}">Product Categories</a>
-                  </li>
-                        <li>
-                    <a href="{{ route('products.all') }}">Product</a>
-                  </li>
-                         </li>
-
+                    <li>
+                        <a href="{{ route('productCategories.all') }}">
+                            <i class="ri-list-check"></i> Product Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('products.all') }}">
+                            <i class="ri-shopping-bag-line"></i> Product
+                        </a>
+                    </li>
                 </ul>
-              </li>
-                 <li>
+            </li>
+
+            <li class="treeview">
+                <a href="#!">
+                    <i class="ri-dossier-line"></i>
+                    <span class="menu-text">Eduction Content</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('eyeScans.all') }}">
+                            <i class="ri-scan-2-line"></i> Scans
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('eyeIssues.all') }}">
+                            <i class="ri-eye-line"></i> Eye Disease
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('surgicaltreatments.all') }}">
+                            <i class="ri-medicine-bottle-line"></i> Surgical treatments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('nonsurgicaltreatments.all') }}">
+                            <i class="ri-heart-pulse-line"></i> Nonsurgical treatments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('eye.hospitals.all') }}">
+                            <i class="ri-hospital-line"></i> Eye Hospitals
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('optic.centers.all') }}">
+                            <i class="ri-eye-2-line"></i> Vision Centers
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
                 <a href="{{ route('settings.all') }}">
-                          <i class="ri-settings-3-line"></i>
-                  <span class="menu-text">Settings</span>
+                    <i class="ri-settings-3-line"></i>
+                    <span class="menu-text">Settings</span>
                 </a>
-              </li>
+            </li>
 
-
-
-                     <li>
+            <li>
                 <a href="{{ route('Home.home') }}">
-                          <i class="ri-settings-3-line"></i>
-                  <span class="menu-text">Public Page</span>
+                    <i class="ri-global-line"></i>
+                    <span class="menu-text">Public Page</span>
                 </a>
-              </li> --}}
-
-          </div>
-          <!-- Sidebar menu ends -->
-
-          <!-- Sidebar contact starts -->
-          <div class="sidebar-contact">
-            <p class="fw-light mb-1 text-nowrap text-truncate">Emergency Contact</p>
-            <h5 class="m-0 lh-1 text-nowrap text-truncate">0987654321</h5>
-            <i class="ri-phone-line"></i>
-          </div>
-          <!-- Sidebar contact ends -->
-
-        </nav>
-
+            </li>
+            --}}
+        </ul>
+    </div>
+    <!-- Sidebar menu ends -->
+</nav>
