@@ -63,26 +63,27 @@
             <div class="feature-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500m">
                 <div class="inner-box">
                     <div class="icon-box"><i class="fas fa-user-md"></i></div> <!-- Qualified Doctors -->
-                    <h3><a href="index-2.html">Qualified Doctors</a></h3>
-                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                    <h3><a href="#">Expert Doctors</a></h3>
+                        <p>Our platform is supported by experienced ophthalmologists to ensure reliable AI-assisted results.</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
             <div class="feature-block-two wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500m">
                 <div class="inner-box">
-                    <div class="icon-box"><i class="fas fa-microscope"></i></div> <!-- Modern Equipment -->
-                    <h3><a href="index-2.html">Modern Equipment</a></h3>
-                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+           <div class="icon-box"><i class="fas fa-laptop-medical"></i></div> <!-- Online & Modern Systems -->
+<h3><a href="#">Modern Tech</a></h3>
+<p>OptCare offers cutting-edge equipment and an online appointment system for faster, smarter eye care.</p>
+
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
             <div class="feature-block-two wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="1500m">
                 <div class="inner-box">
-                    <div class="icon-box"><i class="fas fa-ambulance"></i></div> <!-- Emergency Help -->
-                    <h3><a href="index-2.html">Emergency Help</a></h3>
-                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                    <div class="icon-box"><i class="fas fa-notes-medical"></i></div> <!-- Emergency Help -->
+                                          <h3><a href="#">Quick Diagnostics</a></h3>
+                        <p>Get instant analysis of your retina scans powered by AI for fast and accessible healthcare decisions.</p>
                 </div>
             </div>
         </div>
@@ -91,7 +92,7 @@
                 <div class="inner-box">
                     <div class="icon-box"><i class="fas fa-user-friends"></i></div> <!-- Individual Approach -->
                     <h3><a href="index-2.html">Individual Approach</a></h3>
-                    <p>Lorem ipsum dolor sit elit con sectur sed eiusmod tempor labore aliqua.</p>
+                        <p>We provide user-friendly insights and educational support tailored to your eye health conditions.</p>
                 </div>
             </div>
         </div>
@@ -102,60 +103,58 @@
         <!-- feature-style-two end -->
 
 
-        <!-- about-style-two -->
-        <section class="about-style-two p_relative">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                        <div class="content_block_four">
-                            <div class="content-box mt_15">
-                                <div class="sec-title mb_25">
-                                    <span class="sub-title">Who We Are?</span>
-                                    <h2>The Great Place Of Eyecare Hospital Center</h2>
-                                </div>
-                                <div class="text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat.</p>
-                                </div>
-                               <div class="inner-box p_relative mb_40">
-    <div class="single-item">
-        <div class="icon-box"><i class="fas fa-eye"></i></div> <!-- Eye icon -->
-        <h3>Our Patients <br />Vision</h3>
-    </div>
-    <div class="single-item">
-        <div class="icon-box"><i class="fas fa-user-md"></i></div> <!-- Doctor icon -->
-        <h3>Trusted Eye <br />Doctor</h3>
-    </div>
-</div>
-
-                                <div class="btn-box">
-                                    <a href="team.html" class="theme-btn btn-one">View All Team</a>
-                                </div>
+    <section class="about-style-two p_relative">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div class="content_block_four">
+                    <div class="content-box mt_15">
+                        <div class="sec-title mb_25">
+                            <span class="sub-title">Who We Are?</span>
+                            <h2>The Trusted Platform for AI-Powered Eye Diagnosis</h2>
+                        </div>
+                        <div class="text">
+                            <p>OptCare is a smart web-based solution dedicated to early detection and education in eye care. By combining Optical Coherence Tomography (OCT) scan analysis with the power of AI, we aim to assist healthcare professionals and empower patients with timely, accurate, and accessible vision insights.</p>
+                        </div>
+                        <div class="inner-box p_relative mb_40">
+                            <div class="single-item">
+                                <div class="icon-box"><i class="fas fa-eye"></i></div>
+                                <h3>Enhancing Patient <br />Vision Outcomes</h3>
+                            </div>
+                            <div class="single-item">
+                                <div class="icon-box"><i class="fas fa-user-md"></i></div>
+                                <h3>AI Support for <br />Eye Specialists</h3>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                        <div class="image_block_three">
-                            <div class="image-box ml_13 pr_20 pl_60">
-                                <div class="shape">
-                             <div class="shape-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-16.png') }}');"></div>
-<div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-16.png') }}');"></div>
 
-                                </div>
-                               <figure class="image">
-    <img src="{{ asset('PublicArea/images/resource/about-1.png') }}" alt="">
-</figure>
-
-                                <div class="text p_absolute l_0 b_40">
-                                    <h2>30</h2>
-                                    <h4>Years of Experience in This Field</h4>
-                                </div>
-                            </div>
+                        <div class="btn-box">
+                            <a href="team.html" class="theme-btn btn-one">View All Team</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- about-style-two end -->
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                <div class="image_block_three">
+                    <div class="image-box ml_13 pr_20 pl_60">
+                        <div class="shape">
+                            <div class="shape-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-16.png') }}');"></div>
+                            <div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-16.png') }}');"></div>
+                        </div>
+                        <figure class="image">
+                            <img src="{{ asset('PublicArea/images/resource/about-1.png') }}" alt="">
+                        </figure>
+
+                        <div class="text p_absolute l_0 b_40">
+                            <h2>07</h2>
+                            <h4>Years of Combined Expertise in Vision & AI</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
         <!-- service-style-two -->
@@ -200,54 +199,51 @@
         <!-- service-style-two end -->
 
 
-        <!-- chooseus-style-two -->
-        <section class="chooseus-style-two p_relative">
-           <div class="shape p_absolute t_0 r_0" style="background-image: url('{{ asset('PublicArea/images/shape/shape-20.png') }}');"></div>
-<div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-21.png') }}');"></div>
-<div class="video-column" style="background-image: url('{{ asset('PublicArea/images/project/project-21.jpg') }}');">
-
-                <div class="video-inner">
-                    <div class="video-btn">
-                        <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
-                    </div>
-                </div>
+     <!-- chooseus-style-two -->
+<section class="chooseus-style-two p_relative">
+    <div class="shape p_absolute t_0 r_0" style="background-image: url('{{ asset('PublicArea/images/shape/shape-20.png') }}');"></div>
+    <div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-21.png') }}');"></div>
+    <div class="video-column" style="background-image: url('{{ asset('PublicArea/images/project/project-21.jpg') }}');">
+        <div class="video-inner">
+            <div class="video-btn">
+                <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
             </div>
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-12 col-sm-12 offset-lg-6">
-                        <div class="content_block_five">
-                            <div class="content-box ml_70">
-                                <div class="sec-title light mb_35">
-                                    <span class="sub-title">Why Choose</span>
-                                    <h2 class="mb_25">Great Reasons For People Choose Optcare</h2>
-                                    <p class="pt_2">Lorem ipsum dolor sit amet consectur adipicing elit sed do esmod tempor incididunt labore aliqua.</p>
+        </div>
+    </div>
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 offset-lg-6">
+                <div class="content_block_five">
+                    <div class="content-box ml_70">
+                        <div class="sec-title light mb_35">
+                            <span class="sub-title">Why Choose</span>
+                            <h2 class="mb_25">Great Reasons For People Choose OptCare</h2>
+                            <p class="pt_2">OptCare blends advanced AI technology with easy access to online doctor appointments and practical eye care education to ensure everyone receives quality vision support.</p>
+                        </div>
+                        <div class="inner-box">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item p_relative d_block">
+                                        <h4><a href="index-2.html">AI-Powered OCT Analysis</a></h4>
+                                        <p>Get fast, accurate retinal disease detection using advanced deep learning models.</p>
+                                    </div>
                                 </div>
-                                <div class="inner-box">
-                                    <div class="row clearfix">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item p_relative d_block">
-                                                <h4><a href="index-2.html">Quality Staff</a></h4>
-                                                <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item p_relative d_block">
-                                                <h4><a href="index-2.html">Quality Assistance</a></h4>
-                                                <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item p_relative d_block">
-                                                <h4><a href="index-2.html">Affordable Price</a></h4>
-                                                <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item p_relative d_block">
-                                                <h4><a href="index-2.html">Optimized Solutions</a></h4>
-                                                <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item p_relative d_block">
+                                        <h4><a href="index-2.html">Online Doctor Appointments</a></h4>
+                                        <p>Book appointments with eye specialists anytime, anywhere via our digital platform.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item p_relative d_block">
+                                        <h4><a href="index-2.html">Vision Health Education</a></h4>
+                                        <p>Learn about eye conditions, prevention tips, and how to manage your eye health better.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item p_relative d_block">
+                                        <h4><a href="index-2.html">Affordable & Accessible</a></h4>
+                                        <p>Designed to make quality eye care affordable and available for all communities.</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,8 +251,10 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- chooseus-style-two end -->
+        </div>
+    </div>
+</section>
+<!-- chooseus-style-two end -->
 
 
         <!-- funfact-style-two -->
