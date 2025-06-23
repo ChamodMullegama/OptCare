@@ -38,45 +38,55 @@
         </div>
 
 <div class="row clearfix">
+    @forelse($treatments as $treatment)
+        <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+            <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div class="inner-box">
+                    @if($treatment->image_path)
+                        <figure class="image-box">
+                            <img src="{{ asset('storage/' . $treatment->image_path) }}"
+                                 alt="{{ $treatment->name }}"
+                                 style="width: 410px; height: 300px; object-fit: cover; display: block;">
+                            <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </figure>
+                    @endif
+                    <div class="lower-content">
+                        <div class="inner">
+                            <h3>
+                                <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">
+                                    {{ $treatment->name }}
+                                </a>
+                            </h3>
+                            <ul class="post-info clearfix">
 
-            @forelse($treatments as $treatment)
-                <div class="col-lg-4 col-md-6 col-sm-12 service-block">
-                    <div class="service-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box" style="background-color: #f0f0f0;">
-                            @if($treatment->image_path)
-                                <figure class="image-box">
-                                    <img src="{{ asset('storage/' . $treatment->image_path) }}"
-                                         alt="{{ $treatment->name }}"
-                                         style="width: 360px; height: 220px; object-fit: cover; display: block;">
-                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}"><i class="fas fa-link"></i></a>
-                                </figure>
-                            @endif
-
-                            <div class="lower-content">
-                                <h3>
-                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">{{ $treatment->name }}</a>
-                                </h3>
-
-                                <p class="p_relative d_block">{{ Str::limit(strip_tags($treatment->description), 100) }}</p>
-
-                                <div class="link p_relative d_block">
-                                    <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">Read More</a>
-                                </div>
+                            </ul>
+                            <p>{{ Str::limit(strip_tags($treatment->description), 100) }}</p>
+                            <div class="link">
+                                <a href="{{ route('public.non-surgical-treatments.show', $treatment->id) }}">
+                                    Read More
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            @empty
-                <div class="col-12 text-center py-5">
-                    <h4>No treatments found</h4>
-                    <a href="{{ route('public.non-surgical-treatments.all') }}" class="theme-btn btn-one"
-                       style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
-                       onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
-                       onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">View All Treatments</a>
-                </div>
-            @endforelse
+            </div>
         </div>
-    </div>
+    @empty
+        <div class="col-12 text-center py-5">
+            <h4>No treatments found</h4>
+            <a href="{{ route('public.non-surgical-treatments.all') }}" class="theme-btn btn-one"
+               style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
+               onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
+               onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">
+               View All Treatments
+            </a>
+        </div>
+    @endforelse
+</div>
+
+
 </section>
 <!-- service-style-two end -->
 

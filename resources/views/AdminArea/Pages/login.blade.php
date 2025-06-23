@@ -11,7 +11,7 @@
     <meta property="og:title" content="OptCare Admin Dashboard">
     <meta property="og:description" content="OptCare Admin Dashboard">
     <meta property="og:type" content="Website">
-    <link rel="shortcut icon" href="{{ asset('AdminArea/images/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('PublicArea/images/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- *************
         ************ CSS Files *************
@@ -30,28 +30,26 @@
                 @csrf
                 <div class="auth-box">
                     <a href="{{ route('admin.login') }}" class="auth-logo mb-4">
-                        <img src="{{ asset('AdminArea/images/logo-dark.svg') }}" alt="OptCare">
+                      <img src="{{ asset('PublicArea/images/logo.png') }}" alt="OptCare" style="margin-left: 40px;">
+
                     </a>
-
-                    <h4 class="mb-4">Admin Login</h4>
-
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0 list-unstyled">  <!-- Added list-unstyled class -->
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
                     <div class="mb-3">
-                        <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
+                        <label class="form-label" for="email">Admin email <span class="text-danger">*</span></label>
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email" value="{{ old('email') }}" required>
                     </div>
 
                     <div class="mb-2">
-                        <label class="form-label" for="password">Your password <span class="text-danger">*</span></label>
+                        <label class="form-label" for="password">Admin password <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" required>
                             <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">

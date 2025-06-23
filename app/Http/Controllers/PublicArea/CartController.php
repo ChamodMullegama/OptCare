@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -269,7 +270,7 @@ public function addToCart(Request $request)
         $sessionId = Session::getId();
 
         if (!$customerId) {
-            return redirect()->route('login')->with('error', 'Please log in to proceed with checkout.');
+                return redirect()->route('login')->withErrors(['error' => 'Please log in to proceed with checkout.']);
         }
 
         $cartItems = CartItem::where('customer_id', $customerId)->with('product')->get();
@@ -476,8 +477,14 @@ public function addToCart(Request $request)
             return redirect()->route('home')->with('error', 'Invalid payment session.');
         }
 
+        $stripeSecret = env('STRIPE_SECRET');
+    if (!$stripeSecret) {
+        Log::error('Stripe secret key is not set in the .env file.');
+        return redirect()->back()->with('error', 'Stripe configuration error. Please contact support.');
+    }
+
         // Set Stripe API key
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
             // Retrieve the session

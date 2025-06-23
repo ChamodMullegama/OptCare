@@ -27,9 +27,9 @@
             <div class="top-inner">
                 <div class="left-column">
                     <ul class="info clearfix">
-                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:sample@example.com">sample@example.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> 380 Albert St, Melborne</li>
-                        <li><i class="fas fa-phone-alt"></i> Call: <a href="tel:123045615523">+1 (230)-456-155-23</a></li>
+                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:sample@example.com">optcare@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>No. 120, Galle Road, Colombo 03, Sri Lanka</li>
+                        <li><i class="fas fa-phone-alt"></i> Call: <a href="tel:123045615523">(+94) 702 74 0542</a></li>
                     </ul>
                 </div>
                 <div class="right-column">
@@ -83,15 +83,15 @@
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
-                                <li class="dropdown"><a href="index.html">Specialties & Services</a>
+                                <li class="dropdown"><a href="#">Specialties & Services</a>
                                     <ul>
-                                        <li class="dropdown"><a href="index.html">Treatments</a>
+                                        <li class="dropdown"><a href="#">Treatments</a>
                                             <ul>
                                                 <li><a href="{{ route('public.surgical-treatments.all') }}">Surgical Treatment</a></li>
                                                 <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="index.html">Hospital And Vision Centers</a>
+                                        <li class="dropdown"><a href="#">Hospital And Vision Centers</a>
                                             <ul>
                                                 <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
                                                 <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
@@ -100,7 +100,7 @@
                                         <li><a href="{{ route('public.products.index') }}">Shop</a></li>
                                         <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
                                         <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
-                                        <li><a href="error.html">404</a></li>
+
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('PublicAreDoctors.all') }}">Doctors</a></li>

@@ -1,3 +1,4 @@
           <div class="app-footer bg-white">
-            <span>© Medflex admin 2024</span>
+            <p><a href="">Optcare</a> &copy; {{ date('Y') }} All Rights Reserved.</p>
+
           </div>

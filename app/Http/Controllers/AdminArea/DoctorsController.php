@@ -133,11 +133,40 @@ class DoctorsController extends Controller
         }
     }
 
-    public function Profile($id)
+    // public function Profile($id)
+    // {
+    //     try {
+    //         $doctor = DoctorFacade::getProfile($id);
+    //         return view('AdminArea.Pages.Doctors.doctorProfile', compact('doctor'));
+    //     } catch (\Exception $e) {
+    //         return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    //     }
+    // }
+
+   public function Profile($id)
     {
         try {
-            $doctor = DoctorFacade::getProfile($id);
-            return view('AdminArea.Pages.Doctors.doctorProfile', compact('doctor'));
+            $data = DoctorFacade::getProfile($id);
+            // Extract variables from $data
+            $doctor = $data['doctor'];
+            $totalAppointments = $data['totalAppointments'];
+            $completedAppointments = $data['completedAppointments'];
+            $dueAppointments = $data['dueAppointments'];
+            $totalReviews = $data['totalReviews'];
+            $todayAppointments = $data['todayAppointments'];
+            $dueAppointmentsList = $data['dueAppointmentsList'];
+            $latestReviews = $data['latestReviews'];
+
+            return view('AdminArea.Pages.Doctors.doctorProfile', compact(
+                'doctor',
+                'totalAppointments',
+                'completedAppointments',
+                'dueAppointments',
+                'totalReviews',
+                'todayAppointments',
+                'dueAppointmentsList',
+                'latestReviews'
+            ));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }

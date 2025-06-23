@@ -159,38 +159,44 @@
 
 
         <!-- service-style-two -->
-        <section class="service-style-two p_relative">
-            <div class="pattern-layer">
-  <div class="pattern-1 p_absolute l_20 b_20" style="background-image: url('{{ asset('PublicArea/images/shape/shape-18.png') }}');"></div>
-<div class="pattern-2 p_absolute t_20 r_20" style="background-image: url('{{ asset('PublicArea/images/shape/shape-19.png') }}');"></div>
+      <section class="service-style-two p_relative">
+    <div class="pattern-layer">
+        <div class="pattern-1 p_absolute l_20 b_20" style="background-image: url('{{ asset('PublicArea/images/shape/shape-18.png') }}');"></div>
+        <div class="pattern-2 p_absolute t_20 r_20" style="background-image: url('{{ asset('PublicArea/images/shape/shape-19.png') }}');"></div>
+    </div>
+    <div class="auto-container">
+        <div class="sec-title centred mb_50">
+            <span class="sub-title">Our Services</span>
+            <h2>A Global Leader, Treatment <br />of Eye Disease</h2>
+        </div>
+        <div class="row clearfix">
+            @foreach($services as $service)
+                <div class="col-lg-4 col-md-6 col-sm-12 service-block">
+                    <div class="service-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <figure class="image-box">
+                                @if($service->images->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $service->images->first()->image) }}" alt="{{ $service->title }}">
+                                @else
+                                    <img src="{{ asset('PublicArea/images/service/service-2.jpg') }}" alt="{{ $service->title }}">
+                                @endif
+                                <a href="{{ url('services/' . Str::slug($service->title)) }}"><i class="fas fa-link"></i></a>
+                            </figure>
+                            <div class="lower-content">
+                                <div class="icon-box"><i class="fas fa-eye"></i></div>
+                                <h3><a href="{{ url('services/' . Str::slug($service->title)) }}">{{ $service->title }}</a></h3>
+                                <p class="p_relative d_block">{{ Str::limit(strip_tags($service->description), 100) }}</p>
 
-            </div>
-            <div class="auto-container">
-                <div class="sec-title centred mb_50">
-                    <span class="sub-title">Our Services</span>
-                    <h2>A Global Leader, Treatment <br />of eye Disease</h2>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 service-block">
-                        <div class="service-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                              <img src="{{ asset('PublicArea/images/service/service-2.jpg') }}" alt="">
-                                    <a href="surgical-procedures.html"><i class="fas fa-link"></i></a>
-                                </figure>
-                                <div class="lower-content">
-                                    <div class="icon-box"><i class="icon-17"></i></div>
-                                    <h3><a href="surgical-procedures.html">Surgical Procedures</a></h3>
-                                    <p class="p_relative d_block">Lorem ipsum dolor amet consectur tempor adicing elit sed do usmod tempor incidunt enim minim veniam.</p>
-                                    <div class="link p_relative d_block"><a href="surgical-procedures.html">Read More</a></div>
-                                </div>
+
+                                <div class="link p_relative d_block"><a href="{{ url('services/' . Str::slug($service->title)) }}">Read More</a></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
+            @endforeach
+        </div>
+    </div>
+</section>
         <!-- service-style-two end -->
 
 
@@ -318,7 +324,8 @@
                 <div class="row clearfix">
             @forelse($doctorS as $doctor)
             <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+<div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="margin-bottom: 20px;">
+
                     <div class="inner-box p_relative d_block pr_55">
                         <figure class="image-box p_relative d_block">
                             @if($doctor->profile_image)
@@ -381,7 +388,7 @@
 
         <!-- testimonial-style-two -->
         <section class="testimonial-style-two pt_100">
-    <div class="bg-layer" style="background-image: url('{{ asset('PublicArea/images/background/testimonial-bg.jpg') }}');"></div>
+    <div class="bg-layer" style="background-image: url('{{ asset('PublicArea/images/banner/banner-2.jpg') }}');"></div>
     <div class="pattern-layer">
         <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-22.png') }}');"></div>
         <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-23.png') }}');"></div>
@@ -673,11 +680,14 @@
                             <div class="text">
                                 <p>All of our services are backed by our 100% satisfaction guarantee Our electricians can install anything.</p>
                             </div>
-                            <div class="support-box">
-                                <div class="icon-box"><i class="icon-32"></i></div>
-                                <h4>For Emergency</h4>
-                                <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
-                            </div>
+                      <div class="support-box">
+    <div class="icon-box">
+        <i class="fas fa-phone-alt"></i> <!-- Font Awesome phone icon -->
+    </div>
+    <h4>For Emergency</h4>
+    <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
+</div>
+
                         </div>
                     </div>
                 </div>

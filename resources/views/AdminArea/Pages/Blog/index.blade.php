@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Blog Management
@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Title</th>
                                     <th>Date</th>
                                     <th>Content</th>
@@ -45,7 +44,6 @@
                                 @foreach ($blogs as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->blogId }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->date }}</td>
                                     <td>{!! Str::limit($item->content, 50) !!}</td>

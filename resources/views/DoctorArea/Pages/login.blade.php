@@ -11,7 +11,7 @@
     <meta property="og:title" content="OptCare Admin Dashboard">
     <meta property="og:description" content="OptCare Admin Dashboard">
     <meta property="og:type" content="Website">
-    <link rel="shortcut icon" href="{{ asset('AdminArea/images/favicon.svg') }}">
+  <link rel="shortcut icon" href="{{ asset('PublicArea/images/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- *************
           ************ CSS Files *************
@@ -30,10 +30,10 @@
                 @csrf
                 <div class="auth-box">
                     <a href="{{ route('doctor.login') }}" class="auth-logo mb-4">
-                        <img src="{{ asset('AdminArea/images/logo-dark.svg') }}" alt="OptCare">
+                     <img src="{{ asset('PublicArea/images/logo.png') }}" alt="OptCare" style="margin-left: 40px;">
                     </a>
 
-                    <h4 class="mb-4">Doctor Login</h4>
+
 
                     @if ($errors->any())
     <div class="alert alert-danger">
@@ -46,14 +46,14 @@
 @endif
 
                     <div class="mb-3">
-                        <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
+                        <label class="form-label" for="email">Doctor email <span class="text-danger">*</span></label>
                         <input type="email" id="email" name="email"
                             class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email"
                             value="{{ old('email') }}" required>
                     </div>
 
                     <div class="mb-2">
-                        <label class="form-label" for="password">Your password <span
+                        <label class="form-label" for="password">Doctor password <span
                                 class="text-danger">*</span></label>
                         <div class="input-group">
                             <input type="password" id="password" name="password"

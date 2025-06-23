@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Eye Scans Management
@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Purpose</th>
@@ -44,7 +43,6 @@
                                 @foreach ($eyeScans as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->eyeScanId }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{!! Str::limit($item->description, 50) !!}</td>
                                     <td>{{ $item->purpose }}</td>
