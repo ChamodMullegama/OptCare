@@ -270,7 +270,7 @@ public function addToCart(Request $request)
         $sessionId = Session::getId();
 
         if (!$customerId) {
-            return redirect()->route('login')->with('error', 'Please log in to proceed with checkout.');
+                return redirect()->route('login')->withErrors(['error' => 'Please log in to proceed with checkout.']);
         }
 
         $cartItems = CartItem::where('customer_id', $customerId)->with('product')->get();
