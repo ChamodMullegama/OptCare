@@ -20,95 +20,150 @@
     <section class="team-page-section p_relative">
         <div class="auto-container">
             <!-- Search Box -->
-            <div class="row mb-4">
-                <div class="col-md-12 mx-auto">
-                    @if (session('success'))
-                        <div class="alert alert-success text-center">
-                            {{ session('success') }}
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="search-box-wrapper p-4" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); border-radius: 15px; box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3);">
+                        <div class="text-center mb-4">
+                            <h3 style="color: white; margin-bottom: 10px;">
+                                <i class="fas fa-search"></i> Find Your Doctor
+                            </h3>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">Search for available doctors by name, date and time</p>
                         </div>
-                    @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action="{{ route('PublicAreaAppointment.appointmentsearch') }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="text" name="doctor_name" class="form-control"
-                                           placeholder="Doctor name" value="{{ old('doctor_name') }}">
-                                </div>
+
+                        @if (session('success'))
+                            <div class="alert alert-success text-center mb-3">
+                                {{ session('success') }}
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="date" name="date" class="form-control"
-                                           min="{{ date('Y-m-d') }}" value="{{ old('date') }}" required>
-                                </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger mb-3">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <select name="time" class="form-control" required>
-                                        <option value="">Select time</option>
-                                        @for($hour = 8; $hour <= 18; $hour++)
-                                            <option value="{{ sprintf('%02d:00', $hour) }}" {{ old('time') == sprintf('%02d:00', $hour) ? 'selected' : '' }}>
-                                                {{ sprintf('%02d:00', $hour) }}
-                                            </option>
-                                            @if($hour < 18)
-                                                <option value="{{ sprintf('%02d:30', $hour) }}" {{ old('time') == sprintf('%02d:30', $hour) ? 'selected' : '' }}>
-                                                    {{ sprintf('%02d:30', $hour) }}
+                        @endif
+
+                        <form action="{{ route('PublicAreaAppointment.appointmentsearch') }}" method="POST">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-white mb-2">
+                                            <i class="fas fa-user-md"></i> Doctor Name
+                                        </label>
+                                        <input type="text" name="doctor_name" class="form-control form-control-lg"
+                                               placeholder="Enter doctor name"
+                                               style="border-radius: 10px; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"
+                                               value="{{ old('doctor_name', isset($searchParams) ? $searchParams['doctor_name'] : '') }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-white mb-2">
+                                            <i class="fas fa-calendar-alt"></i> Appointment Date
+                                        </label>
+                                        <input type="date" name="date" class="form-control form-control-lg"
+                                               min="{{ date('Y-m-d') }}"
+                                               style="border-radius: 10px; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"
+                                               value="{{ old('date', isset($searchParams) ? $searchParams['date'] : '') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-white mb-2">
+                                            <i class="fas fa-clock"></i> Preferred Time
+                                        </label>
+                                        <select name="time" class="form-control form-control-lg"
+                                                style="border-radius: 10px; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" required>
+                                            <option value="">Select time</option>
+                                            @for($hour = 8; $hour <= 18; $hour++)
+                                                @php
+                                                    $timeValue = sprintf('%02d:00', $hour);
+                                                    $selectedTime = old('time', isset($searchParams) ? $searchParams['time'] : '');
+                                                    $displayTime = date('g:i A', strtotime($timeValue));
+                                                @endphp
+                                                <option value="{{ $timeValue }}" {{ $selectedTime == $timeValue ? 'selected' : '' }}>
+                                                    {{ $displayTime }}
                                                 </option>
-                                            @endif
-                                        @endfor
-                                    </select>
+                                                @if($hour < 18)
+                                                    @php
+                                                        $timeValueHalf = sprintf('%02d:30', $hour);
+                                                        $displayTimeHalf = date('g:i A', strtotime($timeValueHalf));
+                                                    @endphp
+                                                    <option value="{{ $timeValueHalf }}" {{ $selectedTime == $timeValueHalf ? 'selected' : '' }}>
+                                                        {{ $displayTimeHalf }}
+                                                    </option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-white mb-2" style="opacity: 0;">Actions</label>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-light btn-lg flex-fill"
+                                                    style="border-radius: 10px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                                                <i class="fas fa-search"></i> Search
+                                            </button>
+                                        <a href="{{ route('PublicAreaAppointment.appointment') }}"
+                                            class="btn btn-outline-light btn-lg"
+                                            style="border-radius: 10px; font-weight: 600; border: 2px solid white; margin-left: 7px;">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <button type="submit" class="theme-btn btn-one w-100">
-                                    <i class="fas fa-search"></i> Search
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        <!-- consultancy-section -->
-        <section class="consultancy-section">
-            <div class="auto-container">
-                <div class="inner-container">
-                    <h2>Quick Online Consultancy Only <br />on Few Minutes</h2>
-                    <form action="contact.html" method="post">
-                        <div class="row clearfix">
-                            <div class="col-lg-4 col-md-6 col-sm-12 column">
-                                <div class="form-group">
-                                    <input type="text" name="name" placeholder="Your name" required="">
+
+            <!-- Search Results Info -->
+            @if(isset($searchParams) && ($searchParams['doctor_name'] || $searchParams['date'] || $searchParams['time']))
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="search-results-info p-4" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; border-left: 4px solid #1abc9c; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="result-icon me-3">
+                                    <i class="fas fa-search" style="color: #1abc9c; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h5 style="color: #2c3e50; margin-bottom: 5px;">Search Results</h5>
+                                    <span class="badge" style="background-color: #1abc9c; font-size: 12px;">{{ count($doctors) }} {{ count($doctors) == 1 ? 'doctor' : 'doctors' }} found</span>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 column">
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" required="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 column">
-                                <div class="form-group">
-                                    <div class="icon"><i class="fas fa-angle-down"></i></div>
-                                    <input type="text" name="date" placeholder="Appointment date" id="datepicker">
+
+                            <div class="search-criteria">
+                                <p class="mb-2" style="color: #6c757d; font-size: 14px;">
+                                    <strong>Search filters applied:</strong>
+                                </p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    @if($searchParams['doctor_name'])
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-user-md me-1"></i>{{ $searchParams['doctor_name'] }}
+                                        </span>
+                                    @endif
+                                    @if($searchParams['date'])
+                                        <span class="badge bg-info">
+                                            <i class="fas fa-calendar me-1"></i>{{ \Carbon\Carbon::parse($searchParams['date'])->format('M d, Y') }}
+                                        </span>
+                                    @endif
+                                    @if($searchParams['time'])
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-clock me-1"></i>{{ \Carbon\Carbon::parse($searchParams['time'])->format('g:i A') }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="message-btn">
-                            <button type="submit" class="theme-btn btn-one">Contact Now</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <!-- consultancy-section end -->
+            @endif
 
             <div class="row clearfix">
                 @forelse($doctors as $doctor)

@@ -317,10 +317,11 @@
             <div class="auto-container">
                 <div class="sec-title centred mb_60">
                     <span class="sub-title">Ophthalmologist</span>
-                    <h2>The Most Qualified Skillful & <br />Professional staff</h2>
+                    <h2>The Most Qualified Skillful & <br />Professional Doctors</h2>
                 </div>
                 <div class="row clearfix">
-            @forelse($doctorS as $doctor)
+       @forelse($doctorS->take(6) as $doctor)
+
             <div class="col-lg-4 col-md-6 col-sm-12 team-block">
 <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="margin-bottom: 20px;">
 

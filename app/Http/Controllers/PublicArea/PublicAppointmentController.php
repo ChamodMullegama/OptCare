@@ -12,7 +12,8 @@ use Illuminate\Support\Str;
 
 class PublicAppointmentController extends Controller
 {
-      public function Appointment()
+
+    public function Appointment()
     {
         try {
             $doctors = DoctorFacade::all();
@@ -42,6 +43,7 @@ public function appointmentsearch(Request $request)
 {
     try {
         $query = Doctor::query();
+        $searchParams = [];
 
         if ($request->isMethod('post')) {
             $request->validate([
@@ -50,65 +52,77 @@ public function appointmentsearch(Request $request)
                 'time' => 'required|date_format:H:i',
             ]);
 
-            // Filter by doctor name
+            $searchDate = $request->input('date');
+            $searchTime = $request->input('time');
+            $doctorName = $request->input('doctor_name');
+
+            // Filter by doctor name if provided
             if ($request->filled('doctor_name')) {
-                $name = $request->input('doctor_name');
-                $query->where(function ($q) use ($name) {
-                    $q->where('first_name', 'like', "%{$name}%")
-                      ->orWhere('last_name', 'like', "%{$name}%");
+                $query->where(function ($q) use ($doctorName) {
+                    $q->where('first_name', 'like', "%{$doctorName}%")
+                      ->orWhere('last_name', 'like', "%{$doctorName}%")
+                      ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$doctorName}%"]);
                 });
             }
 
-            // Get day name (e.g. "Monday")
-            $date = Carbon::parse($request->input('date'));
-            $day = $date->format('l');
-            $time = $request->input('time');
+            // Check availability by excluding doctors who already have appointments
+            // at the specified date and time
+            $conflictingDoctorIds = Appointment::where('date', $searchDate)
+                ->where('time', $searchTime)
+                ->whereIn('status', ['pending', 'accepted', 'completed']) // Exclude canceled appointments
+                ->pluck('doctorId')
+                ->toArray();
 
-            // MySQL JSON search - correct syntax
-            $query->where(function($q) use ($day, $time) {
-                $q->whereJsonContains("availability->$.{$day}", $time);
-            });
+            if (!empty($conflictingDoctorIds)) {
+                $query->whereNotIn('doctorId', $conflictingDoctorIds);
+            }
 
-            // Exclude doctors with existing appointments at this time
-            $conflictingDoctors = Appointment::where('date', $date->format('Y-m-d'))
-                ->where('time', $time)
-                ->pluck('doctorId');
+                                    // Check doctor's availability schedule
+            if (!empty($searchDate) && !empty($searchTime)) {
+                $dayOfWeek = strtolower(Carbon::parse($searchDate)->format('l')); // Get day name (monday, tuesday, etc.)
 
-            $query->whereNotIn('doctorId', $conflictingDoctors);
+                // Get all doctors and filter them manually for availability
+                $availableDoctorIds = collect();
+
+                // First get all doctors to check their availability
+                $allDoctors = Doctor::select('id', 'doctorId', 'availability')->get();
+
+                foreach ($allDoctors as $doctor) {
+                    if ($this->isDoctorAvailableAt($doctor, $dayOfWeek, $searchTime)) {
+                        $availableDoctorIds->push($doctor->doctorId);
+                    }
+                }
+
+                // Filter the query to only include available doctors
+                if ($availableDoctorIds->isNotEmpty()) {
+                    $query->whereIn('doctorId', $availableDoctorIds->toArray());
+                } else {
+                    // No doctors available at this time, return empty results
+                    $query->where('id', '=', 0); // This will return no results
+                }
+            }
         }
 
         $doctors = $query->get();
 
-        return view('PublicArea.Pages.Appointment.index', compact('doctors'));
+        // Pass search parameters back to view for maintaining form state
+        if ($request->isMethod('post')) {
+            $searchParams = [
+                'doctor_name' => $request->input('doctor_name'),
+                'date' => $request->input('date'),
+                'time' => $request->input('time')
+            ];
+        }
+
+        return view('PublicArea.Pages.Appointment.index', compact('doctors', 'searchParams'));
     } catch (\Exception $e) {
-        return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()])->withInput();
     }
 }
 
     public function BookAppointment(Request $request)
     {
-        // try {
-        //     // Get user ID from session
-        //     $userId = session('customer_id');
-
-        //     // Save appointment
-        //     Appointment::create([
-        //         'appointmentId' => 'AP' . Str::random(6),
-        //         'doctorId' => $request->input('doctorId'),
-        //         'user_id' => $userId,
-        //         'name' => $request->input('name'),
-        //         'email' => $request->input('email'),
-        //         'phone' => $request->input('phone'),
-        //         'date' => $request->input('date'),
-        //         'time' => $request->input('time'),
-        //         'message' => $request->input('message'),
-        //     ]);
-
-        //     return redirect()->back()->with('success', 'Appointment booked successfully!');
-        // } catch (\Exception $e) {
-        //     return back()->withErrors(['error' => 'Failed to book appointment: ' . $e->getMessage()]);
-        // }
-
+        
 
         try {
         // Check if user is logged in by verifying customer_id in session
@@ -146,5 +160,56 @@ public function appointmentsearch(Request $request)
     } catch (\Exception $e) {
         return back()->withErrors(['error' => 'Failed to book appointment: ' . $e->getMessage()]);
     }
+    }
+
+    /**
+     * Check if a doctor is available at a specific day and time
+     */
+    private function isDoctorAvailableAt($doctor, $dayOfWeek, $searchTime)
+    {
+        // If availability is null, assume doctor is available all times
+        if (is_null($doctor->availability)) {
+            return true;
+        }
+
+        // Decode the availability JSON
+        $availability = json_decode($doctor->availability, true);
+
+        // Check if the day exists in availability
+        if (!isset($availability[$dayOfWeek])) {
+            return false;
+        }
+
+        $daySchedule = $availability[$dayOfWeek];
+
+        // Check each time range for this day
+        foreach ($daySchedule as $timeRange) {
+            if ($this->isTimeInRange($searchTime, $timeRange)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if a time falls within a time range
+     */
+    private function isTimeInRange($time, $timeRange)
+    {
+        // Handle different time range formats
+        if (strpos($timeRange, '-') !== false) {
+            // Range format like "09:00-17:00"
+            list($startTime, $endTime) = explode('-', $timeRange);
+
+            $searchTimeCarbon = Carbon::createFromFormat('H:i', $time);
+            $startTimeCarbon = Carbon::createFromFormat('H:i', trim($startTime));
+            $endTimeCarbon = Carbon::createFromFormat('H:i', trim($endTime));
+
+            return $searchTimeCarbon->between($startTimeCarbon, $endTimeCarbon);
+        } else {
+            // Exact time format like "09:00"
+            return trim($timeRange) === $time;
+        }
     }
 }
