@@ -52,10 +52,6 @@
                             </a>
                         @endif
                     </div>
-                    <ul class="social-links clearfix">
-                        <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
