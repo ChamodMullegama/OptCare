@@ -1,8 +1,8 @@
 @extends('PublicArea.Layout.main')
 @section('Publiccontainer')
 
-<!-- banner-section -->
-<section class="banner-style-two centred p_relative">
+ <!-- banner-section -->
+ <section class="banner-style-two centred p_relative">
     <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
         <div class="slide-item p_relative">
             <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-1.jpg') }}')"></div>
@@ -46,6 +46,53 @@
         </div>
     </div>
 </section>
+
+        <!-- banner-section -->
+        {{-- <section class="banner-style-two centred p_relative">
+            <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
+                <div class="slide-item p_relative">
+                    <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-1.jpg') }}')"></div>
+                    <div class="pattern-layer">
+                        <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-3.png') }}');"></div>
+                        <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-12.png') }}');"></div>
+                        <div class="pattern-3" style="background-image: url('{{ asset('PublicArea/images/shape/shape-13.png') }}');"></div>
+                        <div class="eye-icon rotate-me" style="background-image: url('{{ asset('PublicArea/images/icons/icon-1.png') }}');"></div>
+                    </div>
+                    <div class="auto-container">
+                        <div class="content-box">
+                            <span class="big-title animation_text_word"></span>
+                            <h3>Eye Care & Holistic Health Center</h3>
+                            <h2>Eye Care & Holistic Health Center</h2>
+                            <p>We solve all your eye care needs by providing personalized and holistic eye care for you and your family!</p>
+                            <div class="btn-box">
+                                <a href="contact.html" class="theme-btn btn-one">Contact Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-item p_relative">
+                    <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-2.jpg') }}')"></div>
+                    <div class="pattern-layer">
+                        <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-3.png') }}');"></div>
+                        <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-12.png') }}');"></div>
+                        <div class="pattern-3" style="background-image: url('{{ asset('PublicArea/images/shape/shape-13.png') }}');"></div>
+                        <div class="eye-icon rotate-me" style="background-image: url('{{ asset('PublicArea/images/icons/icon-1.png') }}');"></div>
+                    </div>
+                    <div class="auto-container">
+                        <div class="content-box">
+                            <span class="big-title animation_text_word"></span>
+                            <h3>Eye Care & Holistic Health Center</h3>
+                            <h2>Eye Care & Holistic Health Center</h2>
+                            <p>We solve all your eye care needs by providing personalized and holistic eye care for you and your family!</p>
+                            <div class="btn-box">
+                                <a href="contact.html" class="theme-btn btn-one">Contact Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> --}}
+        <!-- banner-section end -->
 
         <!-- banner-section end -->
 
@@ -217,33 +264,33 @@
                     <div class="content-box ml_70">
                         <div class="sec-title light mb_35">
                             <span class="sub-title">Why Choose</span>
-                            <h2 class="mb_25">Great Reasons For People Choose OptCare</h2>
-                            <p class="pt_2">OptCare blends advanced AI technology with easy access to online doctor appointments and practical eye care education to ensure everyone receives quality vision support.</p>
+                            <h2 class="mb_25">Why Patients Prefer OptCare Services</h2>
+                            <p class="pt_2">OptCare combines AI-driven OCT scan analysis and free online doctor appointments, making quality eye care accessible to everyone — at no cost.</p>
                         </div>
                         <div class="inner-box">
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">AI-Powered OCT Analysis</a></h4>
-                                        <p>Get fast, accurate retinal disease detection using advanced deep learning models.</p>
+                                        <h4><a href="#">Free OCT Scan Analysis</a></h4>
+                                        <p>Upload your eye scan and receive instant AI-powered diagnostic results — 100% free.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Online Doctor Appointments</a></h4>
-                                        <p>Book appointments with eye specialists anytime, anywhere via our digital platform.</p>
+                                        <h4><a href="#">Free Online Appointments</a></h4>
+                                        <p>Schedule appointments with eye care specialists anytime, anywhere, completely free.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Vision Health Education</a></h4>
-                                        <p>Learn about eye conditions, prevention tips, and how to manage your eye health better.</p>
+                                        <h4><a href="#">Vision Health Education</a></h4>
+                                        <p>Access easy-to-understand guides to protect and maintain your long-term eye health.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Affordable & Accessible</a></h4>
-                                        <p>Designed to make quality eye care affordable and available for all communities.</p>
+                                        <h4><a href="#">Simple & Fast</a></h4>
+                                        <p>Our platform is designed for all users — easy access, fast results, no technical skills needed.</p>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +301,7 @@
         </div>
     </div>
 </section>
+
 <!-- chooseus-style-two end -->
 
 
@@ -386,7 +434,7 @@
 
 
         <!-- testimonial-style-two -->
-        <section class="testimonial-style-two pt_100">
+      <section class="testimonial-style-two pt_100">
     <div class="bg-layer" style="background-image: url('{{ asset('PublicArea/images/banner/banner-2.jpg') }}');"></div>
     <div class="pattern-layer">
         <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-22.png') }}');"></div>
@@ -404,32 +452,31 @@
                         <div class="single-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
                             <div class="testimonial-content">
                                 <div class="text p_relative d_block">
-                                    <p><i class="fa fa-quote-left"></i> Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exer cition ulamco laboris nisar aliquip commodo consequat aute irure dolor in reprehenderit in voluptate <i class="fa fa-quote-right"></i>.</p>
+                                    <p><i class="fa fa-quote-left"></i> Optcare’s AI eye scan helped me detect early issues. The free online appointments made it easy and convenient. Friendly doctors and great service overall. Highly recommended! <i class="fa fa-quote-right"></i>.</p>
                                 </div>
-                                <div class="author-box">
-                                    <figure class="author-thumb"><img src="{{ asset('PublicArea/images/resource/testimonial-1.jpg') }}" alt=""></figure>
-                                    <h3>Rachel McAdams</h3>
-                                    <span class="designation">Electrician</span>
-                                </div>
-                            </div>
-                            <div class="testimonial-content">
-                                <div class="text p_relative d_block">
-                                    <p><i class="fa fa-quote-left"></i> Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exer cition ulamco laboris nisar aliquip commodo consequat aute irure dolor in reprehenderit in voluptate <i class="fa fa-quote-right"></i>.</p>
-                                </div>
-                                <div class="author-box">
-                                    <figure class="author-thumb"><img src="{{ asset('PublicArea/images/resource/testimonial-1.jpg') }}" alt=""></figure>
-                                    <h3>Rachel McAdams</h3>
-                                    <span class="designation">Electrician</span>
+                                <div class="">
+                                    <h3>Nimal Perera</h3>
+                                    <span class="designation">Colombo</span>
                                 </div>
                             </div>
                             <div class="testimonial-content">
                                 <div class="text p_relative d_block">
-                                    <p><i class="fa fa-quote-left"></i> Adipisicing elit sed do eiusmodim tempor incid labore etax dolore magna aliqua enim minium quis veniam nostrud exer cition ulamco laboris nisar aliquip commodo consequat aute irure dolor in reprehenderit in voluptate <i class="fa fa-quote-right"></i>.</p>
+                                    <p><i class="fa fa-quote-left"></i> Thanks to Optcare, I received quick diagnosis and helpful advice. The online system is simple to use. Eye health education was very useful. Truly a lifesaver for us! <i class="fa fa-quote-right"></i>.</p>
                                 </div>
-                                <div class="author-box">
-                                    <figure class="author-thumb"><img src="{{ asset('PublicArea/images/resource/testimonial-1.jpg') }}" alt=""></figure>
-                                    <h3>Rachel McAdams</h3>
-                                    <span class="designation">Electrician</span>
+                                <div class="">
+
+                                    <h3>Kumari Silva</h3>
+                                    <span class="designation">Kandy</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-content">
+                                <div class="text p_relative d_block">
+                                    <p><i class="fa fa-quote-left"></i> Very professional and caring staff. The AI scan was impressive and accurate. Booking appointments online was smooth. I feel more confident about my vision health now. <i class="fa fa-quote-right"></i>.</p>
+                                </div>
+                                <div class="">
+
+                                    <h3>Sunil Fernando</h3>
+                                    <span class="designation">Galle</span>
                                 </div>
                             </div>
                         </div>
@@ -444,7 +491,7 @@
 
 
         <!-- process-section -->
-   <section class="process-section p_relative centred">
+<section class="process-section p_relative centred">
     <div class="pattern-layer">
         <div class="pattern-1 rotate-me" style="background-image: url('{{ asset('PublicArea/images/icons/icon-1.png') }}');"></div>
         <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-25.png') }}');"></div>
@@ -452,7 +499,7 @@
     <div class="auto-container">
         <div class="sec-title centred mb_85">
             <span class="sub-title">How It Works</span>
-            <h2>How it Helps You to <br />Keep Healthy</h2>
+            <h2>Easy Steps to Book Your <br />Free Eye Care Appointment</h2>
         </div>
         <div class="inner-container p_relative">
             <div class="shape" style="background-image: url('{{ asset('PublicArea/images/shape/shape-24.png') }}');"></div>
@@ -464,8 +511,8 @@
                                 <span class="count-text">01</span>
                                 <figure class="image"><img src="{{ asset('PublicArea/images/resource/process-1.png') }}" alt=""></figure>
                             </div>
-                            <h3>Get Appointment</h3>
-                            <p>Book & pay online. We’ll match you with a trusted house cleaner</p>
+                            <h3>Choose a Specialist</h3>
+                            <p>Browse and select a qualified eye care doctor based on your needs and preferences.</p>
                         </div>
                     </div>
                 </div>
@@ -476,8 +523,8 @@
                                 <span class="count-text">02</span>
                                 <figure class="image"><img src="{{ asset('PublicArea/images/resource/process-2.png') }}" alt=""></figure>
                             </div>
-                            <h3>Start Check-Up</h3>
-                            <p>Every cleaner is friendly and reliable.They have been experts</p>
+                            <h3>Book Appointment</h3>
+                            <p>Pick your preferred date and time and submit your free appointment request online.</p>
                         </div>
                     </div>
                 </div>
@@ -488,8 +535,8 @@
                                 <span class="count-text">03</span>
                                 <figure class="image"><img src="{{ asset('PublicArea/images/resource/process-3.png') }}" alt=""></figure>
                             </div>
-                            <h3>Enjoy Healthy Life</h3>
-                            <p>Quisqu tell us risus adpis viera bibe um urna.</p>
+                            <h3>Meet Your Doctor</h3>
+                            <p>Connect with your eye doctor virtually or in person and receive personalized care advice.</p>
                         </div>
                     </div>
                 </div>
@@ -498,11 +545,12 @@
     </div>
 </section>
 
+
         <!-- process-section end -->
 
 
         <!-- skills-section -->
-   <section class="skills-section p_relative">
+<section class="skills-section p_relative">
     <div class="pattern-layer">
         <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-27.png') }}');"></div>
         <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-28.png') }}');"></div>
@@ -514,13 +562,13 @@
                     <div class="image-box mr_70 pb_100">
                         <div class="shape" style="background-image: url('{{ asset('PublicArea/images/shape/shape-26.png') }}');"></div>
                         <div class="icon-box rotate-me">
-                            <i class="fas fa-eye"></i>  <!-- Example FontAwesome icon added -->
+                            <i class="fas fa-eye"></i>
                         </div>
                         <figure class="image image-1">
-                            <img src="{{ asset('PublicArea/images/resource/about-2.jpg') }}" alt="">
+                            <img src="{{ asset('PublicArea/images/team/team-4.jpg') }}" alt="">
                         </figure>
                         <figure class="image image-2">
-                            <img src="{{ asset('PublicArea/images/resource/about-3.jpg') }}" alt="">
+                            <img src="{{ asset('PublicArea/images/news/news-10.jpg') }}" alt="">
                         </figure>
                     </div>
                 </div>
@@ -529,30 +577,30 @@
                 <div class="content_block_seven">
                     <div class="content-box ml_30">
                         <div class="sec-title mb_30">
-                            <span class="sub-title">Ophthmologist</span>
-                            <h2 class="mb_15">Eye Care Service Skills For Child and Adults</h2>
-                            <p class="pt_12">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt labore aliqua.</p>
+                            <span class="sub-title">About OptCare</span>
+                            <h2 class="mb_15">AI-Based Eye Care Services for All Ages</h2>
+                            <p class="pt_12">OptCare offers AI-powered retinal disease detection, free online doctor appointments, and educational support to promote better vision care for both children and adults.</p>
                         </div>
                         <div class="progress-box">
                             <div class="progress-box p_relative d_block mb_25">
-                                <h5><i class="fas fa-users"></i> Dedicated Team</h5>
+                                <h5><i class="fas fa-robot"></i> AI Diagnosis Accuracy</h5>
                                 <div class="bar">
-                                    <div class="bar-inner count-bar" data-percent="85%"></div>
-                                    <div class="count-text">85%</div>
+                                    <div class="bar-inner count-bar" data-percent="95%"></div>
+                                    <div class="count-text">95%</div>
                                 </div>
                             </div>
                             <div class="progress-box p_relative d_block mb_25">
-                                <h5><i class="fas fa-cogs"></i> High Tech Equipments</h5>
+                                <h5><i class="fas fa-calendar-check"></i> Free Online Appointments</h5>
                                 <div class="bar">
-                                    <div class="bar-inner count-bar" data-percent="90%"></div>
-                                    <div class="count-text">90%</div>
+                                    <div class="bar-inner count-bar" data-percent="100%"></div>
+                                    <div class="count-text">100%</div>
                                 </div>
                             </div>
                             <div class="progress-box p_relative d_block">
-                                <h5><i class="fas fa-user-md"></i> Expert Doctor</h5>
+                                <h5><i class="fas fa-book-medical"></i> Vision Health Education</h5>
                                 <div class="bar">
-                                    <div class="bar-inner count-bar" data-percent="75%"></div>
-                                    <div class="count-text">75%</div>
+                                    <div class="bar-inner count-bar" data-percent="80%"></div>
+                                    <div class="count-text">80%</div>
                                 </div>
                             </div>
                         </div>
@@ -562,6 +610,7 @@
         </div>
     </div>
 </section>
+
 
         <!-- skills-section end -->
 
@@ -673,18 +722,18 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                         <div class="content-box ml_35">
                             <div class="sec-title left mb_25">
-                                <span class="sub-title">Emergency Need</span>
-                                <h2>Need a Doctor <br />for Check-up? Call for an <span>Emergency Service!</span></h2>
+                                  <span class="sub-title">Emergency Eye Care</span>
+                        <h2>Need Immediate Eye Care? <br />Call for <span>Urgent Support!</span></h2>
                             </div>
                             <div class="text">
-                                <p>All of our services are backed by our 100% satisfaction guarantee Our electricians can install anything.</p>
+                             <p>OptCare offers 24/7 emergency eye care services to help protect your vision whenever you need it most.</p>
                             </div>
                       <div class="support-box">
     <div class="icon-box">
         <i class="fas fa-phone-alt"></i> <!-- Font Awesome phone icon -->
     </div>
     <h4>For Emergency</h4>
-    <h3><a href="tel:123045615523">+1 (230)-456-155-23</a></h3>
+    <h3><a href="tel:123045615523">(+94) 81 569 7452</a></h3>
 </div>
 
                         </div>
