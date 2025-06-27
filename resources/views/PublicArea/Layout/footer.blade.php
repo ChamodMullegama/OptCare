@@ -98,7 +98,8 @@
     <div class="footer-bottom centred">
         <div class="auto-container">
             <div class="copyright">
-                <p><a href="index.html">Optcare</a> &copy; 2022 All Right Reserved</p>
+             <p>&copy; {{ date('Y') }} <a href="{{ url('/') }}">Optcare</a>. All Rights Reserved.</p>
+
             </div>
         </div>
     </div>
