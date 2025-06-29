@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="basicExample" class="table truncate m-0 align-middle">
+                   <table id="basicExample" class="table truncate m-0 align-middle">
                             <thead class="table-light">
                                 <tr>
                                     <th>#</th>
@@ -29,7 +29,6 @@
                                     <th>Phone</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Message</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -43,7 +42,6 @@
                                         <td>{{ $appointment->phone }}</td>
                                         <td>{{ $appointment->date ?? 'N/A' }}</td>
                                         <td>{{ $appointment->time ?? 'N/A' }}</td>
-                                        <td>{{ Str::limit($appointment->message, 50) }}</td>
                                         <td>
                                             <span class="badge bg-{{ $appointment->status === 'accepted' ? 'success' : ($appointment->status === 'rejected' ? 'danger' : ($appointment->status === 'completed' ? 'info' : ($appointment->status === 'canceled' ? 'danger' : 'warning'))) }}">
                                                 {{ ucfirst($appointment->status) }}
@@ -68,19 +66,24 @@
                                                     </button>
                                                 </form>
                                                 <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
-                                                    <i class="ri-video-chat-line"></i> Generate Meeting
+                                                    <i class="ri-video-chat-line"></i>
                                                 </button>
+                                                @if ($appointment->meeting_link)
+                                                    <a href="{{ $appointment->meeting_link }}" target="_blank" class="btn btn-outline-success btn-sm" title="Join Meeting">
+                                                        <i class="ri-vidicon-line"></i>
+                                                    </a>
+                                                @endif
                                             @endif
                                             @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
                                                 <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel">
+                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel" {{ $appointment->status === 'accepted' ? 'disabled' : '' }}>
                                                         <i class="ri-close-line"></i>
                                                     </button>
                                                 </form>
                                             @endif
-                                            @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
+                                            @if ($appointment->status === 'completed' || $appointment->status === 'canceled')
                                                 <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
                                                     <i class="ri-delete-bin-line"></i>
                                                 </button>
@@ -89,7 +92,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">No appointments found</td>
+                                        <td colspan="8" class="text-center">No appointments found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -167,7 +170,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Send to Email</button>
+                    <button type="submit" class="btn btn-primary">Send Email</button>
                     <button type="button" class="btn btn-info" onclick="sendMeetingSms()">Send SMS</button>
                     <a id="joinMeetingButton" href="#" target="_blank" class="btn btn-success" style="display:none;">Join Meeting</a>
                 </div>
