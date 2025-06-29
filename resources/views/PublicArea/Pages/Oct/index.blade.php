@@ -196,15 +196,7 @@
                                         </h5>
                                     </div>
                                     <div class="card-body p_30">
-                                        {{-- <div class="recommendation-content">
-                                            @if (session('recommendation'))
-                                                <div class="recommendation-text mb_15">
-                                                    {!! session('recommendation') !!}
-                                                </div>
-                                            @else
-                                                <p class="text-muted">No specific recommendations available.</p>
-                                            @endif
-                                        </div> --}}
+                                    
                                         <div class="recommendation-content">
                 @if (session('recommendation'))
                     <div class="recommendation-text mb_15">
