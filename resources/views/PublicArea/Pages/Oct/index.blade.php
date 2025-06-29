@@ -196,7 +196,7 @@
                                         </h5>
                                     </div>
                                     <div class="card-body p_30">
-                                        <div class="recommendation-content">
+                                        {{-- <div class="recommendation-content">
                                             @if (session('recommendation'))
                                                 <div class="recommendation-text mb_15">
                                                     {!! session('recommendation') !!}
@@ -204,7 +204,16 @@
                                             @else
                                                 <p class="text-muted">No specific recommendations available.</p>
                                             @endif
-                                        </div>
+                                        </div> --}}
+                                        <div class="recommendation-content">
+                @if (session('recommendation'))
+                    <div class="recommendation-text mb_15">
+                        {!! session('recommendation') !!}
+                    </div>
+                @else
+                    <p class="text-muted">No specific recommendations available at this time. Please consult an ophthalmologist for further guidance.</p>
+                @endif
+            </div>
 
                                         <!-- Action Buttons -->
                                         <div class="action-buttons mt_20">
@@ -231,9 +240,10 @@
                         <!-- New Analysis Button -->
                         <div class="new-analysis-section mt_30 text-center">
                             <hr class="my-4">
-                            <h5 class="fs_18 fw_bold mb_15">Need Another Analysis?</h5>
+                           <h5 class="fs_18 fw_bold mb_15">Need another analysis or doctor help?</h5>
+
                             <a href="{{ route('oct.uploadOctPublic') }}" class="btn btn-outline-info">
-                                <i class="fas fa-plus me-2"></i>Upload New OCT Scan
+                                <i class="fas fa-plus me-2"></i> Upload New OCT Scan
                             </a>
                             <!-- Replace the existing "Need Advice From Dr" button -->
 {{-- @php
@@ -253,7 +263,7 @@
 @endphp
 
 <a href="{{ route('oct.requestDoctorAdvice', ['id' => $analysisId]) }}" class="btn btn-outline-info" {{ !$analysisId ? 'disabled' : '' }}>
-    <i class="fas fa-plus me-2"></i>Need Advice From Doctor
+  <i class="fas fa-user-md me-2"></i>Need Advice From Doctor
 </a>
 
                         </div>

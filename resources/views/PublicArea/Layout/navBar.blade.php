@@ -78,9 +78,13 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
+        <li><a href="{{ route('oct.uploadOctPublic') }}">OCT Analyzer</a></li>
+
                                 <li class="dropdown"><a href="#">Specialties & Services</a>
                                     <ul>
+                                        <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
+                                        <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
+                                                             <li><a href="{{ route('public.products.index') }}">Shop</a></li>
                                         <li class="dropdown"><a href="#">Treatments</a>
                                             <ul>
                                                 <li><a href="{{ route('public.surgical-treatments.all') }}">Surgical Treatment</a></li>
@@ -93,9 +97,7 @@
                                                 <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ route('public.products.index') }}">Shop</a></li>
-                                        <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
-                                        <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
+
 
                                     </ul>
                                 </li>
