@@ -156,10 +156,11 @@
 <section class="testimonial-section p_relative centred">
     <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-6.png);"></div>
     <div class="auto-container">
-        <div class="sec-title mb_60">
-            <span class="sub-title">Testimonials</span>
-            <h2>What Our Clients Say <br />About Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}</h2>
-        </div>
+       <div class="sec-title mb_60">
+    <span class="sub-title">Testimonials</span>
+    <h2>What Patients Say<br />About Dr. {{ $doctor->first_name }} {{ $doctor->last_name }}</h2>
+</div>
+
 
         @if($doctor_reviews->count() > 0)
         <div class="two-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
@@ -175,7 +176,7 @@
             @endforeach
         </div>
         @else
-  
+
         @endif
     </div>
 </section>
