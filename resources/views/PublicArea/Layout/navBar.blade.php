@@ -105,7 +105,7 @@
                                 <li><a href="{{ route('PublicAreaBlog.all') }}">Blog</a></li>
                                 <li><a href="{{ route('aboutUs') }}">About</a></li>
                                 <li><a href="{{ route('contactUs') }}">Contact</a></li>
-                                <li><a href="{{ route('gallery.all') }}">Contact</a></li>
+                                {{-- <li><a href="{{ route('gallery.all') }}">Contact</a></li> --}}
                             </ul>
                         </div>
                     </nav>
