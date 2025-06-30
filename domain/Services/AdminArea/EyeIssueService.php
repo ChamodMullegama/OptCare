@@ -56,7 +56,7 @@ class EyeIssueService
             'causes' => 'required|string',
             'treatments' => 'required|string',
         ], [
-            'name.unique' => 'The eye issue name must be unique. Please choose another name.',
+            'name.unique' => 'The eye disease name must be unique. Please choose another name.',
         ]);
 
         if ($validator->fails()) {
