@@ -103,8 +103,7 @@ class AppointmentController extends Controller
             if ($request->has('send_email')) {
                 Mail::to($appointment->email)->send(new MeetingLinkMail($appointment));
             }
-
-            return response()->json(['success' => true, 'message' => 'Meeting link saved successfully']);
+            return redirect()->route('appointment.all')->with('success', 'Meeting link Send To THe patient successfully');
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
@@ -148,7 +147,7 @@ class AppointmentController extends Controller
         $smsResult = $this->sendMeetingLinkSms($appointment);
 
         if ($smsResult['success']) {
-            return redirect()->route('appointment.all')->with('success', 'SMS sent successfully');
+            return redirect()->route('appointment.all')->with('success', 'SMS sent to patient successfully');
         } else {
             return redirect()->route('appointment.all')->withErrors(['error' => $smsResult['message']]);
         }

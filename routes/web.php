@@ -220,7 +220,6 @@ Route::prefix('eyehospitals')->group(function () {
     Route::post('/update', [EyeHospitalsController::class, 'Update'])->name('eye.hospitals.update');
     Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
     Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
-
 });
 
 Route::prefix('opticcenters')->group(function () {
@@ -241,7 +240,6 @@ Route::prefix('customerMessage')->group(function () {
 
 Route::prefix('customer')->group(function () {
     Route::get('/all', [CustomerController::class, 'All'])->name('customer.all');
-
 });
 
 
@@ -321,7 +319,6 @@ Route::prefix('Home')->group(function () {
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
     Route::get('/blog', [HomeController::class, "Blog"])->name('Home.blog');
-
 });
 
 Route::prefix('PublicAreaBlog')->group(function () {
@@ -333,7 +330,6 @@ Route::prefix('PublicAreDoctors')->group(function () {
     Route::get('/all', [PublicDoctorController::class, 'All'])->name('PublicAreDoctors.all');
     Route::get('/search', [PublicDoctorController::class, 'Search'])->name('PublicAreDoctors.search');
     Route::get('/details{id}', [PublicDoctorController::class, 'Details'])->name('PublicAreDoctors.details');
-
     Route::post('/doctorReviewAdd', [ReviewController::class, "DoctorReviewAdd"])->name('review.doctorReviewAdd');
     Route::get('/doctorReviewDisplay', [ReviewController::class, "DoctorReviewDisplay"])->name('review.doctorReviewDisplay');
     Route::get('/doctorReviewAll', [ReviewController::class, "DoctorReviewAll"])->name('review.DoctorReviewAll');

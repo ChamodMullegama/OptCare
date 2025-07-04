@@ -68,21 +68,21 @@
                                                     onclick="openReplyModal({{ $request->id }}, '{{ $request->customer_email }}', '{{ $request->prediction }}')">
                                                 <i class="ri-mail-send-line"></i>
                                             </button>
-                                            <button class="btn btn-outline-info btn-sm"
-                                                    onclick="viewDetails(
-                                                        {{ $request->id }},
-                                                        '{{ $request->customer_email }}',
-                                                        '{{ $request->prediction }}',
-                                                        `{!! addslashes($request->recommendation) !!}`,
-                                                        '{{ $request->image_path ? asset('storage/'.$request->image_path) : '' }}',
-                                                        '{{ $request->created_at->format('Y-m-d H:i:s') }}',
-                                                        `{{ $request->reply_message ?? 'No reply yet' }}`,
-                                                        '{{ $request->replied_by_doctor_name ?? '' }}',
-                                                        '{{ $request->replied_by_doctor_id ?? '' }}',
-                                                        '{{ $request->replied_at ? $request->replied_at->format('Y-m-d H:i:s') : '' }}'
-                                                    )">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                         <button class="btn btn-outline-info btn-sm"
+        onclick="viewDetails(
+            {{ $request->id }},
+            '{{ addslashes($request->customer_email) }}',
+            '{{ addslashes($request->prediction) }}',
+            `{!! str_replace('`', '\`', $request->recommendation) !!}`,
+            '{{ $request->image_path ? asset('storage/'.$request->image_path) : asset('DoctorArea/images/no-image.png') }}',
+            '{{ $request->created_at->format('Y-m-d H:i:s') }}',
+            `{!! $request->reply_message ? str_replace('`', '\`', $request->reply_message) : 'No reply yet' !!}`,
+            '{{ $request->replied_by_doctor_name ?? 'Not replied yet' }}',
+            '{{ $request->replied_by_doctor_id ?? 'N/A' }}',
+            '{{ $request->replied_at ? $request->replied_at->format('Y-m-d H:i:s') : 'N/A' }}'
+        )">
+    <i class="ri-eye-line"></i>
+</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -260,17 +260,26 @@
     }
 
     // View details
-    function viewDetails(id, email, prediction, recommendation, image, createdAt, replyMessage, doctorName, doctorId, repliedAt) {
+      function viewDetails(id, email, prediction, recommendation, image, createdAt, replyMessage, doctorName, doctorId, repliedAt) {
+        // Set all the values in the modal
         $('#viewId').val(id);
         $('#viewEmail').val(email);
         $('#viewPrediction').val(prediction);
         $('#viewRecommendation').html(recommendation);
         $('#viewCreatedAt').val(createdAt);
-        $('#viewReplyMessage').val(replyMessage || 'No reply yet');
-        $('#viewImage').attr('src', image || '{{ asset('DoctorArea/images/no-image.png') }}');
-        $('#viewDoctorName').val(doctorName || 'Not replied yet');
-        $('#viewDoctorId').val(doctorId || 'N/A');
-        $('#viewRepliedAt').val(repliedAt || 'N/A');
+        $('#viewReplyMessage').val(replyMessage);
+        $('#viewDoctorName').val(doctorName);
+        $('#viewDoctorId').val(doctorId);
+        $('#viewRepliedAt').val(repliedAt);
+
+        // Handle image display
+        if(image && image.includes('no-image.png')) {
+            $('#viewImage').attr('src', image).addClass('d-none');
+        } else {
+            $('#viewImage').attr('src', image).removeClass('d-none');
+        }
+
+        // Show the modal
         $('#viewModal').modal('show');
     }
 </script>

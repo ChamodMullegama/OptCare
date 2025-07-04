@@ -20,53 +20,52 @@
 
 
         <!-- about-section -->
-        <section class="about-section">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                        <div class="image_block_one">
-                            <div class="image-box mr_30 pr_130 pb_100">
-                                <div class="shape" style="background-image: url({{ asset('PublicArea/images/shape/shape-1.png') }});"></div>
-                                <figure class="image"><img src="{{ asset('PublicArea/images/resource/process-1.png') }}" alt=""></figure>
-                                <div class="text p_absolute r_0 b_0">
-                                    <h2>30</h2>
-                                    <h4>Years of Experience in This Field</h4>
-                                </div>
-                            </div>
+<!-- about-section -->
+<section class="about-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                <div class="image_block_one">
+                    <div class="image-box mr_30 pr_130 pb_100">
+                        <div class="shape" style="background-image: url({{ asset('PublicArea/images/shape/shape-1.png') }});"></div>
+                        <figure class="image"><img src="{{ asset('PublicArea/images/resource/process-1.png') }}" alt=""></figure>
+                        <div class="text p_absolute r_0 b_0">
+                            <h2>07</h2>
+                            <h4>Years of Excellence in Eye Care</h4>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                        <div class="content_block_one">
-                            <div class="content-box ml_30">
-                                <div class="sec-title left p_relative d_block mb_25">
-                                    <span class="sub-title">Who We Are?</span>
-                                    <h2>The Great Place Of Eyecare Hospital Center</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div class="content_block_one">
+                    <div class="content-box ml_30">
+                        <div class="sec-title left p_relative d_block mb_25">
+                            <span class="sub-title">Who We Are?</span>
+                            <h2>Dedicated to Advanced Eye Care and Patient Wellness</h2>
+                        </div>
+                        <div class="text p_relative d_block">
+                            <p>Optcare is committed to providing cutting-edge eye health services, including AI-powered OCT scan analysis and accessible online appointment booking to deliver personalized care to every patient.</p>
+                        </div>
+                        <div class="inner-box">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item">
+                                        <h3>Our Mission</h3>
+                                        <ul class="">
+                                            <li><i class="fas fa-check-circle"></i> Deliver accurate and fast eye diagnostics</li>
+                                            <li><i class="fas fa-calendar-check"></i> Provide easy access to eye specialists online</li>
+                                            <li><i class="fas fa-book-reader"></i> Promote awareness and education about eye health</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="text p_relative d_block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat.</p>
-                                </div>
-                                <div class="inner-box">
-                                    <div class="row clearfix">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item">
-                                                <h3>Our Mission</h3>
-                                                <ul class="list-style-one clearfix">
-                                                    <li>High-quality work</li>
-                                                    <li>Straightforward pricing</li>
-                                                    <li>Rapid response times</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                                            <div class="single-item">
-                                                <h3>Our Vision</h3>
-                                                <ul class="list-style-one clearfix">
-                                                    <li>Emergency power solutions</li>
-                                                    <li>Wiring and installation</li>
-                                                    <li>Full-service electrical layout</li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                    <div class="single-item">
+                                        <h3>Our Vision</h3>
+                                        <ul class="">
+                                            <li><i class="fas fa-star"></i> Be the most trusted eye care provider in the region</li>
+                                            <li><i class="fas fa-lightbulb"></i> Use innovative technology to improve vision care</li>
+                                            <li><i class="fas fa-hand-holding-heart"></i> Make eye health services affordable and accessible</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +73,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
 
         <!-- funfact-section end -->
-             <section class="chooseus-style-two about-page p_relative">
+          <section class="chooseus-style-two about-page p_relative">
     <div class="shape-3 p_absolute t_0 r_0" style="background-image: url('{{ asset('PublicArea/images/shape/shape-51.png') }}');"></div>
     <div class="shape-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-21.png') }}');"></div>
 
@@ -100,33 +102,33 @@
                     <div class="content-box mr_70">
                         <div class="sec-title light mb_35">
                             <span class="sub-title">Why Choose</span>
-                            <h2 class="mb_25">Great Reasons For People Choose Optcare</h2>
-                            <p class="pt_2">Lorem ipsum dolor sit amet consectur adipicing elit sed do esmod tempor incididunt labore aliqua.</p>
+                            <h2 class="mb_25">Great Reasons To Choose Optcare</h2>
+                            <p class="pt_2">Optcare combines cutting-edge AI technology with accessible eye care services to improve vision health for all.</p>
                         </div>
                         <div class="inner-box">
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Quality Staff</a></h4>
-                                        <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
+                                        <h4><a href="index-2.html">Expert AI Analysis</a></h4>
+                                        <p>Fast, accurate OCT scan interpretation to detect retinal diseases early and improve treatment outcomes.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Quality Assistance</a></h4>
-                                        <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
+                                        <h4><a href="index-2.html">Online Appointments</a></h4>
+                                        <p>Conveniently book consultations with qualified eye specialists from the comfort of your home.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Affordable Price</a></h4>
-                                        <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
+                                        <h4><a href="index-2.html">Affordable & Free Services</a></h4>
+                                        <p>Providing free OCT scan analysis and affordable eye care options for everyone.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item p_relative d_block">
-                                        <h4><a href="index-2.html">Optimized Solutions</a></h4>
-                                        <p>Lorem ipsum dolor amet conad sed do usmod tempor.</p>
+                                        <h4><a href="index-2.html">Patient Education</a></h4>
+                                        <p>Empowering patients with knowledge about eye health and prevention to maintain clear vision.</p>
                                     </div>
                                 </div>
                             </div>
@@ -137,15 +139,17 @@
         </div> <!-- row -->
     </div> <!-- auto-container -->
 </section>
+
    <!-- team-section -->
    <section class="team-section p_relative">
     <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-9.png);"></div>
     <div class="auto-container">
-        <div class="sec-title p_relative left mb_50">
-            <span class="sub-title">Meet Our Team</span>
-            <h2>The Most Qualified Skillful & <br />Professional staff</h2>
-            <a href="" class="theme-btn btn-two">View All Team</a>
-        </div>
+    <div class="sec-title p_relative left mb_50">
+    <span class="sub-title">Meet Our Team</span>
+    <h2>Our Skilled & Professional <br>Optic Care Team</h2>
+    <a href="" class="theme-btn btn-two">View All Team Members</a>
+</div>
+
         <div class="row clearfix">
             @foreach($teams as $team)
             <div class="col-lg-4 col-md-6 col-sm-12 team-block">
@@ -192,7 +196,7 @@
     <div class="auto-container">
         <div class="sec-title mb_60">
             <span class="sub-title">Testimonials</span>
-            <h2>What Our Clients Say <br />About Optcare</h2>
+            <h2>What Our Patients Say <br />About Optcare</h2>
         </div>
 
         @if($reviews->count() > 0)
@@ -227,7 +231,8 @@
                 <div class="row clearfix">
                     <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
                         <div class="form-inner">
-                            <h2>Put Review</h2>
+                            <h2>Submit a Review</h2>
+
                              <form action="{{ route('review.add') }}" method="post">
                               @csrf
 @if (session('success'))

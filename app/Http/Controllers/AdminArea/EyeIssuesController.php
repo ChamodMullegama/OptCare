@@ -33,13 +33,13 @@ class EyeIssuesController extends Controller
             'causes' => 'required|string',
             'treatments' => 'required|string',
         ], [
-            'name.unique' => 'The eye issue name must be unique. Please choose another name.',
+            'name.unique' => 'The eye disease name must be unique. Please choose another name.',
         ]);
 
         try {
             $data = $request->all();
             EyeIssueFacade::store($data);
-            return back()->with('success', 'Eye issue added successfully!');
+            return back()->with('success', 'Eye disease added successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
@@ -56,13 +56,13 @@ class EyeIssuesController extends Controller
             'causes' => 'required|string',
             'treatments' => 'required|string',
         ], [
-            'name.unique' => 'The eye issue name must be unique. Please choose another name.',
+            'name.unique' => 'The eye disease name must be unique. Please choose another name.',
         ]);
 
         try {
             $data = $request->all();
             EyeIssueFacade::update($request->id, $data);
-            return redirect()->back()->with('success', 'Eye issue updated successfully!');
+            return redirect()->back()->with('success', 'Eye disease updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
@@ -76,7 +76,7 @@ class EyeIssuesController extends Controller
             ]);
 
             EyeIssueFacade::delete($request->id);
-            return back()->with('success', 'Eye issue deleted successfully!');
+            return back()->with('success', 'Eye disease deleted successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }

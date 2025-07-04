@@ -9,7 +9,7 @@
             <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
-            Eye Issues Management
+            Eye Disease Management
         </li>
     </ol>
     <!-- Breadcrumb ends -->
@@ -20,7 +20,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title">Eye Issues List</h5>
+                    <h5 class="card-title">Eye Disease List</h5>
                     <button class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#addEyeIssueModal">
                         Add New Eye Issue
                     </button>
@@ -31,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Eye Disease</th>
                                     <th>Description</th>
                                     <th>Symptoms</th>
                                     <th>Causes</th>
@@ -90,7 +90,7 @@
             <form id="addEyeIssueForm" action="{{ route('eyeIssues.add') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addEyeIssueModalLabel">Add New Eye Issue</h5>
+                    <h5 class="modal-title" id="addEyeIssueModalLabel">Add New Eye Disease</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -133,7 +133,7 @@
                 @csrf
                 <input type="hidden" id="edit_eye_issue_id" name="id">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editEyeIssueModalLabel">Edit Eye Issue</h5>
+                    <h5 class="modal-title" id="editEyeIssueModalLabel">Edit Eye Disease</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -183,7 +183,7 @@
                     <div class="mb-2">
                         <img src="{{ asset('AdminArea/images/bin.gif') }}" alt="Delete Confirmation" width="80">
                     </div>
-                    <h5>Are you sure you want to delete this eye issue?</h5>
+                    <h5>Are you sure you want to delete this eye Disease?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -199,7 +199,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="uploadImageModalLabel">Add New Eye Issue Image</h5>
+                <h5 class="modal-title" id="uploadImageModalLabel">Add New Eye Disease Image</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

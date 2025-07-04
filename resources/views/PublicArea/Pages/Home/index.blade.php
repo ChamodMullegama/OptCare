@@ -2,7 +2,7 @@
 @section('Publiccontainer')
 
  <!-- banner-section -->
- <section class="banner-style-two centred p_relative">
+ {{-- <section class="banner-style-two centred p_relative">
     <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
         <div class="slide-item p_relative">
             <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-1.jpg') }}')"></div>
@@ -45,7 +45,56 @@
             </div>
         </div>
     </div>
+</section> --}}
+
+<section class="banner-style-two centred p_relative">
+    <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
+        <div class="slide-item p_relative">
+            <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-1.jpg') }}')"></div>
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-3.png') }}');"></div>
+                <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-12.png') }}');"></div>
+                <div class="pattern-3" style="background-image: url('{{ asset('PublicArea/images/shape/shape-13.png') }}');"></div>
+                <div class="eye-icon rotate-me" style="background-image: url('{{ asset('PublicArea/images/icons/icon-1.png') }}');"></div>
+            </div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <span class="big-title animation_text_word"></span>
+
+                    <h3>AI-Based OCT Analysis</h3>
+                    <h2>Free OCT Scan Analysis </h2>
+              <p>Get quick and accurate OCT scan results at no cost — safe, simple, and fast for everyone.</p>
+                    <div class="btn-box">
+                        <a href="{{ route('oct.uploadOctPublic') }}" class="theme-btn btn-one">Oct Scan Analysis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-item p_relative">
+            <div class="image-layer p_absolute" style="background-image:url('{{ asset('PublicArea/images/banner/banner-2.jpg') }}')"></div>
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url('{{ asset('PublicArea/images/shape/shape-3.png') }}');"></div>
+                <div class="pattern-2" style="background-image: url('{{ asset('PublicArea/images/shape/shape-12.png') }}');"></div>
+                <div class="pattern-3" style="background-image: url('{{ asset('PublicArea/images/shape/shape-13.png') }}');"></div>
+                <div class="eye-icon rotate-me" style="background-image: url('{{ asset('PublicArea/images/icons/icon-1.png') }}');"></div>
+            </div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <span class="big-title animation_text_word"></span>
+ <h3>Smart Eye Care Platform</h3>
+                    <h2>Book Appointments Online</h2>
+                    <p>Consult eye specialists easily through our trusted online platform. Fast, free, and accessible for everyone.</p>
+
+
+                    <div class="btn-box">
+                        <a href="{{ route('PublicAreaAppointment.appointment') }}" class="theme-btn btn-one">Online Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 
         <!-- banner-section -->
         {{-- <section class="banner-style-two centred p_relative">
@@ -234,7 +283,7 @@
                                 <p class="p_relative d_block">{{ Str::limit(strip_tags($service->description), 100) }}</p>
 
 
-                                <div class="link p_relative d_block"><a href="{{ url('services/' . Str::slug($service->title)) }}">Read More</a></div>
+                                {{-- <div class="link p_relative d_block"><a href="{{ url('services/' . Str::slug($service->title)) }}">Read More</a></div> --}}
                             </div>
                         </div>
                     </div>
