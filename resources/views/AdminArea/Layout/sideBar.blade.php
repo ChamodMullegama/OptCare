@@ -15,7 +15,13 @@
             <li class="active current-page">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="ri-home-6-line"></i>
-                    <span class="menu-text">Hospital Dashboard</span>
+                    <span class="menu-text">Admin Dashboard</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ route('doctors.all') }}">
+                    <i class="ri-stethoscope-line"></i>
+                    Doctors
                 </a>
             </li>
 
@@ -23,15 +29,10 @@
             <li class="treeview">
                 <a href="#!">
                     <i class="ri-hospital-line"></i>
-                    <span class="menu-text">Medical Services</span>
+                    <span class="menu-text">Specialties & Services</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('doctors.all') }}">
-                            <i class="ri-stethoscope-line"></i>
-                            Doctors
-                        </a>
-                    </li>
+
                     <li>
                         <a href="{{ route('eyeScans.all') }}">
                             <i class="ri-eye-line"></i>
@@ -56,6 +57,18 @@
                             Nonsurgical Treatments
                         </a>
                     </li>
+                     <li>
+                        <a href="{{ route('eye.hospitals.all') }}">
+                            <i class="ri-hospital-line"></i>
+                            Eye Hospitals
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('optic.centers.all') }}">
+                            <i class="ri-eye-line"></i>
+                            Vision Centers
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('service.all') }}">
                             <i class="ri-service-line"></i>
@@ -65,28 +78,6 @@
                 </ul>
             </li>
 
-            <!-- Facilities Category -->
-            <li class="treeview">
-                <a href="#!">
-                    <i class="ri-building-line"></i>
-                    <span class="menu-text">Facilities</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('eye.hospitals.all') }}">
-                            <i class="ri-hospital-line"></i>
-                            Eye Hospitals
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('optic.centers.all') }}">
-                      <i class="ri-eye-line"></i>
-
-                            Vision Centers
-                        </a>
-                    </li>
-                </ul>
-            </li>
 
             <!-- Content Management Category -->
             <li class="treeview">
@@ -221,4 +212,3 @@
 
 
 </nav>
-

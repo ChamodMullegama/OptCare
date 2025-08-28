@@ -131,57 +131,212 @@ class OCTController extends Controller
         }
     }
 
+    // public function uploadAndPredict(Request $request)
+    // {
+
+    //      $doctorId = session('doctor.doctorId');
+    //     try {
+    //         $validationRules = [
+    //             'patient_id' => 'required|string|max:255',
+    //             'patient_name' => 'required|string|max:255',
+    //              'patient_email' => [
+    //                 'nullable',
+    //                 'email',
+    //                 'max:255',
+    //                 Rule::unique('oct_analyses', 'patient_email')->where(function ($query) use ($request, $doctorId) {
+    //                     return $query
+    //                         ->where('doctor_id', $doctorId)
+    //                         ->where('patient_id', '!=', $request->patient_id);
+    //                 }),
+    //             ],
+    //             'patient_phone' => 'nullable|string|max:20',
+    //             'patient_age' => 'nullable|integer|min:1|max:100',
+    //             'eye_side' => 'required|in:left,right,both',
+    //             'clinical_notes' => 'nullable|string',
+    //             'image_left' => [
+    //                 'required_if:eye_side,left,both',
+    //                 'image',
+    //                 'mimes:jpeg,png,jpg',
+    //                 'max:10240'
+    //             ],
+    //             'image_right' => [
+    //                 'required_if:eye_side,right,both',
+    //                 'image',
+    //                 'mimes:jpeg,png,jpg',
+    //                 'max:10240'
+    //             ],
+    //         ];
+
+    //         $request->validate($validationRules);
+
+    //         $predictions = [];
+    //         $imagePaths = [];
+
+    //         $client = new Client([
+    //             'timeout' => 30,
+    //             'verify' => false // Only for development, remove in production
+    //         ]);
+
+    //         // Process left eye if required
+    //         if ($request->eye_side === 'left' || $request->eye_side === 'both') {
+    //             $leftImagePath = $request->file('image_left')->store('oct-scans', 'public');
+    //             $imagePaths[] = $leftImagePath;
+
+    //             $response = $client->post('http://localhost:5000/predict', [
+    //                 'multipart' => [
+    //                     [
+    //                         'name' => 'image',
+    //                         'contents' => fopen(storage_path("app/public/{$leftImagePath}"), 'r'),
+    //                         'filename' => 'oct_scan_left.jpg'
+    //                     ]
+    //                 ]
+    //             ]);
+
+    //             $result = json_decode($response->getBody(), true);
+    //             if (isset($result['error'])) {
+    //                 throw new \Exception("Left eye analysis failed: {$result['error']}");
+    //             }
+
+    //             $predictions['left'] = [
+    //                 'prediction' => $result['prediction'] ?? 'Unknown',
+    //                 'recommendation' => $result['recommendation'] ?? 'No recommendations available',
+    //                 'image' => $leftImagePath
+    //             ];
+
+    //             // Save left eye analysis
+    //             OctAnalysis::create([
+    //                 'patient_id' => $request->patient_id,
+    //                 'doctor_id' => session('doctor.doctorId'),
+    //                 'doctor_name' => session('doctor.name'),
+    //                 'patient_name' => $request->patient_name,
+    //                 'patient_email' => $request->patient_email,
+    //                 'patient_phone' => $request->patient_phone,
+    //                 'patient_age' => $request->patient_age,
+    //                 'eye_side' => 'left',
+    //                 'clinical_notes' => $request->clinical_notes,
+    //                 'image_path' => $leftImagePath,
+    //                 'prediction' => $result['prediction'] ?? 'Unknown',
+    //                 'recommendation' => $result['recommendation'] ?? 'No recommendations available',
+    //             ]);
+    //         }
+
+    //         // Process right eye if required
+    //         if ($request->eye_side === 'right' || $request->eye_side === 'both') {
+    //             $rightImagePath = $request->file('image_right')->store('oct-scans', 'public');
+    //             $imagePaths[] = $rightImagePath;
+
+    //             $response = $client->post('http://localhost:5000/predict', [
+    //                 'multipart' => [
+    //                     [
+    //                         'name' => 'image',
+    //                         'contents' => fopen(storage_path("app/public/{$rightImagePath}"), 'r'),
+    //                         'filename' => 'oct_scan_right.jpg'
+    //                     ]
+    //                 ]
+    //             ]);
+
+    //             $result = json_decode($response->getBody(), true);
+    //             if (isset($result['error'])) {
+    //                 throw new \Exception("Right eye analysis failed: {$result['error']}");
+    //             }
+
+    //             $predictions['right'] = [
+    //                 'prediction' => $result['prediction'] ?? 'Unknown',
+    //                 'recommendation' => $result['recommendation'] ?? 'No recommendations available',
+    //                 'image' => $rightImagePath
+    //             ];
+
+    //             // Save right eye analysis
+    //             OctAnalysis::create([
+    //                 'patient_id' => $request->patient_id,
+    //                 'doctor_id' => session('doctor.doctorId'),
+    //                 'doctor_name' => session('doctor.name'),
+    //                 'patient_name' => $request->patient_name,
+    //                 'patient_email' => $request->patient_email,
+    //                 'patient_phone' => $request->patient_phone,
+    //                 'patient_age' => $request->patient_age,
+    //                 'eye_side' => 'right',
+    //                 'clinical_notes' => $request->clinical_notes,
+    //                 'image_path' => $rightImagePath,
+    //                 'prediction' => $result['prediction'] ?? 'Unknown',
+    //                 'recommendation' => $result['recommendation'] ?? 'No recommendations available',
+    //             ]);
+    //         }
+
+    //         return back()
+    //             ->with('success', 'Analysis completed and saved')
+    //             ->with('predictions', $predictions);
+
+    //     } catch (\Exception $e) {
+    //         $errorMessage = 'Analysis failed: ' . $e->getMessage();
+
+    //         // Delete uploaded images if analysis failed
+    //         // foreach ($imagePaths as $path) {
+    //         //     Storage::disk('public')->delete($path);
+    //         // }
+
+    //         return back()->with('error', $errorMessage);
+    //     }
+    // }
+
+    // public function viewAnalysis($id)
+    // {
+    //     $analysis = OctAnalysis::where('doctor_id', session('doctor.doctorId'))->findOrFail($id);
+    //     return view('DoctorArea.Pages.Oct.view', compact('analysis'));
+    // }
+
+
     public function uploadAndPredict(Request $request)
-    {
+{
+    $doctorId = session('doctor.doctorId');
+    try {
+        $validationRules = [
+            'patient_id' => 'required|string|max:255',
+            'patient_name' => 'required|string|max:255',
+            'patient_email' => [
+                'nullable',
+                'email',
+                'max:255',
+                Rule::unique('oct_analyses', 'patient_email')->where(function ($query) use ($request, $doctorId) {
+                    return $query
+                        ->where('doctor_id', $doctorId)
+                        ->where('patient_id', '!=', $request->patient_id);
+                }),
+            ],
+            'patient_phone' => 'nullable|string|max:20',
+            'patient_age' => 'nullable|integer|min:1|max:100',
+            'eye_side' => 'required|in:left,right,both',
+            'clinical_notes' => 'nullable|string',
+            'image_left' => [
+                'required_if:eye_side,left,both',
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:10240'
+            ],
+            'image_right' => [
+                'required_if:eye_side,right,both',
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:10240'
+            ],
+        ];
 
-         $doctorId = session('doctor.doctorId');
-        try {
-            $validationRules = [
-                'patient_id' => 'required|string|max:255',
-                'patient_name' => 'required|string|max:255',
-                 'patient_email' => [
-                    'nullable',
-                    'email',
-                    'max:255',
-                    Rule::unique('oct_analyses', 'patient_email')->where(function ($query) use ($request, $doctorId) {
-                        return $query
-                            ->where('doctor_id', $doctorId)
-                            ->where('patient_id', '!=', $request->patient_id);
-                    }),
-                ],
-                'patient_phone' => 'nullable|string|max:20',
-                'patient_age' => 'nullable|integer|min:1|max:100',
-                'eye_side' => 'required|in:left,right,both',
-                'clinical_notes' => 'nullable|string',
-                'image_left' => [
-                    'required_if:eye_side,left,both',
-                    'image',
-                    'mimes:jpeg,png,jpg',
-                    'max:10240'
-                ],
-                'image_right' => [
-                    'required_if:eye_side,right,both',
-                    'image',
-                    'mimes:jpeg,png,jpg',
-                    'max:10240'
-                ],
-            ];
+        $request->validate($validationRules);
 
-            $request->validate($validationRules);
+        $predictions = [];
+        $imagePaths = [];
 
-            $predictions = [];
-            $imagePaths = [];
+        $client = new Client([
+            'timeout' => 30,
+            'verify' => false
+        ]);
 
-            $client = new Client([
-                'timeout' => 30,
-                'verify' => false // Only for development, remove in production
-            ]);
+        // Process left eye if required
+        if ($request->eye_side === 'left' || $request->eye_side === 'both') {
+            $leftImagePath = $request->file('image_left')->store('oct-scans', 'public');
+            $imagePaths[] = $leftImagePath;
 
-            // Process left eye if required
-            if ($request->eye_side === 'left' || $request->eye_side === 'both') {
-                $leftImagePath = $request->file('image_left')->store('oct-scans', 'public');
-                $imagePaths[] = $leftImagePath;
-
+            try {
                 $response = $client->post('http://localhost:5000/predict', [
                     'multipart' => [
                         [
@@ -193,6 +348,18 @@ class OCTController extends Controller
                 ]);
 
                 $result = json_decode($response->getBody(), true);
+
+                // Check if the image is not an OCT scan
+                if (isset($result['error']) && str_contains($result['error'], 'does not appear to be an OCT scan')) {
+                    // Delete the uploaded image
+                    Storage::disk('public')->delete($leftImagePath);
+
+                    // Return validation error
+                    return redirect()->back()
+                        ->withErrors(['image_left' => 'The provided scan is not an OCT scan. Please upload a valid OCT scan.'])
+                        ->withInput();
+                }
+
                 if (isset($result['error'])) {
                     throw new \Exception("Left eye analysis failed: {$result['error']}");
                 }
@@ -218,13 +385,30 @@ class OCTController extends Controller
                     'prediction' => $result['prediction'] ?? 'Unknown',
                     'recommendation' => $result['recommendation'] ?? 'No recommendations available',
                 ]);
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                // Handle 400 Bad Request specifically for OCT detection
+                $response = $e->getResponse();
+                $responseBody = $response->getBody()->getContents();
+                $result = json_decode($responseBody, true);
+
+                Storage::disk('public')->delete($leftImagePath);
+
+                if (isset($result['error']) && str_contains($result['error'], 'does not appear to be an OCT scan')) {
+                    return redirect()->back()
+                        ->withErrors(['image_left' => 'The provided scan is not an OCT scan. Please upload a valid OCT scan.'])
+                        ->withInput();
+                }
+
+                throw new \Exception("Left eye analysis failed: " . $e->getMessage());
             }
+        }
 
-            // Process right eye if required
-            if ($request->eye_side === 'right' || $request->eye_side === 'both') {
-                $rightImagePath = $request->file('image_right')->store('oct-scans', 'public');
-                $imagePaths[] = $rightImagePath;
+        // Process right eye if required
+        if ($request->eye_side === 'right' || $request->eye_side === 'both') {
+            $rightImagePath = $request->file('image_right')->store('oct-scans', 'public');
+            $imagePaths[] = $rightImagePath;
 
+            try {
                 $response = $client->post('http://localhost:5000/predict', [
                     'multipart' => [
                         [
@@ -236,6 +420,24 @@ class OCTController extends Controller
                 ]);
 
                 $result = json_decode($response->getBody(), true);
+
+                // Check if the image is not an OCT scan
+                if (isset($result['error']) && str_contains($result['error'], 'does not appear to be an OCT scan')) {
+                    // Delete the uploaded image
+                    Storage::disk('public')->delete($rightImagePath);
+
+                    // If left eye was processed successfully, delete it too
+                    if (isset($predictions['left'])) {
+                        Storage::disk('public')->delete($predictions['left']['image']);
+                        OctAnalysis::where('image_path', $predictions['left']['image'])->delete();
+                    }
+
+                    // Return validation error
+                    return redirect()->back()
+                        ->withErrors(['image_right' => 'The provided scan is not an OCT scan. Please upload a valid OCT scan.'])
+                        ->withInput();
+                }
+
                 if (isset($result['error'])) {
                     throw new \Exception("Right eye analysis failed: {$result['error']}");
                 }
@@ -261,29 +463,39 @@ class OCTController extends Controller
                     'prediction' => $result['prediction'] ?? 'Unknown',
                     'recommendation' => $result['recommendation'] ?? 'No recommendations available',
                 ]);
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                // Handle 400 Bad Request specifically for OCT detection
+                $response = $e->getResponse();
+                $responseBody = $response->getBody()->getContents();
+                $result = json_decode($responseBody, true);
+
+                Storage::disk('public')->delete($rightImagePath);
+
+                if (isset($result['error']) && str_contains($result['error'], 'does not appear to be an OCT scan')) {
+                    return redirect()->back()
+                        ->withErrors(['image_right' => 'The provided scan is not an OCT scan. Please upload a valid OCT scan.'])
+                        ->withInput();
+                }
+
+                throw new \Exception("Right eye analysis failed: " . $e->getMessage());
             }
-
-            return back()
-                ->with('success', 'Analysis completed and saved')
-                ->with('predictions', $predictions);
-
-        } catch (\Exception $e) {
-            $errorMessage = 'Analysis failed: ' . $e->getMessage();
-
-            // Delete uploaded images if analysis failed
-            // foreach ($imagePaths as $path) {
-            //     Storage::disk('public')->delete($path);
-            // }
-
-            return back()->with('error', $errorMessage);
         }
-    }
 
-    public function viewAnalysis($id)
-    {
-        $analysis = OctAnalysis::where('doctor_id', session('doctor.doctorId'))->findOrFail($id);
-        return view('DoctorArea.Pages.Oct.view', compact('analysis'));
+        return back()
+            ->with('success', 'Analysis completed and saved')
+            ->with('predictions', $predictions);
+
+    } catch (\Exception $e) {
+        $errorMessage = 'Analysis failed: ' . $e->getMessage();
+
+        // Delete uploaded images if analysis failed
+        foreach ($imagePaths as $path) {
+            Storage::disk('public')->delete($path);
+        }
+
+        return back()->with('error', $errorMessage);
     }
+}
 
 
     public function downloadAnalysis($id)

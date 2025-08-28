@@ -44,7 +44,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->description }}</td>
                                     <td>
-                                        <div class="d-inline-flex gap-1">\
+                                        <div class="d-inline-flex gap-1">
 
                                             <button  class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal"
                                                     onclick="editCategory('{{ $item->id }}', '{{ $item->name }}', '{{ $item->description }}')">

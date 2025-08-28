@@ -170,7 +170,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Send Email</button>
+                    <button type="submit" class="btn btn-primary" >Send Email</button>
                     <button type="button" class="btn btn-info" onclick="sendMeetingSms()">Send SMS</button>
                     <a id="joinMeetingButton" href="#" target="_blank" class="btn btn-success" style="display:none;">Join Meeting</a>
                 </div>

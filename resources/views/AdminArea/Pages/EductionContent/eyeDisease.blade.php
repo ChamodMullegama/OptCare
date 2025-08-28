@@ -22,7 +22,7 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="card-title">Eye Disease List</h5>
                     <button class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#addEyeIssueModal">
-                        Add New Eye Issue
+                        Add New Eye Disease
                     </button>
                 </div>
                 <div class="card-body">
@@ -32,9 +32,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Eye Disease</th>
-                                    <th>Description</th>
-                                    <th>Symptoms</th>
-                                    <th>Causes</th>
+
                                     <th>Treatments</th>
                                     <th>Image</th>
                                     <th>Actions</th>
@@ -45,9 +43,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{!! Str::limit($item->description, 50) !!}</td>
-                                    <td>{{ $item->symptoms }}</td>
-                                    <td>{{ $item->causes }}</td>
+
                                     <td>{{ $item->treatments }}</td>
                                     <td>
                                         <button type="button" class="btn btn-outline-warning btn-sm"

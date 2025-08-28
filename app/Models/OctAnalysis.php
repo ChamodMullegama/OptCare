@@ -9,7 +9,7 @@ class OctAnalysis extends Model
      protected $fillable = [
         'doctor_id',
         'doctor_name',
-              'patient_id',
+        'patient_id',
         'patient_name',
         'patient_email',
         'patient_phone',

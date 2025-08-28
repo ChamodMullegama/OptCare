@@ -99,11 +99,12 @@ class AppointmentController extends Controller
             $appointment->meeting_link = $request->meeting_link;
             $appointment->save();
 
+            Mail::to($appointment->email)->send(new MeetingLinkMail($appointment));
             // Check if email should be sent
-            if ($request->has('send_email')) {
-                Mail::to($appointment->email)->send(new MeetingLinkMail($appointment));
-            }
-            return redirect()->route('appointment.all')->with('success', 'Meeting link Send To THe patient successfully');
+            // if ($request->has('send_email')) {
+            //     Mail::to($appointment->email)->send(new MeetingLinkMail($appointment));
+            // }
+            return redirect()->route('appointment.all')->with('success', 'Meeting link Send To The patient successfully');
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
@@ -138,6 +139,7 @@ class AppointmentController extends Controller
             'id' => 'required|exists:appointments,id',
             'meeting_link' => 'required|url'
         ]);
+
 
         $doctorId = Session::get('doctor.doctorId');
         $appointment = Appointment::where('id', $request->id)
