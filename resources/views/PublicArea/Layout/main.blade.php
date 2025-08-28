@@ -2,16 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="shortcut icon" href="{{ asset('PublicArea/images/favicon.ico') }}">
   @include('PublicArea.libraries.styles')
-  <title>Ayur Assence-Admin</title>
+  <title>Optcare</title>
   <!-- plugins:css -->
-
-
 </head>
 <body>
      <div class="boxed_wrapper">

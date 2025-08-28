@@ -3,7 +3,7 @@
 
 <!-- Page Title -->
 <section class="page-title">
-    <div class="bg-layer" style="background-image: url(assets/images/background/page-title.jpg);"></div>
+  <div class="bg-layer" style="background-image: url({{ asset('PublicArea/images/background/page-title.jpg') }});"></div>
     <div class="auto-container">
         <div class="content-box">
             <h1>Blogs</h1>

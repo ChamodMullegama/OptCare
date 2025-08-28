@@ -32,9 +32,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Purpose</th>
-                                    <th>Usage</th>
+
                                     <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
@@ -44,9 +42,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{!! Str::limit($item->description, 50) !!}</td>
-                                    <td>{{ $item->purpose }}</td>
-                                    <td>{{ $item->usage }}</td>
+
                                     <td>
                                         <button type="button" class="btn btn-outline-warning btn-sm"
                                             data-toggle="modal" data-target="#uploadImageModal"

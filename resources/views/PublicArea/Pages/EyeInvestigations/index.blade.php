@@ -37,65 +37,57 @@
             </div>
         </div>
 
-     <div class="row clearfix">
-    @forelse($EyeScans as $eyeScan)
-        @php
-            $primaryImage = $eyeScan->images->where('isPrimary', true)->first();
-        @endphp
+        <div class="row clearfix">
+            @forelse($EyeScans as $eyeScan)
+                <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+                    <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            @if($eyeScan->images->first())
+                                <figure class="image-box">
+                                    <img src="{{ asset('storage/' . $eyeScan->images->first()->image) }}"
+                                         alt="{{ $eyeScan->name }}"
+                                         style="width: 410px; height: 300px; object-fit: cover; display: block;">
+                                    <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
+                                        <i class="fas fa-link"></i>
+                                    </a>
+                                </figure>
+                            @endif
 
-        <div class="col-lg-4 col-md-6 col-sm-12 news-block">
-            <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                <div class="inner-box">
-                    @if($primaryImage)
-                        <figure class="image-box">
-                            <img src="{{ asset('storage/' . $primaryImage->image) }}"
-                                 alt="{{ $eyeScan->name }}"
-                                 style="width: 410px; height: 300px; object-fit: cover; display: block;">
-                            <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
-                                <i class="fas fa-link"></i>
-                            </a>
-                        </figure>
-                    @endif
+                            <div class="lower-content">
+                                <div class="inner">
+                                    <h3>
+                                        <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
+                                            {{ $eyeScan->name }}
+                                        </a>
+                                    </h3>
 
-                    <div class="lower-content">
-                        <div class="inner">
-                            <h3>
-                                <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
-                                    {{ $eyeScan->name }}
-                                </a>
-                            </h3>
+                                    <p>{{ Str::limit(strip_tags($eyeScan->description), 100) }}</p>
 
-                            <ul class="post-info clearfix">
-
-                            </ul>
-
-                            <p>{{ Str::limit(strip_tags($eyeScan->description), 100) }}</p>
-
-                            <div class="link">
-                                <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
-                                    Read More
-                                </a>
+                                    <div class="link">
+                                        <a href="{{ route('publicEyeInvestigations.details', $eyeScan->eyeScanId) }}">
+                                            Read More
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                <div class="col-12 text-center py-5">
+                    <h4>No eye investigations found</h4>
+                    <a href="{{ route('public.eye-investigations.all') }}" class="theme-btn btn-one"
+                       style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
+                       onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
+                       onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">
+                       View All Eye Investigations
+                    </a>
+                </div>
+            @endforelse
         </div>
-    @empty
-        <div class="col-12 text-center py-5">
-            <h4>No eye investigations found</h4>
-            <a href="{{ route('public.eye-investigations.all') }}" class="theme-btn btn-one"
-               style="padding: 10px 30px; font-size: 14px; background-color: #03c0b4; border-color: #03c0b4; color: #fff; transition: all 0.3s ease; border-radius: 40px;"
-               onmouseover="this.style.backgroundColor='black'; this.style.borderColor='black';"
-               onmouseout="this.style.backgroundColor='#1abc9c'; this.style.borderColor='#1abc9c';">
-               View All Eye Investigations
-            </a>
-        </div>
-    @endforelse
-</div>
-
     </div>
 </section>
+
 <!-- service-style-two end -->
 
 @endsection

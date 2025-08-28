@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('eyeScanId')->unique();
             $table->string('name')->unique();
             $table->text('description');
-            $table->string('purpose');
-            $table->string('usage');
+            $table->text('purpose');
+            $table->text('usage');
             $table->timestamps();
         });
     }

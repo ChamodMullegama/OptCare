@@ -377,7 +377,8 @@ public function addToCart(Request $request)
         return view('PublicArea.Pages.shop.order-history', compact('orders'));
     }
 
-        public function createStripeSession(Request $request)
+
+    public function createStripeSession(Request $request)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',

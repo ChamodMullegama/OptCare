@@ -33,9 +33,7 @@
                                     <th>#</th>
                                     <th>Title</th>
                                     <th>Date</th>
-                                    <th>Content</th>
                                     <th>Tags</th>
-                                    <th>Special Thing</th>
                                     <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
@@ -46,9 +44,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->date }}</td>
-                                    <td>{!! Str::limit($item->content, 50) !!}</td>
                                     <td>{{ $item->tags }}</td>
-                                    <td>{{ $item->special_thing }}</td>
                                     <td>
                                         <button type="button" class="btn btn-outline-warning btn-sm"
                                             data-toggle="modal" data-target="#uploadImageModal"

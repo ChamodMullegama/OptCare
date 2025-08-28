@@ -74,7 +74,6 @@ Route::prefix('oct-analysis')->group(function () {
     Route::get('/view/{id}', [OCTController::class, 'viewAnalysis'])->name('oct.view');
     Route::get('/download/{id}', [OCTController::class, 'downloadAnalysis'])->name('oct.download');
     Route::delete('/delete/{id}', [OCTController::class, 'deleteAnalysis'])->name('oct.delete');
-    //  Route::delete('/mainDelete/{id}', [OCTController::class, 'deleteMainAnalysis'])->name('octMain.delete');
     Route::get('/uploadOctPublic', [PublicOCTController::class, 'UploadOctPublic'])->name('oct.uploadOctPublic');
     Route::post('/analyzeOctPublic', [PublicOCTController::class, 'analyzeOctPublic'])->name('oct.analyzeOctPublic');
     Route::post('/download-analysis-public', [PublicOCTController::class, 'downloadAnalysisPublic'])->name('oct.downloadAnalysisPublic');
