@@ -3,168 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <title>OptCare OCT Analysis Report</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
     <style>
-        @page { margin: 10mm; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 9pt;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
             color: #333;
-            line-height: 1.3;
+            margin: 0;
+            padding: 20px;
         }
         .report-container {
-            max-width: 595pt;
+            max-width: 800px;
             margin: 0 auto;
-            border: 2px solid #0d6efd;
-            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 20px;
             background: #fff;
         }
         .header {
-            background-color: #0d6efd;
-            color: white;
-            padding: 8px;
             text-align: center;
-            border-bottom: 2px solid #0d6efd;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
         .header h1 {
-            font-size: 14pt;
             margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
         }
         .header p {
-            font-size: 8pt;
-            margin: 2px 0 0;
+            font-size: 14px;
             opacity: 0.9;
         }
-        .content-wrapper {
-            padding: 8px;
-        }
         .section {
-            padding: 6px;
-            border: 1px solid #dee2e6;
-            border-radius: 3px;
-            margin-bottom: 6px;
+            margin-bottom: 20px;
         }
         .section h2 {
-            font-size: 10pt;
-            color: #0d6efd;
-            margin-bottom: 4px;
-            border-bottom: 1px solid #dee2e6;
-            padding-bottom: 2px;
-        }
-        .section h2 i {
-            margin-right: 4px;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
         .table {
-            font-size: 8pt;
-            margin-bottom: 0;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
         }
         .table th {
-            background-color: #e9ecef;
-            color: #333;
-            font-weight: 600;
-            padding: 3px 5px;
-        }
-        .table td {
-            padding: 3px 5px;
-            vertical-align: middle;
+            background: #f8f9fa;
+            font-weight: bold;
         }
         .image-container {
             text-align: center;
-            margin: 6px 0;
-            padding: 6px;
-            border: 1px dashed #6c757d;
-            border-radius: 3px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
         }
         .image-container img {
             max-width: 100%;
-            max-height: 100px;
-            border-radius: 3px;
+            max-height: 400px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
         .image-container p {
-            font-size: 7pt;
-            color: #6c757d;
-            margin-top: 3px;
+            margin-top: 15px;
             font-style: italic;
+            color: #666;
+            font-size: 11px;
         }
         .recommendation {
-            background-color: #f8f9fa;
-            padding: 6px;
-            border-left: 2px solid #0d6efd;
-            border-radius: 3px;
-            font-size: 8pt;
+            background: #f0f8ff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
         }
         .recommendation h3 {
-            font-size: 9pt;
-            color: #0d6efd;
-            margin-bottom: 3px;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
         .prediction-badge {
-            padding: 2px 6px;
+            background: #e8f5e8;
+            border: 2px solid #28a745;
             border-radius: 8px;
-            font-size: 7pt;
+            padding: 10px 15px;
+            font-size: 18px;
             font-weight: bold;
-            text-transform: uppercase;
             display: inline-block;
+            margin: 10px 0;
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
-            margin-top: 3px;
+        .prediction-badge.warning {
+            background: #fff3cd;
+            border-color: #ffc107;
         }
-        .stats-card {
-            background-color: #f8f9fa;
-            padding: 3px;
-            border-radius: 3px;
-            text-align: center;
-            font-size: 7pt;
-            border: 1px solid #dee2e6;
-        }
-        .stats-number {
-            font-size: 8pt;
-            font-weight: bold;
-            color: #0d6efd;
-        }
-        .stats-label {
-            color: #6c757d;
+        .prediction-badge.danger {
+            background: #f8d7da;
+            border-color: #dc3545;
         }
         .footer {
-            background-color: #343a40;
-            color: #fff;
+            margin-top: 50px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
             text-align: center;
-            padding: 6px;
-            border-top: 2px solid #0d6efd;
-            border-radius: 0 0 3px 3px;
-            font-size: 7pt;
-        }
-        .footer-divider {
-            width: 30px;
-            height: 1px;
-            background-color: #0d6efd;
-            margin: 0 auto 3px;
+            font-size: 10px;
         }
         .footer a {
-            color: #4dabf7;
+            color: #e0ecf3;
             text-decoration: none;
-            margin: 0 3px;
-            font-size: 7pt;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="report-container">
         <div class="header">
-            <h1><i class="fas fa-eye me-2"></i>OptCare OCT Analysis Report</h1>
-            <p><i class="fas fa-calendar-alt me-1"></i>Generated on {{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}</p>
+            <h1>OptCare OCT Analysis Report</h1>
+            <p>Generated on {{ \Carbon\Carbon::now()->format('d M Y, h:i A') }}</p>
         </div>
 
         <div class="content-wrapper">
-            <div class="row g-2">
+            <div class="row">
                 <div class="col-6">
                     <div class="section">
-                        <h2><i class="fas fa-user-md"></i>Doctor Information</h2>
-                        <table class="table table-bordered">
+                        <h2>Doctor Information</h2>
+                        <table class="table">
                             <tr>
                                 <th>Name</th>
                                 <td>Dr. {{ $analysis->doctor_name }}</td>
@@ -178,8 +153,8 @@
                 </div>
                 <div class="col-6">
                     <div class="section">
-                        <h2><i class="fas fa-user"></i>Patient Information</h2>
-                        <table class="table table-bordered">
+                        <h2>Patient Information</h2>
+                        <table class="table">
                             <tr>
                                 <th>ID</th>
                                 <td>{{ $analysis->patient_id }}</td>
@@ -206,8 +181,8 @@
             </div>
 
             <div class="section">
-                <h2><i class="fas fa-chart-line"></i>Analysis Details</h2>
-                <table class="table table-bordered">
+                <h2>Analysis Details</h2>
+                <table class="table">
                     <tr>
                         <th>Eye Side</th>
                         <td>{{ ucfirst($analysis->eye_side) }} Eye</td>
@@ -215,9 +190,15 @@
                     <tr>
                         <th>Prediction</th>
                         <td>
-                            <span class="prediction-badge {{ $analysis->prediction == 'NORMAL' ? 'bg-success text-white' : 'bg-danger text-white' }}">
-                                {{ $analysis->prediction }}
-                            </span>
+                            @php
+                                $predictionClass = 'prediction-badge';
+                                if ($analysis->prediction == 'NORMAL') {
+                                    $predictionClass .= '';
+                                } elseif (stripos($analysis->prediction, 'ABNORMAL') !== false) {
+                                    $predictionClass .= ' warning';
+                                }
+                            @endphp
+                            <span class="{{ $predictionClass }}">{{ $analysis->prediction }}</span>
                         </td>
                     </tr>
                     <tr>
@@ -226,27 +207,13 @@
                     </tr>
                     <tr>
                         <th>Analysis Date</th>
-                        <td>{{ $analysis->created_at->format('Y-m-d H:i:s') }}</td>
+                        <td>{{ $analysis->created_at->format('d M Y, h:i A') }}</td>
                     </tr>
                 </table>
-                {{-- <div class="stats-grid">
-                    <div class="stats-card">
-                        <div class="stats-number">{{ $analysis->confidence_level ?? '98.5' }}%</div>
-                        <div class="stats-label">Confidence</div>
-                    </div>
-                    <div class="stats-card">
-                        <div class="stats-number">{{ $analysis->analysis_time ?? '2.3' }}s</div>
-                        <div class="stats-label">Time</div>
-                    </div>
-                    <div class="stats-card">
-                        <div class="stats-number">{{ $analysis->image_resolution ?? '1024×768' }}</div>
-                        <div class="stats-label">Resolution</div>
-                    </div>
-                </div> --}}
             </div>
 
             <div class="section">
-                <h2><i class="fas fa-image"></i>OCT Scan Image</h2>
+                <h2>OCT Scan Image</h2>
                 <div class="image-container">
                     <img src="{{ public_path('storage/' . $analysis->image_path) }}" alt="{{ ucfirst($analysis->eye_side) }} Eye OCT Scan">
                     <p>{{ ucfirst($analysis->eye_side) }} Eye OCT Scan</p>
@@ -254,7 +221,7 @@
             </div>
 
             <div class="section">
-                <h2><i class="fas fa-file-medical"></i>Medical Recommendation</h2>
+                <h2>Medical Recommendation</h2>
                 <div class="recommendation">
                     <h3>Clinical Assessment</h3>
                     <div>{!! $analysis->recommendation !!}</div>
@@ -263,15 +230,15 @@
         </div>
 
         <div class="footer">
-            <div class="footer-divider"></div>
             <div>OptCare Eye Clinic</div>
-            <div>59 Street, Kandy, Sri Lanka</div>
-            <div><i class="fas fa-envelope me-1"></i>optcare@gmail.com <i class="fas fa-phone ms-2 me-1"></i>(+94) 222 468 5678</div>
-            <div class="footer-links">
-                <a href="#"><i class="fas fa-shield-alt me-1"></i>Privacy</a>
-                <a href="#"><i class="fas fa-file-alt me-1"></i>Terms</a>
+            <div>No. 120, Galle Road, Colombo 03, Sri Lanka</div>
+            <div>optcare@gmail.com • (+94) 702 74 0542</div>
+            <div style="margin-top: 15px;">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
             </div>
-            <div class="mt-1"><i class="fas fa-cogs me-1"></i>OCT Analysis System | OptCare</div>
+            <div style="margin-top: 15px;">OCT Analysis System | OptCare</div>
+            <div>This report was generated using AI technology. © {{ date('Y') }} OCT Analysis System. All rights reserved.</div>
         </div>
     </div>
 </body>

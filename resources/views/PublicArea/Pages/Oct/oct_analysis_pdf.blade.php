@@ -2,111 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCT Analysis Report</title>
+    <title>OCT Analysis Report - Optcare</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'DejaVu Sans', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: Arial, sans-serif;
             font-size: 12px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
         }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .report-info {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
+            border: 1px solid #ccc;
             padding: 20px;
-            margin-bottom: 30px;
+            background: #fff;
         }
-
-        .report-info h2 {
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
             color: #2c3e50;
-            font-size: 18px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
         }
-
+        .report-info, .analysis-section, .order-items, .order-summary {
+            margin-bottom: 20px;
+        }
+        .report-info h3, .analysis-section h3, .order-summary h3 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .report-info p {
+            margin: 5px 0;
+        }
+        .order-items table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .order-items th, .order-items td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .order-items th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        .order-summary table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-summary td {
+            padding: 5px;
+        }
+        .summary-total {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #e0ecf3;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
         .info-grid {
             display: table;
             width: 100%;
         }
-
         .info-row {
             display: table-row;
         }
-
         .info-label, .info-value {
             display: table-cell;
             padding: 8px 0;
             vertical-align: top;
         }
-
         .info-label {
             font-weight: bold;
             width: 30%;
             color: #555;
         }
-
         .info-value {
             width: 70%;
         }
-
-        .analysis-section {
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            background: #3498db;
-            color: white;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
         .oct-image-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
             background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
             padding: 20px;
         }
-
         .oct-image {
             max-width: 100%;
             max-height: 400px;
@@ -114,14 +111,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 8px;
         }
-
         .image-caption {
             margin-top: 15px;
             font-style: italic;
             color: #666;
             font-size: 11px;
         }
-
         .prediction-box {
             background: #e8f5e8;
             border: 2px solid #28a745;
@@ -129,24 +124,20 @@
             padding: 20px;
             margin: 20px 0;
         }
-
         .prediction-box.warning {
             background: #fff3cd;
             border-color: #ffc107;
         }
-
         .prediction-box.danger {
             background: #f8d7da;
             border-color: #dc3545;
         }
-
         .prediction-title {
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
             color: #2c3e50;
         }
-
         .prediction-value {
             font-size: 18px;
             font-weight: bold;
@@ -156,51 +147,43 @@
             display: inline-block;
             margin: 10px 0;
         }
-
         .recommendations {
             background: #f0f8ff;
-            border: 1px solid #b3d9ff;
+            border: 1px solid #ccc;
             border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
         }
-
         .recommendations h3 {
-            color: #2c3e50;
             font-size: 16px;
-            margin-bottom: 15px;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
-
         .recommendations ul {
             padding-left: 20px;
             margin: 10px 0;
         }
-
         .recommendations li {
             margin-bottom: 8px;
             line-height: 1.5;
         }
-
         .disclaimer {
             background: #fff3cd;
             border: 2px solid #ffc107;
             border-radius: 8px;
             padding: 20px;
-            margin: 30px 0;
+            margin: 20px 0;
         }
-
         .disclaimer h3 {
             color: #856404;
             font-size: 16px;
             margin-bottom: 10px;
         }
-
         .disclaimer p {
             color: #856404;
             font-size: 11px;
             line-height: 1.5;
         }
-
         .footer {
             margin-top: 50px;
             padding: 20px;
@@ -209,22 +192,6 @@
             text-align: center;
             font-size: 10px;
         }
-
-        .page-break {
-            page-break-after: always;
-        }
-
-        /* Print-specific styles */
-        @media print {
-            .header {
-                break-inside: avoid;
-            }
-
-            .analysis-section {
-                break-inside: avoid;
-            }
-        }
-
         .watermark {
             position: fixed;
             top: 50%;
@@ -235,6 +202,14 @@
             z-index: -1;
             font-weight: bold;
         }
+        @media print {
+            .header {
+                break-inside: avoid;
+            }
+            .analysis-section {
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,14 +218,14 @@
 
     <!-- Header -->
     <div class="header">
-        <h1>OCT Analysis Report</h1>
+        <h1>OCT Analysis Report - Optcare</h1>
         <p>Artificial Intelligence Powered Optical Coherence Tomography Analysis</p>
     </div>
 
     <div class="container">
         <!-- Report Information -->
         <div class="report-info">
-            <h2>Report Information</h2>
+            <h3>Report Information</h3>
             <div class="info-grid">
                 <div class="info-row">
                     <div class="info-label">Report ID:</div>
@@ -258,7 +233,7 @@
                 </div>
                 <div class="info-row">
                     <div class="info-label">Generated On:</div>
-                    <div class="info-value">{{ $patient_info['generated_at'] ?? 'N/A' }}</div>
+                    <div class="info-value">{{ $patient_info['generated_at'] ?? now()->format('d M Y, h:i A') }}</div>
                 </div>
                 <div class="info-row">
                     <div class="info-label">Analysis Date:</div>
@@ -267,9 +242,8 @@
                 <div class="info-row">
                     <div class="info-label">Analysis Type:</div>
                     <div class="info-value">{{ $patient_info['analysis_type'] ?? 'AI-Powered OCT Analysis' }}</div>
-
                 </div>
-                 <div class="info-row">
+                <div class="info-row">
                     <div class="info-label">Patient:</div>
                     <div class="info-value">{{ $customer_email ?? 'N/A' }}</div>
                 </div>
@@ -279,20 +253,17 @@
         <!-- OCT Image -->
         @if($image_exists && isset($image_full_path))
         <div class="analysis-section">
-            <div class="section-title">Uploaded OCT Scan</div>
+            <h3>Uploaded OCT Scan</h3>
             <div class="oct-image-container">
                 <img src="{{ $image_full_path }}" alt="OCT Scan" class="oct-image">
-                <div class="image-caption">
-                    Original OCT scan uploaded for analysis
-                </div>
+                <div class="image-caption">Original OCT scan uploaded for analysis</div>
             </div>
         </div>
         @endif
 
         <!-- AI Prediction Results -->
         <div class="analysis-section">
-            <div class="section-title">AI Analysis Results</div>
-
+            <h3>AI Analysis Results</h3>
             @php
                 $predictionClass = 'prediction-box';
                 if (isset($prediction)) {
@@ -303,11 +274,9 @@
                     }
                 }
             @endphp
-
             <div class="{{ $predictionClass }}">
                 <div class="prediction-title">AI Prediction:</div>
                 <div class="prediction-value">{{ $prediction ?? 'N/A' }}</div>
-
                 <p style="margin-top: 15px; font-size: 11px; color: #666;">
                     This prediction is generated using advanced machine learning algorithms trained on extensive OCT imaging datasets. The AI model analyzes retinal layer patterns, structural abnormalities, and tissue characteristics to provide this classification.
                 </p>
@@ -317,11 +286,10 @@
         <!-- Recommendations -->
         @if(isset($recommendation) && $recommendation)
         <div class="analysis-section">
-            <div class="section-title">Medical Recommendations</div>
+            <h3>Medical Recommendations</h3>
             <div class="recommendations">
                 <h3>Suggested Next Steps:</h3>
                 {!! $recommendation !!}
-
                 <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-radius: 5px;">
                     <strong>Important:</strong> These recommendations are AI-generated suggestions based on the analysis results. They should be reviewed and validated by a qualified ophthalmologist or medical professional.
                 </div>
@@ -329,38 +297,12 @@
         </div>
         @endif
 
-        <!-- Technical Details -->
-        {{-- <div class="analysis-section">
-            <div class="section-title">Technical Information</div>
-            <div class="report-info">
-                <div class="info-grid">
-                    <div class="info-row">
-                        <div class="info-label">AI Model:</div>
-                        <div class="info-value">Deep Learning OCT Analysis Model v2.1</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-label">Processing Method:</div>
-                        <div class="info-value">Convolutional Neural Network (CNN) Analysis</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-label">Image Resolution:</div>
-                        <div class="info-value">High-Resolution OCT Scan Analysis</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-label">Analysis Duration:</div>
-                        <div class="info-value">< 30 seconds</div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         <!-- Medical Disclaimer -->
         <div class="disclaimer">
             <h3>⚠️ Important Medical Disclaimer</h3>
             <p>
                 <strong>This AI analysis is for informational and educational purposes only and is not intended to replace professional medical advice, diagnosis, or treatment.</strong>
             </p>
-            <br>
             <p>
                 • This report should be reviewed by a qualified ophthalmologist or healthcare professional<br>
                 • AI predictions may not be 100% accurate and should be correlated with clinical findings<br>
@@ -372,7 +314,7 @@
 
         <!-- Contact Information -->
         <div class="analysis-section">
-            <div class="section-title">Contact Information</div>
+            <h3>Contact Information</h3>
             <div class="report-info">
                 <div class="info-grid">
                     <div class="info-row">
@@ -398,9 +340,21 @@
 
     <!-- Footer -->
     <div class="footer">
+        <div>Connect with us</div>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="divider"></div>
+        <div>No. 120, Galle Road, Colombo 03, Sri Lanka</div>
+        <div>optcare@gmail.com • (+94) 702 74 0542</div>
+        <div style="margin-top: 15px;">
+            <a href="#">Unsubscribe</a>
+            <a href="#">Privacy Policy</a>
+        </div>
         <p>This report was generated using AI technology. © {{ date('Y') }} OCT Analysis System. All rights reserved.</p>
-        <p>Generated on {{ now()->format('F j, Y \a\t g:i A') }} | Report ID: {{ $patient_info['report_id'] ?? 'N/A' }}</p>
+        <p>Generated on {{ now()->format('d M Y, h:i A') }} | Report ID: {{ $patient_info['report_id'] ?? 'N/A' }}</p>
     </div>
 </body>
 </html>
-
