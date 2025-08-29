@@ -193,8 +193,8 @@
                         @endif
 
                         <div class="order-actions mt-4">
-                            <a href="#" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-print"></i> Print Order
+                          <a href="{{ route('order.download-bill', $order->id) }}" class="btn btn-outline-primary btn-sm download-bill">
+                                <i class="fas fa-download"></i> Download Bill
                             </a>
                             @if($order->status == 'delivered')
                                 <a href="#" class="btn btn-outline-success btn-sm">
@@ -534,7 +534,7 @@
 
 @push('js')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
         // View details toggle
         document.querySelectorAll('.view-details').forEach(button => {
             button.addEventListener('click', function() {
@@ -570,12 +570,12 @@
         // Add loading animation for buttons
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (!this.classList.contains('view-details')) {
+                if (!this.classList.contains('view-details') && !this.classList.contains('download-bill')) {
                     const originalText = this.innerHTML;
                     this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
                     this.disabled = true;
 
-                    // Re-enable after 2 seconds (remove this in production)
+                    // Re-enable after 2 seconds (remove in production)
                     setTimeout(() => {
                         this.innerHTML = originalText;
                         this.disabled = false;

@@ -242,8 +242,6 @@ Route::prefix('customer')->group(function () {
 });
 
 
-
-
 Route::prefix('subscriptions')->group(function () {
         Route::get('/all', [SubscriptionController::class, 'All'])->name('subscriptions.all');
         Route::post('/delete', [SubscriptionController::class, 'delete'])->name('subscriptions.delete');
@@ -284,6 +282,7 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
 Route::get('/order-history', [CartController::class, 'orderHistory'])->name('order.history');
+Route::get('/order/{orderId}/download-bill', [CartController::class, 'downloadBill'])->name('order.download-bill');
 Route::post('/create-checkout-session', [CartController::class, 'createCheckoutSession'])->name('create.checkout.session');
 
 Route::post('/create-stripe-session', [CartController::class, 'createStripeSession'])->name('create.stripe.session');
@@ -388,8 +387,8 @@ Route::prefix('PublicAreaSubscription')->group(function () {
 
 Route::prefix('PublicAreaAppointment')->group(function () {
     Route::get('/appointment', [PublicAppointmentController::class, "Appointment"])->name('PublicAreaAppointment.appointment');
-      Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
-//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+    Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
+//  Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
     Route::get('/details{id}', [PublicAppointmentController::class, 'Details'])->name('PublicAreaAppointment.details');
     Route::post('/book', [PublicAppointmentController::class, 'BookAppointment'])->name('PublicAreaAppointment.book');
 });
@@ -399,7 +398,7 @@ Route::prefix('Review')->group(function () {
     Route::post('/add', [ReviewController::class, "Add"])->name('review.add');
     Route::post('/update', [ReviewController::class, 'update'])->name('reviews.update');
     Route::post('/delete', [ReviewController::class, 'Delete'])->name('review.delete');
-//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+//  Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });
 

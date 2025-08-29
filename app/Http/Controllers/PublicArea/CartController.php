@@ -7,6 +7,7 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -375,6 +376,22 @@ public function addToCart(Request $request)
         $orders = Order::where('customer_id', $customerId)->with('orderItems.product')->latest()->get();
 
         return view('PublicArea.Pages.shop.order-history', compact('orders'));
+    }
+
+     public function downloadBill($orderId)
+    {
+        $customerId = Session::get('customer_id');
+        if (!$customerId) {
+            return redirect()->route('login')->with('error', 'Please log in to download your bill.');
+        }
+
+        $order = Order::where('id', $orderId)
+            ->where('customer_id', $customerId)
+            ->with('orderItems.product')
+            ->firstOrFail();
+
+        $pdf = Pdf::loadView('PublicArea.Pages.shop.orderBillPdf', compact('order'));
+        return $pdf->download('order_bill_' . $order->id . '.pdf');
     }
 
 
