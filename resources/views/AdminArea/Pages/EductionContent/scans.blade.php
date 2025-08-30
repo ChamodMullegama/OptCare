@@ -9,7 +9,7 @@
             <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
-            Eye Scans Management
+            Eye Investigation Management
         </li>
     </ol>
     <!-- Breadcrumb ends -->
@@ -20,9 +20,9 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title">Eye Scans List</h5>
+                    <h5 class="card-title">Eye Investigation List</h5>
                     <button class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#addEyeScanModal">
-                        Add New Eye Scan
+                        Add New Eye Investigation
                     </button>
                 </div>
                 <div class="card-body">
@@ -31,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Investigation Name</th>
 
                                     <th>Image</th>
                                     <th>Actions</th>
@@ -84,7 +84,7 @@
             <form id="addEyeScanForm" action="{{ route('eyeScans.add') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addEyeScanModalLabel">Add New Eye Scan</h5>
+                    <h5 class="modal-title" id="addEyeScanModalLabel">Add New Eye Investigation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -123,7 +123,7 @@
                 @csrf
                 <input type="hidden" id="edit_eye_scan_id" name="id">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editEyeScanModalLabel">Edit Eye Scan</h5>
+                    <h5 class="modal-title" id="editEyeScanModalLabel">Edit Eye Investigation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -185,7 +185,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="uploadImageModalLabel">Add New Eye Scan Image</h5>
+                <h5 class="modal-title" id="uploadImageModalLabel">Add New Eye Investigation Image</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
