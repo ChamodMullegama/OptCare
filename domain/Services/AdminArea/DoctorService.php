@@ -109,26 +109,28 @@ class DoctorService
             'password' => 'nullable|string|min:8|max:20|confirmed',
         ]);
 
+
         if ($validator->fails()) {
-            throw new \Exception($validator->errors()->first());
+        throw new \Exception($validator->errors()->first());
+    }
+    if (isset($data['profile_image']) && $data['profile_image'] instanceof \Illuminate\Http\UploadedFile) {
+        if ($doctor->profile_image && Storage::disk('public')->exists($doctor->profile_image)) {
+            Storage::disk('public')->delete($doctor->profile_image);
         }
+        $path = $data['profile_image']->store('uploads/doctors', 'public');
+        $data['profile_image'] = $path;
+    } else {
+        unset($data['profile_image']); 
+    }
 
-        if ($data['profile_image'] instanceof \Illuminate\Http\UploadedFile) {
-            if ($doctor->profile_image && Storage::disk('public')->exists($doctor->profile_image)) {
-                Storage::disk('public')->delete($doctor->profile_image);
-            }
-            $path = $data['profile_image']->store('uploads/doctors', 'public');
-            $data['profile_image'] = $path;
-        }
+    if (!empty($data['password'])) {
+        $data['password'] = Hash::make($data['password']);
+    } else {
+        unset($data['password']);
+    }
 
-        if (!empty($data['password'])) {
-            $data['password'] = Hash::make($data['password']);
-        } else {
-            unset($data['password']);
-        }
-
-        $doctor->update($data);
-        return $doctor;
+    $doctor->update($data);
+    return $doctor;
     }
 
     public function delete($id)
