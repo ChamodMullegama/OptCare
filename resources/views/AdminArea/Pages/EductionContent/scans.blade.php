@@ -32,7 +32,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Investigation Name</th>
-
                                     <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
