@@ -98,7 +98,7 @@ class PublicOCTService
         $userId = session('customer_id');
         $customerEmail = session('customer_email');
         if (!$userId) {
-            return redirect()->route('login')->with('error', 'Please log in to upload an OCT scan');
+            return redirect()->route('login')->with('error', 'Please log in to the system to upload your OCT scan.');
         }
 
         // Validate the image

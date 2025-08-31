@@ -310,6 +310,11 @@ Route::prefix('Authentication')->group(function () {
     Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
     Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
     Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    Route::get('/facebook', [CustomerAuthController::class, 'redirectToFacebook'])->name('facebook.login');
+    Route::get('/facebook/callback', [CustomerAuthController::class, 'handleFacebookCallback']);
+    // Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
+    // Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    // Google Routes
 });
 
 Route::prefix('Home')->group(function () {

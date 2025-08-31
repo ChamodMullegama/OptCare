@@ -378,4 +378,78 @@ class CustomerAuthController extends Controller
         }
     }
 
+      public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    // Handle Facebook callback separately
+    public function handleFacebookCallback()
+    {
+        try {
+            $facebookUser = Socialite::driver('facebook')->user();
+
+            // Check if user already exists by email
+            $existingCustomer = Customer::where('email', $facebookUser->getEmail())->first();
+
+            if ($existingCustomer && !$existingCustomer->facebook_id) {
+                return redirect()->route('login')
+                    ->withErrors(['email' => 'This email is already registered with a password. Please login with your password.']);
+            }
+
+            // Create or update customer specifically for Facebook
+            if ($existingCustomer) {
+                $existingCustomer->facebook_id = $facebookUser->getId();
+                $existingCustomer->avatar = $facebookUser->getAvatar();
+                $existingCustomer->save();
+                $customer = $existingCustomer;
+            } else {
+                $customer = Customer::create([
+                    'first_name' => $facebookUser->user['first_name'] ?? explode(' ', $facebookUser->getName())[0] ?? 'Facebook',
+                    'last_name' => $facebookUser->user['last_name'] ?? (explode(' ', $facebookUser->getName())[1] ?? 'User'),
+                    'email' => $facebookUser->getEmail(),
+                    'facebook_id' => $facebookUser->getId(),
+                    'password' => Hash::make(Str::random(24)),
+                    'verified_account' => 1,
+                    'phone' => null,
+                    'gender' => null,
+                    'age' => null,
+                    'otp' => null,
+                    'otp_expires_at' => null,
+                    'avatar' => $facebookUser->getAvatar(),
+                    'birth_date' => null,
+                ]);
+            }
+
+            // Store session
+            Session::put('customer_id', $customer->id);
+            Session::put('customer_email', $customer->email);
+            Session::put('customer_name', $customer->first_name . ' ' . $customer->last_name);
+
+            // Merge guest cart
+            $sessionId = Session::getId();
+            $guestCartItems = CartItem::where('session_id', $sessionId)->get();
+            foreach ($guestCartItems as $guestCartItem) {
+                $existingCartItem = CartItem::where('customer_id', $customer->id)
+                    ->where('product_id', $guestCartItem->product_id)
+                    ->first();
+                if ($existingCartItem) {
+                    $existingCartItem->quantity += $guestCartItem->quantity;
+                    $existingCartItem->save();
+                    $guestCartItem->delete();
+                } else {
+                    $guestCartItem->customer_id = $customer->id;
+                    $guestCartItem->session_id = null;
+                    $guestCartItem->save();
+                }
+            }
+
+            return redirect()->route('home')->with('success', 'Login successful with Facebook.');
+
+        } catch (\Exception $e) {
+            Log::error('Facebook Auth Error: ' . $e->getMessage());
+            return redirect()->route('login')->withErrors(['error' => 'Facebook authentication failed. Please try again.']);
+        }
+    }
+
 }
