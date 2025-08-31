@@ -220,19 +220,19 @@
                                                         <i class="ri-flag-line"></i>
                                                     </span>
                                              <select class="form-select" id="country" name="country">
-    <option value="">Select</option>
-    <option value="Sri Lanka">Sri Lanka</option>
-    <option value="India">India</option>
-    <option value="China">China</option>
-    <option value="Japan">Japan</option>
-    <option value="South Korea">South Korea</option>
-    <option value="Thailand">Thailand</option>
-    <option value="Malaysia">Malaysia</option>
-    <option value="Singapore">Singapore</option>
-    <option value="USA">USA</option>
-    <option value="Canada">Canada</option>
-    <option value="Brazil">Brazil</option>
-</select>
+                                                <option value="">Select</option>
+                                                <option value="Sri Lanka">Sri Lanka</option>
+                                                <option value="India">India</option>
+                                                <option value="China">China</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="South Korea">South Korea</option>
+                                                <option value="Thailand">Thailand</option>
+                                                <option value="Malaysia">Malaysia</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="USA">USA</option>
+                                                <option value="Canada">Canada</option>
+                                                <option value="Brazil">Brazil</option>
+                                            </select>
 
                                                 </div>
                                             </div>
