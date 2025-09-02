@@ -267,7 +267,7 @@ function initializeQuillEditors() {
 }
 
 function initMap() {
-    var defaultLocation = { lat: 20.5937, lng: 78.9629 }; // Default to India
+    var defaultLocation = { lat:  6.9271, lng: 79.8612 }; // Default to India
     var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
         center: defaultLocation
