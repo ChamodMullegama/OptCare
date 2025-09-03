@@ -167,7 +167,6 @@ Route::prefix('treatments')->group(function () {
     Route::get('/isPrimary/{id}', [TreatmentsController::class, 'IsPrimary'])->name('Treatments.isPrimary');
 });
 
-
 Route::prefix('doctors')->group(function () {
     Route::get('/all', [DoctorsController::class, "All"])->name('doctors.all');
     Route::get('/add', [DoctorsController::class, 'AddPage'])->name('doctors.addPage');

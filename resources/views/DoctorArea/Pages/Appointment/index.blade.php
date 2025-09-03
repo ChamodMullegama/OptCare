@@ -10,7 +10,10 @@
         <li class="breadcrumb-item text-primary" aria-current="page">My Appointments</li>
     </ol>
 </div>
-
+ @php
+    $doctorName = session('doctor.name', 'Doctor');
+    $initials = strtoupper(substr($doctorName, 0, 2));
+@endphp
 <div class="app-body">
     <div class="row gx-3">
         <div class="col-sm-12">
@@ -178,6 +181,12 @@
         </div>
     </div>
 </div>
+<!-- Hidden form for SMS submission -->
+<form id="smsForm" action="{{ route('appointment.send_sms') }}" method="POST" style="display: none;">
+    @csrf
+    <input type="hidden" id="smsAppointmentId" name="id">
+    <input type="hidden" id="smsMeetingLink" name="meeting_link">
+</form>
 
 @endsection
 
@@ -208,34 +217,96 @@
         $('#generateMeetingModal').modal('show');
     }
 
-    function sendMeetingSms() {
-        const appointmentId = document.getElementById('meetingAppointmentId').value;
-        const meetingLink = document.getElementById('meetingLink').value;
+    // function sendMeetingSms() {
+    //     const appointmentId = document.getElementById('meetingAppointmentId').value;
+    //     const meetingLink = document.getElementById('meetingLink').value;
 
-        if (!meetingLink) {
-            alert('Please enter a valid meeting link first.');
-            return;
-        }
+    //     if (!meetingLink) {
+    //         alert('Please enter a valid meeting link first.');
+    //         return;
+    //     }
 
-        $.ajax({
-            url: '{{ route('appointment.send_sms') }}',
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: appointmentId,
-                meeting_link: meetingLink
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert('SMS sent successfully!');
-                } else {
-                    alert('Failed to send SMS: ' + response.message);
-                }
-            },
-            error: function(xhr) {
-                alert('An error occurred while sending SMS.');
-            }
-        });
+    //     $.ajax({
+    //         url: '{{ route('appointment.send_sms') }}',
+    //         type: 'POST',
+    //         data: {
+    //             _token: '{{ csrf_token() }}',
+    //             id: appointmentId,
+    //             meeting_link: meetingLink
+    //         },
+    //         success: function(response) {
+    //             if (response.success) {
+    //                 alert('SMS sent successfully!');
+    //             } else {
+    //                 alert('Failed to send SMS: ' + response.message);
+    //             }
+    //         },
+    //         error: function(xhr) {
+    //             alert('An error occurred while sending SMS.');
+    //         }
+    //     });
+    // }
+
+//     function sendMeetingSms() {
+//     const appointmentId = document.getElementById('meetingAppointmentId').value;
+//     const meetingLink = document.getElementById('meetingLink').value;
+
+//     if (!meetingLink) {
+//         alert('Please enter a valid meeting link first.');
+//         return;
+//     }
+
+//     // Create a form and submit it instead of using AJAX
+//     const form = document.createElement('form');
+//     form.method = 'POST';
+//     form.action = '{{ route("appointment.send_sms") }}';
+
+//     const csrfToken = document.createElement('input');
+//     csrfToken.type = 'hidden';
+//     csrfToken.name = '_token';
+//     csrfToken.value = '{{ csrf_token() }}';
+//     form.appendChild(csrfToken);
+
+//     const idInput = document.createElement('input');
+//     idInput.type = 'hidden';
+//     idInput.name = 'id';
+//     idInput.value = appointmentId;
+//     form.appendChild(idInput);
+
+//     const linkInput = document.createElement('input');
+//     linkInput.type = 'hidden';
+//     linkInput.name = 'meeting_link';
+//     linkInput.value = meetingLink;
+//     form.appendChild(linkInput);
+
+//     document.body.appendChild(form);
+//     form.submit();
+// }
+
+function sendMeetingSms() {
+    const appointmentId = document.getElementById('meetingAppointmentId').value;
+    const meetingLink = document.getElementById('meetingLink').value;
+
+    if (!meetingLink) {
+        // Use a nicer alert or validation message instead of default alert
+        const meetingLinkInput = document.getElementById('meetingLink');
+        meetingLinkInput.classList.add('is-invalid');
+        meetingLinkInput.focus();
+
+        // Remove the invalid class after 3 seconds
+        setTimeout(() => {
+            meetingLinkInput.classList.remove('is-invalid');
+        }, 3000);
+
+        return;
     }
+
+    // Set values in the hidden form
+    document.getElementById('smsAppointmentId').value = appointmentId;
+    document.getElementById('smsMeetingLink').value = meetingLink;
+
+    // Submit the form
+    document.getElementById('smsForm').submit();
+}
 </script>
 @endpush
