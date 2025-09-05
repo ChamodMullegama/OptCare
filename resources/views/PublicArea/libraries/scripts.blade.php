@@ -104,8 +104,8 @@
 <script>
     const crypto = require('crypto');
 
-    const secret = 'r3gjzx8lXT6lm9dl8CPoL'; // Your verification secret key
-    const userId = current_user.id // A string UUID to identify your user
+    const secret = 'r3gjzx8lXT6lm9dl8CPoL'; 
+    const userId = current_user.id
 
     const hash = crypto.createHmac('sha256', secret).update(userId).digest('hex');
 </script>

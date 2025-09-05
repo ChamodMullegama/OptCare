@@ -13,7 +13,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-          $appointment = Appointment::all();
+         $appointment = Appointment::all();
          return $appointment;
     }
 
@@ -42,8 +42,8 @@ class AppointmentController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'message' => $request->message,
-            'status' => 'pending',   // default
-            'meeting_link' => null,  // default
+            'status' => 'pending',   
+            'meeting_link' => null,
         ]);
 
         return response()->json([

@@ -22,13 +22,11 @@ class ProductCategorieController extends Controller
      */
     public function store(Request $request)
     {
-            // Validate request
         $request->validate([
             'name' => 'required|string|max:255|unique:product_categories,name',
             'description' => 'nullable|string',
         ]);
 
-        // Create product category
         $productCategory = ProductCategory::create([
             'name' => $request->name,
             'description' => $request->description,

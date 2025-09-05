@@ -35,11 +35,9 @@ class OCTApiController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
-        // Save image
+
         $path = $request->file('image')->store('oct_images', 'public');
 
-        // ---- Dummy ML Prediction ----
-        // In real case, you would call ML model/service
         $prediction = "Possible retinal abnormality detected";
         $recommendation = "Refer to ophthalmologist for further evaluation";
 
