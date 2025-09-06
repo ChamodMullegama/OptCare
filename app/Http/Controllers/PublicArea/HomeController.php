@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
+use domain\Facades\AdminArea\ServiceFacade;
 use domain\Facades\PublicArea\BlogFacade;
 use domain\Facades\PublicArea\DoctorFacade;
 use domain\Facades\PublicArea\GalleryFacade;
@@ -19,8 +20,8 @@ class HomeController extends Controller
             $galleries = GalleryFacade::all();
             $blogs = BlogFacade::getLatestBlogs(3);
             $doctorS = DoctorFacade::all();
-
-            return view('PublicArea.Pages.Home.index', compact('galleries', 'blogs','doctorS'));
+            $services = ServiceFacade::allForPublic()->take(3);
+            return view('PublicArea.Pages.Home.index', compact('galleries', 'blogs','doctorS','services'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
@@ -29,7 +30,7 @@ class HomeController extends Controller
     public function AboutUs()
     {
         try {
-        $teams = TeamFacade::all();
+         $teams = TeamFacade::all();
          $reviews = ReviewFacade::all();
         return view('PublicArea.Pages.aboutUs.index', compact('teams','reviews'));
 
@@ -44,7 +45,6 @@ class HomeController extends Controller
        public function ContactUs()
     {
         try {
-
 
             return view('PublicArea.Pages.contactUs.index');
         } catch (\Exception $e) {

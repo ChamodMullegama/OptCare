@@ -180,44 +180,48 @@
                                                         {{ ucfirst($appointment->status) }}
                                                     </span>
                                                 </td>
-                                                <td class="text-center">
-                                                    @if ($appointment->status === 'pending')
-                                                        <form action="{{ route('appointment.accept') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-success btn-sm" title="Accept">
-                                                                <i class="ri-check-line"></i>
-                                                            </button>
-                                                        </form>
-                                                    @endif
-                                                    @if ($appointment->status === 'accepted')
-                                                        <form action="{{ route('appointment.complete') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-info btn-sm" title="Complete">
-                                                                <i class="ri-checkbox-circle-line"></i>
-                                                            </button>
-                                                        </form>
-                                                        <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
-                                                            <i class="ri-video-chat-line"></i>
-                                                        </button>
-                                                    @endif
-                                                    @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
-                                                        <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel">
-                                                                <i class="ri-close-line"></i>
-                                                            </button>
-                                                        </form>
-                                                        <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    @endif
-                                                </td>
+                                               <td>
+                                            @if ($appointment->status === 'pending')
+                                                <form action="{{ route('appointment.accept') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-success btn-sm" title="Accept">
+                                                        <i class="ri-check-line"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($appointment->status === 'accepted')
+                                                <form action="{{ route('appointment.complete') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-info btn-sm" title="Complete">
+                                                        <i class="ri-checkbox-circle-line"></i>
+                                                    </button>
+                                                </form>
+                                                <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
+                                                    <i class="ri-video-chat-line"></i>
+                                                </button>
+                                                @if ($appointment->meeting_link)
+                                                    <a href="{{ $appointment->meeting_link }}" target="_blank" class="btn btn-outline-success btn-sm" title="Join Meeting">
+                                                    <i class="ri-vidicon-line"></i>
+                                                    </a>
+                                                @endif
+                                            @endif
+                                            @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
+                                                <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel" {{ $appointment->status === 'accepted' ? 'disabled' : '' }}>
+                                                        <i class="ri-close-line"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($appointment->status === 'completed' || $appointment->status === 'canceled')
+                                                <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+                                            @endif
+                                        </td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -260,44 +264,48 @@
                                                         {{ ucfirst($appointment->status) }}
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    @if ($appointment->status === 'pending')
-                                                        <form action="{{ route('appointment.accept') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-success btn-sm" title="Accept">
-                                                                <i class="ri-check-line"></i>
-                                                            </button>
-                                                        </form>
-                                                    @endif
-                                                    @if ($appointment->status === 'accepted')
-                                                        <form action="{{ route('appointment.complete') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-info btn-sm" title="Complete">
-                                                                <i class="ri-checkbox-circle-line"></i>
-                                                            </button>
-                                                        </form>
-                                                        <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
-                                                            <i class="ri-video-chat-line"></i>
-                                                        </button>
-                                                    @endif
-                                                    @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
-                                                        <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                            <input type="hidden" name="redirect_to" value="{{ route('doctor.dashboard') }}">
-                                                            <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel">
-                                                                <i class="ri-close-line"></i>
-                                                            </button>
-                                                        </form>
-                                                        <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    @endif
-                                                </td>
+                                               <td>
+                                            @if ($appointment->status === 'pending')
+                                                <form action="{{ route('appointment.accept') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-success btn-sm" title="Accept">
+                                                        <i class="ri-check-line"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($appointment->status === 'accepted')
+                                                <form action="{{ route('appointment.complete') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-info btn-sm" title="Complete">
+                                                        <i class="ri-checkbox-circle-line"></i>
+                                                    </button>
+                                                </form>
+                                                <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
+                                                    <i class="ri-video-chat-line"></i>
+                                                </button>
+                                                @if ($appointment->meeting_link)
+                                                    <a href="{{ $appointment->meeting_link }}" target="_blank" class="btn btn-outline-success btn-sm" title="Join Meeting">
+                                                    <i class="ri-vidicon-line"></i>
+                                                    </a>
+                                                @endif
+                                            @endif
+                                            @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
+                                                <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $appointment->id }}">
+                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel" {{ $appointment->status === 'accepted' ? 'disabled' : '' }}>
+                                                        <i class="ri-close-line"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($appointment->status === 'completed' || $appointment->status === 'canceled')
+                                                <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+                                            @endif
+                                        </td>
                                             </tr>
                                         @empty
                                             <tr>

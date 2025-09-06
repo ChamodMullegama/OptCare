@@ -58,7 +58,7 @@ public function All()
                 $data['image'] = $request->file('image');
             }
             GalleryFacade::update($data, $request->id);
-            return redirect()->back()->with('success', 'Employee updated successfully!');
+            return redirect()->back()->with('success', 'Gallery updated successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }

@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Product Management
@@ -34,7 +34,7 @@
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Discounted Price</th>
@@ -51,7 +51,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->productId }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{!! Str::limit($item->description, 50) !!}</td>
+              
                                     <td>{{ $item->quantity }}</td>
                                     <td>Rs.{{ number_format($item->price, 2) }}</td>
                                     <td>

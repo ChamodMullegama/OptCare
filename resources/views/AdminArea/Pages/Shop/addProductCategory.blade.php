@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Product Categories Management
@@ -44,7 +44,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->description }}</td>
                                     <td>
-                                        <div class="d-inline-flex gap-1">\
+                                        <div class="d-inline-flex gap-1">
 
                                             <button  class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal"
                                                     onclick="editCategory('{{ $item->id }}', '{{ $item->name }}', '{{ $item->description }}')">

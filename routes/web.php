@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminArea\GalleryController;
 
 use App\Http\Controllers\AdminArea\NonSurgicalTreatmentsController;
 use App\Http\Controllers\AdminArea\OpticCentersController;
+use App\Http\Controllers\AdminArea\OrderController;
 use App\Http\Controllers\AdminArea\ProductCategoriesController;
 use App\Http\Controllers\AdminArea\ProductsController;
 use App\Http\Controllers\AdminArea\QuestionsAndAnswersController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\DoctorArea\AppointmentControllerroller;
 use App\Http\Controllers\DoctorArea\NeedHelpController;
 use App\Http\Controllers\OCTController;
 use App\Http\Controllers\PublicArea\AuthenticationController;
+use App\Http\Controllers\PublicArea\CartController;
 use App\Http\Controllers\PublicArea\CustomerAuthController;
 
 use App\Http\Controllers\PublicArea\HomeController;
@@ -52,18 +54,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-//  Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-
 Route::prefix('')->group(function () {
     Route::get('/', [HomeController::class, "index"])->name('home');
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('contactUs');
 });
 
-// Route::prefix('oct-analysis')->group(function () {
-//     Route::get('/', [OCTController::class, 'showUploadForm'])->name('oct.upload');
-//     Route::post('/analyze', [OCTController::class, 'uploadAndPredict'])->name('oct.analyze');
-// });
 
 Route::prefix('oct-analysis')->group(function () {
     Route::get('/patients', [OCTController::class, 'showPatients'])->name('oct.patients');
@@ -72,7 +68,6 @@ Route::prefix('oct-analysis')->group(function () {
     Route::get('/view/{id}', [OCTController::class, 'viewAnalysis'])->name('oct.view');
     Route::get('/download/{id}', [OCTController::class, 'downloadAnalysis'])->name('oct.download');
     Route::delete('/delete/{id}', [OCTController::class, 'deleteAnalysis'])->name('oct.delete');
-    //  Route::delete('/mainDelete/{id}', [OCTController::class, 'deleteMainAnalysis'])->name('octMain.delete');
     Route::get('/uploadOctPublic', [PublicOCTController::class, 'UploadOctPublic'])->name('oct.uploadOctPublic');
     Route::post('/analyzeOctPublic', [PublicOCTController::class, 'analyzeOctPublic'])->name('oct.analyzeOctPublic');
     Route::post('/download-analysis-public', [PublicOCTController::class, 'downloadAnalysisPublic'])->name('oct.downloadAnalysisPublic');
@@ -218,7 +213,6 @@ Route::prefix('eyehospitals')->group(function () {
     Route::post('/update', [EyeHospitalsController::class, 'Update'])->name('eye.hospitals.update');
     Route::post('/delete', [EyeHospitalsController::class, 'Delete'])->name('eye.hospitals.delete');
     Route::get('/view/{id}', [EyeHospitalsController::class, 'View'])->name('eye.hospitals.view');
-
 });
 
 Route::prefix('opticcenters')->group(function () {
@@ -239,8 +233,8 @@ Route::prefix('customerMessage')->group(function () {
 
 Route::prefix('customer')->group(function () {
     Route::get('/all', [CustomerController::class, 'All'])->name('customer.all');
-
 });
+
 
 Route::prefix('subscriptions')->group(function () {
         Route::get('/all', [SubscriptionController::class, 'All'])->name('subscriptions.all');
@@ -266,6 +260,39 @@ Route::prefix('appointment')->group(function () {
 
 //////////////////////////////////////////// Public ////////////////////////////////////////////////////
 
+// Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+// Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+// Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+// Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+// Route::get('/order/{id}/status', [CartController::class, 'orderStatus'])->name('order.status');
+
+// Route::get('/order/success/{order}', [CartController::class, 'success'])->name('order.success');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/place-order', [CartController::class, 'placeOrder'])->name('place.order');
+Route::get('/order-history', [CartController::class, 'orderHistory'])->name('order.history');
+Route::get('/order/{orderId}/download-bill', [CartController::class, 'downloadBill'])->name('order.download-bill');
+Route::post('/create-checkout-session', [CartController::class, 'createCheckoutSession'])->name('create.checkout.session');
+
+Route::post('/create-stripe-session', [CartController::class, 'createStripeSession'])->name('create.stripe.session');
+Route::get('/stripe/success', [CartController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('/stripe/cancel', [CartController::class, 'stripeCancel'])->name('stripe.cancel');
+
+
+Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
+
+
+Route::prefix('Orders')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
+    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::post('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
+});
 
 Route::prefix('Authentication')->group(function () {
     Route::get('/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('register');
@@ -275,8 +302,10 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [CustomerAuthController::class, 'login']);
     Route::post('/logout', [CustomerAuthController::class, 'logout'])->name('logout');
- Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
+    Route::get('/facebook', [CustomerAuthController::class, 'redirectToFacebook'])->name('facebook.login');
+    Route::get('/facebook/callback', [CustomerAuthController::class, 'handleFacebookCallback']);
 });
 
 Route::prefix('Home')->group(function () {
@@ -284,7 +313,6 @@ Route::prefix('Home')->group(function () {
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('Home.aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('Home.contactUs');
     Route::get('/blog', [HomeController::class, "Blog"])->name('Home.blog');
-
 });
 
 Route::prefix('PublicAreaBlog')->group(function () {
@@ -296,7 +324,6 @@ Route::prefix('PublicAreDoctors')->group(function () {
     Route::get('/all', [PublicDoctorController::class, 'All'])->name('PublicAreDoctors.all');
     Route::get('/search', [PublicDoctorController::class, 'Search'])->name('PublicAreDoctors.search');
     Route::get('/details{id}', [PublicDoctorController::class, 'Details'])->name('PublicAreDoctors.details');
-
     Route::post('/doctorReviewAdd', [ReviewController::class, "DoctorReviewAdd"])->name('review.doctorReviewAdd');
     Route::get('/doctorReviewDisplay', [ReviewController::class, "DoctorReviewDisplay"])->name('review.doctorReviewDisplay');
     Route::get('/doctorReviewAll', [ReviewController::class, "DoctorReviewAll"])->name('review.DoctorReviewAll');
@@ -356,8 +383,7 @@ Route::prefix('PublicAreaSubscription')->group(function () {
 
 Route::prefix('PublicAreaAppointment')->group(function () {
     Route::get('/appointment', [PublicAppointmentController::class, "Appointment"])->name('PublicAreaAppointment.appointment');
-      Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
-//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+    Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
     Route::get('/details{id}', [PublicAppointmentController::class, 'Details'])->name('PublicAreaAppointment.details');
     Route::post('/book', [PublicAppointmentController::class, 'BookAppointment'])->name('PublicAreaAppointment.book');
 });
@@ -367,10 +393,7 @@ Route::prefix('Review')->group(function () {
     Route::post('/add', [ReviewController::class, "Add"])->name('review.add');
     Route::post('/update', [ReviewController::class, 'update'])->name('reviews.update');
     Route::post('/delete', [ReviewController::class, 'Delete'])->name('review.delete');
-
-
-
-//    Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
+//  Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
 
 });
 
@@ -387,7 +410,7 @@ Route::prefix('Home')->group(function () {
 
 });
 
-// Admin Routes
+
 Route::prefix('admin')->group(function () {
     Route::get('login', [App\Http\Controllers\AdminArea\AuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [App\Http\Controllers\AdminArea\AuthController::class, 'login']);
@@ -396,11 +419,11 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', [App\Http\Controllers\AdminArea\AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/', [App\Http\Controllers\AdminArea\AdminController::class, 'index'])->name('admin.index');
-        // Add other admin routes here
+
     });
 });
 
-// Doctor Routes
+
 Route::prefix('doctor')->group(function () {
     Route::get('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'showLoginForm'])->name('doctor.login');
     Route::post('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'login']);
@@ -409,6 +432,6 @@ Route::prefix('doctor')->group(function () {
     Route::middleware(['auth:doctor'])->group(function () {
         Route::get('dashboard', [App\Http\Controllers\DoctorArea\DoctorController::class, 'dashboard'])->name('doctor.dashboard');
         Route::get('/', [App\Http\Controllers\DoctorArea\DoctorController::class, 'index'])->name('doctor.index');
-        // Add other doctor routes here
+
     });
 });

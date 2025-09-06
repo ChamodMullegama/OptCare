@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Questions & Answers Management
@@ -31,7 +31,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Question</th>
                                     <th>Answer</th>
                                     <th>Actions</th>
@@ -41,7 +40,6 @@
                                 @foreach ($qas as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->qaId }}</td>
                                     <td>{{ $item->question }}</td>
                                     <td>{!! Str::limit($item->answer, 50) !!}</td>
                                     <td>

@@ -10,7 +10,10 @@
         <li class="breadcrumb-item text-primary" aria-current="page">My Appointments</li>
     </ol>
 </div>
-
+ @php
+    $doctorName = session('doctor.name', 'Doctor');
+    $initials = strtoupper(substr($doctorName, 0, 2));
+@endphp
 <div class="app-body">
     <div class="row gx-3">
         <div class="col-sm-12">
@@ -20,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="basicExample" class="table truncate m-0 align-middle">
+                   <table id="basicExample" class="table truncate m-0 align-middle">
                             <thead class="table-light">
                                 <tr>
                                     <th>#</th>
@@ -29,7 +32,6 @@
                                     <th>Phone</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Message</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -43,7 +45,6 @@
                                         <td>{{ $appointment->phone }}</td>
                                         <td>{{ $appointment->date ?? 'N/A' }}</td>
                                         <td>{{ $appointment->time ?? 'N/A' }}</td>
-                                        <td>{{ Str::limit($appointment->message, 50) }}</td>
                                         <td>
                                             <span class="badge bg-{{ $appointment->status === 'accepted' ? 'success' : ($appointment->status === 'rejected' ? 'danger' : ($appointment->status === 'completed' ? 'info' : ($appointment->status === 'canceled' ? 'danger' : 'warning'))) }}">
                                                 {{ ucfirst($appointment->status) }}
@@ -68,19 +69,24 @@
                                                     </button>
                                                 </form>
                                                 <button class="btn btn-outline-primary btn-sm" onclick="showMeetingModal('{{ $appointment->id }}', '{{ $appointment->name }}', '{{ $appointment->email }}', '{{ $appointment->phone }}', '{{ $appointment->date }}', '{{ $appointment->time }}', '{{ $appointment->meeting_link ?? '' }}')">
-                                                    <i class="ri-video-chat-line"></i> Generate Meeting
+                                                    <i class="ri-video-chat-line"></i>
                                                 </button>
+                                                @if ($appointment->meeting_link)
+                                                    <a href="{{ $appointment->meeting_link }}" target="_blank" class="btn btn-outline-success btn-sm" title="Join Meeting">
+                                                        <i class="ri-vidicon-line"></i>
+                                                    </a>
+                                                @endif
                                             @endif
                                             @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
                                                 <form action="{{ route('appointment.cancel') }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $appointment->id }}">
-                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel">
+                                                    <button type="submit" class="btn btn-outline-warning btn-sm" title="Cancel" {{ $appointment->status === 'accepted' ? 'disabled' : '' }}>
                                                         <i class="ri-close-line"></i>
                                                     </button>
                                                 </form>
                                             @endif
-                                            @if ($appointment->status !== 'completed' && $appointment->status !== 'canceled')
+                                            @if ($appointment->status === 'completed' || $appointment->status === 'canceled')
                                                 <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ $appointment->id }}')">
                                                     <i class="ri-delete-bin-line"></i>
                                                 </button>
@@ -89,7 +95,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">No appointments found</td>
+                                        <td colspan="8" class="text-center">No appointments found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -167,7 +173,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Send to Email</button>
+                    <button type="submit" class="btn btn-primary" >Send Email</button>
                     <button type="button" class="btn btn-info" onclick="sendMeetingSms()">Send SMS</button>
                     <a id="joinMeetingButton" href="#" target="_blank" class="btn btn-success" style="display:none;">Join Meeting</a>
                 </div>
@@ -175,6 +181,12 @@
         </div>
     </div>
 </div>
+<!-- Hidden form for SMS submission -->
+<form id="smsForm" action="{{ route('appointment.send_sms') }}" method="POST" style="display: none;">
+    @csrf
+    <input type="hidden" id="smsAppointmentId" name="id">
+    <input type="hidden" id="smsMeetingLink" name="meeting_link">
+</form>
 
 @endsection
 
@@ -205,34 +217,96 @@
         $('#generateMeetingModal').modal('show');
     }
 
-    function sendMeetingSms() {
-        const appointmentId = document.getElementById('meetingAppointmentId').value;
-        const meetingLink = document.getElementById('meetingLink').value;
+    // function sendMeetingSms() {
+    //     const appointmentId = document.getElementById('meetingAppointmentId').value;
+    //     const meetingLink = document.getElementById('meetingLink').value;
 
-        if (!meetingLink) {
-            alert('Please enter a valid meeting link first.');
-            return;
-        }
+    //     if (!meetingLink) {
+    //         alert('Please enter a valid meeting link first.');
+    //         return;
+    //     }
 
-        $.ajax({
-            url: '{{ route('appointment.send_sms') }}',
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: appointmentId,
-                meeting_link: meetingLink
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert('SMS sent successfully!');
-                } else {
-                    alert('Failed to send SMS: ' + response.message);
-                }
-            },
-            error: function(xhr) {
-                alert('An error occurred while sending SMS.');
-            }
-        });
+    //     $.ajax({
+    //         url: '{{ route('appointment.send_sms') }}',
+    //         type: 'POST',
+    //         data: {
+    //             _token: '{{ csrf_token() }}',
+    //             id: appointmentId,
+    //             meeting_link: meetingLink
+    //         },
+    //         success: function(response) {
+    //             if (response.success) {
+    //                 alert('SMS sent successfully!');
+    //             } else {
+    //                 alert('Failed to send SMS: ' + response.message);
+    //             }
+    //         },
+    //         error: function(xhr) {
+    //             alert('An error occurred while sending SMS.');
+    //         }
+    //     });
+    // }
+
+//     function sendMeetingSms() {
+//     const appointmentId = document.getElementById('meetingAppointmentId').value;
+//     const meetingLink = document.getElementById('meetingLink').value;
+
+//     if (!meetingLink) {
+//         alert('Please enter a valid meeting link first.');
+//         return;
+//     }
+
+//     // Create a form and submit it instead of using AJAX
+//     const form = document.createElement('form');
+//     form.method = 'POST';
+//     form.action = '{{ route("appointment.send_sms") }}';
+
+//     const csrfToken = document.createElement('input');
+//     csrfToken.type = 'hidden';
+//     csrfToken.name = '_token';
+//     csrfToken.value = '{{ csrf_token() }}';
+//     form.appendChild(csrfToken);
+
+//     const idInput = document.createElement('input');
+//     idInput.type = 'hidden';
+//     idInput.name = 'id';
+//     idInput.value = appointmentId;
+//     form.appendChild(idInput);
+
+//     const linkInput = document.createElement('input');
+//     linkInput.type = 'hidden';
+//     linkInput.name = 'meeting_link';
+//     linkInput.value = meetingLink;
+//     form.appendChild(linkInput);
+
+//     document.body.appendChild(form);
+//     form.submit();
+// }
+
+function sendMeetingSms() {
+    const appointmentId = document.getElementById('meetingAppointmentId').value;
+    const meetingLink = document.getElementById('meetingLink').value;
+
+    if (!meetingLink) {
+        // Use a nicer alert or validation message instead of default alert
+        const meetingLinkInput = document.getElementById('meetingLink');
+        meetingLinkInput.classList.add('is-invalid');
+        meetingLinkInput.focus();
+
+        // Remove the invalid class after 3 seconds
+        setTimeout(() => {
+            meetingLinkInput.classList.remove('is-invalid');
+        }, 3000);
+
+        return;
     }
+
+    // Set values in the hidden form
+    document.getElementById('smsAppointmentId').value = appointmentId;
+    document.getElementById('smsMeetingLink').value = meetingLink;
+
+    // Submit the form
+    document.getElementById('smsForm').submit();
+}
 </script>
 @endpush

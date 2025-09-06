@@ -27,15 +27,21 @@
             <div class="top-inner">
                 <div class="left-column">
                     <ul class="info clearfix">
-                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:sample@example.com">sample@example.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> 380 Albert St, Melborne</li>
-                        <li><i class="fas fa-phone-alt"></i> Call: <a href="tel:123045615523">+1 (230)-456-155-23</a></li>
+                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:sample@example.com">optcare@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>No. 120, Galle Road, Colombo 03, Sri Lanka</li>
+                        <li><i class="fas fa-phone-alt"></i> Call: <a href="tel:123045615523">(+94) 702 74 0542</a></li>
                     </ul>
                 </div>
                 <div class="right-column">
                     <div class="schedule">
                         @if(Session::has('customer_email'))
                             <span style="color: white; margin-right: 10px;"><i class="fas fa-user"></i> {{ Session::get('customer_email') }}</span>
+                            <a href="{{ route('cart.view') }}" style="color: white; margin-right: 10px; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">
+                                Cart
+                            </a>
+                            <a href="{{ route('order.history') }}" style="color: white; margin-right: 10px; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">
+                                Orders
+                            </a>
                             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" style="color: white; text-decoration: none;" onmouseover="this.style.color='#03c0b4'" onmouseout="this.style.color='white'">Logout</button>
@@ -46,12 +52,6 @@
                             </a>
                         @endif
                     </div>
-                    <ul class="social-links clearfix">
-                        <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -78,27 +78,25 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li><a href="{{ route('home') }}">Home</a></li>
+        <li><a href="{{ route('oct.uploadOctPublic') }}">OCT Analyzer</a></li>
 
-                                      <li><a href="{{ route('oct.uploadOctPublic') }}">Oct</a></li>
-                                <li class="dropdown"><a href="index.html">Specialties & Services</a>
+                                <li class="dropdown"><a href="#">Specialties & Services</a>
                                     <ul>
-                                        <li class="dropdown"><a href="index.html">Treatments</a>
+                                        <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
+                                        <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
+                                                             <li><a href="{{ route('public.products.index') }}">Shop</a></li>
+                                        <li class="dropdown"><a href="#">Treatments</a>
                                             <ul>
                                                 <li><a href="{{ route('public.surgical-treatments.all') }}">Surgical Treatment</a></li>
                                                 <li><a href="{{ route('public.non-surgical-treatments.all') }}">Non Surgical Treatment</a></li>
                                             </ul>
                                         </li>
-                                             <li class="dropdown"><a href="index.html">Hospital And Vision Centers</a>
+                                        <li class="dropdown"><a href="#">Hospital And Vision Centers</a>
                                             <ul>
-                                              <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
-                                              <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
+                                                <li><a href="{{ route('public.eye-hospitals.all') }}">Eye Hospital</a></li>
+                                                <li><a href="{{ route('public.optic-centers.all') }}">Vision Centers</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{ route('public.products.index') }}">Shop</a></li>
-                                        <li><a href="{{ route('PublicAreaEyeIssues.all') }}">Eye Diseases</a></li>
-
-                                        <li><a href="{{ route('publicEyeInvestigations.all') }}">Eye Investigations</a></li>
-                                        <li><a href="error.html">404</a></li>
 
 
                                     </ul>
@@ -107,7 +105,7 @@
                                 <li><a href="{{ route('PublicAreaBlog.all') }}">Blog</a></li>
                                 <li><a href="{{ route('aboutUs') }}">About</a></li>
                                 <li><a href="{{ route('contactUs') }}">Contact</a></li>
-                                <li><a href="{{ route('gallery.all') }}">Contact</a></li>
+                                {{-- <li><a href="{{ route('gallery.all') }}">Contact</a></li> --}}
                             </ul>
                         </div>
                     </nav>
@@ -152,7 +150,7 @@
     <div class="menu-backdrop"></div>
     <div class="close-btn"><i class="fas fa-times"></i></div>
     <nav class="menu-box">
-        <div class="nav-logo"><a href="index.html"> <img src="{{ asset('PublicArea/images/logo-2.png') }}" alt="Logo"></a></div>
+        <div class="nav-logo"><a href="index.html"><img src="{{ asset('PublicArea/images/logo-2.png') }}" alt="Logo"></a></div>
         <div class="menu-outer">
             <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
         </div>
@@ -166,11 +164,8 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
                 <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="index.html"><span class="fab fa-linkedin-in"></span></a></li>
             </ul>
         </div>
     </nav>

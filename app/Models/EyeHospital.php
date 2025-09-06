@@ -21,7 +21,7 @@ class EyeHospital extends Model
         'bio',
         'description',
         'clinic_days',
-              'latitude',
+        'latitude',
         'longitude',
     ];
 

@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
-            <a href="index.html">Home</a>
+            <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
             Add Doctor
@@ -220,19 +220,19 @@
                                                         <i class="ri-flag-line"></i>
                                                     </span>
                                              <select class="form-select" id="country" name="country">
-    <option value="">Select</option>
-    <option value="Sri Lanka">Sri Lanka</option>
-    <option value="India">India</option>
-    <option value="China">China</option>
-    <option value="Japan">Japan</option>
-    <option value="South Korea">South Korea</option>
-    <option value="Thailand">Thailand</option>
-    <option value="Malaysia">Malaysia</option>
-    <option value="Singapore">Singapore</option>
-    <option value="USA">USA</option>
-    <option value="Canada">Canada</option>
-    <option value="Brazil">Brazil</option>
-</select>
+                                                <option value="">Select</option>
+                                                <option value="Sri Lanka">Sri Lanka</option>
+                                                <option value="India">India</option>
+                                                <option value="China">China</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="South Korea">South Korea</option>
+                                                <option value="Thailand">Thailand</option>
+                                                <option value="Malaysia">Malaysia</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="USA">USA</option>
+                                                <option value="Canada">Canada</option>
+                                                <option value="Brazil">Brazil</option>
+                                            </select>
 
                                                 </div>
                                             </div>

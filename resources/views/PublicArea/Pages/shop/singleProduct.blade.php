@@ -5,9 +5,7 @@
 <section class="page-title">
     <div class="bg-layer" style="background-image: url({{ asset('PublicArea/images/background/page-title.jpg') }});"></div>
     <div class="auto-container">
-
-
-            <div class="content-box">
+        <div class="content-box">
             <h1>{{ $product->name }}</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
@@ -63,7 +61,6 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                    <!-- Content remains the same as before -->
                     <div class="product-details p_relative d_block ml_20">
                         <h2 class="d_block fs_30 lh_35 fw_sbold mb_11">{{ $product->name }}</h2>
                         <div class="customer-rating clearfix p_relative d_block mb_5">
@@ -75,7 +72,7 @@
                         </div>
                         <span class="price p_relative d_block fs_20 lh_30 fw_medium mb_25">
                             @if($product->discount > 0)
-                                <del>Rs.{{ number_format($product->price, 2) }}</del> ${{ number_format($discountedPrice, 2) }}
+                                <del>Rs.{{ number_format($product->price, 2) }}</del> Rs.{{ number_format($discountedPrice, 2) }}
                             @else
                                 Rs.{{ number_format($product->price, 2) }}
                             @endif
@@ -84,24 +81,28 @@
                             <p class="mb_25">{!! Str::limit($product->description, 5000) !!}</p>
                         </div>
                         <div class="addto-cart-box p_relative d_block mb_35">
-                            <ul class="clearfix">
-                                <li class="item-quantity p_relative d_block float_left mr_10">
-                                    <input class="quantity-spinner" type="number" value="1" name="quantity" min="1">
-                                </li>
-                                <li class="p_relative d_block float_left mr_10">
-                                    <button type="button" class="theme-btn btn-two">Add To Cart</button>
-                                </li>
-                                <li class="p_relative d_block float_left mr_10">
-                                    <a href="#" class="d_iblock p_relative fs_20 lh_50 w_50 h_50 centred b_radius_50">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </li>
-                                <li class="p_relative d_block float_left mr_10">
-                                    <a href="#" class="d_iblock p_relative fs_20 lh_50 w_50 h_50 centred b_radius_50">
-                                        <i class="fas fa-share-alt"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <ul class="clearfix">
+                                    <li class="item-quantity p_relative d_block float_left mr_10">
+                                        <input class="quantity-spinner" type="number" value="1" name="quantity" min="1">
+                                    </li>
+                                    <li class="p_relative d_block float_left mr_10">
+                                        <button type="submit" class="theme-btn btn-two">Add To Cart</button>
+                                    </li>
+                                    <li class="p_relative d_block float_left mr_10">
+                                        <a href="#" class="d_iblock p_relative fs_20 lh_50 w_50 h_50 centred b_radius_50">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                    </li>
+                                    <li class="p_relative d_block float_left mr_10">
+                                        <a href="#" class="d_iblock p_relative fs_20 lh_50 w_50 h_50 centred b_radius_50">
+                                            <i class="fas fa-share-alt"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </form>
                         </div>
                         <div class="other-option">
                             <ul class="list">
@@ -117,119 +118,128 @@
             </div>
         </div>
 
-        <!-- Rest of the content remains the same -->
         <div class="product-discription p_relative d_block mb_100">
-               <div class="product-discription p_relative d_block mb_100">
-                    <div class="tabs-box">
-                        <div class="tab-btn-box p_relative d_block">
-                            <ul class="tab-btns tab-buttons clearfix">
-                                <li class="tab-btn active-btn p_relative d_iblock fs_18 lh_20 float_left fw_medium z_1 mr_35 tran_5" data-tab="#tab-1">Description</li>
-                                <li class="tab-btn p_relative d_iblock fs_18 lh_20 float_left fw_medium z_1 tran_5" data-tab="#tab-2">Reviews (1)</li>
-                            </ul>
+            <div class="tabs-box">
+                <div class="tab-btn-box p_relative d_block">
+                    <ul class="tab-btns tab-buttons clearfix">
+                        <li class="tab-btn active-btn p_relative d_iblock fs_18 lh_20 float_left fw_medium z_1 mr_35 tran_5" data-tab="#tab-1">Description</li>
+                        <li class="tab-btn p_relative d_iblock fs_18 lh_20 float_left fw_medium z_1 tran_5" data-tab="#tab-2">Reviews (1)</li>
+                    </ul>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab active-tab" id="tab-1">
+                        <div class="content-box">
+                            <p class="mb_25">{!! Str::limit($product->description, 5000) !!}</p>
                         </div>
-                        <div class="tabs-content">
-                            <div class="tab active-tab" id="tab-1">
-                                <div class="content-box">
-
-                                    <p class="mb_25">{!! Str::limit($product->description, 5000) !!}</p>
+                    </div>
+                    <div class="tab" id="tab-2">
+                        <div class="customer-inner">
+                            <div class="customer-review p_relative d_block pb_65 mb_65">
+                                <h4 class="p_relative d_block fs_20 lh_30 fw_medium fw_sbold mb_40">Classic Rechargeable Table Lamp Black</h4>
+                                <div class="comment-box p_relative d_block pl_110">
+                                    <figure class="comment-thumb p_absolute l_0 t_0 w_80 h_80 b_radius_55"><img src="assets/images/shop/comment-1.jpg" alt=""></figure>
+                                    <h5 class="d_block fs_18 lh_20 fw_sbold">Keanu Reeves<span class="d_iblock fs_16 font_family_poppins"> - May 1, 2021</span></h5>
+                                    <ul class="rating clearfix mb_15">
+                                        <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
+                                        <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
+                                        <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
+                                        <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
+                                        <li class="p_relative d_iblock pull-left mr_5 fs_13"><i class="far fa-star"></i></li>
+                                    </ul>
+                                    <div class="text">
+                                        <p>Excepteur sint occaecat cupidatat non proident sunt in culpa  qui officia deserunt mollit anim  est laborum. Sed perspiciatis unde omnis natus error sit voluptatem accusa dolore mque laudant totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi arch tecto beatae vitae dicta.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="tab" id="tab-2">
-                                <div class="customer-inner">
-                                    <div class="customer-review p_relative d_block pb_65 mb_65">
-                                        <h4 class="p_relative d_block fs_20 lh_30 fw_medium fw_sbold mb_40">Classic Rechargeable Table Lamp Black</h4>
-                                        <div class="comment-box p_relative d_block pl_110">
-                                            <figure class="comment-thumb p_absolute l_0 t_0 w_80 h_80 b_radius_55"><img src="assets/images/shop/comment-1.jpg" alt=""></figure>
-                                            <h5 class="d_block fs_18 lh_20 fw_sbold">Keanu Reeves<span class="d_iblock fs_16 font_family_poppins"> - May 1, 2021</span></h5>
-                                            <ul class="rating clearfix mb_15">
-                                                <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
-                                                <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
-                                                <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
-                                                <li class="p_relative d_iblock pull-left mr_3 fs_13"><i class="fas fa-star"></i></li>
-                                                <li class="p_relative d_iblock pull-left mr_5 fs_13"><i class="far fa-star"></i></li>
-                                            </ul>
-                                            <div class="text">
-                                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa  qui officia deserunt mollit anim  est laborum. Sed perspiciatis unde omnis natus error sit voluptatem accusa dolore mque laudant totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi arch tecto beatae vitae dicta.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="customer-comments p_relative">
-                                        <h4 class="p_relative d_block fs_20 lh_30 fw_medium fw_sbold mb_25">Be First to Add a Review</h4>
-                                        <div class="rating-box clearfix mb_12">
-                                            <h6 class="p_relative d_iblock fs_16 fw_medium mr_15 float_left">Your Rating</h6>
-                                            <ul class="rating p_relative d_block clearfix float_left">
-                                                <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
-                                                <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
-                                                <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
-                                                <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
-                                                <li class="p_relative d_iblock fs_12 lh_26 float_left"><i class="far fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <form action="shop-details.html" method="post" class="comment-form default-form">
-                                            <div class="row clearfix">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 form-group mb_15">
-                                                    <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Review</label>
-                                                    <textarea name="message"></textarea>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 form-group mb_15">
-                                                    <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Name</label>
-                                                    <input type="text" name="name" required="">
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 form-group mb_15">
-                                                    <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Email</label>
-                                                    <input type="email" name="email" required="">
-                                                </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn m_0">
-                                                    <button type="submit" class="theme-btn btn-one">Submit Your Review</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div class="customer-comments p_relative">
+                                <h4 class="p_relative d_block fs_20 lh_30 fw_medium fw_sbold mb_25">Be First to Add a Review</h4>
+                                <div class="rating-box clearfix mb_12">
+                                    <h6 class="p_relative d_iblock fs_16 fw_medium mr_15 float_left">Your Rating</h6>
+                                    <ul class="rating p_relative d_block clearfix float_left">
+                                        <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
+                                        <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
+                                        <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
+                                        <li class="p_relative d_iblock fs_12 lh_26 float_left mr_3"><i class="far fa-star"></i></li>
+                                        <li class="p_relative d_iblock fs_12 lh_26 float_left"><i class="far fa-star"></i></li>
+                                    </ul>
                                 </div>
+                                <form action="shop-details.html" method="post" class="comment-form default-form">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group mb_15">
+                                            <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Review</label>
+                                            <textarea name="message"></textarea>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group mb_15">
+                                            <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Name</label>
+                                            <input type="text" name="name" required="">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group mb_15">
+                                            <label class="p_relative d_block fs_16 mb_3 font_family_poppins">Your Email</label>
+                                            <input type="email" name="email" required="">
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn m_0">
+                                            <button type="submit" class="theme-btn btn-one">Submit Your Review</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
         </div>
 
         @if($relatedProducts->count() > 0)
         <div class="related-product">
-                 <div class="related-product">
-                    <div class="title-text mb_20">
-                        <h2 class="d_block fs_30 lh_40 fw_sbold">Related Products</h2>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
-                            <div class="shop-block-one">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <span class="hot">Hot</span>
-                                        <figure class="image"><img src="assets/images/shop/shop-1.png" alt=""></figure>
-                                        <ul class="option-list clearfix">
-                                            <li><a href="shop.html"><i class="icon-47"></i></a></li>
-                                            <li><a href="index-5.html"><i class="icon-48"></i></a></li>
-                                            <li><a href="index-5.html"><i class="icon-49"></i></a></li>
-                                            <li><a href="assets/images/shop/shop-1.png" class="lightbox-image" data-fancybox="gallery"><i class="icon-50"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="lower-content">
-                                        <h5><a href="shop-details.html">CM-4336 RG Luxury<br /> Stethoscope</a></h5>
-                                        <ul class="rating clearfix">
-                                            <li><i class="icon-51"></i></li>
-                                            <li><i class="icon-51"></i></li>
-                                            <li><i class="icon-51"></i></li>
-                                            <li><i class="icon-51"></i></li>
-                                            <li><i class="icon-51"></i></li>
-                                        </ul>
-                                        <span class="price">$70.30</span>
-                                    </div>
-                                </div>
+            <div class="title-text mb_20">
+                <h2 class="d_block fs_30 lh_40 fw_sbold">Related Products</h2>
+            </div>
+            <div class="row clearfix">
+                @foreach($relatedProducts as $relatedProduct)
+                <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
+                    <div class="shop-block-one">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <span class="hot">Hot</span>
+                               <figure class="image">
+    <img src="{{ asset('storage/' . ($relatedProduct->images->where('isPrimary', 1)->first()->image ?? ($relatedProduct->images->first()->image ?? 'default.jpg'))) }}" alt="{{ $relatedProduct->name }}">
+</figure>
+
+                                <ul class="option-list clearfix">
+                                    <li>
+                                        <form action="{{ route('cart.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $relatedProduct->id }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="d_iblock p_relative fs_20 lh_50 w_50 h_50 centred b_radius_50">
+                                                <i class="icon-47"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li><a href="#"><i class="icon-48"></i></a></li>
+                                    <li><a href="#"><i class="icon-49"></i></a></li>
+                                 <li>
+    <a href="{{ asset('storage/' . ($relatedProduct->images->where('isPrimary', 1)->first()->image ?? ($relatedProduct->images->first()->image ?? 'default.jpg'))) }}" class="lightbox-image" data-fancybox="gallery">
+        <i class="icon-50"></i>
+    </a>
+</li>
+
+                                </ul>
+                            </div>
+                            <div class="lower-content">
+                                <h5><a href="{{ route('public.products.show', $relatedProduct->id) }}">{{ $relatedProduct->name }}</a></h5>
+                                <ul class="rating clearfix">
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <li><i class="icon-51"></i></li>
+                                    @endfor
+                                </ul>
+                                <span class="price">Rs.{{ number_format($relatedProduct->price * (1 - ($relatedProduct->discount / 100)), 2) }}</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
+                @endforeach
+            </div>
         </div>
         @endif
     </div>

@@ -170,6 +170,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">OptCare</div>
+                <img src="{{ asset('PublicArea/images/logo.png') }}" alt="OptCare Logo" class="logo-image">
             <div class="tagline">Your vision, our care</div>
         </div>
 

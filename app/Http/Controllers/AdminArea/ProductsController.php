@@ -127,7 +127,7 @@ class ProductsController extends Controller
     {
         try {
             ProductFacade::isPrimary($id);
-            $message = ProductImage::findOrFail($id)->isPrimary ? 'Item activated successfully!' : 'Item deactivated successfully!';
+            $message = ProductImage::findOrFail($id)->isPrimary ? 'Image marked as the primary image successfully!' : 'Image removed as primary successfully!';
             return redirect()->back()->with('success', $message);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong!');

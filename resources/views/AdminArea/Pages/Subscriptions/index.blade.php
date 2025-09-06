@@ -9,7 +9,7 @@
             <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item text-primary" aria-current="page">
-            Subscriptions
+            Subscriptions Management
         </li>
     </ol>
     <!-- Breadcrumb ends -->
@@ -27,11 +27,10 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="subscriptionsTable" class="table truncate m-0 align-middle">
+                          <table id="basicExample" class="table table-bordered align-middle">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Subscription ID</th>
                                     <th>Email</th>
                                     <th>Subscribed At</th>
                                     <th>Actions</th>
@@ -41,7 +40,6 @@
                                 @foreach ($subscriptions as $subscription)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $subscription->subscriptionId }}</td>
                                         <td>{{ $subscription->email }}</td>
                                         <td>{{ $subscription->created_at->format('d M Y, h:i A') }}</td>
                                         <td>
