@@ -77,7 +77,6 @@
             <input class="quantity-spinner" type="number" value="{{ $cartItem->quantity }}" name="quantity" min="1">
             <button type="submit" class="theme-btn btn-two update-btn">Update</button>
         </form>
-
 </td>
                                 <td class="sub-total">Rs.{{ number_format($cartItem->subtotal, 2) }}</td>
                             </tr>
