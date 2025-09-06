@@ -54,18 +54,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-//  Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-
 Route::prefix('')->group(function () {
     Route::get('/', [HomeController::class, "index"])->name('home');
     Route::get('/aboutUs', [HomeController::class, "AboutUs"])->name('aboutUs');
     Route::get('/contactUs', [HomeController::class, "ContactUs"])->name('contactUs');
 });
 
-// Route::prefix('oct-analysis')->group(function () {
-//     Route::get('/', [OCTController::class, 'showUploadForm'])->name('oct.upload');
-//     Route::post('/analyze', [OCTController::class, 'uploadAndPredict'])->name('oct.analyze');
-// });
 
 Route::prefix('oct-analysis')->group(function () {
     Route::get('/patients', [OCTController::class, 'showPatients'])->name('oct.patients');
