@@ -306,9 +306,6 @@ Route::prefix('Authentication')->group(function () {
     Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
     Route::get('/facebook', [CustomerAuthController::class, 'redirectToFacebook'])->name('facebook.login');
     Route::get('/facebook/callback', [CustomerAuthController::class, 'handleFacebookCallback']);
-    // Route::get('/google', [CustomerAuthController::class, 'redirectToGoogle'])->name('google.login');
-    // Route::get('/google/callback', [CustomerAuthController::class, 'handleGoogleCallback']);
-    // Google Routes
 });
 
 Route::prefix('Home')->group(function () {
@@ -387,7 +384,6 @@ Route::prefix('PublicAreaSubscription')->group(function () {
 Route::prefix('PublicAreaAppointment')->group(function () {
     Route::get('/appointment', [PublicAppointmentController::class, "Appointment"])->name('PublicAreaAppointment.appointment');
     Route::post('/appointmentsearch', [PublicAppointmentController::class, "appointmentsearch"])->name('PublicAreaAppointment.appointmentsearch');
-//  Route::post('/add', [PublicSubscriptionController::class, 'Add'])->name('publicAreaSubscription.add');
     Route::get('/details{id}', [PublicAppointmentController::class, 'Details'])->name('PublicAreaAppointment.details');
     Route::post('/book', [PublicAppointmentController::class, 'BookAppointment'])->name('PublicAreaAppointment.book');
 });
@@ -414,7 +410,7 @@ Route::prefix('Home')->group(function () {
 
 });
 
-// Admin Routes
+
 Route::prefix('admin')->group(function () {
     Route::get('login', [App\Http\Controllers\AdminArea\AuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [App\Http\Controllers\AdminArea\AuthController::class, 'login']);
@@ -423,11 +419,11 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', [App\Http\Controllers\AdminArea\AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/', [App\Http\Controllers\AdminArea\AdminController::class, 'index'])->name('admin.index');
-        // Add other admin routes here
+
     });
 });
 
-// Doctor Routes
+
 Route::prefix('doctor')->group(function () {
     Route::get('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'showLoginForm'])->name('doctor.login');
     Route::post('login', [App\Http\Controllers\DoctorArea\AuthController::class, 'login']);
@@ -436,6 +432,6 @@ Route::prefix('doctor')->group(function () {
     Route::middleware(['auth:doctor'])->group(function () {
         Route::get('dashboard', [App\Http\Controllers\DoctorArea\DoctorController::class, 'dashboard'])->name('doctor.dashboard');
         Route::get('/', [App\Http\Controllers\DoctorArea\DoctorController::class, 'index'])->name('doctor.index');
-        // Add other doctor routes here
+
     });
 });
